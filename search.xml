@@ -1,38 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>说明事项</title>
-    <url>/2022/12/26/%E8%AF%B4%E6%98%8E%E4%BA%8B%E9%A1%B9/</url>
-    <content><![CDATA[<blockquote>
-<p>博客重新启用后的说明事项</p>
-<p>主要重新界定博客的用途</p>
-</blockquote>
-<hr>
-<span id="more"></span>
-
-<h1 id="说明事项"><a href="#说明事项" class="headerlink" title="说明事项"></a>说明事项</h1><p>博客计划经过一段时间的搁置之后重新启用了。</p>
-<p>重新启用的博客板块主要有以下的一些内容</p>
-<ul>
-<li>学习笔记（主要是对一些书本上所学的内容进行精炼和归纳之后汇总所产生的笔记）</li>
-<li>读书笔记（对书本著作以及阅读篇目的内容总结）</li>
-<li>日常 （日常的一些记录，分为说明以及随笔）</li>
-</ul>
-]]></content>
-      <categories>
-        <category>日常</category>
-      </categories>
-      <tags>
-        <tag>说明</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>python组合数据类型</title>
     <url>/2023/01/09/python%E7%BB%84%E5%90%88%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/</url>
     <content><![CDATA[<blockquote>
 <p>对python的三大组合数据类型进行说明的笔记</p>
 <p>包括：序列（字符串、元组、列表）、集合、映射（字典）</p>
-<p>——————————————————————————————————————————————————————————</p>
 </blockquote>
+<hr>
 <span id="more"></span>
 
 <h1 id="python组合数据类型（三大类型）"><a href="#python组合数据类型（三大类型）" class="headerlink" title="python组合数据类型（三大类型）"></a>python组合数据类型（三大类型）</h1><p><strong>注：必须要养成任何索引的序列从0开始的习惯</strong></p>
@@ -423,6 +398,31 @@
       </categories>
       <tags>
         <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>说明事项</title>
+    <url>/2022/12/26/%E8%AF%B4%E6%98%8E%E4%BA%8B%E9%A1%B9/</url>
+    <content><![CDATA[<blockquote>
+<p>博客重新启用后的说明事项</p>
+<p>主要重新界定博客的用途</p>
+</blockquote>
+<hr>
+<span id="more"></span>
+
+<h1 id="说明事项"><a href="#说明事项" class="headerlink" title="说明事项"></a>说明事项</h1><p>博客计划经过一段时间的搁置之后重新启用了。</p>
+<p>重新启用的博客板块主要有以下的一些内容</p>
+<ul>
+<li>学习笔记（主要是对一些书本上所学的内容进行精炼和归纳之后汇总所产生的笔记）</li>
+<li>读书笔记（对书本著作以及阅读篇目的内容总结）</li>
+<li>日常 （日常的一些记录，分为说明以及随笔）</li>
+</ul>
+]]></content>
+      <categories>
+        <category>日常</category>
+      </categories>
+      <tags>
+        <tag>说明</tag>
       </tags>
   </entry>
 </search>

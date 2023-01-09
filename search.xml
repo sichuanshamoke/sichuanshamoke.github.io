@@ -23,4 +23,391 @@
         <tag>说明</tag>
       </tags>
   </entry>
+  <entry>
+    <title>python组合数据类型</title>
+    <url>/2023/01/09/python%E7%BB%84%E5%90%88%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/</url>
+    <content><![CDATA[<h1 id="python组合数据类型（三大类型）"><a href="#python组合数据类型（三大类型）" class="headerlink" title="python组合数据类型（三大类型）"></a>python组合数据类型（三大类型）</h1><p><strong>注：必须要养成任何索引的序列从0开始的习惯</strong></p>
+<p>[toc]</p>
+<h2 id="一-序列（字符串，元组，列表）不可变序列的更新实际上是新创立了一个对象"><a href="#一-序列（字符串，元组，列表）不可变序列的更新实际上是新创立了一个对象" class="headerlink" title="一.序列（字符串，元组，列表）不可变序列的更新实际上是新创立了一个对象"></a>一.序列（字符串，元组，列表）不可变序列的更新实际上是新创立了一个对象</h2><p><strong>序列的特点：有序，可以元素相同但是位置不同：常见的此种类型：字符串，元组，列表</strong></p>
+<p><strong>序列类型使用统一的索引体系，并有12个通用操作符和函数</strong></p>
+<table>
+<thead>
+<tr>
+<th>x (not) in s</th>
+<th>x(不)是s的元素的话返回True</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>s + t</td>
+<td>连接两个序列</td>
+</tr>
+<tr>
+<td>s*n</td>
+<td>将s序列复制n次</td>
+</tr>
+<tr>
+<td>s[i]</td>
+<td>索引，返回第i个元素（从0开始）</td>
+</tr>
+<tr>
+<td>s[i:j]</td>
+<td>分片，返回第i到第j之前的元素,之后不加数字表示之后的全部包括</td>
+</tr>
+<tr>
+<td>s[i:j:k]</td>
+<td>步骤分片，k代表步数，中间可以不加数字表示之后的全部包括</td>
+</tr>
+<tr>
+<td>len(s)</td>
+<td>序列的长度</td>
+</tr>
+<tr>
+<td>min(s)</td>
+<td>序列中的最小元素</td>
+</tr>
+<tr>
+<td>max(s)</td>
+<td>序列中的最大元素</td>
+</tr>
+<tr>
+<td>s.index(x,i,j)</td>
+<td>从某个位置第一次出现此元素的索引号,i和j可以省略</td>
+</tr>
+<tr>
+<td>s.count(x)</td>
+<td>出现x的总次数</td>
+</tr>
+</tbody></table>
+<h3 id="1-字符串-str-，不可变的数据类型"><a href="#1-字符串-str-，不可变的数据类型" class="headerlink" title="1.字符串(str)，不可变的数据类型"></a>1.字符串(str)，不可变的数据类型</h3><p><strong>特点：单一字符的有序组合，不可变的序列，字符串无法进行对索引位置赋值的操作，改变一个字符串就是新建一个字符串</strong></p>
+<p><strong>字符串拼接的演示</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x=<span class="string">&quot;新年&quot;</span></span><br><span class="line">y=<span class="string">&quot;快乐&quot;</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;祝您&#123;&#125;&quot;</span>.<span class="built_in">format</span>(x+y))</span><br></pre></td></tr></table></figure>
+
+<p><strong>关于查找某个字符在序列中第一次出现的位置的演示。</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x=<span class="string">&quot;123456748&quot;</span></span><br><span class="line"><span class="built_in">print</span>(x.index(<span class="string">&quot;4&quot;</span>,<span class="number">5</span>,-<span class="number">1</span>))</span><br></pre></td></tr></table></figure>
+
+<p><strong>在字符串前面加上r‘  ’表示原始字符串，不识别转义字符</strong></p>
+<p><strong>为了节省空间可以将字符串类型装换为字节序列byte类型输出,加上前缀b</strong></p>
+<p><strong>转变字符串进制的演示</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">r&quot;hello\n&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">b&#x27;hello\n&#x27;</span>)</span><br><span class="line"><span class="built_in">hex</span>(x): 将整数转换为以“0x”为前缀的小写十六进制字符串</span><br><span class="line"><span class="built_in">oct</span>(x): 将一个整数转变为一个前缀为“0o”的八进制字符串</span><br><span class="line"><span class="built_in">bin</span>(x): 将整数转变为以“0b”前缀的二进制字符串</span><br></pre></td></tr></table></figure>
+
+<p><strong>判断字符串类型的几个方法</strong></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>x.isalpha()</td>
+<td>如果字符串至少有一个字符并且所有字符都是字母则返回True，否则返回False。</td>
+</tr>
+<tr>
+<td>x.isdigit()</td>
+<td>如果字符串只包含数字则返回True，否则返回False。</td>
+</tr>
+<tr>
+<td>x.isalnum()</td>
+<td>如果字符串至少有一个字符并且所有字符都是字母或数字则返回True，否则返回False。</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p><strong>字符串移除的方法：(lstrip,removeprefix,removesuffix)</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#用于截掉字符串左边的空格或指定字符</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;   spacious   &#x27;</span>.lstrip(), <span class="number">100</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;www.example.com&#x27;</span>.lstrip(<span class="string">&#x27;cmowz.&#x27;</span>))</span><br><span class="line"><span class="comment">#移除前缀和后缀，没有相对应的前后缀时将会输出原有的字符。</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;TestHook&#x27;</span>.removeprefix(<span class="string">&#x27;Test&#x27;</span>))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;BaseTestCase&#x27;</span>.removeprefix(<span class="string">&#x27;Test&#x27;</span>))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;MiscTests&#x27;</span>.removesuffix(<span class="string">&#x27;Tests&#x27;</span>))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;TmpDirMixin&#x27;</span>.removesuffix(<span class="string">&#x27;Tests&#x27;</span>))</span><br></pre></td></tr></table></figure>
+
+<p><strong>字符串拆分的方法（split,rsplit,splitlines）</strong></p>
+<p><strong>注：拆分后，自动生成列表。</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">ip = <span class="string">&#x27;192.168.1.255&#x27;</span></span><br><span class="line"><span class="comment">#一个从前面开始拆分一个从后面开始拆分</span></span><br><span class="line"><span class="built_in">print</span>(ip.split(<span class="string">&#x27;.&#x27;</span>, maxsplit=<span class="number">2</span>))</span><br><span class="line"><span class="built_in">print</span>(ip.rsplit(<span class="string">&#x27;.&#x27;</span>, maxsplit=<span class="number">2</span>))</span><br><span class="line"><span class="built_in">print</span>(ip.rsplit(<span class="string">&#x27;.&#x27;</span>))</span><br><span class="line"><span class="comment">#Python splitlines() 按照行(&#x27;\r&#x27;, &#x27;\r\n&#x27;, \n&#x27;)分隔，返回一个包含各行作为元素的列表，如果参数 keepends 为 False，不包含换行符，如果为 True，则保留换行符</span></span><br><span class="line">tips = <span class="string">&#x27;hello\nworld\ndlnu\nbeijing&#x27;</span></span><br><span class="line"><span class="built_in">print</span>(tips.splitlines())</span><br><span class="line"><span class="built_in">print</span>(tips.splitlines(keepends=<span class="literal">True</span>))</span><br></pre></td></tr></table></figure>
+
+<p><strong>将列表连接为字符串的方法：join</strong></p>
+<p><strong>元组也可以：</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">ip = <span class="string">&#x27;192.168.1.255&#x27;</span></span><br><span class="line">t = ip.split(<span class="string">&#x27;.&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(t)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;-&#x27;</span>.join(t))</span><br><span class="line"></span><br><span class="line">x=<span class="string">&#x27;12&#x27;</span>,<span class="string">&#x27;2323&#x27;</span></span><br><span class="line"><span class="built_in">print</span>(x)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;-&#x27;</span>.join(x))</span><br></pre></td></tr></table></figure>
+
+<p><strong>大小写转换的方法:upper,lower</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;Beijing&#x27;</span>.upper())</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;Beijing&#x27;</span>.lower())</span><br><span class="line"><span class="comment">#使单词首字母大写</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;hello world, hello dalian&#x27;</span>.title())</span><br><span class="line"><span class="comment">#即将大写字母转换为小写字母，小写字母会转换为大写字母。</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;Beijing&#x27;</span>.swapcase())</span><br></pre></td></tr></table></figure>
+
+<p><strong>查找替换类：startswitch,find,replace</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;Mr wang&#x27;</span>.startswith(<span class="string">&#x27;Mr&#x27;</span>))</span><br><span class="line">word = <span class="string">&#x27;hello world, hello dlnu&#x27;</span></span><br><span class="line"><span class="comment"># find()和index()的区别在于找不到的处理, index()会引发异常：ValueError，find()会返回-1</span></span><br><span class="line"><span class="built_in">print</span>(word.find(<span class="string">&#x27;o&#x27;</span>), word.rfind(<span class="string">&#x27;o&#x27;</span>)) </span><br><span class="line"><span class="built_in">print</span>(word.find(<span class="string">&#x27;x&#x27;</span>))</span><br><span class="line"><span class="comment"># print(word.index(&#x27;x&#x27;))</span></span><br><span class="line"><span class="built_in">print</span>(word.replace(<span class="string">&#x27;o&#x27;</span>, <span class="string">&#x27;oo&#x27;</span>))</span><br><span class="line"><span class="built_in">print</span>(word.replace(<span class="string">&#x27;o&#x27;</span>, <span class="string">&#x27;oo&#x27;</span>, <span class="number">2</span>))</span><br></pre></td></tr></table></figure>
+
+<p><strong>填充类：center, ljust,  rjust</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#center(长度，字符串)</span></span><br><span class="line">word = <span class="string">&#x27;abc&#x27;</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;start&#x27;</span>, word.center(<span class="number">10</span>), <span class="string">&#x27;end&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;start&#x27;</span>, word.ljust(<span class="number">10</span>, <span class="string">&#x27;-&#x27;</span>), <span class="string">&#x27;end&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;start&#x27;</span>, word.rjust(<span class="number">10</span>, <span class="string">&#x27;-&#x27;</span>), <span class="string">&#x27;end&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="2-元组（tuple）：y-x3D-’1’-’2’-’2’-3-1-2-3-1-2-1-5-支持数据类型混合-元组不可变"><a href="#2-元组（tuple）：y-x3D-’1’-’2’-’2’-3-1-2-3-1-2-1-5-支持数据类型混合-元组不可变" class="headerlink" title="2.元组（tuple）：y&#x3D;’1’,’2’,’2’,3,[1,2,3],(1,2),{1,5}  支持数据类型混合;元组不可变"></a>2.元组（tuple）：y&#x3D;’1’,’2’,’2’,3,[1,2,3],(1,2),{1,5}  支持数据类型混合;元组不可变</h3><p><strong>使用逗号创建，只有一个元素必须包含逗号</strong></p>
+<p><strong>特点：一旦被创建就不能被修改，创建元组用逗号隔开即可，一个元组可以作为另一个元组的元素。一般用小括号表示</strong></p>
+<p><strong>元组多用于函数多返回值，多变量同步赋值，循环遍历</strong></p>
+<p><strong>元组经常采取多级索引的方式。</strong></p>
+<p><strong>创建元组，使用tuple()函数创建时，参数为可迭代类型。</strong></p>
+<p><strong>可迭代类型通常为字符串和range()函数生成的整型数字</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x=<span class="string">&quot;1&quot;</span>,<span class="string">&quot;12&quot;</span>,<span class="string">&quot;大家好&quot;</span></span><br><span class="line"><span class="built_in">print</span>(x[<span class="number">2</span>])</span><br><span class="line"><span class="built_in">print</span>(x[<span class="number">2</span>][<span class="number">2</span>])</span><br><span class="line">a=<span class="built_in">tuple</span>(<span class="string">&#x27;1345saf&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(a)</span><br><span class="line">b=<span class="built_in">tuple</span>(<span class="built_in">range</span>(<span class="number">1</span>,<span class="number">8</span>))</span><br><span class="line"><span class="built_in">print</span>(b)</span><br></pre></td></tr></table></figure>
+
+<p>函数返回多个值时，以元组的形式返回</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">args = <span class="string">&#x27;192.168.1.1&#x27;</span>, <span class="number">80</span></span><br><span class="line"><span class="built_in">print</span>(args)</span><br><span class="line">m, n = args</span><br><span class="line"><span class="built_in">print</span>(m, n)</span><br><span class="line">m, n = n, m <span class="comment"># 两数交换</span></span><br><span class="line"><span class="built_in">print</span>(m, n)</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="3-列表-list-：y-x3D-‘1’-’2’-’2’-3-1-2-3-1-2-1-5-1-2-”1”-支持数据类型混合，列表可变"><a href="#3-列表-list-：y-x3D-‘1’-’2’-’2’-3-1-2-3-1-2-1-5-1-2-”1”-支持数据类型混合，列表可变" class="headerlink" title="3.列表(list) ：y&#x3D;[‘1’,’2’,’2’,3,[1,2,3],(1,2),{1,5,(1,2,”1”)}] 支持数据类型混合，列表可变"></a>3.列表(list) ：y&#x3D;[‘1’,’2’,’2’,3,[1,2,3],(1,2),{1,5,(1,2,”1”)}] 支持数据类型混合，列表可变</h3><p><strong>特点：可以修改数据项的序列类型，用中括号建立和表示</strong></p>
+<p><strong>有12个操作符和函数可用于列表的使用</strong></p>
+<p><strong>创建列表，用大括号，使用tuple()函数创建时，参数为可迭代类型。</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">a=[]</span><br><span class="line">b=<span class="built_in">list</span>(<span class="string">&quot;qweaqd&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+<table>
+<thead>
+<tr>
+<th>ls[j]&#x3D;x</th>
+<th>替换列表的第j项为x</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ls[i:j]&#x3D;lt</td>
+<td>用列表替换相应位置的元素，之后不加数字表示之后的全部包括</td>
+</tr>
+<tr>
+<td>ls[i:j:k]&#x3D;lt</td>
+<td>用列表替换相应位置的元素，以步长为依据</td>
+</tr>
+<tr>
+<td>del ls[i:j]</td>
+<td>删除相应位置的列表元素，等价于ls[i:j]&#x3D;[]</td>
+</tr>
+<tr>
+<td>del ls[i:j:k]</td>
+<td>加上步数</td>
+</tr>
+<tr>
+<td>ls.extend(lt)</td>
+<td>将lt列表加入ls中</td>
+</tr>
+<tr>
+<td>ls*&#x3D;n</td>
+<td>重复列表的元素n次</td>
+</tr>
+<tr>
+<td>ls.append(x)</td>
+<td>列表最后添加一个元素x</td>
+</tr>
+<tr>
+<td>ls.clear()</td>
+<td>清空列表所有元素</td>
+</tr>
+<tr>
+<td>ls.copy()</td>
+<td>复制ls列表新生成一个列表</td>
+</tr>
+<tr>
+<td>ls.insert(i,x)</td>
+<td>在列表的某个位置添加元素</td>
+</tr>
+<tr>
+<td>ls.pop(i,x)</td>
+<td>在列表的某个位置删除元素</td>
+</tr>
+<tr>
+<td>ls.remove(x)</td>
+<td>将列表中的第一个x元素删除</td>
+</tr>
+<tr>
+<td>ls.reverse()</td>
+<td>反转列表</td>
+</tr>
+</tbody></table>
+<p><strong>关于列表中的元素替换为其他列表</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x=[<span class="number">1</span>,<span class="string">&quot;123&quot;</span>,<span class="string">&quot;我是谁？&quot;</span>]</span><br><span class="line">x[<span class="number">0</span>:<span class="number">2</span>]=<span class="number">12</span>,<span class="number">13</span></span><br><span class="line"><span class="built_in">print</span>(x)</span><br><span class="line">x[<span class="number">1</span>]=[<span class="string">&quot;456&quot;</span>,<span class="string">&quot;加油!&quot;</span>,<span class="string">&quot;go!&quot;</span>]</span><br><span class="line"><span class="built_in">print</span>(x)</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>重点：列表替换列表元素：多增少减</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">w1=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>]</span><br><span class="line">w1[<span class="number">0</span>:<span class="number">1</span>]=[<span class="string">&quot;a&quot;</span>,<span class="string">&quot;b&quot;</span>,<span class="string">&quot;c&quot;</span>]</span><br><span class="line"><span class="built_in">print</span>(w1)</span><br><span class="line">w1[<span class="number">0</span>:<span class="number">3</span>]=[<span class="string">&quot;gool&quot;</span>]</span><br><span class="line"><span class="built_in">print</span>(w1)</span><br><span class="line"><span class="comment">#结果是</span></span><br><span class="line"><span class="comment">#[&#x27;a&#x27;, &#x27;b&#x27;, &#x27;c&#x27;, 2, 3, 4]</span></span><br><span class="line"><span class="comment">#[&#x27;gool&#x27;, 2, 3, 4]</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>关于元组和列表的遍历：统一模式。注：这里的任意字符将会是列表中的元素</strong></p>
+<p><strong>for 任意字符 in 列表：</strong></p>
+<p>​	<strong>xxx</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">y=[<span class="number">8</span>,<span class="number">9</span>]</span><br><span class="line">y.insert(<span class="number">0</span>,<span class="string">&quot;12&quot;</span>)</span><br><span class="line"><span class="keyword">for</span> e <span class="keyword">in</span> y:</span><br><span class="line">    <span class="built_in">print</span>(e)</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>关于列表排序的方法，sorted(list):直接创建一个新的排序后的列表</strong></p>
+<p><strong>list.sort(reverse&#x3D;Ture):表示降序，直接更新列表</strong></p>
+<p><strong>也可以对单词进行排序</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">ls=[<span class="number">2</span>,<span class="number">65</span>,<span class="number">19</span>,<span class="number">234</span>,<span class="number">12</span>]</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">sorted</span>(ls))<span class="comment">#sorted()函数将返回一个新的修改后的列表</span></span><br><span class="line"><span class="comment">#ls.sort()#list.sort()将列表以排序方法修改。</span></span><br><span class="line"><span class="built_in">print</span>(ls)</span><br><span class="line">lt=[<span class="string">&#x27;red&#x27;</span>,<span class="string">&#x27;blue&#x27;</span>,<span class="string">&#x27;yellow&#x27;</span>,<span class="string">&#x27;blank&#x27;</span>]</span><br><span class="line">lt.sort()</span><br><span class="line"><span class="built_in">print</span>(lt)</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="4-range"><a href="#4-range" class="headerlink" title="4.range()"></a>4.range()</h3><p><strong>range类型表示不可变的数字序列，通常用于在for循环中指定循环次数</strong></p>
+<p><strong>range(0,10)等同于range(10)</strong></p>
+<p><strong>也能用于生成一段数字</strong></p>
+<h3 id="5-random"><a href="#5-random" class="headerlink" title="5.random()"></a>5.random()</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> random</span><br><span class="line">random.seed(<span class="number">100</span>) <span class="comment"># 初始化种子，默认值是当前系统时间。种子相同，则产生的随机数相同</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">20</span>):</span><br><span class="line">    <span class="built_in">print</span>(random.randrange(<span class="number">0</span>, <span class="number">11</span>, <span class="number">2</span>), end=<span class="string">&#x27;, &#x27;</span>) <span class="comment">#生成[0, 11)之间步长为2的整数</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;\n&#x27;</span>, <span class="string">&#x27;-&#x27;</span>*<span class="number">50</span>)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">20</span>):</span><br><span class="line">    <span class="built_in">print</span>(random.randint(<span class="number">0</span>, <span class="number">9</span>), end=<span class="string">&#x27;, &#x27;</span>) <span class="comment">#生成[0, 9]之间的整数</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="二-集合（set）y-x3D-1-”we”-1-”21”-1-2-只支持固定数据类型（数字，字符，元组）；集合可变"><a href="#二-集合（set）y-x3D-1-”we”-1-”21”-1-2-只支持固定数据类型（数字，字符，元组）；集合可变" class="headerlink" title="二.集合（set）y&#x3D;{1,”we”,(1,”21”,(1,2))}  只支持固定数据类型（数字，字符，元组）；集合可变"></a>二.集合（set）y&#x3D;{1,”we”,(1,”21”,(1,2))}  只支持固定数据类型（数字，字符，元组）；集合可变</h2><p><strong>特点：0个或多个数据项的无序组合，不重复，相同元素在集合中唯一存在，元素只能是固定数据类型</strong></p>
+<p><strong>集合用大括号表示，无序，因此无法被索引,将自动过滤重复元素</strong></p>
+<p><strong>直接用单独的大括号创立的话会是一个字典类型。</strong></p>
+<p><strong>用set()函数可以生成集合。</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">s=<span class="built_in">set</span>((<span class="string">&quot;12&quot;</span>,<span class="string">&quot;45&quot;</span>,<span class="string">&quot;第三方&quot;</span>,<span class="number">12</span>,<span class="string">&#x27;12&#x27;</span>))<span class="comment">#集合会自动的去重</span></span><br><span class="line">s1=<span class="built_in">set</span>(<span class="string">&quot;hello&quot;</span>)<span class="comment">#生成的集合的排序不确定</span></span><br><span class="line"><span class="built_in">print</span>(s,s1)</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>集合的操作符:</strong></p>
+<table>
+<thead>
+<tr>
+<th>S-T</th>
+<th>返回一个新集合为两者的差集</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>S-&#x3D;T</td>
+<td>更新集合S，以下的操作同理</td>
+</tr>
+<tr>
+<td>S&amp;T</td>
+<td>返回一个新集合求交集</td>
+</tr>
+<tr>
+<td>S|T</td>
+<td>返回一个新集合求并集</td>
+</tr>
+<tr>
+<td>S^T</td>
+<td>返回一个新集合求补集</td>
+</tr>
+<tr>
+<td>S&lt;T</td>
+<td>包含性判断，返回True或False</td>
+</tr>
+</tbody></table>
+<p><strong>集合的函数命令:</strong></p>
+<table>
+<thead>
+<tr>
+<th>S.add(x)</th>
+<th>增加某个元素</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>s.clear()</td>
+<td>清空集合</td>
+</tr>
+<tr>
+<td>s.copy()</td>
+<td>返回一个集合的副本</td>
+</tr>
+<tr>
+<td>s.pop()</td>
+<td>随机返回集合的一个元素，并移除此元素</td>
+</tr>
+<tr>
+<td>s.discard(x)</td>
+<td>删除元素，没有的话不报错</td>
+</tr>
+<tr>
+<td>s.remove(x)</td>
+<td>删除元素，没有将报异常</td>
+</tr>
+<tr>
+<td>s.isdisjoint(T)</td>
+<td>判断两个集合是否有相同的元素，没有则返回True</td>
+</tr>
+<tr>
+<td>len(s)</td>
+<td>返回集合元素的个数</td>
+</tr>
+<tr>
+<td>x (not)in S</td>
+<td>判断某个元素是否在集合中</td>
+</tr>
+</tbody></table>
+<h2 id="三-映射：键值对的组合（key-value）字典的键只支持固定数据类型（数字，字符，元组）不能为可变数据类型；字典属于可变的数据类型"><a href="#三-映射：键值对的组合（key-value）字典的键只支持固定数据类型（数字，字符，元组）不能为可变数据类型；字典属于可变的数据类型" class="headerlink" title="三.映射：键值对的组合（key:value）字典的键只支持固定数据类型（数字，字符，元组）不能为可变数据类型；字典属于可变的数据类型"></a>三.映射：键值对的组合（key:value）字典的键只支持固定数据类型（数字，字符，元组）不能为可变数据类型；字典属于可变的数据类型</h2><p><strong>注：字典的值支持可变的数据类型，如值可以为列表。</strong></p>
+<h3 id="1-字典（dict）s-x3D-“12”-”11”-”中国”-1"><a href="#1-字典（dict）s-x3D-“12”-”11”-”中国”-1" class="headerlink" title="1.字典（dict）s&#x3D;{“12”:”11”,”中国”:1}"></a>1.字典（dict）s&#x3D;{“12”:”11”,”中国”:1}</h3><p><strong>字典(键值对)，用大括号表示，键值对之间采用：，键值对之间无序且唯一，有集合的性质，但是支持索引</strong></p>
+<p><strong>字典的创建方法：</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#字典的键只能是固定的数据类型（数字，字符串，元组）；但是字典的值可以是固定数据类型也可以是可变数据类型（列表，集合，字典）</span></span><br><span class="line">dict1=&#123;(<span class="number">1</span>,<span class="string">&#x27;no1&#x27;</span>):<span class="string">&#x27;冠军&#x27;</span>,(<span class="number">2</span>,<span class="string">&#x27;no2&#x27;</span>):<span class="string">&#x27;亚军&#x27;</span>,(<span class="number">3</span>,<span class="string">&#x27;no3&#x27;</span>):<span class="string">&#x27;季军&#x27;</span>&#125;</span><br><span class="line"><span class="built_in">print</span>(dict1)</span><br><span class="line"><span class="built_in">print</span>(dict1[(<span class="number">1</span>,<span class="string">&#x27;no1&#x27;</span>)])</span><br><span class="line"><span class="comment">#这里的值可以为可变数据类型</span></span><br><span class="line">dict2=&#123;<span class="number">1</span>:&#123;<span class="string">&#x27;冠军&#x27;</span>:<span class="string">&#x27;金牌&#x27;</span>&#125;,<span class="number">2</span>:[<span class="string">&#x27;亚军&#x27;</span>,<span class="string">&#x27;银牌&#x27;</span>],<span class="number">3</span>:&#123;<span class="string">&#x27;季军&#x27;</span>,<span class="string">&#x27;铜牌&#x27;</span>&#125;&#125;</span><br><span class="line"><span class="built_in">print</span>(dict2)</span><br><span class="line"><span class="built_in">print</span>(dict2[<span class="number">1</span>][<span class="string">&#x27;冠军&#x27;</span>])<span class="comment">#支持多重索引</span></span><br><span class="line"><span class="built_in">print</span>(dict2[<span class="number">2</span>])</span><br><span class="line"><span class="built_in">print</span>(dict2[<span class="number">3</span>])</span><br></pre></td></tr></table></figure>
+
+<p><strong>使用dict()函数创建字典的方法</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">dict1 = <span class="built_in">dict</span>([(<span class="number">1</span>, <span class="string">&#x27;139123&#x27;</span>), (<span class="number">2</span>, <span class="string">&#x27;130123&#x27;</span>), (<span class="number">3</span>, <span class="string">&#x27;135123&#x27;</span>)]) <span class="comment"># dict()构造函数可以直接用键值对序列创建字典：</span></span><br><span class="line"><span class="built_in">print</span>(dict1)</span><br><span class="line">dict2 = <span class="built_in">dict</span>(Beijing=<span class="string">&#x27;010&#x27;</span>, Shanghai=<span class="string">&#x27;021&#x27;</span>, Tianjin=<span class="string">&#x27;022&#x27;</span>)  <span class="comment"># key如果是字符串时也可以这么写</span></span><br><span class="line"><span class="built_in">print</span>(dict2)</span><br></pre></td></tr></table></figure>
+
+<p><strong>字典的索引和修改方法：</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">字典=&#123;<span class="string">&quot;中国&quot;</span>:<span class="string">&quot;北京&quot;</span>,<span class="string">&quot;法国&quot;</span>:<span class="string">&quot;巴黎&quot;</span>,<span class="string">&quot;德国&quot;</span>:<span class="string">&quot;柏林&quot;</span>&#125;</span><br><span class="line"><span class="built_in">print</span>(字典)</span><br><span class="line"><span class="built_in">print</span>(字典[<span class="string">&quot;中国&quot;</span>])<span class="comment">#通过键查找相关的值</span></span><br><span class="line">字典[<span class="string">&quot;美国&quot;</span>]=<span class="string">&quot;纽约&quot;</span><span class="comment">#增加相关的键值对</span></span><br><span class="line">字典[<span class="string">&quot;中国&quot;</span>]=<span class="string">&quot;上海&quot;</span><span class="comment">#修改相关键的值</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>字典类型的函数与方法：</strong></p>
+<table>
+<thead>
+<tr>
+<th>s.keys()</th>
+<th>返回所的键</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>s.values()</td>
+<td>返回所有的值</td>
+</tr>
+<tr>
+<td>s.items()</td>
+<td>返回所有的键值对</td>
+</tr>
+<tr>
+<td>s.get(key,defalut)</td>
+<td>键存在则返回相应值，否则返回默认值，不存在返回None</td>
+</tr>
+<tr>
+<td>s.pop(key,defalut)</td>
+<td>键存在则返回相应值，同时删除该值，否则返回默认值,不存在且没有默认值会返回异常</td>
+</tr>
+<tr>
+<td>s.popitem()</td>
+<td>随机返回并删除字典中的一对键和值。</td>
+</tr>
+<tr>
+<td>s.clear()</td>
+<td>清空键值对</td>
+</tr>
+<tr>
+<td>del s[key]</td>
+<td>删除该键值对</td>
+</tr>
+<tr>
+<td>iter(s)</td>
+<td>获得一个字典的键的迭代器</td>
+</tr>
+</tbody></table>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">citys = <span class="built_in">dict</span>(beijing=<span class="string">&#x27;010&#x27;</span>, shanghai=<span class="string">&#x27;021&#x27;</span>, tianjin=<span class="string">&#x27;022&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(citys)</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">set</span>(citys))<span class="comment">#当字典转变为其他序列类型直接输出时，只输出键的值</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">list</span>(citys))</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">tuple</span>(citys))</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">set</span>(citys.items()))</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">list</span>(citys.values()))</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">tuple</span>(citys.items()))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;-&#x27;</span> * <span class="number">30</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> c <span class="keyword">in</span> <span class="built_in">iter</span>(citys):</span><br><span class="line">    <span class="built_in">print</span>(c, end=<span class="string">&#x27;, &#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p><strong>字典的遍历：for in 遍历的是键。</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">s=&#123;<span class="number">1</span>:<span class="string">&quot;王&quot;</span>,<span class="number">2</span>:<span class="string">&quot;公&quot;</span>,<span class="number">3</span>:<span class="string">&quot;候&quot;</span>&#125;</span><br><span class="line">s[<span class="number">4</span>]=<span class="string">&quot;伯&quot;</span></span><br><span class="line"><span class="keyword">for</span> key <span class="keyword">in</span> s:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&#x27;<span class="subst">&#123;key&#125;</span>对应<span class="subst">&#123;s[key]&#125;</span>&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p><strong>字典间的操作：主要是更新字典 t.updata(other),t | other</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#update([other])：使用来自 other 的键/值对更新字典，覆盖原有的键。 返回 None</span></span><br><span class="line"><span class="comment">#d | other：合并 d 和 other 中的键和值来创建一个新的字典，两者必须都是字典。当 d 和 other 有相同键时， other 的值优先</span></span><br><span class="line"><span class="comment">#d |= other：用 other 的键和值更新字典 d 。当 d 和 other 有相同键时， other 的值优先</span></span><br><span class="line">dict1=&#123;<span class="string">&#x27;英国&#x27;</span>:<span class="string">&#x27;伦敦&#x27;</span>,<span class="string">&#x27;法国&#x27;</span>:<span class="string">&#x27;巴黎&#x27;</span>,<span class="string">&#x27;意大利&#x27;</span>:<span class="string">&#x27;罗马&#x27;</span>&#125;</span><br><span class="line">dict2=&#123;<span class="string">&#x27;意大利&#x27;</span>:<span class="string">&#x27;米兰&#x27;</span>,<span class="string">&#x27;德国&#x27;</span>:<span class="string">&#x27;柏林&#x27;</span>&#125;</span><br><span class="line">dict1.update(dict2)</span><br><span class="line"><span class="built_in">print</span>(dict1)</span><br><span class="line">dict3=&#123;<span class="string">&#x27;西班牙&#x27;</span>:<span class="string">&#x27;马德里&#x27;</span>,<span class="string">&#x27;比利时&#x27;</span>:<span class="string">&#x27;布鲁塞尔&#x27;</span>,<span class="string">&#x27;德国&#x27;</span>:<span class="string">&#x27;法兰克福&#x27;</span>&#125;</span><br><span class="line"><span class="built_in">print</span>(dict1|dict3)</span><br><span class="line"><span class="built_in">print</span>(dict1)</span><br><span class="line">dict1|=dict3</span><br><span class="line"><span class="built_in">print</span>(dict1)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="四-关于格式化输出"><a href="#四-关于格式化输出" class="headerlink" title="四.关于格式化输出"></a>四.关于格式化输出</h2><p><strong>新的方式：f”xxxxx{}xxxx{}”</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">host = <span class="string">&#x27;dlnu&#x27;</span></span><br><span class="line">ip = <span class="string">&#x27;210.30.1.8&#x27;</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&#x27;Host: <span class="subst">&#123;host&#125;</span>, IP: <span class="subst">&#123;ip&#125;</span>&#x27;</span>)   </span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&#x27;Host: <span class="subst">&#123;host.upper()&#125;</span>, IP: <span class="subst">&#123;ip.split(<span class="string">&quot;.&quot;</span>)&#125;</span>&#x27;</span>) </span><br><span class="line">a = <span class="number">1.2345</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&#x27;<span class="subst">&#123;a:<span class="number">.2</span>f&#125;</span>, <span class="subst">&#123;host&#125;</span>, <span class="subst">&#123;ip&#125;</span>&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p><strong>关于map()函数：生成一个迭代器</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">m, n = <span class="built_in">map</span>(<span class="built_in">int</span>, <span class="built_in">input</span>().split(<span class="string">&#x27; &#x27;</span>)) </span><br><span class="line"><span class="built_in">print</span>(m, n, <span class="built_in">type</span>(m), <span class="built_in">type</span>(n))</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>学习笔记</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+      </tags>
+  </entry>
 </search>

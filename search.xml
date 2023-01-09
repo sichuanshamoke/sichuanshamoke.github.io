@@ -28,7 +28,8 @@
     <url>/2023/01/09/python%E7%BB%84%E5%90%88%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/</url>
     <content><![CDATA[<h1 id="python组合数据类型（三大类型）"><a href="#python组合数据类型（三大类型）" class="headerlink" title="python组合数据类型（三大类型）"></a>python组合数据类型（三大类型）</h1><p><strong>注：必须要养成任何索引的序列从0开始的习惯</strong></p>
 <p>[toc]</p>
-<h2 id="一-序列（字符串，元组，列表）不可变序列的更新实际上是新创立了一个对象"><a href="#一-序列（字符串，元组，列表）不可变序列的更新实际上是新创立了一个对象" class="headerlink" title="一.序列（字符串，元组，列表）不可变序列的更新实际上是新创立了一个对象"></a>一.序列（字符串，元组，列表）不可变序列的更新实际上是新创立了一个对象</h2><p><strong>序列的特点：有序，可以元素相同但是位置不同：常见的此种类型：字符串，元组，列表</strong></p>
+<h2 id="一-序列（字符串，元组，列表）"><a href="#一-序列（字符串，元组，列表）" class="headerlink" title="一.序列（字符串，元组，列表）"></a>一.序列（字符串，元组，列表）</h2><p><strong>不可变序列的更新实际上是新创立了一个对象</strong></p>
+<p><strong>序列的特点：有序，可以元素相同但是位置不同：常见的此种类型：字符串，元组，列表</strong></p>
 <p><strong>序列类型使用统一的索引体系，并有12个通用操作符和函数</strong></p>
 <table>
 <thead>
@@ -78,7 +79,7 @@
 <td>出现x的总次数</td>
 </tr>
 </tbody></table>
-<h3 id="1-字符串-str-，不可变的数据类型"><a href="#1-字符串-str-，不可变的数据类型" class="headerlink" title="1.字符串(str)，不可变的数据类型"></a>1.字符串(str)，不可变的数据类型</h3><p><strong>特点：单一字符的有序组合，不可变的序列，字符串无法进行对索引位置赋值的操作，改变一个字符串就是新建一个字符串</strong></p>
+<h3 id="1-字符串（str）"><a href="#1-字符串（str）" class="headerlink" title="1.字符串（str）"></a>1.字符串（str）</h3><p><strong>特点：单一字符的有序组合，不可变的序列，字符串无法进行对索引位置赋值的操作，改变一个字符串就是新建一个字符串</strong></p>
 <p><strong>字符串拼接的演示</strong></p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x=<span class="string">&quot;新年&quot;</span></span><br><span class="line">y=<span class="string">&quot;快乐&quot;</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;祝您&#123;&#125;&quot;</span>.<span class="built_in">format</span>(x+y))</span><br></pre></td></tr></table></figure>
 
@@ -143,7 +144,8 @@
 
 
 
-<h3 id="2-元组（tuple）：y-x3D-’1’-’2’-’2’-3-1-2-3-1-2-1-5-支持数据类型混合-元组不可变"><a href="#2-元组（tuple）：y-x3D-’1’-’2’-’2’-3-1-2-3-1-2-1-5-支持数据类型混合-元组不可变" class="headerlink" title="2.元组（tuple）：y&#x3D;’1’,’2’,’2’,3,[1,2,3],(1,2),{1,5}  支持数据类型混合;元组不可变"></a>2.元组（tuple）：y&#x3D;’1’,’2’,’2’,3,[1,2,3],(1,2),{1,5}  支持数据类型混合;元组不可变</h3><p><strong>使用逗号创建，只有一个元素必须包含逗号</strong></p>
+<h3 id="2-元组（tuple）"><a href="#2-元组（tuple）" class="headerlink" title="2.元组（tuple）"></a>2.元组（tuple）</h3><p><strong>例如：y&#x3D;’1’,’2’,’2’,3,[1,2,3],(1,2),{1,5}  支持数据类型混合;元组不可变</strong></p>
+<p><strong>使用逗号创建，只有一个元素必须包含逗号</strong></p>
 <p><strong>特点：一旦被创建就不能被修改，创建元组用逗号隔开即可，一个元组可以作为另一个元组的元素。一般用小括号表示</strong></p>
 <p><strong>元组多用于函数多返回值，多变量同步赋值，循环遍历</strong></p>
 <p><strong>元组经常采取多级索引的方式。</strong></p>
@@ -156,7 +158,8 @@
 
 
 
-<h3 id="3-列表-list-：y-x3D-‘1’-’2’-’2’-3-1-2-3-1-2-1-5-1-2-”1”-支持数据类型混合，列表可变"><a href="#3-列表-list-：y-x3D-‘1’-’2’-’2’-3-1-2-3-1-2-1-5-1-2-”1”-支持数据类型混合，列表可变" class="headerlink" title="3.列表(list) ：y&#x3D;[‘1’,’2’,’2’,3,[1,2,3],(1,2),{1,5,(1,2,”1”)}] 支持数据类型混合，列表可变"></a>3.列表(list) ：y&#x3D;[‘1’,’2’,’2’,3,[1,2,3],(1,2),{1,5,(1,2,”1”)}] 支持数据类型混合，列表可变</h3><p><strong>特点：可以修改数据项的序列类型，用中括号建立和表示</strong></p>
+<h3 id="3-列表（list）"><a href="#3-列表（list）" class="headerlink" title="3.列表（list）"></a>3.列表（list）</h3><p><strong>例如：y&#x3D;[‘1’,’2’,’2’,3,[1,2,3],(1,2),{1,5,(1,2,”1”)}] 支持数据类型混合，列表可变</strong></p>
+<p><strong>特点：可以修改数据项的序列类型，用中括号建立和表示</strong></p>
 <p><strong>有12个操作符和函数可用于列表的使用</strong></p>
 <p><strong>创建列表，用大括号，使用tuple()函数创建时，参数为可迭代类型。</strong></p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">a=[]</span><br><span class="line">b=<span class="built_in">list</span>(<span class="string">&quot;qweaqd&quot;</span>)</span><br></pre></td></tr></table></figure>
@@ -254,7 +257,8 @@
 
 
 
-<h2 id="二-集合（set）y-x3D-1-”we”-1-”21”-1-2-只支持固定数据类型（数字，字符，元组）；集合可变"><a href="#二-集合（set）y-x3D-1-”we”-1-”21”-1-2-只支持固定数据类型（数字，字符，元组）；集合可变" class="headerlink" title="二.集合（set）y&#x3D;{1,”we”,(1,”21”,(1,2))}  只支持固定数据类型（数字，字符，元组）；集合可变"></a>二.集合（set）y&#x3D;{1,”we”,(1,”21”,(1,2))}  只支持固定数据类型（数字，字符，元组）；集合可变</h2><p><strong>特点：0个或多个数据项的无序组合，不重复，相同元素在集合中唯一存在，元素只能是固定数据类型</strong></p>
+<h2 id="二-集合（set）"><a href="#二-集合（set）" class="headerlink" title="二.集合（set）"></a>二.集合（set）</h2><p><strong>例如：y&#x3D;{1,”we”,(1,”21”,(1,2))}  只支持固定数据类型（数字，字符，元组）；集合可变</strong></p>
+<p><strong>特点：0个或多个数据项的无序组合，不重复，相同元素在集合中唯一存在，元素只能是固定数据类型</strong></p>
 <p><strong>集合用大括号表示，无序，因此无法被索引,将自动过滤重复元素</strong></p>
 <p><strong>直接用单独的大括号创立的话会是一个字典类型。</strong></p>
 <p><strong>用set()函数可以生成集合。</strong></p>
@@ -332,8 +336,10 @@
 <td>判断某个元素是否在集合中</td>
 </tr>
 </tbody></table>
-<h2 id="三-映射：键值对的组合（key-value）字典的键只支持固定数据类型（数字，字符，元组）不能为可变数据类型；字典属于可变的数据类型"><a href="#三-映射：键值对的组合（key-value）字典的键只支持固定数据类型（数字，字符，元组）不能为可变数据类型；字典属于可变的数据类型" class="headerlink" title="三.映射：键值对的组合（key:value）字典的键只支持固定数据类型（数字，字符，元组）不能为可变数据类型；字典属于可变的数据类型"></a>三.映射：键值对的组合（key:value）字典的键只支持固定数据类型（数字，字符，元组）不能为可变数据类型；字典属于可变的数据类型</h2><p><strong>注：字典的值支持可变的数据类型，如值可以为列表。</strong></p>
-<h3 id="1-字典（dict）s-x3D-“12”-”11”-”中国”-1"><a href="#1-字典（dict）s-x3D-“12”-”11”-”中国”-1" class="headerlink" title="1.字典（dict）s&#x3D;{“12”:”11”,”中国”:1}"></a>1.字典（dict）s&#x3D;{“12”:”11”,”中国”:1}</h3><p><strong>字典(键值对)，用大括号表示，键值对之间采用：，键值对之间无序且唯一，有集合的性质，但是支持索引</strong></p>
+<h2 id="三-映射（key-value）"><a href="#三-映射（key-value）" class="headerlink" title="三.映射（key:value）"></a>三.映射（key:value）</h2><p><strong>字典的键只支持固定数据类型（数字，字符，元组）不能为可变数据类型；字典属于可变的数据类型,是键值对的组合</strong></p>
+<p><strong>注：字典的值支持可变的数据类型，如值可以为列表。</strong></p>
+<h3 id="1-字典（dict）"><a href="#1-字典（dict）" class="headerlink" title="1.字典（dict）"></a>1.字典（dict）</h3><p><strong>例：s&#x3D;{“12”:”11”,”中国”:1}</strong></p>
+<p><strong>字典(键值对)，用大括号表示，键值对之间采用：，键值对之间无序且唯一，有集合的性质，但是支持索引</strong></p>
 <p><strong>字典的创建方法：</strong></p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#字典的键只能是固定的数据类型（数字，字符串，元组）；但是字典的值可以是固定数据类型也可以是可变数据类型（列表，集合，字典）</span></span><br><span class="line">dict1=&#123;(<span class="number">1</span>,<span class="string">&#x27;no1&#x27;</span>):<span class="string">&#x27;冠军&#x27;</span>,(<span class="number">2</span>,<span class="string">&#x27;no2&#x27;</span>):<span class="string">&#x27;亚军&#x27;</span>,(<span class="number">3</span>,<span class="string">&#x27;no3&#x27;</span>):<span class="string">&#x27;季军&#x27;</span>&#125;</span><br><span class="line"><span class="built_in">print</span>(dict1)</span><br><span class="line"><span class="built_in">print</span>(dict1[(<span class="number">1</span>,<span class="string">&#x27;no1&#x27;</span>)])</span><br><span class="line"><span class="comment">#这里的值可以为可变数据类型</span></span><br><span class="line">dict2=&#123;<span class="number">1</span>:&#123;<span class="string">&#x27;冠军&#x27;</span>:<span class="string">&#x27;金牌&#x27;</span>&#125;,<span class="number">2</span>:[<span class="string">&#x27;亚军&#x27;</span>,<span class="string">&#x27;银牌&#x27;</span>],<span class="number">3</span>:&#123;<span class="string">&#x27;季军&#x27;</span>,<span class="string">&#x27;铜牌&#x27;</span>&#125;&#125;</span><br><span class="line"><span class="built_in">print</span>(dict2)</span><br><span class="line"><span class="built_in">print</span>(dict2[<span class="number">1</span>][<span class="string">&#x27;冠军&#x27;</span>])<span class="comment">#支持多重索引</span></span><br><span class="line"><span class="built_in">print</span>(dict2[<span class="number">2</span>])</span><br><span class="line"><span class="built_in">print</span>(dict2[<span class="number">3</span>])</span><br></pre></td></tr></table></figure>
 

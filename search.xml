@@ -8,6 +8,8 @@
 <p>主要重新界定博客的用途</p>
 </blockquote>
 <hr>
+<span id="more"></span>
+
 <h1 id="说明事项"><a href="#说明事项" class="headerlink" title="说明事项"></a>说明事项</h1><p>博客计划经过一段时间的搁置之后重新启用了。</p>
 <p>重新启用的博客板块主要有以下的一些内容</p>
 <ul>
@@ -26,7 +28,14 @@
   <entry>
     <title>python组合数据类型</title>
     <url>/2023/01/09/python%E7%BB%84%E5%90%88%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/</url>
-    <content><![CDATA[<h1 id="python组合数据类型（三大类型）"><a href="#python组合数据类型（三大类型）" class="headerlink" title="python组合数据类型（三大类型）"></a>python组合数据类型（三大类型）</h1><p><strong>注：必须要养成任何索引的序列从0开始的习惯</strong></p>
+    <content><![CDATA[<blockquote>
+<p>对python的三大组合数据类型进行说明的笔记</p>
+<p>包括：序列（字符串、元组、列表）、集合、映射（字典）</p>
+<p>——————————————————————————————————————————————————————————</p>
+</blockquote>
+<span id="more"></span>
+
+<h1 id="python组合数据类型（三大类型）"><a href="#python组合数据类型（三大类型）" class="headerlink" title="python组合数据类型（三大类型）"></a>python组合数据类型（三大类型）</h1><p><strong>注：必须要养成任何索引的序列从0开始的习惯</strong></p>
 <p>[toc]</p>
 <h2 id="一-序列（字符串，元组，列表）"><a href="#一-序列（字符串，元组，列表）" class="headerlink" title="一.序列（字符串，元组，列表）"></a>一.序列（字符串，元组，列表）</h2><p><strong>不可变序列的更新实际上是新创立了一个对象</strong></p>
 <p><strong>序列的特点：有序，可以元素相同但是位置不同：常见的此种类型：字符串，元组，列表</strong></p>

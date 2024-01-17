@@ -79,16 +79,16 @@
 
 
 
-<meta name="description" content="维护日志（2024&#x2F;1&#x2F;17） 本次遇到的问题是使用hexo d命令部署到github服务器时出现了SSH 22端口拒绝连接的错误提示，经排查，确认为DNS污染导致的无法解析github服务器地址。">
+<meta name="description" content="维护日志（2024&#x2F;1&#x2F;17）本次遇到的问题是使用hexo d命令部署到github服务器时出现了SSH 22端口拒绝连接的错误提示，经排查，确认为DNS污染导致的无法解析github服务器地址。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="维护日志24&#x2F;1&#x2F;17">
 <meta property="og:url" content="http://sichuanshamoke.github.io/2024/01/17/%E7%BB%B4%E6%8A%A4%E6%97%A5%E5%BF%9724-1-17/index.html">
 <meta property="og:site_name" content="学习与记录">
-<meta property="og:description" content="维护日志（2024&#x2F;1&#x2F;17） 本次遇到的问题是使用hexo d命令部署到github服务器时出现了SSH 22端口拒绝连接的错误提示，经排查，确认为DNS污染导致的无法解析github服务器地址。">
+<meta property="og:description" content="维护日志（2024&#x2F;1&#x2F;17）本次遇到的问题是使用hexo d命令部署到github服务器时出现了SSH 22端口拒绝连接的错误提示，经排查，确认为DNS污染导致的无法解析github服务器地址。">
 <meta property="og:locale">
 <meta property="og:image" content="https://pic.imgdb.cn/item/65a72e4c871b83018a01be3a.png">
 <meta property="article:published_time" content="2024-01-17T01:07:50.000Z">
-<meta property="article:modified_time" content="2024-01-17T01:36:59.147Z">
+<meta property="article:modified_time" content="2024-01-17T01:43:11.942Z">
 <meta property="article:author" content="SiChuan_Shamoke">
 <meta property="article:tag" content="维护日志">
 <meta name="twitter:card" content="summary">
@@ -358,7 +358,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2024-01-17T09:36:59+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2024-01-17T09:43:11+08:00">
                 2024-01-17
               </time>
             
@@ -418,7 +418,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  264
+                  266
                 </span>
               
 
@@ -455,15 +455,14 @@
       
 
       
-        <h1 id="维护日志2024117">维护日志（2024/1/17）</h1>
-<p>本次遇到的问题是使用hexo d命令部署到github服务器时出现了SSH 22端口拒绝连接的错误提示，经排查，确认为DNS污染导致的无法解析github服务器地址。</p>
+        <h1 id="维护日志（2024-1-17）"><a href="#维护日志（2024-1-17）" class="headerlink" title="维护日志（2024/1/17）"></a>维护日志（2024/1/17）</h1><p>本次遇到的问题是使用hexo d命令部署到github服务器时出现了SSH 22端口拒绝连接的错误提示，经排查，确认为DNS污染导致的无法解析github服务器地址。</p>
 <span id="more"></span>
 <p>出现的报错提示如下图所示：</p>
-<p><img src="https://pic.imgdb.cn/item/65a72e4c871b83018a01be3a.png"></p>
+<p><img src="https://pic.imgdb.cn/item/65a72e4c871b83018a01be3a.png" alt></p>
 <p>此时在终端使用命令：ping github.com，发现路径不可达，但是在浏览器直接访问github个人主页可以成功访问，说明此时受到DNS污染的情况，本机无法解析github.com的IP地址，需要在本机的host文件中直接添加访问github.com的路由，添加字段如下：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1 github.com</span><br><span class="line">151.101.185.194 github.global.ssl.fastly.net</span><br></pre></td></tr></table></figure>
 <p>添加后，此时可以ping通github.com</p>
-<p>此时需要在本机中找到路径：C:.ssh，在此文件夹中添加不带后缀的文件名为config的配置文件</p>
+<p>此时需要在本机中找到路径：C:\\Users\\lenovo\.ssh，在此文件夹中添加不带后缀的文件名为config的配置文件</p>
 <p>并在该文件中输入以下字段：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Host github.com</span><br><span class="line">  HostName ssh.github.com</span><br><span class="line">  Port 443</span><br><span class="line">  PreferredAuthentications publickey</span><br><span class="line">  IdentityFile ~/.ssh/iwwenbo_rsa</span><br></pre></td></tr></table></figure>
 <p>此时再次进行部署即可成功。</p>
@@ -517,6 +516,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2024/01/17/hexo%E9%85%8D%E7%BD%AElatex%E8%AF%AD%E6%B3%95/" rel="prev" title="hexo配置latex语法">
+                hexo配置latex语法 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -604,7 +607,7 @@
               
                 <a href="/">
               
-                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-count">22</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -675,7 +678,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BB%B4%E6%8A%A4%E6%97%A5%E5%BF%972024117"><span class="nav-text">维护日志（2024&#x2F;1&#x2F;17）</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BB%B4%E6%8A%A4%E6%97%A5%E5%BF%97%EF%BC%882024-1-17%EF%BC%89"><span class="nav-text">维护日志（2024&#x2F;1&#x2F;17）</span></a></li></ol></div>
             
 
           </div>
@@ -716,7 +719,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">172.3k</span>
+    <span title="Site words total count">172.5k</span>
   
 </div>
 
@@ -733,7 +736,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count" style="color: black;">，博客全站共172.3k字</span>
+  <span class="post-count" style="color: black;">，博客全站共172.5k字</span>
 </div>
 
 

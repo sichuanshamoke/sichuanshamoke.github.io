@@ -11603,18 +11603,47 @@
   <entry>
     <title>维护日志24/1/17</title>
     <url>/2024/01/17/%E7%BB%B4%E6%8A%A4%E6%97%A5%E5%BF%9724-1-17/</url>
-    <content><![CDATA[<h1 id="维护日志2024117">维护日志（2024/1/17）</h1>
-<p>本次遇到的问题是使用hexo d命令部署到github服务器时出现了SSH 22端口拒绝连接的错误提示，经排查，确认为DNS污染导致的无法解析github服务器地址。</p>
+    <content><![CDATA[<h1 id="维护日志（2024-1-17）"><a href="#维护日志（2024-1-17）" class="headerlink" title="维护日志（2024/1/17）"></a>维护日志（2024/1/17）</h1><p>本次遇到的问题是使用hexo d命令部署到github服务器时出现了SSH 22端口拒绝连接的错误提示，经排查，确认为DNS污染导致的无法解析github服务器地址。</p>
 <span id="more"></span>
 <p>出现的报错提示如下图所示：</p>
-<p><img src="https://pic.imgdb.cn/item/65a72e4c871b83018a01be3a.png"></p>
+<p><img src="https://pic.imgdb.cn/item/65a72e4c871b83018a01be3a.png" alt></p>
 <p>此时在终端使用命令：ping github.com，发现路径不可达，但是在浏览器直接访问github个人主页可以成功访问，说明此时受到DNS污染的情况，本机无法解析github.com的IP地址，需要在本机的host文件中直接添加访问github.com的路由，添加字段如下：</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">127.0.0.1 github.com</span><br><span class="line">151.101.185.194 github.global.ssl.fastly.net</span><br></pre></td></tr></table></figure>
 <p>添加后，此时可以ping通github.com</p>
-<p>此时需要在本机中找到路径：C:.ssh，在此文件夹中添加不带后缀的文件名为config的配置文件</p>
+<p>此时需要在本机中找到路径：C:\\Users\\lenovo\.ssh，在此文件夹中添加不带后缀的文件名为config的配置文件</p>
 <p>并在该文件中输入以下字段：</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Host github.com</span><br><span class="line">  HostName ssh.github.com</span><br><span class="line">  Port 443</span><br><span class="line">  PreferredAuthentications publickey</span><br><span class="line">  IdentityFile ~/.ssh/iwwenbo_rsa</span><br></pre></td></tr></table></figure>
 <p>此时再次进行部署即可成功。</p>
+]]></content>
+      <categories>
+        <category>维护日志</category>
+      </categories>
+      <tags>
+        <tag>维护日志</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>hexo配置latex语法</title>
+    <url>/2024/01/17/hexo%E9%85%8D%E7%BD%AElatex%E8%AF%AD%E6%B3%95/</url>
+    <content><![CDATA[<h1 id="如何在hexo中配置Latex语法"><a href="#如何在hexo中配置Latex语法" class="headerlink" title="如何在hexo中配置Latex语法"></a>如何在hexo中配置Latex语法</h1><p>hexo中自带的系统并不解析latax语法，需要安装相关的插件进行配置</p>
+<span id="more"></span>
+<hr>
+<ul>
+<li><p>首先需要再git bush中输入命令，安装mathjax插件</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install hexo-math –save</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>之后更换相关的引擎</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm uninstall hexo-renderer-marked –save</span><br><span class="line">npm install hexo-renderer-kramed –save</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在博客根目录下进入<code>node_modules\kramed\lib\rules\inline.js</code>，修改其中的字段解决语义冲突</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//escape: /^\\([\\`*&#123;&#125;\[\]()#$+\-.!_&gt;])/,</span><br><span class="line">escape: /^\\([`*\[\]()#$+\-.!_&gt;])/,</span><br><span class="line">...</span><br><span class="line">//em: /^\b_((?:__|[\s\S])+?)_\b|^\*((?:\*\*|[\s\S])+?)\*(?!\*)/,</span><br><span class="line">em: /^\*((?:\*\*|[\s\S])+?)\*(?!\*)/,</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>更改主题的配置文件，在配置文件中添加以下字段，此时即可在网页中渲染Latex语法</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># MathJax Support</span><br><span class="line">mathjax:</span><br><span class="line">  enable: true</span><br><span class="line">  per_page: true</span><br><span class="line">  #cdn: //cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML</span><br><span class="line">  cdn: //cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>若需要渲染Latax语法，在文件中头选项中输入<code>mathjax: true</code>即可</p>
+</li>
+</ul>
 ]]></content>
       <categories>
         <category>维护日志</category>

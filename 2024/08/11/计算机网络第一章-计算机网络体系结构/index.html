@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="计算机网络," />
 
 
 
@@ -88,17 +88,27 @@
 
 
 
-<meta name="description" content="千里之行，始于足下">
+<meta name="description" content="计算机网络第一章 计算机网络体系结构 计算机学科基础：计算机网络第一章计算机网络体系结构的学习笔记">
 <meta property="og:type" content="article">
 <meta property="og:title" content="计算机网络第一章-计算机网络体系结构">
 <meta property="og:url" content="http://example.com/2024/08/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%AC%E4%B8%80%E7%AB%A0-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/index.html">
 <meta property="og:site_name" content="懷仁堂">
-<meta property="og:description" content="千里之行，始于足下">
+<meta property="og:description" content="计算机网络第一章 计算机网络体系结构 计算机学科基础：计算机网络第一章计算机网络体系结构的学习笔记">
 <meta property="og:locale">
+<meta property="og:image" content="https://s1.ax1x.com/2023/01/17/pS1h2i8.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/02/05/pS6JVit.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2023/01/17/pS1IuPf.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/01/17/pS1oU0A.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/01/17/pS17QxO.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/01/17/pS1Hbng.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/01/19/pS8dFDe.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/01/17/pS3A6vF.png">
 <meta property="article:published_time" content="2024-08-11T15:40:24.000Z">
-<meta property="article:modified_time" content="2024-08-11T15:40:24.603Z">
+<meta property="article:modified_time" content="2024-08-11T16:15:25.127Z">
 <meta property="article:author" content="Shamoke">
+<meta property="article:tag" content="计算机网络">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s1.ax1x.com/2023/01/17/pS1h2i8.png">
 
 
 
@@ -368,12 +378,34 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2024-08-11T23:40:24+08:00">
-                2024-08-11
+              <time title="更新于" itemprop="dateModified" datetime="2024-08-12T00:15:25+08:00">
+                2024-08-12
               </time>
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index">
+                    <span itemprop="name">计算机基础学习笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -406,7 +438,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  0
+                  12k
                 </span>
               
 
@@ -422,7 +454,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1
+                  44 mins.
                 </span>
               
             </div>
@@ -443,7 +475,397 @@
       
 
       
-        
+        <h2 id="计算机网络第一章-计算机网络体系结构"><a href="#计算机网络第一章-计算机网络体系结构" class="headerlink" title="计算机网络第一章 计算机网络体系结构"></a>计算机网络第一章 计算机网络体系结构</h2><blockquote>
+<p>计算机学科基础：计算机网络第一章计算机网络体系结构的学习笔记</p>
+</blockquote>
+<span id="more"></span>
+<h3 id="一-计算机网络概述（✠）"><a href="#一-计算机网络概述（✠）" class="headerlink" title="一.计算机网络概述（✠）"></a>一.计算机网络概述（✠）</h3><h4 id="1-计算机网络的概念"><a href="#1-计算机网络的概念" class="headerlink" title="1.计算机网络的概念"></a>1.计算机网络的概念</h4><ul>
+<li>计算机网络就是一些互连的、自治的计算机系统的集合。</li>
+</ul>
+<h4 id="2-计算机网络的组成"><a href="#2-计算机网络的组成" class="headerlink" title="2.计算机网络的组成"></a>2.计算机网络的组成</h4><ul>
+<li>组成部分来看：由硬件、软件、协议三大部分组成</li>
+<li>工作方式来看：由边缘部分与核心部分组成</li>
+<li>功能组成上看：由通信子网和资源子网组成<ul>
+<li>通信子网由各种<strong>传输介质、通信设备和相应的网络协议组成</strong>，它使网络具有数据传输、交换、控制和存储的能力，<br>实现联网计算机之间的数据通信。</li>
+<li>资源子网是<strong>实现资源共享功能的设备及其软件</strong>的集合，<br>向网络用户提供共享其他计算机上的<u>硬件资源、软件资源和数据资源</u>的服务。</li>
+</ul>
+</li>
+</ul>
+<h4 id="3-计算机网络的功能"><a href="#3-计算机网络的功能" class="headerlink" title="3.计算机网络的功能"></a>3.计算机网络的功能</h4><ul>
+<li>数据通信：作为最基本功能</li>
+<li>资源共享</li>
+<li>分布式处理（提高效率）</li>
+<li>提高可靠性</li>
+<li>负载均衡</li>
+</ul>
+<h4 id="4-计算机网络的分类"><a href="#4-计算机网络的分类" class="headerlink" title="4.计算机网络的分类"></a>4.计算机网络的分类</h4><ul>
+<li><p>按网络的覆盖范围</p>
+<ul>
+<li><p>广域网（WAN）：几十千米到几千千米（因特网的核心部分），<strong>广域网使用交换技术</strong></p>
+</li>
+<li><p>城域网（MAN）：5到50km</p>
+</li>
+<li><p>局域网（LAN） ：1km以内，<strong>局域网使用广播技术</strong></p>
+</li>
+<li><p>个人网（PAN）：10m</p>
+</li>
+</ul>
+</li>
+<li><p>按传输技术分类：</p>
+<ul>
+<li><strong>广播式网络：局域网、无线、卫星通信网络</strong><br>所有联网计算机都共享一个信道</li>
+<li><strong>点对点网络：广域网</strong><br>通过分组存储转发和路由机制交换数据</li>
+</ul>
+</li>
+<li><p>按拓扑结构分类（取决于通信子网）</p>
+<ul>
+<li>总线型网络</li>
+<li>星型网络</li>
+<li>环形网络：令牌环局域网</li>
+<li>网状网络：广域网</li>
+</ul>
+</li>
+<li>按使用者分类：公有网、私有网</li>
+<li>按交换技术分类：电路交换网络、报文交换网络(存储-转发网络)、分组交换网络(包交换网络)</li>
+</ul>
+<h4 id="5-计算机网络的性能指标（✪）"><a href="#5-计算机网络的性能指标（✪）" class="headerlink" title="5.计算机网络的性能指标（✪）"></a>5.计算机网络的性能指标（✪）</h4><h5 id="1-速率"><a href="#1-速率" class="headerlink" title="1.速率"></a>1.速率</h5><ul>
+<li>单位（bit/s或bps）</li>
+<li>需要注意相关的换算！<ul>
+<li><img src="https://s1.ax1x.com/2023/01/17/pS1h2i8.png" alt="pS1h2i8.png"></li>
+</ul>
+</li>
+</ul>
+<h5 id="2-带宽（最高数据率）"><a href="#2-带宽（最高数据率）" class="headerlink" title="2.带宽（最高数据率）"></a>2.带宽（最高数据率）</h5><ul>
+<li>单位为bit/s，带宽指的是最高的数据率,表示网络的通信线路所能传送数据的能力</li>
+<li>在描述通信线路中的传输速率时，一般速率遵守木桶效应：<br>数据传送的速率取主机的接口速率、线路带宽、交换机和路由器的接口速率中的最小者</li>
+</ul>
+<h5 id="3-吞吐量（实际的数据率）"><a href="#3-吞吐量（实际的数据率）" class="headerlink" title="3.吞吐量（实际的数据率）"></a>3.吞吐量（实际的数据率）</h5><ul>
+<li>是指在单位时间之内通过某个网络或接口的实际数据量</li>
+<li>吞吐量受网络带宽的限制</li>
+</ul>
+<h5 id="4-时延"><a href="#4-时延" class="headerlink" title="4.时延"></a>4.时延</h5><ul>
+<li>网络中的时延由发送时延、传播时延、排队时延、以及处理时延构成<ul>
+<li>图片<img src="https://s1.ax1x.com/2023/02/05/pS6JVit.jpg" alt="pS6JVit.jpg"></li>
+</ul>
+</li>
+<li>发送时延（也称传输时延✪）<ul>
+<li>指的是主机或路由器发送分组所耗费的时间，发送分组的第一个比特开始，到该分组最后一个比特发送完毕为止所耗费的时间</li>
+<li>发送时延=分组长度/发送速率</li>
+<li>在最后一个比特发送出去之后，此时之前已发送的比特正在陆续传播达到接收方，<br>而最后一个比特还需要经过一个传播时延的时间才能到达接收方。</li>
+<li>发送一个分组时，往往在最后一个比特完全传出之后，前面传出的比特经过链路上的传输刚刚到达发送方。</li>
+</ul>
+</li>
+<li>传播时延<ul>
+<li>电磁波在链路（传播介质）上传播一定的距离所耗费的时间</li>
+<li>传播时延=链路长度/电磁波在链路上传播的距离<ul>
+<li>电磁波在自由空间上：$3*10^8 m/s$</li>
+<li>在铜线和电缆中：$2.3*10^8 m/s$</li>
+<li>在光纤中：$2*10^8 m/s$</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>排队时延<ul>
+<li>分组进入路由器后，在路由器的输入队列中排队缓存并等待处理。<br>在路由器确定了分组的转发接口后，分组会在输出队列中排队缓存并等待转发。在排队缓存中所耗费的时间就是排队时延。</li>
+<li>如果通信量过大，会使路由器的队列溢出</li>
+</ul>
+</li>
+<li>处理时延<ul>
+<li>一般是检查是否误码、提取首部目的地址、查找相应的转发接口等操作。</li>
+</ul>
+</li>
+</ul>
+<h5 id="5-时延带宽积"><a href="#5-时延带宽积" class="headerlink" title="5.时延带宽积"></a>5.时延带宽积</h5><ul>
+<li>时延带宽积是传播时延和带宽的乘积，也称以比特为单位的链路长度，表示一段链路可以容纳的比特数量<ul>
+<li><img src="https://s1.ax1x.com/2023/01/17/pS1IuPf.png" alt="pS1IuPf.png"></li>
+</ul>
+</li>
+</ul>
+<h5 id="6-往返时间（RTT）"><a href="#6-往返时间（RTT）" class="headerlink" title="6.往返时间（RTT）"></a>6.往返时间（RTT）</h5><ul>
+<li>往返时间是指从发送端发送数据分组开始，到发送端收到接收端发来的相应确认分组为止，总共耗费的时间。</li>
+</ul>
+<h5 id="7-利用率"><a href="#7-利用率" class="headerlink" title="7.利用率"></a>7.利用率</h5><ul>
+<li>链路利用率（有百分之几的时间是被利用的）和网络利用率（所有链路的链路利用率的加权平均）</li>
+<li>当某链路的利用率增加时，该链路引起的时延就会迅速增加</li>
+<li>用以下的公式来表示：$D= \frac{D_0}{1-U}$   (D:网络当前的时延、$D_0$:网络空闲时的时延、U:网络利用率)<ul>
+<li><img src="https://s1.ax1x.com/2023/01/17/pS1oU0A.png" alt="pS1oU0A.png"></li>
+</ul>
+</li>
+</ul>
+<h5 id="8-丢包率"><a href="#8-丢包率" class="headerlink" title="8.丢包率"></a>8.丢包率</h5><ul>
+<li>丢包率是指在一定的时间范围内，传输过程中丢失的分组数量与总分组数量的比例</li>
+<li>在传输过程中出现误码或由于网络拥塞等造成的分组交换机根据丢弃策略主动丢弃。</li>
+</ul>
+<h4 id="6-因特网历史"><a href="#6-因特网历史" class="headerlink" title="6.因特网历史"></a>6.因特网历史</h4><ul>
+<li><p>由单个阿帕网向互联网发展、逐步建成三级结构的互联网、逐步建成多层次ISP的因特网</p>
+<ul>
+<li><p>1969年，美国建立了第一个分组交换网：ARPANET</p>
+</li>
+<li><p>1983年，TCP/IP协议族成为ARPANET的标准协议（因特网的诞生时间）</p>
+</li>
+<li><p>1985年，美国建成了由主干网、地区网、校园网三级结构所构成的国家科学基金网（NSFNET）</p>
+</li>
+<li><p>1993年，因特网转变为由互联网服务提供者（Internet Service Provider）ISP来运营</p>
+</li>
+<li><p>1994年，万维网（WWW）技术在因特网上被广泛运用</p>
+</li>
+</ul>
+</li>
+<li><p>因特网已发展成基于ISP的多层次结构的互联网络</p>
+<ul>
+<li>第一层ISP：国际级</li>
+<li>第二层ISP：区域级或国家级</li>
+<li>第三层ISP：本地级</li>
+</ul>
+</li>
+</ul>
+<h4 id="7-因特网的标准化工作和管理机构"><a href="#7-因特网的标准化工作和管理机构" class="headerlink" title="7.因特网的标准化工作和管理机构"></a>7.因特网的标准化工作和管理机构</h4><ul>
+<li>因特网的标准化工作的流程<ul>
+<li>在成为互联网标准之前需要在网络上发布：RFC文档（Request for comments）</li>
+<li>经过以下阶段才能变成因特网标准：因特网草案、建议标准（成为RFC文档）、因特网标准</li>
+</ul>
+</li>
+<li>因特网的管理机构：因特网协会（ISOC）<ul>
+<li>下设因特网体系结构委员会（IAB）并有两个子部门<ul>
+<li>互联网工程部（IETF）</li>
+<li>互联网研究部（IRTF）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>专门制定计算机网络标准的组织：IEEE（Institute of Electrical and Electronics Engineers），电气与电子工程协会。</li>
+</ul>
+<h3 id="二-计算机网络的体系结构（✪）"><a href="#二-计算机网络的体系结构（✪）" class="headerlink" title="二.计算机网络的体系结构（✪）"></a>二.计算机网络的体系结构（✪）</h3><h4 id="1-常见的三种计算机网络的体系结构（✪）"><a href="#1-常见的三种计算机网络的体系结构（✪）" class="headerlink" title="1.常见的三种计算机网络的体系结构（✪）"></a>1.常见的三种计算机网络的体系结构（✪）</h4><ul>
+<li><p>开放系统互联参考模型（OSI✪）</p>
+<ul>
+<li><p>由国际标准化组织（ISO）制订，分为7层</p>
+</li>
+<li><p>高三层统称为资源子网，相当于计算机系统，完成数据的处理等功能</p>
+</li>
+<li><p>低三层统称为通信子网，它是为了联网而附加的通信设备，完成数据的传输功能</p>
+</li>
+<li><p>物理层</p>
+<ul>
+<li>物理层的传输单位是比特，功能是在物理媒体上为数据端设备透明地传输原始比特流。</li>
+<li>物理层主要定义数据终端设备(DTE)和数据通信设备(DCE)的物理与逻辑连接方法<br>所以物理层协议也称物理层接口标准，物理层协议也称物理层规程。</li>
+<li>传输信息所用的物理媒体（双绞线、光缆、无线信道等），不属于物理层协议</li>
+</ul>
+</li>
+<li><p>数据链路层</p>
+<ul>
+<li>数据链路层的传输单位是帧，任务是将网络层传来的IP数据报组装成帧。</li>
+<li>数据链路层的功能可以概括为<strong>物理寻址、封装成帧、差错控制、流量控制和传输管理等</strong>。<br>保证数据正确的顺序和完整性</li>
+<li>广播式网络在数据链路层还要处理新的问题，即如何控制对共享信道的访问<br>数据链路层的一个特殊的子层一一介质访问子层，就是专门处理这个问题的</li>
+<li><strong>数据链路层提供的是点到点的通信</strong>（主机到主机之间的通信）</li>
+</ul>
+</li>
+<li><p>网络层</p>
+<ul>
+<li><p>网络层的传输单位是IP数据报（分组），它关心的是通信子网的运行控制，</p>
+<p>主要任务是把网络层的协议数据单元（分组）从源端传到目的端，为分组交换网上的不同主机提供通信服务。</p>
+</li>
+<li><p>关键问题是对分组进行<strong>路由选择</strong>，并实现<strong>差错控制、流量控制、拥塞控制和网际互连</strong>等功能。</p>
+</li>
+<li><p>因特网是一个很大的互联网，它由大量异构网络通过路由器(Router)相互连接起来。</p>
+<ul>
+<li>因特网的主要网络层协议是无连接的网际协议(IP)和许多路由选择协议<br>因此因特网的网络层也称网际层或IP层。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>传输层</p>
+<ul>
+<li>传输层也称运输层，传输单位是报文段(TCP)或用户数据报(UDP)</li>
+<li>传输层负责主机中两个进程之间的通信，功能是为端到端连接提供可靠的传输服务，<br>为端到端连接提供<strong>差错控制、流量控制、拥塞控制、服务质量、数据传输管理</strong>等服务。</li>
+<li><strong>传输层提供的是端到端的通信</strong>（运行在不同主机的两个进程之间的通信）</li>
+</ul>
+</li>
+<li><p>会话层：会话管理，也称为建立同步（SYN）</p>
+<ul>
+<li>这种服务主要为表示层实体或用户进程建立连接并在连接上有序地传输数据，这就是会话，也称建立同步(SYN)。</li>
+<li>会话层可以使用校验点使通信会话在通信失效时从校验点继续恢复通信，实现数据同步</li>
+</ul>
+</li>
+<li><p>表示层：数据格式转换</p>
+</li>
+<li><p>应用层：提供用户和网络的接口。应用层为特定类型的网络应用提供访问OSI参考模型环境的手段</p>
+</li>
+</ul>
+</li>
+<li><p>TCP/IP参考模型（✪）</p>
+<ul>
+<li>分为四层：网络接口层、网际层（主机之间）、传输层（进程之间）、应用层（用户之间）</li>
+<li>网络接口层：从主机或结点接收IP分组，并把它们发送到指定的物理网络上</li>
+<li>网际协议IP是TCP/IP体系结构（因特网）中的核心协议<ul>
+<li>进行路由选择，提供无连接不可靠的数据报服务</li>
+<li>IP协议作为 TCP/IP体系结构中的核心协议, 一方面负责互连不同的网络接口, 也就是IP over everything；<br>另一方面为各种网络应用提供服务, 也就是Everything over IP。</li>
+<li>TCP/IP 协议族图片<ul>
+<li><img src="https://s1.ax1x.com/2023/01/17/pS17QxO.png" alt="pS17QxO.png"></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>传输层：使发送端和目的端主机上的对等实体进行会话<ul>
+<li>实现端到端通信，处理关于可靠性、流量控制和错误矫正等问题</li>
+<li>传输控制协议(TCP)。它是面向连接的，<br>数据传输的单位是<strong>报文段，能够提供可靠的交付</strong>。</li>
+<li>用户数据报协议(UDP)。它是无连接的，<br>数据传输的单位是<strong>用户数据报，不保证提供可靠的交付，只能提供“尽最大努力交付”</strong>。</li>
+</ul>
+</li>
+<li>应用层：包含所有的高层协议，如虚拟终端协议(Telnet)、文件传输协议(FTP)、<br>域名解析服务(DNS)、电子邮件协议(SMTP)和超文本传输协议(HTTP)。</li>
+</ul>
+</li>
+<li><p>原理参考模型：五层，物理层、数据链路层、网络层、传输层、应用层（学习时采用的模型）</p>
+</li>
+<li><p>OSI参考模型与TCP/IP模型的区别（✪）</p>
+<ul>
+<li>OSI参考模型在网络层支持无连接和面向连接的通信<br>但在传输层仅有面向连接的通信。</li>
+<li>而TCP/IP模型认为可靠性是端到端的问题，因此它在网际层仅有一种无连接的通信模式<br>但传输层支持无连接和面向连接两种模式</li>
+</ul>
+</li>
+</ul>
+<h4 id="2-数据传输的过程"><a href="#2-数据传输的过程" class="headerlink" title="2.数据传输的过程"></a>2.数据传输的过程</h4><ul>
+<li><p>主机发送报文（自顶向下逐层封装）：</p>
+<ul>
+<li>1.应用层: 根据HTTP协议的规定, 构建一个HTTP请求报文, 用来请求Web服务器执行相应的操作。<br>应用层将构建好的HTTP请求报文向下交付给运输层。</li>
+<li>2.运输层: 给HTTD请求报文添加一个TCP首部， 将其封装成TCP报文段，TCP首部的主要作用是区分应用进程和实现可靠转输，运输层将封装好的TCP报文段向下交付给网络层。</li>
+<li>3.网络层: 为TCP报文段添加一个IP首部, 将其封装成IP数据报。<br>IP首部的主要作用是IP寻址和路由。网络层将封装好的IP数据报向下交付给数据链路层。</li>
+<li>4.数据链路层: 为IP数据报添加一个首部和一个尾部，将其封装成帧。帧首部和尾部的主要作用是MAC寻址和帧校验。<br>数据链路层将封装好的帧可下交付给物理层。</li>
+<li>5.物理层: 并不认识帧的结构, 仅仅将其看作比特流, 以便将比特流转换成相应的电信号进行发送。<br>对于以太网, 物理层还会在比特流前添加前导码, 目的是使接收方的时钟同步, 并做好接收准备。<ul>
+<li>注：物理层并不参与数据封装工作。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>路由器处理报文（自低向下逐层解封）：</p>
+<ul>
+<li>1.接收口的物理层：将收到的电信号装换成比特流，并去掉前导码，然后将帧向上交给数据链路层。</li>
+<li>2.接收口的数据链路层: 去掉帧的首部和尾部后, 将IP数据报向上交付给网络层。</li>
+<li>3.网络层: 网络层从IP数据报的首部中提取出目的IP地址，根据目的IP地址查找自己的转发表，以便决定从哪个接口转发该IP数据<br>报。与此同时，还要对首部中的某些字段值（例如生存时间TTL字段的值）进行相应的修改，然后将该IP数据报向下交付给数据链路层。</li>
+<li>4.转发口的数据链路层: 为IP数据报添加一个首部和一个尾部, 将其封装成帧，然后将帧向下交付给物理层。</li>
+<li>5.转发口的物理层: 将帧看作比特流, 给其添加前导码后转变成相应的电信号发送出去。</li>
+</ul>
+</li>
+<li><p>流程图</p>
+<ul>
+<li><img src="https://s1.ax1x.com/2023/01/17/pS1Hbng.png" alt="pS1Hbng.png"></li>
+</ul>
+</li>
+</ul>
+<h4 id="3-分层体系结构中的相关术语"><a href="#3-分层体系结构中的相关术语" class="headerlink" title="3.分层体系结构中的相关术语"></a>3.分层体系结构中的相关术语</h4><ul>
+<li><p>计算机网络的各层及其协议的集合被称为体系结构</p>
+<ul>
+<li>分层描述了每层必须完成的功能，但是没有定义功能执行的方法<br>分层不涉及协议的内部实现细节    </li>
+</ul>
+</li>
+<li><p>实体</p>
+<ul>
+<li>实体是指任何可发送或接收信息的硬件或软件进程</li>
+<li>不同机器上的同一层称为对等层</li>
+<li>同一层的实体称为对等实体</li>
+</ul>
+</li>
+<li>PDU(协议数据单元)，由SDU、PCI组成<ul>
+<li>服务数据单元（SDU）：层与层之间交换的数据单元称为服务数据单元</li>
+<li>服务控制信息（PCI）：控制协议操作的信息</li>
+<li>协议数据单元（PDU）：对等层之间传送的数据单元称为该层的协议数据单元</li>
+</ul>
+</li>
+</ul>
+<h4 id="4-协议、接口、服务（OSI参考模型的三个主要概念✪）"><a href="#4-协议、接口、服务（OSI参考模型的三个主要概念✪）" class="headerlink" title="4.协议、接口、服务（OSI参考模型的三个主要概念✪）"></a>4.协议、接口、服务（OSI参考模型的三个主要概念✪）</h4><ul>
+<li><p>协议（✪）</p>
+<ul>
+<li><p><strong>协议是控制两个对等实体在”水平方向”进行”逻辑通信”的规则的集合</strong></p>
+<ul>
+<li>物理层对等实体使用物理层协议进行逻辑通信, 例如传统以太网使用曼彻斯特编码。</li>
+<li>数据链路层对等实体使用数据链路层协议进行逻辑通信, 例如传统以太网使用 CSMA/CD协议。</li>
+<li>网络层对等实体使用网络层协议进行逻辑通信, 例如IP协议。</li>
+<li>运输层对等实体使用运输层协议进行逻辑通信, 例如TCP协议或UDP协议。</li>
+<li>应用层对等实体使用应用层协议进行逻辑通信, 例如HTTP协议、FTP协议以及SMTP协议等。</li>
+</ul>
+</li>
+<li><p><strong>协议三要素：语法、语义、同步</strong></p>
+<ul>
+<li>语法：语法用来定义数据与控制信息的结构与格式，以及数据出现的顺序<ul>
+<li>比如说IP数据报文，其中的每一个小格子被称为字段或域。</li>
+</ul>
+</li>
+<li>语义：语义解释控制信息每个部分的意义，规定了需要发出何种控制信息，以及完成的动作与做出什么样的响应</li>
+<li>同步：用来定义通信双方的时序关系，对事件发生的顺序进行详细说明<ul>
+<li>例：此时为三次握手，展现先后关系<ul>
+<li><img src="https://s1.ax1x.com/2023/01/19/pS8dFDe.png" alt="pS8dFDe.png"></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>接口与服务访问点（SAP）</p>
+<ul>
+<li>接口是同一结点内相邻两层间交换信息的连接点</li>
+<li>同一结点相邻两层的实体通过服务访问点（SAP）进行交互</li>
+<li>各层的SAP<ul>
+<li>物理层：网卡接口</li>
+<li>数据链路层：MAC地址（网卡地址）或帧的类型字段</li>
+<li>网络层：IP地址（网络地址）或IP数据报首部的协议字段</li>
+<li>传输层：端口号</li>
+<li>应用层：用户界面</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>服务（✪）</p>
+<ul>
+<li>服务的基本概念<ul>
+<li><strong>在协议的控制下，两个对等实体在水平方向上的逻辑通信使得本层能够向上一层提供服务。</strong></li>
+<li>要实现本层协议，还需要使用下面一层所提供的服务，其下面的一层称为服务提供者</li>
+<li>协议是水平的，而服务是垂直的。</li>
+<li>实体看得见下层提供的服务，但并不知道实现该服务的具体协议。下层的协议对上层的实体是透明的。<ul>
+<li>网络层享受链路层提供的服务，并给传输层提供服务。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>服务原语：<strong>上层要使用下层所提供的服务，必须通过与下层交换一些命令，这些命令称为服务原语。</strong><ul>
+<li>分为请求、指示、响应、证实四类</li>
+</ul>
+</li>
+<li>服务的分类<ul>
+<li>面向连接服务与无连接服务<ul>
+<li>面向连接服务（分为连接建立、数据传输和连接释放三个阶段）<ul>
+<li>通信前双方必须先建立连接，分配相应的资源（如缓冲区），以保证通信能正常进行</li>
+<li>传输结束后释放连接和所占用的资源。</li>
+<li>TCP就是一种面向连接服务的协议</li>
+</ul>
+</li>
+<li>无连接服务（尽最大努力交付）<ul>
+<li>通信双方不需要先建立连接，直接发送数据即可，是一种不可靠的服务</li>
+<li>IP，UDP为无连接服务</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>可靠服务与不可靠服务<ul>
+<li>可靠服务是指网络具有纠错、检错、应答机制，能保证数据正确、可靠地传送到目的地。</li>
+<li>不可靠服务是指网络只是尽量正确、可靠地传送，而不能保证数据正确、可靠地传送到目的<br>地，是一种尽力而为的服务。</li>
+</ul>
+</li>
+<li>有应答服务与无应答服务<ul>
+<li>应答由传输系统内部自动实现，如文件传输服务</li>
+<li>无应答服务是指接收方收到数据后不自动给出应答。若需要应答，则由高层实现<br>如www服务</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>图片<ul>
+<li><img src="https://s1.ax1x.com/2023/01/17/pS3A6vF.png" alt="pS3A6vF.png"></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
       
     </div>
     
@@ -471,6 +893,12 @@
 
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" rel="tag"><i class="fa fa-tag"></i> 计算机网络</a>
+          
+        </div>
       
 
       
@@ -550,8 +978,17 @@
     <div class="sidebar-inner">
       
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -569,7 +1006,7 @@
             
               <div class="site-state-item site-state-posts">
               
-                <a href="/archives/%7C%7C%20archive">
+                <a href="/">
               
                   <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">日志</span>
@@ -593,7 +1030,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -706,6 +1143,22 @@
       </section>
 
       
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%AC%E4%B8%80%E7%AB%A0-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84"><span class="nav-text">计算机网络第一章 计算机网络体系结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%A6%82%E8%BF%B0%EF%BC%88%E2%9C%A0%EF%BC%89"><span class="nav-text">一.计算机网络概述（✠）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="nav-text">1.计算机网络的概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%9A%84%E7%BB%84%E6%88%90"><span class="nav-text">2.计算机网络的组成</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%9A%84%E5%8A%9F%E8%83%BD"><span class="nav-text">3.计算机网络的功能</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%9A%84%E5%88%86%E7%B1%BB"><span class="nav-text">4.计算机网络的分类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%9A%84%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87%EF%BC%88%E2%9C%AA%EF%BC%89"><span class="nav-text">5.计算机网络的性能指标（✪）</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-%E9%80%9F%E7%8E%87"><span class="nav-text">1.速率</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-%E5%B8%A6%E5%AE%BD%EF%BC%88%E6%9C%80%E9%AB%98%E6%95%B0%E6%8D%AE%E7%8E%87%EF%BC%89"><span class="nav-text">2.带宽（最高数据率）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-%E5%90%9E%E5%90%90%E9%87%8F%EF%BC%88%E5%AE%9E%E9%99%85%E7%9A%84%E6%95%B0%E6%8D%AE%E7%8E%87%EF%BC%89"><span class="nav-text">3.吞吐量（实际的数据率）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-%E6%97%B6%E5%BB%B6"><span class="nav-text">4.时延</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-%E6%97%B6%E5%BB%B6%E5%B8%A6%E5%AE%BD%E7%A7%AF"><span class="nav-text">5.时延带宽积</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6-%E5%BE%80%E8%BF%94%E6%97%B6%E9%97%B4%EF%BC%88RTT%EF%BC%89"><span class="nav-text">6.往返时间（RTT）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#7-%E5%88%A9%E7%94%A8%E7%8E%87"><span class="nav-text">7.利用率</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#8-%E4%B8%A2%E5%8C%85%E7%8E%87"><span class="nav-text">8.丢包率</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-%E5%9B%A0%E7%89%B9%E7%BD%91%E5%8E%86%E5%8F%B2"><span class="nav-text">6.因特网历史</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-%E5%9B%A0%E7%89%B9%E7%BD%91%E7%9A%84%E6%A0%87%E5%87%86%E5%8C%96%E5%B7%A5%E4%BD%9C%E5%92%8C%E7%AE%A1%E7%90%86%E6%9C%BA%E6%9E%84"><span class="nav-text">7.因特网的标准化工作和管理机构</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%9A%84%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84%EF%BC%88%E2%9C%AA%EF%BC%89"><span class="nav-text">二.计算机网络的体系结构（✪）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E5%B8%B8%E8%A7%81%E7%9A%84%E4%B8%89%E7%A7%8D%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%9A%84%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84%EF%BC%88%E2%9C%AA%EF%BC%89"><span class="nav-text">1.常见的三种计算机网络的体系结构（✪）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E6%95%B0%E6%8D%AE%E4%BC%A0%E8%BE%93%E7%9A%84%E8%BF%87%E7%A8%8B"><span class="nav-text">2.数据传输的过程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E5%88%86%E5%B1%82%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84%E4%B8%AD%E7%9A%84%E7%9B%B8%E5%85%B3%E6%9C%AF%E8%AF%AD"><span class="nav-text">3.分层体系结构中的相关术语</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E5%8D%8F%E8%AE%AE%E3%80%81%E6%8E%A5%E5%8F%A3%E3%80%81%E6%9C%8D%E5%8A%A1%EF%BC%88OSI%E5%8F%82%E8%80%83%E6%A8%A1%E5%9E%8B%E7%9A%84%E4%B8%89%E4%B8%AA%E4%B8%BB%E8%A6%81%E6%A6%82%E5%BF%B5%E2%9C%AA%EF%BC%89"><span class="nav-text">4.协议、接口、服务（OSI参考模型的三个主要概念✪）</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
 
       
         <div class="back-to-top">
@@ -740,7 +1193,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">44.7k</span>
+    <span title="Site words total count">117k</span>
   
 </div>
 
@@ -1256,6 +1709,26 @@
   
 
   
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
   
 
 

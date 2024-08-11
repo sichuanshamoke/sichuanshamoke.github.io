@@ -106,7 +106,7 @@
 <meta property="og:image" content="https://s1.ax1x.com/2023/07/04/pCsKsln.png">
 <meta property="og:image" content="https://s1.ax1x.com/2023/07/04/pCslT6s.png">
 <meta property="article:published_time" content="2024-08-11T08:08:11.000Z">
-<meta property="article:modified_time" content="2024-08-11T09:02:14.799Z">
+<meta property="article:modified_time" content="2024-08-11T09:40:23.259Z">
 <meta property="article:author" content="Shamoke">
 <meta property="article:tag" content="数据结构">
 <meta name="twitter:card" content="summary">
@@ -380,7 +380,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2024-08-11T17:02:14+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2024-08-11T17:40:23+08:00">
                 2024-08-11
               </time>
             
@@ -514,7 +514,7 @@
 </li>
 <li>概念型的例题<ul>
 <li>此题选C，逻辑结构均是线性结构</li>
-<li><a target="_blank" rel="noopener" href="https://imgse.com/i/pCs0g2t"><img src="https://s1.ax1x.com/2023/07/04/pCs0g2t.png" alt="pCs0g2t.png"></a></li>
+<li><img src="https://s1.ax1x.com/2023/07/04/pCs0g2t.png" alt="pCs0g2t.png"></li>
 </ul>
 </li>
 </ul>
@@ -575,15 +575,15 @@
 <li>一个语句的频度是指该语句在算法中<u>被重复执行的次数</u>。算法中所有语句的频度之和记为T(n)，<br><u>它是该算法问题规模n的函数</u>，时间复杂度主要分析T(n)的<u>数量级</u>，<strong>执行时间与时间复杂度的值成正比</strong>。</li>
 <li>算法中基本运算（<strong>最深层循环内的语句</strong>）的频度与T(n)同数量级，<br><strong>因此通常采用算法中基本运算的频度f(n)来分析时间复杂度</strong>，$T ( n ) = O ( f ( n ) )$<ul>
 <li>如此题中，问题规模始终都是n，执行时间与时间复杂度的值成正比，选C<ul>
-<li><a target="_blank" rel="noopener" href="https://imgse.com/i/pCse6aQ"><img src="https://s1.ax1x.com/2023/07/04/pCse6aQ.png" alt="pCse6aQ.png"></a></li>
+<li><img src="https://s1.ax1x.com/2023/07/04/pCse6aQ.png" alt="pCse6aQ.png"></li>
 </ul>
 </li>
 <li>此题可以反映时间复杂度是看问题规模的数量级（即看最高阶，抓大头选B）<ul>
-<li><a target="_blank" rel="noopener" href="https://imgse.com/i/pCsKhY4"><img src="https://s1.ax1x.com/2023/07/04/pCsKhY4.png" alt="pCsKhY4.png"></a></li>
+<li><img src="https://s1.ax1x.com/2023/07/04/pCsKhY4.png" alt="pCsKhY4.png"></li>
 </ul>
 </li>
 <li>但是有两个变量的话就不一样了，如此题选C<ul>
-<li><a target="_blank" rel="noopener" href="https://imgse.com/i/pPMMWOs"><img src="https://s1.ax1x.com/2023/08/14/pPMMWOs.png" alt="pPMMWOs.png"></a></li>
+<li><img src="https://s1.ax1x.com/2023/08/14/pPMMWOs.png" alt="pPMMWOs.png"></li>
 </ul>
 </li>
 </ul>
@@ -598,19 +598,19 @@
 <li>步骤：首先确定循环中变化的值，之后跟据其变化情况列出其经过每轮循环之后的值<br>（先用实数，最后写出规律式（含频数k）），之后并与问题规模n组成不等式，最后求出k关于n的表达式</li>
 <li>例1<ul>
 <li>此时写出i的变化规律：$1,2,4…2^{k},2^{k}=n,k=log_{2}n$</li>
-<li><a target="_blank" rel="noopener" href="https://imgse.com/i/pCsnQ0O"><img src="https://s1.ax1x.com/2023/07/04/pCsnQ0O.png" alt="pCsnQ0O.png"></a></li>
+<li><img src="https://s1.ax1x.com/2023/07/04/pCsnQ0O.png" alt="pCsnQ0O.png"></li>
 </ul>
 </li>
 <li>例2<ul>
 <li>此时写出x的变化规律：$4,8,16…2^{k+1},2^{k+1}&lt;n/2,k=log_{2}n/2-1=log_{2}n-2$，此时即选A</li>
-<li><a target="_blank" rel="noopener" href="https://imgse.com/i/pCsu8bT"><img src="https://s1.ax1x.com/2023/07/04/pCsu8bT.png" alt="pCsu8bT.png"></a></li>
+<li><img src="https://s1.ax1x.com/2023/07/04/pCsu8bT.png" alt="pCsu8bT.png"></li>
 </ul>
 </li>
 <li>例3<ul>
 <li>此时有内外两层的循环，且外层循环的值决定了内层循环的次数，应该以外层为基准来看</li>
 <li>外层执行第一轮(i=1)：最内层语句执行2次，外层执行第二轮(i=2)，最内层语句执行4次，<br>外层执行第三轮(i=3)，最内层语句执行6次，</li>
 <li>此时有规律得（外层执行第n轮时，最内层语句执行2n次）总次数即为相加（求和公式(2+2n)*n/2)=n(n+1)）</li>
-<li><a target="_blank" rel="noopener" href="https://imgse.com/i/pCsKneK"><img src="https://s1.ax1x.com/2023/07/04/pCsKneK.png" alt="pCsKneK.png"></a></li>
+<li><img src="https://s1.ax1x.com/2023/07/04/pCsKneK.png" alt="pCsKneK.png"></li>
 </ul>
 </li>
 <li><p>例4</p>
@@ -619,7 +619,7 @@
 </li>
 <li><p>此时有$i=1,2,4……2^{k}&lt;n ，此时对应的内层总次数相加为1+2+……2^{k}=2^{k+1}-1&lt;2n$，时间复杂度为n</p>
 </li>
-<li><p><a target="_blank" rel="noopener" href="https://imgse.com/i/pCs3Arn"><img src="https://s1.ax1x.com/2023/07/04/pCs3Arn.png" alt="pCs3Arn.png"></a></p>
+<li><p><img src="https://s1.ax1x.com/2023/07/04/pCs3Arn.png" alt="pCs3Arn.png"></p>
 </li>
 </ul>
 </li>
@@ -627,7 +627,7 @@
 <ul>
 <li><p>此时有两层循环但是内层循环的次数不由外层循环的值确定，此时可以看做两个单独的循环，总次数即为此两次循环的积，选C</p>
 </li>
-<li><p><a target="_blank" rel="noopener" href="https://imgse.com/i/pCsKsln"><img src="https://s1.ax1x.com/2023/07/04/pCsKsln.png" alt="pCsKsln.png"></a></p>
+<li><p><img src="https://s1.ax1x.com/2023/07/04/pCsKsln.png" alt="pCsKsln.png"></p>
 </li>
 </ul>
 </li>
@@ -635,7 +635,7 @@
 <ul>
 <li><p>将表达式简化后写出规律，i=0时，sum=1；i=1，sum=1+2，i=2，sum=1+2+3，则i=k时，sum=(1+k)k/2=n，此时选B</p>
 </li>
-<li><p><a target="_blank" rel="noopener" href="https://imgse.com/i/pCslT6s"><img src="https://s1.ax1x.com/2023/07/04/pCslT6s.png" alt="pCslT6s.png"></a></p>
+<li><p><img src="https://s1.ax1x.com/2023/07/04/pCslT6s.png" alt="pCslT6s.png"></p>
 </li>
 </ul>
 </li>
@@ -753,9 +753,7 @@
       <div id="sidebar-dimmer"></div>
     
     <div class="sidebar-inner">
-
       
-
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
@@ -778,7 +776,8 @@
               <p class="site-author-name" itemprop="name">沙漠客</p>
               <p class="site-description motion-element" itemprop="description">Action speak louder than words!</p>
           </div>
-
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=100 src="//music.163.com/outchain/player?type=2&id=1396311816&auto=1&height=66"></iframe>
+        </iframe>
           <nav class="site-state motion-element">
 
             
@@ -963,7 +962,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">2.3k</span>
+    <span title="Site words total count">7.5k</span>
   
 </div>
 
@@ -1506,7 +1505,75 @@
 
   
 
-
+    <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+ 
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+ 
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+ 
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+ 
+  <script>
+    $('.highlight').each(function (i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap')
+      $(e).after($wrap)
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function (e) {
+        var code = $(this).parent().find('.code').find('.line').map(function (i, e) {
+          return $(e).text()
+        }).toArray().join('\n')
+        var ta = document.createElement('textarea')
+        document.body.appendChild(ta)
+        ta.style.position = 'absolute'
+        ta.style.top = '0px'
+        ta.style.left = '0px'
+        ta.value = code
+        ta.select()
+        ta.focus()
+        var result = document.execCommand('copy')
+        document.body.removeChild(ta)
+ 
+        if(result)$(this).text('复制成功')
+        else $(this).text('复制失败')
+ 
+        $(this).blur()
+      })).on('mouseleave', function (e) {
+        var $b = $(this).find('.copy-btn')
+        setTimeout(function () {
+          $b.text('复制')
+        }, 300)
+      }).append(e)
+    })
+  </script>	
   
-</body>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
 </html>

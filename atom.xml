@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2024-08-11T15:20:29.703Z</updated>
+  <updated>2024-08-11T15:44:14.257Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,84 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>计算机网络第六章-应用层</title>
+    <link href="http://example.com/2024/08/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%AC%E5%85%AD%E7%AB%A0-%E5%BA%94%E7%94%A8%E5%B1%82/"/>
+    <id>http://example.com/2024/08/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%AC%E5%85%AD%E7%AB%A0-%E5%BA%94%E7%94%A8%E5%B1%82/</id>
+    <published>2024-08-11T15:44:14.000Z</published>
+    <updated>2024-08-11T15:44:14.257Z</updated>
+    
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>计算机网络第五章-传输层</title>
+    <link href="http://example.com/2024/08/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%AC%E4%BA%94%E7%AB%A0-%E4%BC%A0%E8%BE%93%E5%B1%82/"/>
+    <id>http://example.com/2024/08/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%AC%E4%BA%94%E7%AB%A0-%E4%BC%A0%E8%BE%93%E5%B1%82/</id>
+    <published>2024-08-11T15:43:34.000Z</published>
+    <updated>2024-08-11T15:43:34.020Z</updated>
+    
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>计算机网络第四章-网络层</title>
+    <link href="http://example.com/2024/08/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E7%BD%91%E7%BB%9C%E5%B1%82/"/>
+    <id>http://example.com/2024/08/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E7%BD%91%E7%BB%9C%E5%B1%82/</id>
+    <published>2024-08-11T15:43:04.000Z</published>
+    <updated>2024-08-11T15:43:04.452Z</updated>
+    
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>计算机网络第三章-数据链路层</title>
+    <link href="http://example.com/2024/08/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%AC%E4%B8%89%E7%AB%A0-%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/"/>
+    <id>http://example.com/2024/08/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%AC%E4%B8%89%E7%AB%A0-%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/</id>
+    <published>2024-08-11T15:42:45.000Z</published>
+    <updated>2024-08-11T15:42:45.967Z</updated>
+    
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>计算机网络第二章-物理层</title>
+    <link href="http://example.com/2024/08/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E7%89%A9%E7%90%86%E5%B1%82/"/>
+    <id>http://example.com/2024/08/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E7%89%A9%E7%90%86%E5%B1%82/</id>
+    <published>2024-08-11T15:42:20.000Z</published>
+    <updated>2024-08-11T15:42:20.906Z</updated>
+    
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>计算机网络第一章-计算机网络体系结构</title>
+    <link href="http://example.com/2024/08/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%AC%E4%B8%80%E7%AB%A0-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/"/>
+    <id>http://example.com/2024/08/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%AC%E4%B8%80%E7%AB%A0-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/</id>
+    <published>2024-08-11T15:40:24.000Z</published>
+    <updated>2024-08-11T15:40:24.603Z</updated>
+    
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>数据结构第八章-排序</title>

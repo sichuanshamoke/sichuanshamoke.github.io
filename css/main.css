@@ -1740,111 +1740,23 @@ pre .javascript .function {
   max-width: 120px;
   height: auto;
   border: 1px solid #eee;
-/* 头像圆形 */
-/*border-radius: 60px;
-  -webkit-border-radius: 60px;
-  -moz-border-radius: 60px;
-  box-shadow: inset 0 -1px 0 #333sf;*/
-/* 设置循环动画 [animation: (play)动画名称 (2s)动画播放时长单位秒或微秒 (ase-out)动画播放的速度曲线为以低速结束 
-    (1s)等待1秒然后开始动画 (1)动画播放次数(infinite为循环播放) ]*/
-/* 鼠标经过头像旋转360度 */
-/*-webkit-transition: -webkit-transform 1.0s ease-out;
-  -moz-transition: -moz-transform 1.0s ease-out;
-  transition: transform 1.0s ease-out;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
 }
-img:hover {
-  /* 鼠标经过停止头像旋转 
-  -webkit-animation-play-state:paused;
-  animation-play-state:paused;*/
-/* 鼠标经过头像旋转360度 */
-  -webkit-transform: rotateZ(360deg);
-  -moz-transform: rotateZ(360deg);
-  -webkit-transform: rotateZ(360deg);
-  -moz-transform: rotateZ(360deg);
-  -ms-transform: rotateZ(360deg);
-  -o-transform: rotateZ(360deg);
-  transform: rotateZ(360deg);
+.site-author-name {
+  text-align: center; /* 居中文字 */
+  font-weight: bold; /* 加黑文字 */
+  font-size: 20px;
+  position: relative; /* 设置为相对定位 */
+  top: 15px; /* 向下移动像素 */
+  font-family: Arial, sans-serif; /* 'Arial'是字体名称，'sans-serif'是备用字体栈 */
 }
-@-webkit-keyframes play {
-  0% {
-    -webkit-transform: rotateZ(0deg);
-  }
-  100% {
-    -webkit-transform: rotateZ(-360deg);
-  }
-*
-}
-@-moz-keyframes play {
-  0% {
-    -moz-transform: rotateZ(0deg);
-  }
-  100% {
-    -moz-transform: rotateZ(-360deg);
-  }
-}
-@-moz-keyframes play {
-  0% {
-    -webkit-transform: rotateZ(0deg);
-    -moz-transform: rotateZ(0deg);
-    -ms-transform: rotateZ(0deg);
-    -o-transform: rotateZ(0deg);
-    transform: rotateZ(0deg);
-  }
-  100% {
-    -webkit-transform: rotateZ(-360deg);
-    -moz-transform: rotateZ(-360deg);
-    -ms-transform: rotateZ(-360deg);
-    -o-transform: rotateZ(-360deg);
-    transform: rotateZ(-360deg);
-  }
-}
-@-webkit-keyframes play {
-  0% {
-    -webkit-transform: rotateZ(0deg);
-    -moz-transform: rotateZ(0deg);
-    -ms-transform: rotateZ(0deg);
-    -o-transform: rotateZ(0deg);
-    transform: rotateZ(0deg);
-  }
-  100% {
-    -webkit-transform: rotateZ(-360deg);
-    -moz-transform: rotateZ(-360deg);
-    -ms-transform: rotateZ(-360deg);
-    -o-transform: rotateZ(-360deg);
-    transform: rotateZ(-360deg);
-  }
-}
-@-o-keyframes play {
-  0% {
-    -webkit-transform: rotateZ(0deg);
-    -moz-transform: rotateZ(0deg);
-    -ms-transform: rotateZ(0deg);
-    -o-transform: rotateZ(0deg);
-    transform: rotateZ(0deg);
-  }
-  100% {
-    -webkit-transform: rotateZ(-360deg);
-    -moz-transform: rotateZ(-360deg);
-    -ms-transform: rotateZ(-360deg);
-    -o-transform: rotateZ(-360deg);
-    transform: rotateZ(-360deg);
-  }
-}
-@keyframes play {
-  0% {
-    -webkit-transform: rotateZ(0deg);
-    -moz-transform: rotateZ(0deg);
-    -ms-transform: rotateZ(0deg);
-    -o-transform: rotateZ(0deg);
-    transform: rotateZ(0deg);
-  }
-  100% {
-    -webkit-transform: rotateZ(-360deg);
-    -moz-transform: rotateZ(-360deg);
-    -ms-transform: rotateZ(-360deg);
-    -o-transform: rotateZ(-360deg);
-    transform: rotateZ(-360deg);
-  }
+.site-description.motion-element {
+/* 设置为居中 */
+  text-align: center;
+/* 设置为斜体 */
+  font-style: italic;
 }
 .site-state {
   overflow: hidden;
@@ -1914,7 +1826,7 @@ img:hover {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #ddd791;
+  background: #baffff;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2017,7 +1929,6 @@ li.recent_posts_li {
   overflow: hidden;
   text-overflow: ellipsis;
   text-align: justify;
-  white-space: nowrap;
   line-height: 1.8;
 }
 .post-toc .nav .nav-child {

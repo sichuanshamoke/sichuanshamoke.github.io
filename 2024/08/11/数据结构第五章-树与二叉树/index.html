@@ -1,0 +1,2042 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="数据结构," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="懷仁堂" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="第五章 树与二叉树 计算机学科基础：数据结构第五章树与二叉树学习笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据结构第五章-树与二叉树">
+<meta property="og:url" content="http://example.com/2024/08/11/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AC%AC%E4%BA%94%E7%AB%A0-%E6%A0%91%E4%B8%8E%E4%BA%8C%E5%8F%89%E6%A0%91/index.html">
+<meta property="og:site_name" content="懷仁堂">
+<meta property="og:description" content="第五章 树与二叉树 计算机学科基础：数据结构第五章树与二叉树学习笔记">
+<meta property="og:locale">
+<meta property="og:image" content="https://s1.ax1x.com/2023/07/11/pCWf6u6.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/07/11/pCWcsPI.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/07/11/pCW2f4s.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/07/11/pCWR9KK.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/07/11/pCfAsD1.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/07/12/pCfVgpD.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/07/12/pCfxZ9I.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/07/12/pCfzZa4.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/07/12/pChSuTg.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/07/12/pChSmm8.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/07/12/pCfHGVI.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/07/12/pCfHYIP.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/07/12/pChpkEF.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/07/12/pCh9ydO.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/07/13/pChf03j.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/07/13/pCh7prj.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/07/13/pCh7iaq.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/07/13/pChHXjg.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/07/14/pC4wIUI.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/07/14/pC4dIpT.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/07/14/pC4wFHA.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/07/14/pC4wqxS.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/07/14/pC40yZj.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/07/14/pC402iq.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/07/14/pC45BlQ.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/07/14/pC45OfO.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/07/14/pC4qwEd.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/07/14/pC4LLSP.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/07/14/pC4Lxeg.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/07/14/pC4OJmD.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/07/14/pC4OB1P.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/07/14/pC4j9x0.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/07/14/pC4jirT.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/07/14/pC4jFqU.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/07/14/pC4jdQP.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/07/14/pC4jwsf.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/07/15/pC5gv7T.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/07/16/pCIAbGV.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/07/16/pCIVe6U.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/07/16/pCIAfKg.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/07/16/pCIA4bj.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/07/15/pC52mND.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/07/15/pC570F1.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/07/15/pC5HUc8.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/07/15/pC5bn5n.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/07/15/pC5bQ2V.png">
+<meta property="article:published_time" content="2024-08-11T14:18:28.000Z">
+<meta property="article:modified_time" content="2024-08-11T14:37:25.389Z">
+<meta property="article:author" content="Shamoke">
+<meta property="article:tag" content="数据结构">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s1.ax1x.com/2023/07/11/pCWf6u6.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":true,"scrollpercent":true,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://example.com/2024/08/11/数据结构第五章-树与二叉树/"/>
+
+
+
+
+
+  <title>数据结构第五章-树与二叉树 | 懷仁堂</title>
+  
+
+
+
+
+
+
+
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+  
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <a target="_blank" rel="noopener" href="https://github.com/sichuanshamoke" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">懷仁堂</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Studying and Recording</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-schedule">
+          <a href="/schedule/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />
+            
+            日程表
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/08/11/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AC%AC%E4%BA%94%E7%AB%A0-%E6%A0%91%E4%B8%8E%E4%BA%8C%E5%8F%89%E6%A0%91/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="沙漠客">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="懷仁堂">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">数据结构第五章-树与二叉树</h1>
+        
+
+        <div class="post-meta">
+          
+          
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2024-08-11T22:18:28+08:00">
+                2024-08-11
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2024-08-11T22:37:25+08:00">
+                2024-08-11
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index">
+                    <span itemprop="name">计算机基础学习笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2024/08/11/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AC%AC%E4%BA%94%E7%AB%A0-%E6%A0%91%E4%B8%8E%E4%BA%8C%E5%8F%89%E6%A0%91/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2024/08/11/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AC%AC%E4%BA%94%E7%AB%A0-%E6%A0%91%E4%B8%8E%E4%BA%8C%E5%8F%89%E6%A0%91/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  34k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  2:02
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="第五章-树与二叉树"><a href="#第五章-树与二叉树" class="headerlink" title="第五章 树与二叉树"></a>第五章 树与二叉树</h2><blockquote>
+<p>计算机学科基础：数据结构第五章树与二叉树学习笔记</p>
+</blockquote>
+<span id="more"></span>
+<h3 id="1-树的基本概念（✠）"><a href="#1-树的基本概念（✠）" class="headerlink" title="1.树的基本概念（✠）"></a>1.树的基本概念（✠）</h3><ul>
+<li><p>①树的定义：</p>
+<ul>
+<li>树是n(n≥0)个结点的有限集，是一种递归定义的数据结构。当n=0时，称为空树。</li>
+<li>在任意一棵非空树中应满足<ul>
+<li>有且仅有一个特定的称为根的结点。</li>
+<li>当n&gt;1时，其余结点可分为m(m&gt;0)个互不相交的有限集T1,T2……Tm<br>其中每个集合本身又是一棵树，并且称为根的子树。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>②树的基本术语</p>
+<ul>
+<li>结点的关系图谱：祖先、子孙、双亲（父节点）（根结点是唯一没有双亲的结点）<br>孩子、兄弟（有相同双亲的结点）、堂兄弟（同一层非同父节点）</li>
+<li>路径和路径长度。<ul>
+<li>树中两个结点之间的路径是由这两个结点之间所经过的结点序列构成的，而路径长度是路径上所经过的边的个数；</li>
+<li>树的路径长度是从树根到每个结点的路径长度的<u>总和</u>（路径只能是由上往下的，同一层之间不存在路径）</li>
+</ul>
+</li>
+<li>结点的深度、层次（从上往下数）；结点的高度（从下往上数）；树的高度（或深度）是树中结点的最大层数</li>
+<li>度：<strong>一个结点的孩子个数</strong>；<br>树的度：树中结点的最大度数<ul>
+<li>如度为4的树：存在某结点至少有4个孩子结点（而不是至少在某一层正好有4个结点）</li>
+<li>度大于0：分支节点（每个结点的分支数就是该结点的度）</li>
+<li>度等于0：叶子节点</li>
+</ul>
+</li>
+<li>有序树与无序树（从左到右有无次序）</li>
+<li>森林：森林是m(m≥0)棵互不相交的树的集合</li>
+</ul>
+</li>
+<li>③树的性质（选择题考点✪）<ul>
+<li>树的结点数=总度数+1（总度数也等于分支数）<ul>
+<li>例，此题选B，由总度数+1=结点数，叶子结点个数=总度数-其它非叶子结点的结点个数<ul>
+<li><img src="https://s1.ax1x.com/2023/07/11/pCWf6u6.png" alt="pCWf6u6.png"></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>区分度为m的树和m叉树<ul>
+<li><img src="https://s1.ax1x.com/2023/07/11/pCWcsPI.png" alt="pCWcsPI.png"></li>
+</ul>
+</li>
+<li>度为m的树第i层最多有$m^{i-1}$个结点(i≥1)；m叉树第i层最多有$m^{i-1}$个结点 (i≥1)</li>
+<li>高度为h的m叉树最多有$\frac{m^{h}-1}{m-1}$个结点（由等比数列求和公式得）</li>
+<li>高度为h的m叉树最少有h个结点；高度为h，度为m的树最少有h+m-1个结点<ul>
+<li>此时也可以反过来说，度为m，结点数为n的树，高度最多为n-m+1</li>
+<li>图片<ul>
+<li><img src="https://s1.ax1x.com/2023/07/11/pCW2f4s.png" alt="pCW2f4s.png"></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>具有n个结点的m叉树（或度为m）的最小高度为    $\left\lceil\log _{m}(n(m-1)+1)\right\rceil$<ul>
+<li><img src="https://s1.ax1x.com/2023/07/11/pCWR9KK.png" alt="pCWR9KK.png"></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-二叉树（✪）"><a href="#2-二叉树（✪）" class="headerlink" title="2.二叉树（✪）"></a>2.二叉树（✪）</h3><ul>
+<li><p>①二叉树的定义</p>
+<ul>
+<li>二叉树是n(n≥0)个结点的有限集合，其特点是每个结点至多只有两棵子树（即二叉树中不存在度大于2的结点）</li>
+<li>或者为空二叉树，即n=0</li>
+<li>或者由一个根结点和两个互不相交的被称为根的左子树和右子树组成。<br>左子树和右子树又分别是一棵二叉树（二叉树是有序树，左右次序不能颠倒）</li>
+</ul>
+</li>
+<li><p>②特殊的二叉树</p>
+<ul>
+<li>满二叉树<ul>
+<li>一棵高度为h，且含有$2^{h}-1$个结点的二叉树称为满二叉树，即树中的每层都含有最多的结点</li>
+<li>满二叉树的叶结点都集中在二叉树的最下一层，并且除叶结点之外的每个结点度数均为2，不存在度为1的结点</li>
+<li>按层序从1开始编号，结点ⅰ的左孩子为2i，右孩子为2i+1，结点i的父节点 ⌊i/2⌋（如果有的话）</li>
+</ul>
+</li>
+<li>完全二叉树<ul>
+<li>高度为h、有n个结点的二叉树，当且仅当其每个结点都与高度为h的满二叉树中编号为1~n的结点一一对应时，称为完全二叉树</li>
+<li>若i ≤ ⌊n/2⌋，则结点i为分支结点，否则为叶结点。</li>
+<li><strong>若一棵完全二叉树中的结点无左孩子，则其必是叶节点</strong></li>
+<li>叶结点只可能在层次最大的两层上出现。对于最大层次中的叶结点，都依次排列在该层最左边的位置上。</li>
+<li>若有度为1的结点，则只可能有一个，且该结点只有左孩子而无右孩子（重要特征）。</li>
+<li>按层序编号后，一旦出现某结点（编号为i）为叶结点或只有左孩子，则编号大于i的结点均为叶结点。</li>
+<li>若结点数n为奇数，则每个分支结点都有左孩子和右孩子；</li>
+<li>若n为偶数，则编号最大的分支结点(编号为n/2)只有左孩子，没有右孩子，其余分支结点左、右孩子都有。</li>
+<li>图片<ul>
+<li><img src="https://s1.ax1x.com/2023/07/11/pCfAsD1.png" alt="pCfAsD1.png"></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>二叉排序树<ul>
+<li>左子树上所有结点的关键字均小于根结点的关键字</li>
+<li>右子树上的所有结点的关键字均大于根结点的关键字</li>
+<li>左子树和右子树又各是一棵二叉排序树。</li>
+<li><strong>将二叉排序树的<u>先序序列</u>中的关键字依次插入初始为空的树中，所得到的二叉排序树与原二叉排序树是相同的</strong></li>
+</ul>
+</li>
+<li>平衡二叉树：树上任意一个结点的左子树和右子树的深度之差不超过1。<ul>
+<li><strong>对于高度为n的平衡二叉树，最少需h(n)个结点，最多需要2n-1个结点。</strong></li>
+<li><strong>h(n)=h(n-1)+h(n-2)+1</strong></li>
+<li><strong>h(0)=0，h(1)=1，h(2)=2</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>③二叉树的性质（选择题考点♚）</p>
+<ul>
+<li><strong>非空二叉树上的叶结点数等于度为2的结点数加1，即$n_{0}=n_{2}+1$</strong><ul>
+<li>可由$n=n_{0}+n_{1}+n_{2}$与$n=n_{1}+2n_{2}+1$得来</li>
+</ul>
+</li>
+<li><strong>二叉树第i层上至多有$2^{i-1}$个结点(i≥1)</strong></li>
+<li><strong>高度为h的二叉树至多有$2^{h}-1$个结点（满二叉树），最少有$2^{h-1}$个结点</strong></li>
+<li><strong>具有n个${(n&gt;0)}$ 结点的完全二叉树的高度h为${\left\lceil\log _{2}(n+1)\right\rceil}$ 或 $\left\lfloor\log _{2} n\right\rfloor+1$</strong><ul>
+<li><img src="https://s1.ax1x.com/2023/07/12/pCfVgpD.png" alt="pCfVgpD.png"></li>
+</ul>
+</li>
+<li><strong>第i个结点所在层次为${\left\lceil\log _{2}(n+1)\right\rceil}$ 或 $\left\lfloor\log _{2} n\right\rfloor+1$</strong></li>
+<li>对于<strong>完全二叉树</strong>，可以由节点数推出各类结点的数量情况，分为结点总数n为奇数或偶数<ul>
+<li>完全二叉树的度为1的结点数量最多为1，$n_{1}=1或0$</li>
+<li>当n=2k时，此时$n_{1}=1,n_{0}=k,n_{2}=k+1$ <strong>（完全二叉树有偶数个结点时，叶子结点的个数为总结点数除以2）</strong></li>
+<li>当n=2k-1时，此时$n_{1}=0,n_{0}=k,n_{2}=k+1$<strong>（有奇数个结点时，叶子结点的个数为总结点数+1再除以2）</strong></li>
+<li>完全二叉树如果所有的非空结点都有两个子节点，说明其有奇数个结点，此时结点总数=2*叶子节点总数-1</li>
+</ul>
+</li>
+<li>有关性质例题的考察<ul>
+<li>例题1：这种题通过画出二叉树的情况来找规律即可，选B<ul>
+<li><img src="https://s1.ax1x.com/2023/07/12/pCfxZ9I.png" alt="pCfxZ9I.png"></li>
+</ul>
+</li>
+<li>例题2：给出完全二叉树具体一层的叶结点数量，求最多和最少得结点总数<br>（重要信息：完全二叉树的叶结点只有可能存在于最后一层和倒数第二层）<ul>
+<li>结点数量最少时，该层即为最后一层，如此题为前五层满二叉树+8=39，</li>
+<li>结点数量最多时，该层为倒数第二层，如此题为总七层-8*2=111</li>
+<li><img src="https://s1.ax1x.com/2023/07/12/pCfzZa4.png" alt="pCfzZa4.png"></li>
+</ul>
+</li>
+<li>例题3：最小高度往往是满二叉树时，存放该二叉树至少需要的结点数量（最坏的情况，也为满二叉树时）分别选C、A<ul>
+<li><img src="https://s1.ax1x.com/2023/07/12/pChSuTg.png" alt="pChSuTg.png"></li>
+<li><a target="_blank" rel="noopener" href="https://imgse.com/i/pChSmm8"><img src="https://s1.ax1x.com/2023/07/12/pChSmm8.png" alt="pChSmm8.png"></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>④二叉树的存储结构</p>
+<ul>
+<li><p>二叉树的顺序存储</p>
+<ul>
+<li><p>对于完全二叉树，顺序存储的结构较为合适，此时可以较好的反映出结点之间的逻辑关系，也能节省存储空间</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://imgse.com/i/pCfHGVI"><img src="https://s1.ax1x.com/2023/07/12/pCfHGVI.png" alt="pCfHGVI.png"></a></li>
+</ul>
+</li>
+<li><p>对于一般的二叉树，需要用0来表示并不存在的空结点，以便于反映二叉树的逻辑结构，但是此时会浪费较多的存储空间</p>
+<ul>
+<li><img src="https://s1.ax1x.com/2023/07/12/pCfHYIP.png" alt="pCfHYIP.png"></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>二叉树的链式存储</p>
+<ul>
+<li><p>又称为<strong>二叉链表</strong>，由数据域，左指针域，右指针域组成</p>
+</li>
+<li><p><strong>n个结点的二叉链表共有n+1个空链域，有n-1个非空链域</strong><br>链域是指左指针或右指针</p>
+</li>
+<li><p>关于三叉链表：再定义一个父指针指向父节点，方便查找（在后序线索树中可找到后序后继结点）</p>
+</li>
+<li><p>链式存储的代码实现</p>
+<ul>
+<li><p>定义</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">BiTNode</span>&#123;</span></span><br><span class="line">    <span class="type">int</span> data;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">BiTNode</span> *<span class="title">lchild</span>,*<span class="title">rchild</span>;</span></span><br><span class="line">&#125;BiTNode,*BiTree</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>初始化以及插入节点</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">BiTree root=<span class="literal">NULL</span>; <span class="comment">//定义一颗空树</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//插入根节点</span></span><br><span class="line">root=(BiTree)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(BiTNode));</span><br><span class="line">root-&gt;data=<span class="number">1</span>;</span><br><span class="line">root-&gt;lchild=<span class="literal">NULL</span>;</span><br><span class="line">root-&gt;rchlid=<span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//插入新结点</span></span><br><span class="line">BiTNode *p=(BiTNode *)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(BiTNode));</span><br><span class="line">p-&gt;data=<span class="number">2</span>;</span><br><span class="line">p-&gt;lchild=<span class="literal">NULL</span>;</span><br><span class="line">p-&gt;rchild=<span class="literal">NULL</span>;</span><br><span class="line">root-&gt;lchild=p; </span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-二叉树的遍历（✪）"><a href="#3-二叉树的遍历（✪）" class="headerlink" title="3.二叉树的遍历（✪）"></a>3.二叉树的遍历（✪）</h3><ul>
+<li><p>三种基本遍历</p>
+<ul>
+<li><p>如中序遍历，先递归遍历左子树，再访问根节点，再递归遍历右子树，二叉树为空则什么都不做。</p>
+</li>
+<li><p>这三种遍历方法的时间复杂度都是O(n)，每个结点都会被访问一次</p>
+</li>
+<li><p><strong>二叉树的前中后序遍历中，所有叶节点的顺序完全相同</strong></p>
+</li>
+<li><p><strong>若一个二叉树的先序和后序序列正好相反，则该二叉树的高度等于结点数，只有一个叶节点</strong></p>
+</li>
+<li><p>先序序列与中序序列的关系相当于，以先序序列为入栈次序，以中序队列为出栈次序</p>
+</li>
+<li><p>先序序列为a,b,c,d，求不同二叉树的个数（使用卡特兰数的公式$\frac{1}{n+1}C^{n}_{2n}$）</p>
+</li>
+<li><p>可用递归子树思想的方法来求出遍历次序</p>
+<ul>
+<li><img src="https://s1.ax1x.com/2023/07/12/pChpkEF.png" alt="pChpkEF.png"></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>先序遍历（NLR，根左右）<br>在前序遍历的二叉树中，任何结点的子树的所有结点都是直接跟在该结点的之后</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">PreOrder</span><span class="params">(BiTree T)</span>&#123;</span><br><span class="line"> <span class="keyword">if</span>(T!=<span class="literal">NULL</span>)&#123;</span><br><span class="line">     visit(T);</span><br><span class="line">     preOrder(T-&gt;lchild);</span><br><span class="line">     preOrder(T-&gt;rchild);</span><br><span class="line"> &#125;   </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>中序遍历（LNR，左根右）</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">InOrder</span><span class="params">(BiTree T)</span>&#123;</span><br><span class="line"> <span class="keyword">if</span>(T!=<span class="literal">NULL</span>)&#123;</span><br><span class="line">     InOrder(T-&gt;lchild);</span><br><span class="line">     visit(T);</span><br><span class="line">     InOrder(T-&gt;rchild);</span><br><span class="line"> &#125;   </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>后序遍历（LRN，左右根，可找到从子孙到祖先的路径）</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">PostOrder</span><span class="params">(BiTree T)</span>&#123;</span><br><span class="line"> <span class="keyword">if</span>(T!=<span class="literal">NULL</span>)&#123;</span><br><span class="line">     PostOrder(T-&gt;lchild);</span><br><span class="line">     PostOrder(T-&gt;rchild);</span><br><span class="line">     visit(T);</span><br><span class="line"> &#125;   </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>求树的深度</p>
+<ul>
+<li><img src="https://s1.ax1x.com/2023/07/12/pCh9ydO.png" alt="pCh9ydO.png"></li>
+</ul>
+</li>
+<li><p>层次遍历二叉树</p>
+<ul>
+<li><img src="https://s1.ax1x.com/2023/07/13/pChf03j.png" alt="pChf03j.png"></li>
+</ul>
+</li>
+<li><p>由遍历构造二叉树</p>
+<ul>
+<li>若只给出一棵二叉树的前/中/后/层序遍历序列中的一种，不能唯一确定一棵二叉树，需要和中序遍历组合才行</li>
+<li>前序加中序确定二叉树结构<ul>
+<li>以前序序列的第一个单位为准，在中序遍历中确定其左右子树，之后的子树的根节点都以前序遍历靠前的元素为准</li>
+<li><img src="https://s1.ax1x.com/2023/07/13/pCh7prj.png" alt="pCh7prj.png"></li>
+</ul>
+</li>
+<li>后序加中序确定二叉树结构<ul>
+<li>以后序遍历的最后一个元素为准，在中序遍历中确定其左右子树，之后的子树的根节点都以后序遍历靠后的元素为准</li>
+<li><img src="https://s1.ax1x.com/2023/07/13/pCh7iaq.png" alt="pCh7iaq.png"></li>
+</ul>
+</li>
+<li>层序加中序确定二叉树结构<ul>
+<li><img src="https://s1.ax1x.com/2023/07/13/pChHXjg.png" alt="pChHXjg.png"></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="4-线索二叉树（选择题考点，代码无需掌握✪）"><a href="#4-线索二叉树（选择题考点，代码无需掌握✪）" class="headerlink" title="4.线索二叉树（选择题考点，代码无需掌握✪）"></a>4.线索二叉树（选择题考点，代码无需掌握✪）</h3><ul>
+<li><p>作用：方便从一个结点出发，找到其前驱、后继，<br>此时先序线索二叉树和中序线索二叉树进行遍历时不需要栈的支持（进行）递归，但是后序线索二叉树仍需要栈的支持</p>
+<ul>
+<li><img src="https://s1.ax1x.com/2023/07/14/pC4wIUI.png" alt="pC4wIUI.png"></li>
+</ul>
+</li>
+<li><p><strong>线索：指向前驱和后继的指针，n个结点的二叉树含有n+1个空指针</strong><br><strong>n个结点的线索二叉树含有n+1个线索</strong></p>
+</li>
+<li><p><strong>二叉树的线索化就是将二叉链表中的空指针改为指向前驱或后驱的线索</strong><br><strong>按照遍历的顺序进行，如果指针已经指向相应结点则不变动，如果没有空指针就跳过）</strong></p>
+</li>
+<li><p>存储结构</p>
+<ul>
+<li>在普通二叉树结点的基础上，增加标志位：Itag和rtag （等于0此结点有孩子，等于1此结点被线索化）</li>
+<li>ltag\==1时，表示Ichild指向前驱；Itag\==0时，表示Ichild指向左孩子</li>
+<li>rtag\==1时，表示rchild指向后继；rtag\==0时，表示rchild指向右孩子</li>
+</ul>
+</li>
+<li><p>线索化二叉树（代码了解即可）</p>
+<ul>
+<li><p>线索二叉树的存储结构</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">ThreadNode</span>&#123;</span></span><br><span class="line">    <span class="type">int</span> data;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">ThreadNode</span> *<span class="title">lchild</span>,*<span class="title">rchild</span>;</span> <span class="comment">//左右孩子指针</span></span><br><span class="line">    <span class="type">int</span> ltag,rtag;  <span class="comment">//左右线索标志</span></span><br><span class="line">&#125;ThreadNode,*ThreadTree;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>中序线索化</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">CreateInThread</span><span class="params">(ThreadTree T)</span>&#123;</span><br><span class="line">    ThreadTree pre=<span class="literal">NULL</span>; <span class="comment">//设定当前访问结点的前驱，并初始化</span></span><br><span class="line">    <span class="keyword">if</span>(T!=<span class="literal">NULL</span>)&#123;  <span class="comment">//线索化非空二叉树</span></span><br><span class="line">        InThread(T,pre);</span><br><span class="line">        pre-&gt;rchild=<span class="literal">NULL</span>; <span class="comment">//处理遍历的最后一个结点</span></span><br><span class="line">        pre-&gt;rtag=<span class="number">1</span>; <span class="comment">//改变其标志符</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">InThread</span><span class="params">(ThreadTree &amp;p,ThreadTree &amp;pre)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(p!=<span class="literal">NULL</span>)&#123;</span><br><span class="line">        InThread(p-&gt;lchild,pre); <span class="comment">//递归，线索化左子树（按照中序遍历，先遍历左子树）</span></span><br><span class="line">        <span class="keyword">if</span>(p-&gt;lchild==<span class="literal">NULL</span>)&#123;  <span class="comment">//若当前结点左子树为空时，建立前驱线索,左指针指向前驱</span></span><br><span class="line">            P-&gt;lchild=pre;</span><br><span class="line">            p-&gt;ltag=<span class="number">1</span>;               </span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(pre!=<span class="literal">NULL</span>&amp;&amp;pre-&gt;rchild==<span class="literal">NULL</span>)&#123;</span><br><span class="line">            pre-&gt;rchild=p; <span class="comment">//建立前驱节点的后继线索</span></span><br><span class="line">            pre-&gt;rtag=<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        pre=p; <span class="comment">//完成以上操作之后，将前驱结点指向当前所遍历到的结点</span></span><br><span class="line">        InThread(p-&gt;rchild,pre); <span class="comment">//递归线索化右子树</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>对于先序线索化而言只需要将其线索化左子树的操作写在前面，中间是根结点的操作，最后是线索化右子树的操作</p>
+<ul>
+<li>注：此时在ltag==0时，才能对左子树先序线索化</li>
+</ul>
+</li>
+<li><p>对于后序线索化而言只需要将其线索化左子树的操作写在前面，中间是线索化右子树的操作，最后是根结点的操作</p>
+</li>
+</ul>
+</li>
+<li><p>线索二叉树的遍历（会推出各种遍历序列即可✪）</p>
+<ul>
+<li><p>中序线索二叉树的遍历</p>
+<ul>
+<li><p>进行遍历时，只要先找到序列中的第一个结点，然后依次找结点的后继，直至其后继为空。</p>
+</li>
+<li><p>首先找到中序线索二叉树的第一个结点 （最左下的结点，不一定为叶节点）</p>
+<ul>
+<li><p>代码实现（求中序线索二叉树中中序序列下的第一个结点）</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ThreadNode *<span class="title function_">Firstnode</span><span class="params">(ThreadNode *p)</span>&#123;</span><br><span class="line">    <span class="keyword">while</span>(p-&gt;ltag==<span class="number">0</span>)</span><br><span class="line">        p=p-&gt;lchild; (遍历找到最左下的结点，不一定是叶结点)</span><br><span class="line">    <span class="keyword">return</span> p;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>之后找中序后继结点</p>
+<ul>
+<li><p>若此时p-&gt;rtag==1,则next=p-&gt;rchild （此时右链为线索，指向其后继）</p>
+</li>
+<li><p><strong>p-&gt;ratg==0时，此时右子树不为空，则遍历右子树的第一个访问结点（右子树最左下的结点为其后继）</strong></p>
+</li>
+<li><p>代码实现（求中序线索二叉树中结点p在中序序列下的后继）</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">ThreadNode *<span class="title function_">Nexttnode</span><span class="params">(ThreadNode *p)</span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(p-&gt;rtag==<span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> Firstnode(p-&gt;rchild); <span class="comment">//不为空，找到其右子树的最左下角的结点</span></span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="keyword">return</span> p-&gt;rchild; <span class="comment">//右标志为1直接返回线索</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>遍历中序二叉树的代码实现</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">Inorder</span><span class="params">(ThreadNode *T)</span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(ThreadNode *p=Firstnode(T);p!=<span class="literal">NULL</span>;p=Nextnode(p))</span><br><span class="line">		visit(p);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>中序线索二叉树找到中序前驱</p>
+<ul>
+<li>若此时p-&gt;ltag==1，此时直接返回左线索</li>
+<li>若此时p-&gt;ltag==0，则p结点的左子树中，最右下角的结点就是其前驱结点</li>
+<li><img src="https://s1.ax1x.com/2023/07/14/pC4dIpT.png" alt="pC4dIpT.png"></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>先序线索二叉树的遍历</p>
+<ul>
+<li><p>先序线索二叉树的先序后继</p>
+<ul>
+<li>若右标志位为0时，首先看先序线索二叉树有无左孩子，如果有的话，就是其先序后继，如果只有右孩子没有左孩子，那么右孩子为其先序后继</li>
+<li>图片<ul>
+<li><img src="https://s1.ax1x.com/2023/07/14/pC4wFHA.png" alt="pC4wFHA.png"></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>先序线索二叉树不能在左标志位为0的情况下找到先序前驱</p>
+</li>
+</ul>
+</li>
+<li><p>后序线索二叉树的遍历</p>
+<ul>
+<li><p>后序线索二叉树找后序前驱</p>
+<ul>
+<li>若左标志位为0时，此时如果其有右孩子，那么此右孩子为其后序前驱，如果只有左孩子没有右孩子，那么左孩子为其后序前驱</li>
+<li><img src="https://s1.ax1x.com/2023/07/14/pC4wqxS.png" alt="pC4wqxS.png"></li>
+</ul>
+</li>
+<li><p>后序线索二叉树找后序后继</p>
+<ul>
+<li>如果此时右标志位为0，则不能有效的找到后序后继</li>
+<li>此时可以用三叉链表来找到其后序后继<ul>
+<li><img src="https://s1.ax1x.com/2023/07/14/pC40yZj.png" alt="pC40yZj.png"></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>三种线索二叉树遍历的总结</p>
+<ul>
+<li>对于中序线索二叉树来说可从任意结点进行遍历和逆向遍历；对于前序线索二叉树来说，只可进行顺向遍历；对于后序线索二叉树来说，只可进行逆向遍历</li>
+<li><img src="https://s1.ax1x.com/2023/07/14/pC402iq.png" alt="pC402iq.png"></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="5-树、森林（✪）"><a href="#5-树、森林（✪）" class="headerlink" title="5.树、森林（✪）"></a>5.树、森林（✪）</h3><ul>
+<li><p>树的存储结构（✪）</p>
+<ul>
+<li><p>双亲表示法（顺序存储✪）</p>
+<ul>
+<li><p>这种存储结构采用一组连续空间来存储每个结点，同时在每个结点中增设一个伪指针，指示其双亲结点在数组中的位置。<br>根结点下标为0，其伪指针域为-1。</p>
+</li>
+<li><p>特点：该存储结构利用了每个结点（根结点除外）只有唯一双亲的性质，可以很快地得到每个结点的双亲结点，<br>但求结点的孩子时则需要遍历整个结构。</p>
+</li>
+<li><p>适用于找父节点较多找孩子结点较少的树，如并查集</p>
+</li>
+<li><p>代码表示</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> MAX_TREE_SIZE 100 <span class="comment">//树中最多的结点数</span></span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span>&#123;</span>  <span class="comment">//树的结点定义</span></span><br><span class="line">    ElemType data; </span><br><span class="line">    <span class="type">int</span> parent; <span class="comment">//双亲位置域</span></span><br><span class="line">&#125;PTNode;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span>&#123;</span> <span class="comment">//树的类型定义</span></span><br><span class="line">    PTNode nodes[MAX_TREE_SIZE]; <span class="comment">//双亲表示法</span></span><br><span class="line">    <span class="type">int</span> n; <span class="comment">//结点数</span></span><br><span class="line">&#125;PTree;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>图片</p>
+<ul>
+<li><img src="https://s1.ax1x.com/2023/07/14/pC45BlQ.png" alt="pC45BlQ.png"></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>孩子表示法（顺序存储+链式存储）</p>
+<ul>
+<li><p>孩子表示法是将每个结点的孩子结点都用单链表链接起来形成一个线性结构，此时n个结点就有n个孩子链表<br>叶结点的孩子链表为空表</p>
+</li>
+<li><p>用数组顺序存储各个结点。每个结点中保存数据元素、孩子链表头指针</p>
+</li>
+<li><p>特点：这种存储结构寻找子女的操作非常直接，而寻找双亲的操作需要遍历个结点中孩子链表指针域所指向的n个孩子链表，适用于服务流程树。</p>
+</li>
+<li><p>代码</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">CTNode</span>&#123;</span></span><br><span class="line">    <span class="type">int</span> child; <span class="comment">//孩子结点在数组中的位置</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">CTNode</span> *<span class="title">next</span>;</span> <span class="comment">//下一个孩子</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span>&#123;</span></span><br><span class="line">    ElemType data;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">CTNode</span> *<span class="title">firstChild</span>;</span> <span class="comment">//第一个孩子</span></span><br><span class="line">&#125;CTBox;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span>&#123;</span></span><br><span class="line">    CTBox nodes[MAX_TREE_SIZE];</span><br><span class="line">    <span class="type">int</span> n,r; <span class="comment">//结点数与根的位置</span></span><br><span class="line">&#125;CTree;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>图片</p>
+<ul>
+<li><img src="https://s1.ax1x.com/2023/07/14/pC45OfO.png" alt="pC45OfO.png"></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>孩子兄弟表示法（链式存储✪）</p>
+<ul>
+<li><p>又称为二叉树表示法，即以二叉链表作为树的存储结构，<br>包括结点值，<strong>指向结点第一个孩子的结点指针，以及指向结点下一个兄弟结点的指针</strong></p>
+</li>
+<li><p>特点：易于查找孩子，但是不易于查找双亲，可以方便实现树转换成二叉树的操作。</p>
+</li>
+<li><p>代码实现</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">CSNode</span>&#123;</span></span><br><span class="line">    ElemType data;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">CSNode</span> *<span class="title">firstchild</span>,*<span class="title">nextsibling</span>;</span></span><br><span class="line">&#125;CSNode,*CSTree;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>图片</p>
+<ul>
+<li><img src="https://s1.ax1x.com/2023/07/14/pC4qwEd.png" alt="pC4qwEd.png"></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>树、森林与二叉树的转换（会画✪）</p>
+<ul>
+<li>树转换为二叉树：<strong>转换后的二叉树一定没有右子树</strong><ul>
+<li><img src="https://s1.ax1x.com/2023/07/14/pC4LLSP.png" alt="pC4LLSP.png"></li>
+</ul>
+</li>
+<li>森林转换为二叉树<ul>
+<li><img src="https://s1.ax1x.com/2023/07/14/pC4Lxeg.png" alt="pC4Lxeg.png"></li>
+</ul>
+</li>
+<li>二叉树转换为树<ul>
+<li><img src="https://s1.ax1x.com/2023/07/14/pC4OJmD.png" alt="pC4OJmD.png"></li>
+</ul>
+</li>
+<li>二叉树转换成森林<ul>
+<li><img src="https://s1.ax1x.com/2023/07/14/pC4OB1P.png" alt="pC4OB1P.png"></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>树和森林的遍历（✪）</p>
+<ul>
+<li>树的遍历<ul>
+<li>先根遍历<strong>（等同于对相应二叉树的先序遍历）</strong><ul>
+<li><img src="https://s1.ax1x.com/2023/07/14/pC4j9x0.png" alt="pC4j9x0.png"></li>
+</ul>
+</li>
+<li>后根遍历<strong>（等同于对相应二叉树的中序遍历）</strong><ul>
+<li><img src="https://s1.ax1x.com/2023/07/14/pC4jirT.png" alt="pC4jirT.png"></li>
+</ul>
+</li>
+<li>层序遍历<ul>
+<li><img src="https://s1.ax1x.com/2023/07/14/pC4jFqU.png" alt="pC4jFqU.png"></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>森林的遍历<ul>
+<li>先序遍历<strong>（等同于对所对应的二叉树依次进行先序遍历）</strong><ul>
+<li><img src="https://s1.ax1x.com/2023/07/14/pC4jdQP.png" alt="pC4jdQP.png"></li>
+</ul>
+</li>
+<li>中序遍历<strong>（等同于对所对应的二叉树依次进行中序遍历）</strong><ul>
+<li><img src="https://s1.ax1x.com/2023/07/14/pC4jwsf.png" alt="pC4jwsf.png"></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="6-树与二叉树的应用（✪）"><a href="#6-树与二叉树的应用（✪）" class="headerlink" title="6.树与二叉树的应用（✪）"></a>6.树与二叉树的应用（✪）</h3><ul>
+<li><p>哈夫曼树和哈夫曼编码</p>
+<ul>
+<li>带权路径长度：从树的根到任意结点的路径长度（经过的边数）与该结点上权值的乘积，称为该结点的带权路径长度。<br>树中所有叶结点的带权路径长度之和称为该树的带权路径长度（WPL）。</li>
+<li>哈夫曼树<ul>
+<li>在含有个带权叶结点的二叉树中，其中带权路径长度(WPL)最小的二叉树称为哈夫曼树，也称最优二叉树</li>
+<li>哈夫曼树的构造<ul>
+<li>图片<ul>
+<li><img src="https://s1.ax1x.com/2023/07/15/pC5gv7T.png" alt="pC5gv7T.png"></li>
+</ul>
+</li>
+<li>注：如果之后的两个单独的叶子结点的构造出的权值比它于树的根构造出的权值更小，那么两个叶子结点先自行构造<ul>
+<li>如此题选C，此时9和12先进行自行的构造<img src="https://s1.ax1x.com/2023/07/16/pCIAbGV.png" alt="pCIAbGV.png"></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>特点<ul>
+<li><strong>每个初始结点最终都成为叶结点，且权值越小的结点到根结点的路径长度越大</strong></li>
+<li><strong>构建过程中共创建了n-1个新结点（非叶结点），哈夫曼树的结点总数为2n-1</strong><ul>
+<li>如此题：度为m,此时若含有n个叶子结点，则总的需要处理的结点数为n-1个，此时每次将处理m-1个，因此非叶子结点的数量为$\frac{n-1}{m-1}$<img src="https://s1.ax1x.com/2023/07/16/pCIVe6U.png" alt="pCIVe6U.png"></li>
+</ul>
+</li>
+<li><strong>哈夫曼树中不存在度为1的结点。</strong></li>
+<li><strong>哈夫曼树并不唯一，但WPL必然相同且为最优</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>哈夫曼编码（一种被广泛应用而且非常有效的数据压缩编码）<ul>
+<li>固定长度编码与可变长度编码<ul>
+<li>在数据通信中，若对每个字符用相等长度的二进制位表示，称这种编码方式为固定长度编码。</li>
+<li>若允许对不同字符用不等长的二进制位表示，则这种编码方式称为可变长度编码。</li>
+<li>可变长度编码比固定长度编码要好得多，其特点是对频率高的字符赋以短编码，而对频率较低的字符则赋以较长一些的编码，从而可以使字符的平均编码长度减短，起到压缩数据的效果。</li>
+</ul>
+</li>
+<li>前缀编码：若没有一个编码是另一个编码的前缀，则成为前缀编码，此时将不会产生歧义<ul>
+<li>采用的前一位数的编码将会影响后一位数的编码<ul>
+<li>例题<img src="https://s1.ax1x.com/2023/07/16/pCIAfKg.png" alt="pCIAfKg.png"></li>
+<li><img src="https://s1.ax1x.com/2023/07/16/pCIA4bj.png" alt="pCIA4bj.png"></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>通过哈夫曼编码可以构造哈夫曼树，此时最大编码长度为树的带权路径长度（WPL），并且可以算出压缩的数据率<ul>
+<li><img src="https://s1.ax1x.com/2023/07/15/pC52mND.png" alt="pC52mND.png"></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>并查集（集合逻辑结构）</p>
+<ul>
+<li><p>集合的表示：要将元素划分为互不相交的子集。可以用互不相交的树，来表示多个集合</p>
+</li>
+<li><p>存储结构：使用双亲表示法，双亲指针指向其父节点的序号</p>
+<ul>
+<li><img src="https://s1.ax1x.com/2023/07/15/pC570F1.png" alt="pC570F1.png"></li>
+</ul>
+</li>
+<li><p>基本操作</p>
+<ul>
+<li><p>初始化：将所有元素初始化为-1。</p>
+<ul>
+<li><p>代码表示</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> SIZE 100</span></span><br><span class="line"><span class="type">int</span> UFSets[SIZE]; <span class="comment">//双亲指针数组</span></span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">Initial</span><span class="params">(<span class="type">int</span> S[])</span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;SIZE;i++)</span><br><span class="line">        S[i]=<span class="number">-1</span>; <span class="comment">//初始化时，数组指针设置为-1</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>查操作（时间复杂度为 O(n)）</p>
+<ul>
+<li><p>如何查到某个元素属于哪个集合：可以通过树的根结点来判断</p>
+</li>
+<li><p>如何判断两个元素之间的关系：通过对比各自所在的树的根结点来判断</p>
+</li>
+<li><p>代码表示</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">Find</span><span class="params">(<span class="type">int</span> S[],<span class="type">int</span> x)</span>&#123;</span><br><span class="line">    <span class="keyword">while</span>(S[x]&gt;=<span class="number">0</span>)	<span class="comment">//循环寻找x的根（一般设置为-1）</span></span><br><span class="line">        x=S[x]; </span><br><span class="line">    <span class="keyword">return</span> x;  <span class="comment">//此时找到x的根，返回之</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>并操作（时间复杂度为 O(1)，并操作n个独立元素为一个集合则需要O($n^{2}$)）</p>
+<ul>
+<li><p>让一棵树成为另一棵树的子树即可</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">Union</span><span class="params">(<span class="type">int</span> S[],<span class="type">int</span> Root1,<span class="type">int</span> ROOt2)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(Root1==Root2) <span class="keyword">return</span>; <span class="comment">//此时要求两个是不同的集合</span></span><br><span class="line">    S[Root2]=Root1; <span class="comment">//将根Root2连接到另一根Root1下面</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>对并查集的并操作作优化</p>
+<ul>
+<li>此时将根结点的值设置为负数（表示其树的结点的总数，有利于将较小的树合并到更大的树，可以控制高度不变）</li>
+<li>当合并时，小树的双亲指针变为大树的数组下标，此时大树的指针需要累加结点总数</li>
+<li>进行优化之后，查操作的时间复杂度可变为：$O ( \log _ { 2 } n )$</li>
+<li>图片<ul>
+<li><img src="https://s1.ax1x.com/2023/07/15/pC5HUc8.png" alt="pC5HUc8.png"></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>对并查集的进一步优化（优化查操作）</p>
+<ul>
+<li><img src="https://s1.ax1x.com/2023/07/15/pC5bn5n.png" alt="pC5bn5n.png"></li>
+</ul>
+</li>
+<li><p>并查集的优化后的时间复杂度的变化</p>
+<ul>
+<li><img src="https://s1.ax1x.com/2023/07/15/pC5bQ2V.png" alt="pC5bQ2V.png"></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+
+
+    
+
+    
+
+    
+
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>-------------</div>
+    
+</div>
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag"><i class="fa fa-tag"></i> 数据结构</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2024/08/11/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E4%B8%B2/" rel="next" title="数据结构第四章-串">
+                <i class="fa fa-chevron-left"></i> 数据结构第四章-串
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2024/08/11/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AC%AC%E5%85%AD%E7%AB%A0-%E5%9B%BE/" rel="prev" title="数据结构第六章-图">
+                数据结构第六章-图 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+
+  </div>
+  
+  
+  
+  </article>
+  
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+      
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/header.gif"
+                alt="沙漠客" />
+            
+              <p class="site-author-name" itemprop="name">沙漠客</p>
+              <p class="site-description motion-element" itemprop="description">Action speak louder than words!</p>
+          </div>
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=100 src="//music.163.com/outchain/player?type=2&id=1396311816&auto=1&height=66"></iframe>
+        </iframe>
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/sichuanshamoke" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://blog.csdn.net/m0_51960673?spm=1000.2115.3001.5343" target="_blank" title="CSDN">
+                      
+                        <i class="fa fa-fw fa-fa fa-codiepie"></i>CSDN</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.kaggle.com/sichuanshamoke" target="_blank" title="kaggle">
+                      
+                        <i class="fa fa-fw fa-stack-overflow"></i>kaggle</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://leetcode.cn/u/amazing-snyderdc5/" target="_blank" title="LeetCode">
+                      
+                        <i class="fa fa-fw fa-skype"></i>LeetCode</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <!-- modify icon to fire by szw -->
+                <i class="fa fa-history fa-" aria-hidden="true"></i>
+                近期文章
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                
+                  <li class="recent_posts_li">
+                    <a href="/2024/08/11/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AC%AC%E5%85%AB%E7%AB%A0-%E6%8E%92%E5%BA%8F/" title="数据结构第八章-排序" target="_blank">数据结构第八章-排序</a>
+                  </li>
+                
+                  <li class="recent_posts_li">
+                    <a href="/2024/08/11/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AC%AC%E4%B8%83%E7%AB%A0-%E6%9F%A5%E6%89%BE/" title="数据结构第七章-查找" target="_blank">数据结构第七章-查找</a>
+                  </li>
+                
+                  <li class="recent_posts_li">
+                    <a href="/2024/08/11/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AC%AC%E5%85%AD%E7%AB%A0-%E5%9B%BE/" title="数据结构第六章-图" target="_blank">数据结构第六章-图</a>
+                  </li>
+                
+                  <li class="recent_posts_li">
+                    <a href="/2024/08/11/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AC%AC%E4%BA%94%E7%AB%A0-%E6%A0%91%E4%B8%8E%E4%BA%8C%E5%8F%89%E6%A0%91/" title="数据结构第五章-树与二叉树" target="_blank">数据结构第五章-树与二叉树</a>
+                  </li>
+                
+                  <li class="recent_posts_li">
+                    <a href="/2024/08/11/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E4%B8%B2/" title="数据结构第四章-串" target="_blank">数据结构第四章-串</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://space.bilibili.com/562700874?spm_id_from=333.1365.0.0" title="风翼飞镰" target="_blank">风翼飞镰</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://space.bilibili.com/383551518/?spm_id_from=333.999.0.0" title="水论文的程序猿" target="_blank">水论文的程序猿</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%BA%94%E7%AB%A0-%E6%A0%91%E4%B8%8E%E4%BA%8C%E5%8F%89%E6%A0%91"><span class="nav-text">第五章 树与二叉树</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E6%A0%91%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5%EF%BC%88%E2%9C%A0%EF%BC%89"><span class="nav-text">1.树的基本概念（✠）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E4%BA%8C%E5%8F%89%E6%A0%91%EF%BC%88%E2%9C%AA%EF%BC%89"><span class="nav-text">2.二叉树（✪）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E9%81%8D%E5%8E%86%EF%BC%88%E2%9C%AA%EF%BC%89"><span class="nav-text">3.二叉树的遍历（✪）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E7%BA%BF%E7%B4%A2%E4%BA%8C%E5%8F%89%E6%A0%91%EF%BC%88%E9%80%89%E6%8B%A9%E9%A2%98%E8%80%83%E7%82%B9%EF%BC%8C%E4%BB%A3%E7%A0%81%E6%97%A0%E9%9C%80%E6%8E%8C%E6%8F%A1%E2%9C%AA%EF%BC%89"><span class="nav-text">4.线索二叉树（选择题考点，代码无需掌握✪）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E6%A0%91%E3%80%81%E6%A3%AE%E6%9E%97%EF%BC%88%E2%9C%AA%EF%BC%89"><span class="nav-text">5.树、森林（✪）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-%E6%A0%91%E4%B8%8E%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%BA%94%E7%94%A8%EF%BC%88%E2%9C%AA%EF%BC%89"><span class="nav-text">6.树与二叉树的应用（✪）</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2023 &mdash; <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Shamoke</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">45k</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: true,
+        appId: 'wsUYJtlLslOYlG6pA3pS9i30-gzGzoHsz',
+        appKey: 'd1H2YDHxgJkfTsFw0UhNNMFJ',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+    <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+ 
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+ 
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+ 
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+ 
+  <script>
+    $('.highlight').each(function (i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap')
+      $(e).after($wrap)
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function (e) {
+        var code = $(this).parent().find('.code').find('.line').map(function (i, e) {
+          return $(e).text()
+        }).toArray().join('\n')
+        var ta = document.createElement('textarea')
+        document.body.appendChild(ta)
+        ta.style.position = 'absolute'
+        ta.style.top = '0px'
+        ta.style.left = '0px'
+        ta.value = code
+        ta.select()
+        ta.focus()
+        var result = document.execCommand('copy')
+        document.body.removeChild(ta)
+ 
+        if(result)$(this).text('复制成功')
+        else $(this).text('复制失败')
+ 
+        $(this).blur()
+      })).on('mouseleave', function (e) {
+        var $b = $(this).find('.copy-btn')
+        setTimeout(function () {
+          $b.text('复制')
+        }, 300)
+      }).append(e)
+    })
+  </script>	
+  
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

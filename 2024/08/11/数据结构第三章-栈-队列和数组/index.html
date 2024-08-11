@@ -1,0 +1,1934 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="数据结构," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="懷仁堂" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="数据结构第三章-栈，队列和数组 计算机学科基础：第三章栈，队列和数组的学习笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据结构第三章-栈,队列和数组">
+<meta property="og:url" content="http://example.com/2024/08/11/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AC%AC%E4%B8%89%E7%AB%A0-%E6%A0%88-%E9%98%9F%E5%88%97%E5%92%8C%E6%95%B0%E7%BB%84/index.html">
+<meta property="og:site_name" content="懷仁堂">
+<meta property="og:description" content="数据结构第三章-栈，队列和数组 计算机学科基础：第三章栈，队列和数组的学习笔记">
+<meta property="og:locale">
+<meta property="og:image" content="https://s1.ax1x.com/2023/06/29/pCw87Cj.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/04/24/p9nMLBF.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2023/06/29/pCwYUvn.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/06/29/pCwt8qx.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/07/04/pCscjpQ.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/06/29/pCwwUv4.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/06/29/pCwwdKJ.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/04/21/p9E0NGQ.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/04/23/p9eIMRJ.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2023/04/23/p9eIuiF.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2023/04/24/p9mqljg.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2023/04/23/p9eohtO.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2023/04/24/p9mbg1S.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2023/04/23/p9eTg2Q.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/04/23/p9e7AsA.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/04/23/p9eH1fO.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2023/04/23/p9eH6Xj.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/04/24/p9mjPIA.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/04/24/p9mvmSx.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2023/04/24/p9mz2eU.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/07/06/pC6AC0e.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/07/06/pC6AM7Q.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/07/06/pC6EzZD.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/07/06/pC6ZG9A.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/07/06/pC6ZaB8.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/07/06/pC6Z0Ag.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/07/06/pC6ZvUe.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/07/06/pC6necn.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/07/06/pC6Qze1.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/07/06/pC6liWD.png">
+<meta property="article:published_time" content="2024-08-11T13:50:54.000Z">
+<meta property="article:modified_time" content="2024-08-11T14:12:53.307Z">
+<meta property="article:author" content="Shamoke">
+<meta property="article:tag" content="数据结构">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s1.ax1x.com/2023/06/29/pCw87Cj.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":true,"scrollpercent":true,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://example.com/2024/08/11/数据结构第三章-栈-队列和数组/"/>
+
+
+
+
+
+  <title>数据结构第三章-栈,队列和数组 | 懷仁堂</title>
+  
+
+
+
+
+
+
+
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+  
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <a target="_blank" rel="noopener" href="https://github.com/sichuanshamoke" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">懷仁堂</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Studying and Recording</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-schedule">
+          <a href="/schedule/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />
+            
+            日程表
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/08/11/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AC%AC%E4%B8%89%E7%AB%A0-%E6%A0%88-%E9%98%9F%E5%88%97%E5%92%8C%E6%95%B0%E7%BB%84/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="沙漠客">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="懷仁堂">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">数据结构第三章-栈,队列和数组</h1>
+        
+
+        <div class="post-meta">
+          
+          
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2024-08-11T21:50:54+08:00">
+                2024-08-11
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2024-08-11T22:12:53+08:00">
+                2024-08-11
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index">
+                    <span itemprop="name">计算机基础学习笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2024/08/11/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AC%AC%E4%B8%89%E7%AB%A0-%E6%A0%88-%E9%98%9F%E5%88%97%E5%92%8C%E6%95%B0%E7%BB%84/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2024/08/11/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AC%AC%E4%B8%89%E7%AB%A0-%E6%A0%88-%E9%98%9F%E5%88%97%E5%92%8C%E6%95%B0%E7%BB%84/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  37k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  2:16
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="数据结构第三章-栈，队列和数组"><a href="#数据结构第三章-栈，队列和数组" class="headerlink" title="数据结构第三章-栈，队列和数组"></a>数据结构第三章-栈，队列和数组</h2><blockquote>
+<p>计算机学科基础：第三章栈，队列和数组的学习笔记</p>
+</blockquote>
+<span id="more"></span>
+<h3 id="1-栈（✪）"><a href="#1-栈（✪）" class="headerlink" title="1.栈（✪）"></a>1.栈（✪）</h3><h4 id="栈的基本概念（操作受限的线性表）"><a href="#栈的基本概念（操作受限的线性表）" class="headerlink" title="栈的基本概念（操作受限的线性表）"></a>栈的基本概念（操作受限的线性表）</h4><ul>
+<li>栈的定义：只允许在一端进行插入或删除操作的线性表</li>
+<li>栈顶是允许进行插入删除操作的那一端</li>
+<li>栈的特点：后进先出</li>
+<li>卡特兰数：n个不同元素进栈，出栈元素的不同排列的个数为： $(\frac{1}{n+1})*C_{2n}^n$</li>
+<li><strong>无论是顺序栈还是链栈，出入栈的时间复杂度都为O(1)</strong></li>
+</ul>
+<h4 id="顺序栈（✪）"><a href="#顺序栈（✪）" class="headerlink" title="顺序栈（✪）"></a>顺序栈（✪）</h4><ul>
+<li><p>概念：采用顺序存储的栈，它利用一组地址连续的存储单元存放自栈底到栈顶的数据元素，<br>同时附设一个指针(top)指示当前栈顶元素的位置。</p>
+</li>
+<li><p>指针的变化（具体问题具体分析）</p>
+<ul>
+<li>指针的设置：S.top，初始时设置S.top=-1，栈顶元素：S.data[S.top]</li>
+<li>进栈操作：栈不满时，栈顶指针先加1，再送值到栈顶元素</li>
+<li>出栈操作：栈非空时，先取栈顶元素值，再将栈顶指针减1</li>
+<li>栈空条件：栈空条件：S.top\==-1</li>
+<li>栈满条件：S.top==MaxSize-1；栈长：S.top+1</li>
+</ul>
+</li>
+<li><p>代码表示</p>
+<ul>
+<li><p>顺序栈的定义</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> MaxSize 50</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span>&#123;</span></span><br><span class="line">	<span class="type">int</span> data[MaxSize];</span><br><span class="line">	<span class="type">int</span> top;<span class="comment">//栈顶指针，指示当前栈顶元素的位置 </span></span><br><span class="line">&#125;SqStack;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>顺序栈的初始化</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">InitStack</span><span class="params">(SqStack &amp;S)</span><span class="comment">//初始化 </span></span><br><span class="line">&#123; </span><br><span class="line">	S.top=<span class="number">-1</span>; <span class="comment">//初始化栈顶指针 </span></span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+</li>
+<li><p>顺序栈的判空</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">bool</span> <span class="title function_">StackEmpty</span><span class="params">(Sqstack S)</span><span class="comment">//判空 </span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">if</span>(S.top==<span class="number">-1</span>)</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">		<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+</li>
+<li><p>顺序栈的进栈</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">bool</span> <span class="title function_">Push</span><span class="params">(SqStack &amp;S,<span class="type">int</span> x)</span><span class="comment">//进栈 </span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">if</span>(S.top==MaxSize<span class="number">-1</span>)</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">false</span>; </span><br><span class="line">	S.data[++S.top]=x; <span class="comment">//此处表示当栈不满时，先加栈顶指针，再执行进栈操作 </span></span><br><span class="line">	<span class="keyword">return</span> <span class="literal">true</span>; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>顺序栈的出栈</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">bool</span> <span class="title function_">Pop</span><span class="params">(SqStack &amp;S,<span class="type">int</span> &amp;x)</span><span class="comment">//出栈</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">if</span>(S.top==<span class="number">-1</span>)</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">	x=S.data[S.top--];<span class="comment">//此时表示当栈不为空时，先将指针处元素赋予x,再将栈顶指针减一，执行出栈操作 </span></span><br><span class="line">	<span class="keyword">return</span> <span class="literal">true</span>; </span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+</li>
+<li><p>读取栈顶的元素</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">bool</span> <span class="title function_">GetTOP</span><span class="params">(SqStack S,<span class="type">int</span> &amp;x)</span><span class="comment">//读栈顶元素 </span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">if</span>(S.top==<span class="number">-1</span>)</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">	x=S.data[S.top];</span><br><span class="line">	<span class="keyword">return</span> <span class="literal">true</span>; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>注意事项</p>
+<ul>
+<li>若栈顶指针初始化为S.top=0，即top指向栈顶元素的下一位置，</li>
+<li>则入栈操作变为S.data[S.top++]=x；</li>
+<li>出栈操作变为x=S.data[—S,top]；</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>关于共享栈（非重点）</p>
+<ul>
+<li>共享栈的定义：利用栈底位置相对不变的特性，可让两个顺序栈共享一个一维数组空间，<br>将两个栈的栈底分别设置在共享空间的两端，两个栈顶向共享空间的中间延伸</li>
+<li>图片<ul>
+<li><img src="https://s1.ax1x.com/2023/06/29/pCw87Cj.png" alt="pCw87Cj.png"></li>
+</ul>
+</li>
+<li>共享栈的栈顶指针<ul>
+<li>两个栈的栈顶指针都指向栈顶元素，top0=-1时0号栈为空，top1=MaxSize时1号栈为空；</li>
+<li>仅当两个栈顶指针相邻(top1-top0=1)时，判断为栈满</li>
+</ul>
+</li>
+<li>共享栈的出入栈操作：当0号栈进栈时top0先加1再赋值，1号栈进栈时top1先减1再赋值；出栈时则刚好相反。</li>
+<li>共享栈的特点：共享栈是为了更有效地利用存储空间，两个栈的空间相互调节，<br>只有在整个存储空间被占满时才发生上溢，对存取效率没有影响</li>
+</ul>
+</li>
+</ul>
+<h4 id="链式栈（✠）"><a href="#链式栈（✠）" class="headerlink" title="链式栈（✠）"></a>链式栈（✠）</h4><ul>
+<li><p>链栈的定义：链栈一般由单链表来实现，不带头节点，并规定所有的操作都在表头来进行（相当于栈顶），头指针指向栈顶元素。</p>
+</li>
+<li><p>链栈的优点：链栈的优点是便于多个栈共享存储空间和提高其效率，且不存在栈满上溢的情况</p>
+</li>
+<li><p>图片</p>
+<ul>
+<li><img src="https://s1.ax1x.com/2023/04/24/p9nMLBF.jpg" alt="p9nMLBF.jpg"></li>
+</ul>
+</li>
+<li><p>代码实现</p>
+<ul>
+<li><p>链栈的定义</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">Linknode</span> &#123;</span></span><br><span class="line">	<span class="type">int</span> data;	<span class="comment">//数据域</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">Linknode</span> *<span class="title">next</span>;</span>	<span class="comment">//指针域 </span></span><br><span class="line">&#125;*LiStack;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>链栈的初始化</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">InitStack</span><span class="params">(LiStack &amp;S)</span><span class="comment">//初始化链栈 </span></span><br><span class="line">&#123;</span><br><span class="line"> 	S=<span class="literal">NULL</span>;<span class="comment">//头指针为空</span></span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+</li>
+<li><p>链栈的入栈</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">bool</span> <span class="title function_">Push</span><span class="params">(LiStack &amp;S,<span class="type">int</span> x)</span><span class="comment">//入栈操作 </span></span><br><span class="line">&#123;</span><br><span class="line">  Linknode *p=(Linknode *)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(Linknode));<span class="comment">//分配了一个结点的空间 </span></span><br><span class="line">  p-&gt;data=x;</span><br><span class="line">  p-&gt;next=S; </span><br><span class="line">  S=p; </span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;	 </span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+</li>
+<li><p>链栈的出栈</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">bool</span> <span class="title function_">Pop</span><span class="params">(LiStack &amp;S,<span class="type">int</span> &amp;x)</span><span class="comment">//出栈操作</span></span><br><span class="line">&#123;</span><br><span class="line"> <span class="keyword">if</span>(S==<span class="literal">NULL</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;	</span><br><span class="line"> x=S-&gt;data;</span><br><span class="line"> S=S-&gt;next;</span><br><span class="line"> <span class="keyword">return</span> <span class="literal">true</span>; 	 </span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+</li>
+<li><p>链栈的判空</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">bool</span> <span class="title function_">EmptyStack</span><span class="params">(LiStack S)</span><span class="comment">//判空</span></span><br><span class="line">&#123;</span><br><span class="line"> <span class="keyword">if</span>(S==<span class="literal">NULL</span>)</span><br><span class="line">   <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line"> <span class="keyword">else</span></span><br><span class="line">  <span class="keyword">return</span> <span class="literal">false</span>; </span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+</li>
+<li><p>取栈顶元素</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">bool</span> <span class="title function_">GetTOP</span><span class="params">(LiStack S,<span class="type">int</span> &amp;x)</span><span class="comment">//取栈顶元素</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">if</span>(S==<span class="literal">NULL</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;	</span><br><span class="line">  x=S-&gt;data;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">true</span>; 	 </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-队列（✪）"><a href="#2-队列（✪）" class="headerlink" title="2.队列（✪）"></a>2.队列（✪）</h3><h4 id="队列的基本概念（操作受限的线性表）"><a href="#队列的基本概念（操作受限的线性表）" class="headerlink" title="队列的基本概念（操作受限的线性表）"></a>队列的基本概念（操作受限的线性表）</h4><ul>
+<li>队列的定义：只允许在表的一端进行插入，而在表的另一端进行删除。</li>
+<li>向队列中插入元素称为入队或进队（此端为队尾rear）；删除元素称为出队或离队（此端为队头front）</li>
+<li>特点：先进先出</li>
+</ul>
+<h4 id="顺序队列"><a href="#顺序队列" class="headerlink" title="顺序队列"></a>顺序队列</h4><ul>
+<li><p>顺序队列的指针设置：<strong>顺序队列设置两个指针，队头指针front指向队头元素，队尾指针rear指向队尾元素的下一个位置</strong></p>
+</li>
+<li><p>顺序队列的出入队操作</p>
+<ul>
+<li>进队操作：队不满时，先送值到队尾元素，再将队尾指针加一</li>
+<li>出队操作：队不空时，先取队头元素值，再将队头指针加一</li>
+</ul>
+</li>
+<li><p>初始时：Q.front==Q.rear\==0，此即为判空的条件</p>
+</li>
+<li><p><strong>存在的问题：不能用 Q.rear==MaxSize作为判断队满的条件，并且还有可能造成假溢出</strong></p>
+</li>
+<li><p>图片</p>
+<ul>
+<li><img src="https://s1.ax1x.com/2023/06/29/pCwYUvn.png" alt="pCwYUvn.png"></li>
+</ul>
+</li>
+<li><p>代码实现</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span>&#123;</span></span><br><span class="line">	<span class="type">int</span> data[MaxSize];</span><br><span class="line">	<span class="type">int</span> front,rear; <span class="comment">//队头指针指向队头元素、队尾指针指向队尾元素的下一个位置 </span></span><br><span class="line">&#125;SqQueue;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="循环队列（✪）"><a href="#循环队列（✪）" class="headerlink" title="循环队列（✪）"></a>循环队列（✪）</h4><ul>
+<li><p>循环队列的概念：采用循环队列时，将顺序队列想像成一个环形的空间（逻辑上视为一个环），<br>当队首指针Q.front==MaxSize-1后，再前进一个位置就自动到0，可采取除法取余运算（%）来实现。</p>
+</li>
+<li><p>循环队列的指针设置：<strong>入队出队时相应的指针按顺时针方向进1</strong></p>
+<ul>
+<li>初始时：Q.front=Q.rear=0</li>
+<li>出队时，队首指针进1：Q.front=(Q.front+1)%MaxSize.</li>
+<li>入队时，队尾指针进1：Q.rear=(Q.rear+1)%MaxSize.</li>
+<li>队列长度：(Q.rear+MaxSize-Q.front)%MaxSize.</li>
+</ul>
+</li>
+<li><p>循环队列的判空条件：Q.front==Q.rear。</p>
+</li>
+<li><p>此时的局限性：<strong>若入队元素的速度快于出队元素的速度，则队尾指针很快就会赶上队尾指针，此时将无法判断队满还是队空</strong></p>
+</li>
+<li><p>三种处理方式区分队空和队满的判断条件（✪）</p>
+<ul>
+<li><p>牺牲一个数组单元来区分队空和队满（♚）</p>
+<ul>
+<li><p>具体实现：<strong>入队时少用一个队列单元，约定以“队头指针在队尾指针的下一位置“作为队满的标志</strong></p>
+</li>
+<li><p>此时判断队满和队空的条件</p>
+<ul>
+<li><strong>队满条件：(Q.rear+1)%Maxsize\==Q.front</strong></li>
+<li><strong>队空条件：Q.front==Q.rear.</strong></li>
+<li><strong>队列中元素的个数：(Q.rear-Q.front+MaxSize)%MaxSize。</strong></li>
+</ul>
+</li>
+<li>图片<ul>
+<li><img src="https://s1.ax1x.com/2023/06/29/pCwt8qx.png" alt="pCwt8qx.png"></li>
+</ul>
+</li>
+<li>例题：本题选A<ul>
+<li><img src="https://s1.ax1x.com/2023/07/04/pCscjpQ.png" alt="pCscjpQ.png"></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>结构体类型中增设表示元素个数的数据成员（size）</p>
+<ul>
+<li>入队时：Q.size++；出队时：Q.size—，此时队空和队满都满足：Q.front\==Q.rear</li>
+<li>队空的条件为：Q.s1ze\==0</li>
+<li>队满的条件为：Q.size\==MaxSize</li>
+</ul>
+</li>
+<li><p>结构体类型中增设tag数据成员，以区分是队满还是队空。</p>
+<ul>
+<li>初始化时tag=0；入队成功时令tag=1；出队成功时令tag=0</li>
+<li>tag等于0时，若因删除导致Q.front\==Q.rear,则为队空</li>
+<li>tag等于1时，若因插入导致Q.front\==Q.rear,则为队满</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>循环队列的代码实现</p>
+<ul>
+<li><p>循环队列的初始化</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">InitQueue</span><span class="params">(SqQueue &amp;Q)</span><span class="comment">//初始化 </span></span><br><span class="line">&#123;</span><br><span class="line">	Q.rear=Q.front=<span class="number">0</span>;	<span class="comment">//初始化队首与队尾指针 </span></span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+</li>
+<li><p>循环队列的判断队空</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">bool</span> <span class="title function_">Empty</span><span class="params">(SqQueue Q)</span><span class="comment">//判空 </span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">if</span>(Q.rear==Q.front) </span><br><span class="line">		<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">		<span class="keyword">return</span> <span class="literal">false</span>; </span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+</li>
+<li><p>循环队列的入队</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">bool</span> <span class="title function_">EnQueue</span><span class="params">(SqQueue &amp;Q,<span class="type">int</span> x)</span><span class="comment">//入队 </span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">if</span>((Q.rear+<span class="number">1</span>)%MaxSize==Q.front)	<span class="comment">//判断队列是否已满	</span></span><br><span class="line">		<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">	Q.data[Q.rear]=x;</span><br><span class="line">	Q.rear=(Q.rear+<span class="number">1</span>)%MaxSize;</span><br><span class="line">	<span class="keyword">return</span> <span class="literal">true</span>; </span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+</li>
+<li><p>循环队列的出队</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">bool</span> <span class="title function_">DeQueue</span><span class="params">(SqQueue &amp;Q,<span class="type">int</span> &amp;x)</span><span class="comment">//出队</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">if</span>(Q.rear==Q.front)	<span class="comment">//判空 </span></span><br><span class="line">		<span class="keyword">return</span> <span class="literal">false</span>; </span><br><span class="line">	x=Q.data[Q.front];</span><br><span class="line">	Q.front=(Q.front+<span class="number">1</span>)%MaxSize;</span><br><span class="line">	<span class="keyword">return</span> <span class="literal">true</span>; </span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+</li>
+<li><p>取循环队列的队首元素</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">bool</span> <span class="title function_">GetHead</span><span class="params">(SqQueue Q,<span class="type">int</span> &amp;x)</span><span class="comment">//出队</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">if</span>(Q.rear==Q.front)<span class="comment">//判空 </span></span><br><span class="line">		<span class="keyword">return</span> <span class="literal">false</span>; </span><br><span class="line">	x=Q.data[Q.front];</span><br><span class="line">	<span class="keyword">return</span> <span class="literal">true</span>; </span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="链式队列（✠）"><a href="#链式队列（✠）" class="headerlink" title="链式队列（✠）"></a>链式队列（✠）</h4><ul>
+<li><p>链式队列的定义</p>
+<ul>
+<li><strong>一个同时带有队头指针和队尾指针的单链表。头指针指向队头结点，尾指针指向队尾结点(即单链表的最后一个结点)</strong><br><strong>注意与顺序存储的不同</strong></li>
+<li><strong>一般将链式队列设计成一个带头结点的单链表，统一插入和删除操作</strong></li>
+<li><strong>最适合作为链队的链表是带队头指针和队尾指针的非循环单链表（带头结点）</strong>，<br>此时可快速在第一个位置实现删除操作，在最后一个位置实现插入操作（循环单链表画蛇添足了）</li>
+<li><strong>用链式方式存储的队列，在进行插入运算时，头尾指针可能都要修改</strong><ul>
+<li>当队列不为空时，只会修改rear尾指针。</li>
+<li>当队列为空时，再当有头结点时，也只要修改rear</li>
+<li>当队列为空且没有头结点时，头尾指向相同，在插入时就需要同时修改头和尾</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>不带头结点的链式队列</p>
+<ul>
+<li>图片<ul>
+<li><img src="https://s1.ax1x.com/2023/06/29/pCwwUv4.png" alt="pCwwUv4.png"></li>
+</ul>
+</li>
+<li>链式队列的判空：当Q.front\==NULL&amp;&amp;Q.rear==NULL时，链式队列为空</li>
+<li>链式队列的出入队操作：<ul>
+<li>入队时，建立一个新结点，将新结点插入到链表的尾部，并让Q.rear指向这个新插入的结点<br>若原队列为空队，则令Q.front也指向该结点</li>
+<li>出队时，首先判断队是否为空，若不空，则取出队头元素，将其从链表中摘除，并让Q.front指向下一个结点<br>若该结点为最后一个结点，则置Q.front和Q.rear都为NULL</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>带头结点的链式队列</p>
+<ul>
+<li>图片<ul>
+<li><img src="https://s1.ax1x.com/2023/06/29/pCwwdKJ.png" alt="pCwwdKJ.png"></li>
+</ul>
+</li>
+<li>链式队列的判空：Q.front==Q.rear</li>
+<li>链式队列的出入队操作<ul>
+<li>入队时，建立一个新结点，将新结点插入到链表的尾部，并让Q.rear指向这个新插入的结点</li>
+<li>出队时，首先判断队是否为空，若不空，则取出队头元素，将其从链表中摘除，并让Q.front指向下一个结点<br>若该结点为最后一个结点，则置Q.rear=Q.front</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>链式队列的优点</p>
+<ul>
+<li>用单链表表示的链式队列特别适合于数据元素变动比较大的情形，而且不存在队列满且产生溢出的问题。</li>
+<li>假如程序中要使用多个队列，与多个栈的情形一样，最好使用链式队列，这样就不会出现存储分配不合理和“溢出”的问题。</li>
+</ul>
+</li>
+<li><p>带头结点的链式队列的代码实现</p>
+<ul>
+<li><p>链式队列的定义</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">LinkNode</span>//链式队列结点 </span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="type">int</span> data;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">LinkNode</span> *<span class="title">next</span>;</span></span><br><span class="line">&#125;LinkNode;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span>//链式队列 </span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	LinkNode *front,*rear;<span class="comment">//链式队列头指针与尾指针 </span></span><br><span class="line">&#125;LinkQueue;  </span><br></pre></td></tr></table></figure>
+</li>
+<li><p>链式队列的初始化</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">InitQueue</span><span class="params">(LinkQueue &amp;Q)</span><span class="comment">//链式队列的初始化 </span></span><br><span class="line">&#123;</span><br><span class="line">	Q.front=Q.rear=(LinkNode*)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(LinkNode));<span class="comment">//头指针和尾指针指向新建立的头结点 </span></span><br><span class="line">	Q.front-&gt;next=<span class="literal">NULL</span>;<span class="comment">//初始为空 </span></span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+</li>
+<li><p>链式队列的判空</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">bool</span> <span class="title function_">Empty</span><span class="params">(LinkQueue Q)</span><span class="comment">//链式队列的判空 </span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">if</span>(Q.front==Q.rear)</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">		<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+</li>
+<li><p>链式队列的入队</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">EnQueue</span><span class="params">(LinkQueue &amp;Q,<span class="type">int</span> x)</span><span class="comment">//链式队列的入队 </span></span><br><span class="line">&#123;</span><br><span class="line">	LinkNode *s=(LinkNode *)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(LinkNode));<span class="comment">//创建新节点 </span></span><br><span class="line">	s-&gt;data=x;</span><br><span class="line">	s-&gt;next=<span class="literal">NULL</span>;</span><br><span class="line">	Q.rear-&gt;next=s;</span><br><span class="line">	Q.rear=s;</span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+</li>
+<li><p>链式队列的出队</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//用链式存储方式的队列进行删除操作时需要：头尾指针可能都需要修改,因为如果此时队列中只有一个元素的话，删除之后，队列为空，需要将Q.rear=Q.front;</span></span><br><span class="line"><span class="type">bool</span> <span class="title function_">DeQueue</span><span class="params">(LinkQueue &amp;Q,<span class="type">int</span> &amp;x)</span><span class="comment">//链式队列的出队 </span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">if</span>(Q.front==Q.rear)<span class="comment">//判空 </span></span><br><span class="line">		<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">	LinkNode *p=Q.front-&gt;next;	<span class="comment">//创建一个指针此时指向出队的结点 </span></span><br><span class="line">	x=p-&gt;data;</span><br><span class="line">	Q.front-&gt;next=p-&gt;next;	<span class="comment">//进行出队的操作</span></span><br><span class="line">	<span class="keyword">if</span>(Q.rear==p)<span class="comment">//	若原队列中只有一个结点，则删除之后变空。 </span></span><br><span class="line">		Q.rear=Q.front;</span><br><span class="line">	<span class="built_in">free</span>(p);</span><br><span class="line">	<span class="keyword">return</span> <span class="literal">true</span>; </span><br><span class="line">&#125;	</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="双端队列（主要考察选择题✪）"><a href="#双端队列（主要考察选择题✪）" class="headerlink" title="双端队列（主要考察选择题✪）"></a>双端队列（主要考察选择题✪）</h4><ul>
+<li>双端队列的概念：双端队列是指允许两端都可以进行入队和出队操作的队列，此时可以加上一定的限制<br>形成输出受限的双端队列和输入受限的双端队列</li>
+<li>题目考查<ul>
+<li><strong>作为选择题：常常以输入序列来判断相关的输出序列是否正确，此时的方法是画图进行分析。</strong></li>
+<li><strong>特别地，对于输出序列受限的这一类的题目，可以将其的输出序列直接依次填入所画的双端队列图，由题目的输入序列来反推是否可以得到此输出序列</strong></li>
+<li>例题：分别选C、C<ul>
+<li><img src="https://s1.ax1x.com/2023/04/21/p9E0NGQ.png" alt="p9E0NGQ.png"></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-栈和队列的应用-侧重手算模拟-代码不需要掌握✪"><a href="#3-栈和队列的应用-侧重手算模拟-代码不需要掌握✪" class="headerlink" title="3.栈和队列的应用 (侧重手算模拟,代码不需要掌握✪)"></a>3.栈和队列的应用 (侧重手算模拟,代码不需要掌握✪)</h3><h4 id="栈在括号匹配中的应用"><a href="#栈在括号匹配中的应用" class="headerlink" title="栈在括号匹配中的应用"></a>栈在括号匹配中的应用</h4><ul>
+<li>过程：依次扫描所有字符，遇到左括号入栈，遇到右括号则弹出栈顶元素检查是否匹配。</li>
+<li>匹配失败情况：①左括号单身②右括号单身③左右括号不匹配</li>
+<li>流程图<ul>
+<li><img src="https://s1.ax1x.com/2023/04/23/p9eIMRJ.jpg" alt="p9eIMRJ.jpg"></li>
+</ul>
+</li>
+<li>算法实现<ul>
+<li><img src="https://s1.ax1x.com/2023/04/23/p9eIuiF.jpg" alt="p9eIuiF.jpg"></li>
+</ul>
+</li>
+</ul>
+<h4 id="栈在表达式求值中的应用（✪）"><a href="#栈在表达式求值中的应用（✪）" class="headerlink" title="栈在表达式求值中的应用（✪）"></a>栈在表达式求值中的应用（✪）</h4><ul>
+<li>中缀表达式<ul>
+<li>中缀表达式包括:操作数、运算符、界限符</li>
+<li>其运算符在两个操作数的中间（a+b-c*d）</li>
+<li>图片<ul>
+<li><img src="https://s1.ax1x.com/2023/04/24/p9mqljg.jpg" alt="p9mqljg.jpg"></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>后缀表达式（♚）<ul>
+<li>定义：也称逆波兰表达式，运算符在两个操作数的后面（$ab+cd*-$）</li>
+<li>中缀表达式转为后缀表达式<ul>
+<li>手算（在确定中缀表达式的运算顺序时，只要左边的能算，就优先算左边的）<ul>
+<li><img src="https://s1.ax1x.com/2023/04/23/p9eohtO.jpg" alt="p9eohtO.jpg"></li>
+</ul>
+</li>
+<li>机算<ul>
+<li><img src="https://s1.ax1x.com/2023/04/24/p9mbg1S.jpg" alt="p9mbg1S.jpg"></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>后缀表达式求值<ul>
+<li>手算<ul>
+<li><img src="https://s1.ax1x.com/2023/04/23/p9eTg2Q.png" alt></li>
+</ul>
+</li>
+<li>机算<ul>
+<li><img src="https://s1.ax1x.com/2023/04/23/p9e7AsA.png" alt="p9e7AsA.png"></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>前缀表达式<ul>
+<li>定义：也称波兰表达式，运算符在两个操作数的前面（$-+ab*cd$）</li>
+<li>中缀表达式转前缀表达式<ul>
+<li><img src="https://s1.ax1x.com/2023/04/23/p9eH1fO.jpg" alt="p9eH1fO.jpg"></li>
+</ul>
+</li>
+<li>前缀表达式求值<ul>
+<li><img src="https://s1.ax1x.com/2023/04/23/p9eH6Xj.png" alt="p9eH6Xj.png"></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="栈在递归中的应用"><a href="#栈在递归中的应用" class="headerlink" title="栈在递归中的应用"></a>栈在递归中的应用</h4><ul>
+<li><p>关于函数的调用</p>
+<ul>
+<li><strong>函数调用的特点：最后被调用的函数最先执行结束（LIFO）</strong></li>
+<li>函数调用时，需要用一个函数调用栈存储相关信息：调用返回地址、实参、局部变量</li>
+<li>图片<ul>
+<li><img src="https://s1.ax1x.com/2023/04/24/p9mjPIA.png" alt="p9mjPIA.png"></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>关于递归</p>
+<ul>
+<li><p><strong>定义：若在一个函数、过程或数据结构的定义中又应用了它自身，则称为递归</strong></p>
+<ul>
+<li><p>递归调用时，函数调用栈可称为”递归工作栈”</p>
+</li>
+<li><p>每进入一层递归，就将递归调用所需信息压入栈顶</p>
+</li>
+<li>每退出一层递归，就从栈顶弹出相应信息</li>
+</ul>
+</li>
+<li>递归模型不能是循环定义的，必须满足的两个条件：递归表达式（递归体）；边界条件（递归出口）。</li>
+<li>适合用“递归”算法解决的问题：可以把原始问题转换为属性相同，但规模较小的问题，此时可以大大减少程序的代码量</li>
+<li>可以将递归算法转换为非递归算法，通常需要借助栈来实现这种转换</li>
+<li><p>递归程序的缺点</p>
+<ul>
+<li>太多层递归可能会导致栈溢出</li>
+<li><strong>通常效率较低，可能包含很多重复计算</strong></li>
+<li>空间复杂度较高</li>
+</ul>
+</li>
+<li>消除递归不一定必须用栈来实现</li>
+</ul>
+</li>
+<li><p>求阶乘问题</p>
+<ul>
+<li><p>代码实现</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">factorial</span><span class="params">(<span class="type">int</span> n)</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">if</span>(n==<span class="number">0</span>||n==<span class="number">1</span>)<span class="comment">//边界条件 </span></span><br><span class="line">     <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">     <span class="keyword">return</span> n*factorial(n<span class="number">-1</span>);<span class="comment">//递归表达式 </span></span><br><span class="line">&#125;  </span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line"> <span class="type">int</span> n=factorial(<span class="number">10</span>);</span><br><span class="line"> <span class="built_in">printf</span>(<span class="string">&quot;%d&quot;</span>,n);</span><br><span class="line"> <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>图片</p>
+<ul>
+<li><img src="https://s1.ax1x.com/2023/04/24/p9mvmSx.jpg" alt="p9mvmSx.jpg"></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>斐波那契数列问题</p>
+<ul>
+<li><img src="https://s1.ax1x.com/2023/04/24/p9mz2eU.png" alt="p9mz2eU.png"></li>
+</ul>
+</li>
+</ul>
+<h4 id="队列的应用"><a href="#队列的应用" class="headerlink" title="队列的应用"></a>队列的应用</h4><ul>
+<li>可作为树的层次遍历、图的广度遍历、页面替换算法、可作为<strong>数据缓冲区（打印机应用）</strong></li>
+</ul>
+<h3 id="4-数组和特殊矩阵（选择题考点✪）"><a href="#4-数组和特殊矩阵（选择题考点✪）" class="headerlink" title="4.数组和特殊矩阵（选择题考点✪）"></a>4.数组和特殊矩阵（选择题考点✪）</h3><ul>
+<li>数组的存储结构<ul>
+<li>数组是由n(n≥1)个相同类型的数据元素构成的有限序列，是线性表的推广（顺序存储结构）</li>
+<li><strong>广义表采取的是链式存储结构，一个广义表的表尾总是一个广义表</strong></li>
+<li>多维数组的两种映射方法<ul>
+<li>行优先<ul>
+<li><img src="https://s1.ax1x.com/2023/07/06/pC6AC0e.png" alt="pC6AC0e.png"></li>
+</ul>
+</li>
+<li>列优先<ul>
+<li><img src="https://s1.ax1x.com/2023/07/06/pC6AM7Q.png" alt="pC6AM7Q.png"></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>特殊矩阵的压缩存储<ul>
+<li>压缩存储的定义：指为多个值相同的元素只分配一个存储空间，对零元素不分配存储空间。其目的是节省存储空间</li>
+<li>特殊矩阵：指具有许多相同矩阵元素或零元素，并且这些相同矩阵元素或零元素的分布有一定规律性的矩阵。<br>常见的特殊矩阵有对称矩阵、上（下）三角矩阵、对角矩阵等。</li>
+<li>特殊矩阵的压缩存储方法：找出特殊矩阵中值相同的矩阵元素的分布规律，<br>把那些呈现规律性分布的、值相同的多个矩阵元素压缩存储到一个存储空间中。</li>
+<li>注意: 二维数组 ${A[n][n]}$ 和 ${A[0 \ldots n-1][0 \ldots n-1]}$ 的写法是等价的。<ul>
+<li>如果数组写为 ${A[1 \ldots n][1 \ldots n]}$, 则说明指定了从下标 1 开始存储元素。</li>
+<li>二维数组元素写为 ${a[i][j]}$, 注意数组元素下标 ${i}$ 和 ${j}$ 通常是从 0 开始的。</li>
+<li>矩阵元素通常写为 ${a_{i, j}}$ 或 ${a_{(i)(j)}}$, 注意行号 ${i}$ 和列号 ${j}$ 是 从 1 开始的。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>特殊矩阵（♚）<ul>
+<li>处理特殊矩阵的方式，一般先找出前i-1行的规律，再将其与第i行相加即可<strong>（通过画出具体的方阵图来分析）</strong></li>
+<li>对称矩阵<ul>
+<li>此时n阶方阵中均有：$a_{i,j} = a_{j,i}$，则只需要存放主对角线和下三角形部分。</li>
+<li>如果为将下三角部分的元素存入数组的对称矩阵，此时按行优先方式有以下结论<br>（前i-1行可由求和公式得出，为上三角形时，i与j互换）<ul>
+<li><img src="https://s1.ax1x.com/2023/07/06/pC6EzZD.png" alt="pC6EzZD.png"></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>三角矩阵<ul>
+<li>下三角形矩阵<ul>
+<li>上三角区的所有元素均为同一常量。存储完下三角区和主对角线上的元素之后，紧接着存储对角线上方的常量一次<ul>
+<li><img src="https://s1.ax1x.com/2023/07/06/pC6ZG9A.png" alt="pC6ZG9A.png"></li>
+</ul>
+</li>
+<li>行优先原则的下标<ul>
+<li><img src="https://s1.ax1x.com/2023/07/06/pC6ZaB8.png" alt="pC6ZaB8.png"></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>上三角形矩阵<ul>
+<li>行优先原则的下标<ul>
+<li><img src="https://s1.ax1x.com/2023/07/06/pC6Z0Ag.png" alt="pC6Z0Ag.png"></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>三对角矩阵（带状矩阵）<ul>
+<li>三对角矩阵中，所有非零元素都集中在以主对角线为中心的三条对角线的区域，其它区域的元素都为0<br>当|i-j|&gt;1时，此时为0<ul>
+<li><img src="https://s1.ax1x.com/2023/07/06/pC6ZvUe.png" alt="pC6ZvUe.png"></li>
+</ul>
+</li>
+<li>行优先原则的下标<ul>
+<li>前i-1行共 3(i-1)-1 个元素 （第一行需要减1）</li>
+<li>$a_{i,j}$是i行第j-i+2个元素，$a_{i,j}$是第2i+j-2个元素</li>
+<li>此时数组下标k为k=2i+j-3</li>
+</ul>
+</li>
+<li>如何根据下标求出元素在数组中的具体位置<ul>
+<li><img src="https://s1.ax1x.com/2023/07/06/pC6necn.png" alt="pC6necn.png"></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>稀疏矩阵（<strong>压缩存储后必定会失去随机存储的功能</strong>）<ul>
+<li>矩阵中非零元素的个数远远小于为0的元素</li>
+<li>使用顺序存储方式压缩存储（三元组表）<ul>
+<li><img src="https://s1.ax1x.com/2023/07/06/pC6Qze1.png" alt="pC6Qze1.png"></li>
+</ul>
+</li>
+<li>使用链式存储方式压缩存储（十字链表）<ul>
+<li><img src="https://s1.ax1x.com/2023/07/06/pC6liWD.png" alt="pC6liWD.png"></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+
+
+    
+
+    
+
+    
+
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>-------------</div>
+    
+</div>
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag"><i class="fa fa-tag"></i> 数据结构</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2024/08/11/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E7%BA%BF%E6%80%A7%E8%A1%A8/" rel="next" title="数据结构第二章-线性表">
+                <i class="fa fa-chevron-left"></i> 数据结构第二章-线性表
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2024/08/11/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E4%B8%B2/" rel="prev" title="数据结构第四章-串">
+                数据结构第四章-串 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+
+  </div>
+  
+  
+  
+  </article>
+  
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+      
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/header.gif"
+                alt="沙漠客" />
+            
+              <p class="site-author-name" itemprop="name">沙漠客</p>
+              <p class="site-description motion-element" itemprop="description">Action speak louder than words!</p>
+          </div>
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=100 src="//music.163.com/outchain/player?type=2&id=1396311816&auto=1&height=66"></iframe>
+        </iframe>
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/sichuanshamoke" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://blog.csdn.net/m0_51960673?spm=1000.2115.3001.5343" target="_blank" title="CSDN">
+                      
+                        <i class="fa fa-fw fa-fa fa-codiepie"></i>CSDN</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.kaggle.com/sichuanshamoke" target="_blank" title="kaggle">
+                      
+                        <i class="fa fa-fw fa-stack-overflow"></i>kaggle</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://leetcode.cn/u/amazing-snyderdc5/" target="_blank" title="LeetCode">
+                      
+                        <i class="fa fa-fw fa-skype"></i>LeetCode</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <!-- modify icon to fire by szw -->
+                <i class="fa fa-history fa-" aria-hidden="true"></i>
+                近期文章
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                
+                  <li class="recent_posts_li">
+                    <a href="/2024/08/11/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AC%AC%E5%85%AB%E7%AB%A0-%E6%8E%92%E5%BA%8F/" title="数据结构第八章-排序" target="_blank">数据结构第八章-排序</a>
+                  </li>
+                
+                  <li class="recent_posts_li">
+                    <a href="/2024/08/11/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AC%AC%E4%B8%83%E7%AB%A0-%E6%9F%A5%E6%89%BE/" title="数据结构第七章-查找" target="_blank">数据结构第七章-查找</a>
+                  </li>
+                
+                  <li class="recent_posts_li">
+                    <a href="/2024/08/11/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AC%AC%E5%85%AD%E7%AB%A0-%E5%9B%BE/" title="数据结构第六章-图" target="_blank">数据结构第六章-图</a>
+                  </li>
+                
+                  <li class="recent_posts_li">
+                    <a href="/2024/08/11/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AC%AC%E4%BA%94%E7%AB%A0-%E6%A0%91%E4%B8%8E%E4%BA%8C%E5%8F%89%E6%A0%91/" title="数据结构第五章-树与二叉树" target="_blank">数据结构第五章-树与二叉树</a>
+                  </li>
+                
+                  <li class="recent_posts_li">
+                    <a href="/2024/08/11/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E4%B8%B2/" title="数据结构第四章-串" target="_blank">数据结构第四章-串</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://space.bilibili.com/562700874?spm_id_from=333.1365.0.0" title="风翼飞镰" target="_blank">风翼飞镰</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://space.bilibili.com/383551518/?spm_id_from=333.999.0.0" title="水论文的程序猿" target="_blank">水论文的程序猿</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AC%AC%E4%B8%89%E7%AB%A0-%E6%A0%88%EF%BC%8C%E9%98%9F%E5%88%97%E5%92%8C%E6%95%B0%E7%BB%84"><span class="nav-text">数据结构第三章-栈，队列和数组</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E6%A0%88%EF%BC%88%E2%9C%AA%EF%BC%89"><span class="nav-text">1.栈（✪）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A0%88%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5%EF%BC%88%E6%93%8D%E4%BD%9C%E5%8F%97%E9%99%90%E7%9A%84%E7%BA%BF%E6%80%A7%E8%A1%A8%EF%BC%89"><span class="nav-text">栈的基本概念（操作受限的线性表）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A1%BA%E5%BA%8F%E6%A0%88%EF%BC%88%E2%9C%AA%EF%BC%89"><span class="nav-text">顺序栈（✪）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%93%BE%E5%BC%8F%E6%A0%88%EF%BC%88%E2%9C%A0%EF%BC%89"><span class="nav-text">链式栈（✠）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E9%98%9F%E5%88%97%EF%BC%88%E2%9C%AA%EF%BC%89"><span class="nav-text">2.队列（✪）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%98%9F%E5%88%97%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5%EF%BC%88%E6%93%8D%E4%BD%9C%E5%8F%97%E9%99%90%E7%9A%84%E7%BA%BF%E6%80%A7%E8%A1%A8%EF%BC%89"><span class="nav-text">队列的基本概念（操作受限的线性表）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A1%BA%E5%BA%8F%E9%98%9F%E5%88%97"><span class="nav-text">顺序队列</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BE%AA%E7%8E%AF%E9%98%9F%E5%88%97%EF%BC%88%E2%9C%AA%EF%BC%89"><span class="nav-text">循环队列（✪）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%93%BE%E5%BC%8F%E9%98%9F%E5%88%97%EF%BC%88%E2%9C%A0%EF%BC%89"><span class="nav-text">链式队列（✠）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%8C%E7%AB%AF%E9%98%9F%E5%88%97%EF%BC%88%E4%B8%BB%E8%A6%81%E8%80%83%E5%AF%9F%E9%80%89%E6%8B%A9%E9%A2%98%E2%9C%AA%EF%BC%89"><span class="nav-text">双端队列（主要考察选择题✪）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97%E7%9A%84%E5%BA%94%E7%94%A8-%E4%BE%A7%E9%87%8D%E6%89%8B%E7%AE%97%E6%A8%A1%E6%8B%9F-%E4%BB%A3%E7%A0%81%E4%B8%8D%E9%9C%80%E8%A6%81%E6%8E%8C%E6%8F%A1%E2%9C%AA"><span class="nav-text">3.栈和队列的应用 (侧重手算模拟,代码不需要掌握✪)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A0%88%E5%9C%A8%E6%8B%AC%E5%8F%B7%E5%8C%B9%E9%85%8D%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8"><span class="nav-text">栈在括号匹配中的应用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A0%88%E5%9C%A8%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%B1%82%E5%80%BC%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8%EF%BC%88%E2%9C%AA%EF%BC%89"><span class="nav-text">栈在表达式求值中的应用（✪）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A0%88%E5%9C%A8%E9%80%92%E5%BD%92%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8"><span class="nav-text">栈在递归中的应用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%98%9F%E5%88%97%E7%9A%84%E5%BA%94%E7%94%A8"><span class="nav-text">队列的应用</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E6%95%B0%E7%BB%84%E5%92%8C%E7%89%B9%E6%AE%8A%E7%9F%A9%E9%98%B5%EF%BC%88%E9%80%89%E6%8B%A9%E9%A2%98%E8%80%83%E7%82%B9%E2%9C%AA%EF%BC%89"><span class="nav-text">4.数组和特殊矩阵（选择题考点✪）</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2023 &mdash; <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Shamoke</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">45k</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: true,
+        appId: 'wsUYJtlLslOYlG6pA3pS9i30-gzGzoHsz',
+        appKey: 'd1H2YDHxgJkfTsFw0UhNNMFJ',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+    <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+ 
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+ 
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+ 
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+ 
+  <script>
+    $('.highlight').each(function (i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap')
+      $(e).after($wrap)
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function (e) {
+        var code = $(this).parent().find('.code').find('.line').map(function (i, e) {
+          return $(e).text()
+        }).toArray().join('\n')
+        var ta = document.createElement('textarea')
+        document.body.appendChild(ta)
+        ta.style.position = 'absolute'
+        ta.style.top = '0px'
+        ta.style.left = '0px'
+        ta.value = code
+        ta.select()
+        ta.focus()
+        var result = document.execCommand('copy')
+        document.body.removeChild(ta)
+ 
+        if(result)$(this).text('复制成功')
+        else $(this).text('复制失败')
+ 
+        $(this).blur()
+      })).on('mouseleave', function (e) {
+        var $b = $(this).find('.copy-btn')
+        setTimeout(function () {
+          $b.text('复制')
+        }, 300)
+      }).append(e)
+    })
+  </script>	
+  
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

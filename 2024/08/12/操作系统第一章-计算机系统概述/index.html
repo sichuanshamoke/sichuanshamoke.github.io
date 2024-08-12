@@ -1,0 +1,1992 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="操作系统," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="懷仁堂" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="操作系统第一章 计算机系统概述 计算机学科基础：操作系统第一章计算机系统概述的学习笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="操作系统第一章-计算机系统概述">
+<meta property="og:url" content="http://example.com/2024/08/12/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%AC%AC%E4%B8%80%E7%AB%A0-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0/index.html">
+<meta property="og:site_name" content="懷仁堂">
+<meta property="og:description" content="操作系统第一章 计算机系统概述 计算机学科基础：操作系统第一章计算机系统概述的学习笔记">
+<meta property="og:locale">
+<meta property="og:image" content="https://s1.ax1x.com/2023/08/18/pP39jFH.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/08/18/pP3AawV.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/08/18/pP3FhB6.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/08/04/pPklj2V.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/08/18/pP3EqgJ.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/08/18/pP3eSpD.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/08/18/pP3mrrj.png">
+<meta property="article:published_time" content="2024-08-11T17:32:00.000Z">
+<meta property="article:modified_time" content="2024-08-11T17:58:29.211Z">
+<meta property="article:author" content="Shamoke">
+<meta property="article:tag" content="操作系统">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s1.ax1x.com/2023/08/18/pP39jFH.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":true,"scrollpercent":true,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://example.com/2024/08/12/操作系统第一章-计算机系统概述/"/>
+
+
+
+
+
+  <title>操作系统第一章-计算机系统概述 | 懷仁堂</title>
+  
+
+
+
+
+
+
+
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+  
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <a target="_blank" rel="noopener" href="https://github.com/sichuanshamoke" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">懷仁堂</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Studying and Recording</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-schedule">
+          <a href="/schedule/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />
+            
+            日程表
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/08/12/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%AC%AC%E4%B8%80%E7%AB%A0-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="沙漠客">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="懷仁堂">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">操作系统第一章-计算机系统概述</h1>
+        
+
+        <div class="post-meta">
+          
+          
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2024-08-12T01:32:00+08:00">
+                2024-08-12
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2024-08-12T01:58:29+08:00">
+                2024-08-12
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index">
+                    <span itemprop="name">计算机基础学习笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2024/08/12/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%AC%AC%E4%B8%80%E7%AB%A0-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2024/08/12/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%AC%AC%E4%B8%80%E7%AB%A0-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  8k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  27
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="操作系统第一章-计算机系统概述"><a href="#操作系统第一章-计算机系统概述" class="headerlink" title="操作系统第一章 计算机系统概述"></a>操作系统第一章 计算机系统概述</h2><blockquote>
+<p>计算机学科基础：操作系统第一章计算机系统概述的学习笔记</p>
+</blockquote>
+<span id="more"></span>
+<h3 id="一-操作系统的基本概念（✠）"><a href="#一-操作系统的基本概念（✠）" class="headerlink" title="一.操作系统的基本概念（✠）"></a>一.操作系统的基本概念（✠）</h3><h4 id="1-操作系统的基本概念"><a href="#1-操作系统的基本概念" class="headerlink" title="1.操作系统的基本概念"></a>1.操作系统的基本概念</h4><ul>
+<li>操作系统是指控制和管理整个计算机系统的硬件与软件资源，合理地组织、调度计算机的工作与资源的分配，<br>进而为用户和其他软件提供方便接口与环境的程序集合。</li>
+<li>操作系统是计算机系统中最基本的系统软件。</li>
+</ul>
+<h4 id="2-操作系统的特征（✪）"><a href="#2-操作系统的特征（✪）" class="headerlink" title="2.操作系统的特征（✪）"></a>2.操作系统的特征（✪）</h4><ul>
+<li>1.并发<ul>
+<li>并发是指两个或多个事件在同一时间间隔内发生，这些事件宏观上是同时发生的，但微观上是交替发生的</li>
+<li>并行：指两个或多个事件在同一时刻同时发生。</li>
+<li>操作系统的并发性是指计算机系统中同时存在多个运行的程序，因此它具有处理和调度多个程序同时执行的能力。<br>在操作系统中，引入进程的目的是使程序能并发执行。</li>
+<li>多道技术需要进程间能够并发，并发性的实现需要中断功能的支持</li>
+<li>单核CPU同一时刻只能执行一个程序，各个程序只能并发地执行<br>多核CPU同一时刻可以同时执行多个程序，多个程序可以并行地执行</li>
+</ul>
+</li>
+<li>2.共享<ul>
+<li>共享即资源共享，是指系统中的资源可供内存中多个并发执行的进程共同使用</li>
+<li>资源共享的两种方式<ul>
+<li>互斥共享方式<ul>
+<li>规定在一段时间内只允许一个进程访问该资源。</li>
+<li>在一段时间内只允许一个进程访问的资源称为临界资源</li>
+<li>访问资源过程（互斥式共享）<ul>
+<li>进程A访问某个资源时，必须先提出请求，若此时该资源空闲，则系统便将之分配给进程A使用，</li>
+<li>此后有其他进程也要访问该资源时(只要A未用完)就必须等待。</li>
+<li>仅当进程A访问完并释放该资源后，才允许另一个进程对该资源进行访问。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>同时访问方式<ul>
+<li>这类资源允许在一段时间内由多个进程“同时”访问，如磁盘设备。</li>
+<li>“同时”通常是宏观上的，<br>而在微观上，这些进程可能是交替地对该资源进行访问即“分时共享”的。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>并发和共享是操作系统的两个最基本的特征，两者之间互为存在的条件</strong></li>
+</ul>
+</li>
+<li>3.虚拟<ul>
+<li>虚拟是指把一个物理上的实体变为若干逻辑上的对应物，<br>物理实体（前者）是实际存在的，而逻辑上对应物（后者）是用户感受到的。</li>
+<li>虚拟技术<ul>
+<li>时分复用技术（虚拟处理器）<ul>
+<li>通过多道程序设计技术，采用让多道程序并发执行的方法，来分时使用一个处理器</li>
+<li>虽然只有一个处理器，但它能同时为多个用户服务，使每个终端用户都感觉有一个中央处理器在专门为它服务。</li>
+<li>利用多道程序设计技术把一个物理上的CPU虚拟为多个逻辑上的CPU，称为虚拟处理器。</li>
+</ul>
+</li>
+<li>空分复用技术（虚拟存储器）<ul>
+<li>将一台机器的物理存储器变为虚拟存储器，以便从逻辑上扩充存储器的容量。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>4.异步<ul>
+<li>多道程序环境允许多个程序并发执行，但由于资源有限，进程的执行并不是一贯到底的，而是走走停停的，<br>它以不可预知的速度向前推进，这就是进程的异步性。</li>
+<li>异步性使得操作系统运行在一种随机的环境下，可能导致进程产生与时间有关的错误<br>但是只要运行环境相同，操作系统就须保证多次运行进程后都能获得相同的结果。</li>
+</ul>
+</li>
+</ul>
+<h4 id="3-操作系统的目标与功能"><a href="#3-操作系统的目标与功能" class="headerlink" title="3.操作系统的目标与功能"></a>3.操作系统的目标与功能</h4><ul>
+<li>操作系统作为计算机系统资源的管理者<ul>
+<li>处理机管理<ul>
+<li>在多道程序环境下，处理机的分配和运行都以进程（或线程）为基本单位，<br>因而对处理机的管理可归结为对进程的管理。</li>
+<li>并发是指在计算机内同时运行多个进程，因此进程何时创建、何时撤销、如何管理、如何避免冲突、合理共享就是进程管理的最主要的任务。</li>
+<li>进程管理的主要功能包括进程控制、进程同步、进程通信、死锁处理、处理机调度等。</li>
+</ul>
+</li>
+<li>存储器管理<ul>
+<li>存储器管理是为了给多道程序的运行提供良好的环境，方便用户使用及提高内存的利用率</li>
+<li>主要包括内存分配与回收、地址映射、内存保护与共享和内存扩充等功能。</li>
+</ul>
+</li>
+<li>文件管理<ul>
+<li>计算机中的信息都是以文件的形式存在的，操作系统中负责文件管理的部分称为文件系统。</li>
+<li>文件管理包括文件存储空间的管理、目录管理及文件读写管理和保护等。</li>
+</ul>
+</li>
+<li>设备管理<ul>
+<li>设备管理的主要任务是完成用户的I/O请求，方便用户使用各种设备，并提高设备的利用率，</li>
+<li>主要包括缓冲管理、设备分配、设备处理和虚拟设备等功能。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>操作系统提供给用户和其他软件方便的接口和环境<br>向上层提供方便易用的服务<ul>
+<li>为了让用户方便、快捷、可靠地操纵计算机硬件并运行自己的程序，操作系统提供了用户接口，分为两类。</li>
+<li>命令接口（直接给用户使用）<ul>
+<li>用户利用这些操作命令来组织和控制作业的执行</li>
+<li>联机命令接口（强调交换性，说一句做一句）<ul>
+<li><strong>又称交互式命令接口</strong>，适用于分时或实时系统的接口，由一组键盘操作命令组成。</li>
+<li>用户通过控制台或终端输入操作命令，向系统提出各种服务要求。</li>
+<li>用户每输入一条命令，控制权就转给操作系统的命令解释程序，<br>然后由命令解释程序解释并执行输入的命令，完成指定的功能</li>
+<li>之后，控制权转回控制台或终端，此时用户又可输入下一条命令</li>
+</ul>
+</li>
+<li>脱机命令接口（说一堆做一堆）<ul>
+<li><strong>又称批处理命令接口</strong>，适用于批处理系统，它由一组作业控制命令组成。</li>
+<li>脱机用户不能直接干预作业的运行，而应事先用相应的作业控制命令写成一份作业操作说明书，<br>连同作业一起提交给系统。</li>
+<li>系统调度到该作业时，由系统中的命令解释程序逐条解释执行作业说明书上的命令，从而间接地控制作业的运行</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>程序接口（也称系统调用，给软件和程序员使用）</strong><ul>
+<li><strong>程序接口由一组系统调用（也称广义指令）组成</strong>。用户通过在程序中使用这些系统调用来请求操作系统为其提供服务<br>如使用各种外部设备、申请分配和回收内存及其他各种要求。</li>
+<li>当前最为流行的是图形用户界面(GUI)，即图形接口。GUI最终是通过调用程序接口实现的<br>严格来说，图形接口不是操作系统的一部分，但图形接口所调用的系统调用命令是操作系统的一部分。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>操作系统实现了对计算机资源的扩充<ul>
+<li>没有任何软件支持的计算机称为裸机，它仅构成计算机系统的物质基础，<br>而实际呈现在用户面前的计算机系统是经过若干层软件改造的计算机。裸机在最里层，其外面是操作系统。</li>
+<li>操作系统所提供的资源管理功能和方便用户的各种服务功能，将裸机改造成功能更强、使用更方便的机器</li>
+<li>因此，我们通常把覆盖了软件的机器称为扩充机器或虚拟机</li>
+</ul>
+</li>
+</ul>
+<h3 id="二-操作系统的发展历程"><a href="#二-操作系统的发展历程" class="headerlink" title="二.操作系统的发展历程"></a>二.操作系统的发展历程</h3><h4 id="1-批处理阶段（操作系统开始出现：多道）"><a href="#1-批处理阶段（操作系统开始出现：多道）" class="headerlink" title="1.批处理阶段（操作系统开始出现：多道）"></a>1.批处理阶段（操作系统开始出现：多道）</h4><ul>
+<li>单道批处理系统<ul>
+<li>每次主机内存中仅存放一道作业，每当它在运行期间发出输入/输出请求后<br>高速的CPU便处于等待低速的I/O完成的状态。</li>
+<li>资源的利用率和系统的吞吐量太低</li>
+</ul>
+</li>
+<li>多道批处理系统（具有并发和并行的特点）<ul>
+<li>多道程序设计技术（多道，宏观上并行，微观上串行）<ul>
+<li><strong>多道程序设计技术允许多个程序同时进入内存并允许它们在CPU中交替地运行（并发）</strong><br><strong>这些程序共享系统中的各种硬/软件资源，需要实现对共享资源的保护</strong></li>
+<li>当一道程序因I/O请求而暂停运行时，CPU便立即转去运行另一道程序</li>
+</ul>
+</li>
+<li><strong>中断技术使得I/O设备可以与CPU并行工作，I/O设备利用率高</strong></li>
+<li>优点：资源利用率高，多道程序共享计算机资源，从而使各种资源得到充分利用<br>系统吞吐量大，CPU和其他资源保持“忙碌”状态</li>
+<li>缺点：<strong>用户响应的时间较长，不提供人机交互能力</strong><br>用户既不能了解自己的程序的运行情况，又不能控制计算机。</li>
+</ul>
+</li>
+</ul>
+<h4 id="2-分时操作系统"><a href="#2-分时操作系统" class="headerlink" title="2.分时操作系统"></a>2.分时操作系统</h4><ul>
+<li>分时操作系统的概述<ul>
+<li>分时操作系统：计算机以时间片为单位轮流为各个用户/作业服务，各个用户可通过终端与计算机进行交互。</li>
+<li>若某个作业在分配给它的时间片内不能完成其计算，则该作业暂时停止运行<br>把处理器让给其他作业使用，等待下一轮再继续运行。</li>
+<li>由于计算机速度很快，作业运行轮转得也很快，因此给每个用户的感觉就像是自己独占一台计算机。<br>可以及时响应用户</li>
+</ul>
+</li>
+<li>分时操作系统的特点<ul>
+<li>分时系统也是支持多道程序设计的系统，用户请求可以被即时响应，<strong>解决了人机交互问题</strong>。</li>
+<li>允许多个用户同时使用一台计算机，并且用户对计算机的操作相互独立，感受不到别人的存在。</li>
+<li>缺点：<strong>不能优先处理一些紧急任务</strong>。操作系统对各个用户/作业都是完全公平的，<br>循环地为每个用户/作业服务一个时间片，不区分任务的紧急性。</li>
+</ul>
+</li>
+</ul>
+<h4 id="3-实时操作系统"><a href="#3-实时操作系统" class="headerlink" title="3.实时操作系统"></a>3.实时操作系统</h4><ul>
+<li><p>实时操作系统的特点</p>
+<ul>
+<li><p>为了能在某个时间限制内完成某些紧急任务而不需要时间片排队，诞生了实时操作系统。</p>
+</li>
+<li><p>在实时操作系统的控制下，计算机系统接收到外部信号后及时进行处理，<br>并在严格的时限内处理完接收的事件</p>
+</li>
+<li><p><strong>实时操作系统的主要特点是及时性和可靠性</strong>。</p>
+</li>
+</ul>
+</li>
+<li><p>实时操作系统的分类</p>
+<ul>
+<li><p>硬实时系统</p>
+<ul>
+<li>某个动作必须绝对地在规定的时刻（或规定的时间范围）发生的系统<br>自动控制系统，导弹发射系统</li>
+</ul>
+</li>
+<li><p>软实时系统</p>
+<ul>
+<li>若能够接受偶尔违反时间规定且不会引起任何永久性的损害<br>如飞机订票系统、银行管理系统。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="三-操作系统运行环境（✪）"><a href="#三-操作系统运行环境（✪）" class="headerlink" title="三.操作系统运行环境（✪）"></a>三.操作系统运行环境（✪）</h3><h4 id="1-操作系统运行的机制（✠）"><a href="#1-操作系统运行的机制（✠）" class="headerlink" title="1.操作系统运行的机制（✠）"></a>1.操作系统运行的机制（✠）</h4><ul>
+<li><p>内核程序与应用程序</p>
+<ul>
+<li>通常CPU执行两种不同性质的程序，一种是操作系统内核程序，另一种是用户自编程序(即应用程序)</li>
+<li>对操作系统而言，这两种程序的作用不同，前者是后者的管理者，因此内核程序要执行一些特权指令<br>而应用程序出于安全考虑不能执行这些指令。</li>
+<li>由很多内核程序组成操作系统内核（Kernel）</li>
+</ul>
+</li>
+<li><p>特权指令与非特权指令</p>
+<ul>
+<li><p>指令是指CPU能识别、执行的最基本指令，指二进制机器指令</p>
+<ul>
+<li><img src="https://s1.ax1x.com/2023/08/18/pP39jFH.png" alt="pP39jFH.png"></li>
+</ul>
+</li>
+<li><p>特权指令</p>
+<ul>
+<li>是指不允许用户直接使用的指令，只能由操作系统内核来使用</li>
+<li>如I/O指令、置中断指令，内存清零等指令</li>
+<li>核心态指令实际上包括系统调用类指令和一些针对时钟、中断和原语的操作指令</li>
+</ul>
+</li>
+<li><p>非特权指令</p>
+<ul>
+<li>是指允许用户直接使用的指令，它不能直接访问系统中的软硬件资源，仅限于访问用户的地址空间，<br>这也是为了防止用户程序对系统造成破坏。如加减法指令</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>用户态与核心态</p>
+<ul>
+<li>用户态与内核态的概念<ul>
+<li>将CPU的运行模式划分为用户态（目态）和核心态  (又称管态、内核态)</li>
+<li>用户态上运行应用程序，只能执行非特权指令<br>操作系统内核程序运行在核心态，可以执行特权指令，也可以执行非特权指令</li>
+<li>CPU中有一个寄存器叫程序状态字寄存器(PSW)，其中有个二进制位，1表示“内核态”，0表示“用户态”</li>
+</ul>
+</li>
+<li>用户态与核心态之间的转换<ul>
+<li>用户态→核心态：<strong>由“中断”引发，硬件自动完成变态过程，触发中断信号意味着操作系统将强行夺回CPU的使用权</strong><br><strong>但凡需要操作系统介入的地方，都会引发中断</strong>（此前在用户态中可能发生了系统调用，使用了访管指令）</li>
+<li>核心态→用户态：<strong>执行一条特权指令（一般是中断返回指令），修改PSW的标志位为“用户态”，</strong><br><strong>这个动作意味着操作系统将主动让出CPU使用权</strong></li>
+<li>操作系统会对引发中断的事件进行处理，处理完了再把CPU使用权交给别的应用程序</li>
+</ul>
+</li>
+<li>在操作系统中由用户态转变为核心态的例子<ul>
+<li>用户程序要求操作系统的服务，即系统调用。</li>
+<li>发生$1$次中断。</li>
+<li>用户程序中产生了一个错误状态。</li>
+<li>用户程序中企图执行一条特权指令。</li>
+</ul>
+</li>
+<li><strong>只能在核心态下运行的指令是：置时钟指令、广义指令（系统调用）、输入输出、中断指令</strong></li>
+<li><strong>可以在用户态下运行的指令是：读时钟、取数、寄存器清零</strong></li>
+</ul>
+</li>
+<li><p>操作系统的内核（✪）</p>
+<ul>
+<li><p>内核的定义</p>
+<ul>
+<li>内核是计算机上配置的底层<strong>软件</strong>，它管理着系统的各种资源，可以看作是连接应用程序和硬件的一座桥梁<br>是操作系统最基本最核心的部分</li>
+</ul>
+</li>
+<li><p>内核的构成（内核中的指令操作工作在核心态）</p>
+<ul>
+<li><p>与硬件关系紧密的模块</p>
+<ul>
+<li><p>时钟管理：实现计时功能</p>
+</li>
+<li><p>中断机制：通过时钟与中断的管理，可以实现进程的切换<br><strong>现代操作系统是靠中断驱动的软件</strong></p>
+</li>
+<li><p>原语（一种特殊的程序）</p>
+<ul>
+<li><p>原语的概述</p>
+<ul>
+<li>处于操作系统的最底层，是最接近硬件的部分。</li>
+<li><strong>这些程序的运行具有原子性，其操作只能一气呵成（出于系统安全性和便于管理考虑）</strong></li>
+<li>这些程序的运行时间都较短，而且调用频繁。</li>
+</ul>
+</li>
+<li><p>原语的定义</p>
+<ul>
+<li>定义原语的直接方法是关闭中断，让其所有动作不可分割地完成后再打开中断。</li>
+<li>系统中的设备驱动、CPU切换、进程通信等功能中的部分操作都可定义为原语，使它们成为内核的组成部分</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>对系统资源进行管理的功能：<br>这些管理工作更多的是对数据结构的操作，不会直接涉及硬件</p>
+<ul>
+<li>进程管理：进程状态管理、进程调度和分派、创建与撒销进程控制块等。</li>
+<li>存储器管理：存储器的空间分配和回收、内存信息保护程序、代码对换程序等。</li>
+<li>设备管理：缓冲区管理、设备分配和回收等。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>操作系统的体系结构</p>
+<ul>
+<li>大(宏、单)内核<ul>
+<li>将操作系统的主要功能模块都作为系统内核，运行在核心态</li>
+<li>优点：高性能</li>
+<li>缺点：内核代码庞大，结构混乱，难以维护</li>
+</ul>
+</li>
+<li>微内核<ul>
+<li>只把最基本的功能保留在内核</li>
+<li>优点：内核功能少，结构清晰，方便维护</li>
+<li>缺点：需要频繁地在核心态和用户态之间切换，性能低</li>
+</ul>
+</li>
+<li>图片<ul>
+<li><img src="https://s1.ax1x.com/2023/08/18/pP3AawV.png" alt="pP3AawV.png"></li>
+</ul>
+</li>
+<li>注：Ubuntu、CentOS的开发团队，其主要工作是实现非内核功能，而内核都是用了Linux内核</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="2-中断和异常的概念（✪）"><a href="#2-中断和异常的概念（✪）" class="headerlink" title="2.中断和异常的概念（✪）"></a>2.中断和异常的概念（✪）</h4><ul>
+<li><p>中断的作用</p>
+<ul>
+<li>实现核心态与用户态的切换<ul>
+<li>发生中断或异常时，运行用户态的CPU会立即进入核心态，这是通过硬件自动实现的</li>
+<li>用一个特殊寄存器的一位来表示CPU所处的工作状态，0表示核心态，1表示用户态<br>若要进入核心态，则只需将该位置0即可</li>
+</ul>
+</li>
+<li>释放程序对资源的占有（实现并发）</li>
+</ul>
+</li>
+<li><p>中断在广义上的分类</p>
+<ul>
+<li><p>内中断（异常）</p>
+<ul>
+<li><p>内中断也称为异常，<strong>与当前执行的指令有关，中断信号来源于CPU内部</strong><br>异常不能被屏蔽，一旦出现，就应立即处理。</p>
+</li>
+<li><p>异常的分类</p>
+<ul>
+<li><p>软件中断</p>
+<ul>
+<li><p>故障(Fault)：由错误条件引起的，可能被内核程序修复。内核程序修复故障后会把CPU使用权还给应用程序，<br>让它继续执行下去。如：缺页故障</p>
+</li>
+<li><p><strong>陷入(Trap)</strong>：由<strong>陷入指令</strong>引发，是应用程序故意引发的，用于在<u>用户态</u>下调用操作系统内核程序，<br><strong>注：陷入指令（访管指令）在用户态中使用，属于非特权指令</strong></p>
+</li>
+</ul>
+</li>
+<li><p>硬件中断</p>
+<ul>
+<li>终止(Abort)：由致命错误引起，内核程序无法修复该错误，因此一般不再将CPU使用权还给引发终止的应用程序，<br>而是直接终止该应用程序。如：整数除0、非法使用特权指令</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>外中断（狭义上的中断，属于硬件中断）</p>
+<ul>
+<li><strong>与当前执行的命令无关，中断信号来自CPU外部</strong></li>
+<li>I/O中断：通常用于信息输入/输出<br>如设备发出的I/O结束中断，表示设备输入/输出处理已经完成。</li>
+<li>时钟中断：表示一个固定的时间片已到，让处理机处理计时、启动定时运行的任务等。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>中断机制的基本实现原理</p>
+<ul>
+<li><p>步骤</p>
+<ul>
+<li>检查中断信号<ul>
+<li>内中断：CPU在执行指令时会检查是否有异常发生</li>
+<li>外中断：每个指令周期末尾CPU都会检查是否有外中断信号需要处理</li>
+</ul>
+</li>
+<li>找到相应的中断处理程序：根据中断信号的类型去查询“中断向量表”，以此来找到相应的中断处理程序在内存中的存放位置。</li>
+</ul>
+</li>
+<li>在中断机制中CPU和操作系统的作用<ul>
+<li><strong>进入中断的程序属于操作系统程序</strong></li>
+<li><strong>中断操作中由操作系统完成的是：提供中断服务、初始化中断向量表、保存中断屏蔽字、保存通用寄存器的内容、执行系统调用服务例程</strong></li>
+<li><strong>中断操作中由CPU完成的是：保存被中断程序的中断点和程序状态字，将CPU模式改为内核态</strong></li>
+</ul>
+</li>
+<li><strong>中断处理需要保存程序断点/程序计数器（PC）、程序状态字寄存器（PSW），而子程序只需要保存断点/程序计数器（PC）</strong></li>
+<li>定时器产生时钟中断后，由时钟中断服务程序更新的内容是<ul>
+<li>内核中时钟变量的值</li>
+<li>当前进程占用CPU的时间</li>
+<li>当前进程在时间片内的剩余执行时间</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="3-系统调用（✪）"><a href="#3-系统调用（✪）" class="headerlink" title="3.系统调用（✪）"></a>3.系统调用（✪）</h4><ul>
+<li>系统调用的定义<ul>
+<li>操作系统提供给应用程序(程序员/编程人员)使用的接口，可以理解为一种可供应用程序调用的特殊函数，<br>由用户进程发起，应用程序可以通过系统调用来请求获得操作系统内核的服务</li>
+<li>应用程序通过系统调用请求操作系统的服务。而系统中的各种共享资源都由操作系统内核统一掌管，<br>因此凡是与共享资源有关的操作(如存储分配、I/O操作、文件管理等)，都必须通过系统调用的方式向操作系统内核提出服务请求</li>
+<li>系统调用由操作系统内核代为完成。这样可以保证系统的稳定性和安全性，防止用户进行非法操作。</li>
+<li><strong>完全由操作系统自动完成的和不涉及请求操作系统服务的不属于系统调用</strong><ul>
+<li>如进程调度，页置换由操作系统自动完成</li>
+<li>生成随机整数，只需要普通的函数调用，不涉及请求操作系统的服务</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>系统调用与库函数的区别<ul>
+<li><strong>普通应用程序可直接进行系统调用，也可使用库函数用程序，有的库函数涉及系统调用，有的不涉及</strong></li>
+<li>编程语言向上提供库函数。有时会将系统调用封装成库函数，以隐藏系统调用的一些细节，使程序员编程更加方便。</li>
+<li>图片<ul>
+<li><img src="https://s1.ax1x.com/2023/08/18/pP3FhB6.png" alt="pP3FhB6.png"></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>系统调用的功能<ul>
+<li><strong>设备管理：完成设备的请求/释放/启动等功能</strong></li>
+<li><strong>文件管理：完成文件的读/写/创建/删除等功能</strong></li>
+<li><strong>进程控制：完成进程的创建/撤销/阻塞/唤醒等功能</strong></li>
+<li><strong>进程通信：完成进程之间的消息传递/信号传递等功能</strong></li>
+<li><strong>内存管理：完成内存的分配/回收等功能</strong></li>
+</ul>
+</li>
+<li>系统调用的过程（<strong>在用户态发生，在内核态执行</strong>）<ul>
+<li>在用户态中使用传参指令：将系统调用需要的参数放到某些通用寄存器中</li>
+<li>用户程序可以执行<strong>陷入指令(又称访管指令或trap指令)</strong>来发起系统调用，请求操作系统提供服务。</li>
+<li>当需要管理程序服务时，系统则通过<strong>硬件中断</strong>机制进入核心态，运行管理程序<br>此时相当于应用程序把CPU的使用权主动交给操作系统内核程序(CPU状态会从用户态进入核心态)</li>
+<li>在核心态中，操作系统内核程序再对系统调用请求做出相应处理。</li>
+<li>处理完成后，操作系统内核程序又会把CPU的使用权还给用户程序(即CPU状态会从核心态回到用户态)</li>
+<li>图片<ul>
+<li><img src="https://s1.ax1x.com/2023/08/04/pPklj2V.png" alt="pPklj2V.png"></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>系统调用的注意事项</p>
+<ul>
+<li>由用户态进入核心态，不仅状态需要切换，而且所用的堆栈也可能需要由用户堆栈切换为系统堆栈，<br>但这个系统堆栈也是属于该进程的。</li>
+<li><strong>若程序的运行由用户态转到核心态，则会用到访管指令，访管指令是在用户态使用的，所以它不可能是特权指令。</strong></li>
+<li><strong>系统调用中由操作系统完成的是：保存通用寄存器的内容、执行系统调用服务例程</strong></li>
+<li><strong>系统调用中由CPU完成的是：保存断点和程序状态字、将CPU模式改为内核态</strong></li>
+</ul>
+</li>
+</ul>
+<h3 id="四-操作系统结构（✠）"><a href="#四-操作系统结构（✠）" class="headerlink" title="四.操作系统结构（✠）"></a>四.操作系统结构（✠）</h3><h4 id="1-分层结构"><a href="#1-分层结构" class="headerlink" title="1.分层结构"></a>1.分层结构</h4><ul>
+<li>分层法的概述<ul>
+<li>将操作系统分为若干层，最底层(层0)为硬件，最高层(层N)为用户接口，每层只能调用紧邻它的低层的功能和服务（单向依赖）</li>
+</ul>
+</li>
+<li>分层法的优点<ul>
+<li>便于系统的调试和验证，简化了系统的设计和实现</li>
+<li>易扩充和易维护：各层之间调用接口清晰固定</li>
+</ul>
+</li>
+<li>分层法的缺点<ul>
+<li>仅可调用相邻低层，难以合理定义各层的边界</li>
+<li>效率低，不可跨层调用，系统调用执行时间长<ul>
+<li>操作系统每执行一个功能，通常要自上而下地穿越多层，<br>各层之间都有相应的层间通信机制，这无疑增加了额外的开销，导致系统效率降低。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="2-模块化"><a href="#2-模块化" class="headerlink" title="2.模块化"></a>2.模块化</h4><ul>
+<li>模块化的概述<ul>
+<li>模块-接口法：将操作系统按功能划分为若干具有一定独立性的模块。</li>
+<li>每个模块具有某方面的管理功能，并规定好各模块间的接口，使各模块之间能够通过接口进行通信</li>
+</ul>
+</li>
+<li>模块化的优点<ul>
+<li>模块间逻辑清晰易于维护，确定模块间接口后，即可多模块同时开发</li>
+<li>支持动态加载新的内核模块（如：安装设备驱动程序、安装新的文件系统模块到内核），增强OS适应性</li>
+<li>任何模块都可以直接调用其他模块，无需采用消息传递进行通信，效率高</li>
+</ul>
+</li>
+<li>模块化的缺点<ul>
+<li>模块间的接口定义未必合理、实用</li>
+<li>模块间相互依赖，更难调试和验证</li>
+</ul>
+</li>
+</ul>
+<h4 id="3-宏内核与微内核"><a href="#3-宏内核与微内核" class="headerlink" title="3.宏内核与微内核"></a>3.宏内核与微内核</h4><ul>
+<li><p>宏内核</p>
+<ul>
+<li>宏内核也称单内核或大内核，将所有的系统功能都放在内核里，通常也采用了“模块化“的设计思想</li>
+<li>优点：<strong>性能高</strong>，内核内部各种功能都可以直接相互调用</li>
+<li><p>缺点：内核庞大功能复杂，难以维护；大内核中某个功能模块出错，就可能导致整个系统崩溃</p>
+</li>
+<li><p>目前的主流操作系统均使用的宏内核的架构：Linux、UNIX</p>
+</li>
+</ul>
+</li>
+<li><p>微内核（机制与策略分离）</p>
+<ul>
+<li>只把中断、原语、进程通信等最核心的功能放入内核。进程管理、文件管理、设备管理等功能以用户进程的形式运行在用户态</li>
+<li><p>优点</p>
+<ul>
+<li>内核小功能少、易于维护，内核可靠性高</li>
+<li>内核外的某个功能模块出错不会导致整个系统崩溃（<strong>可靠性与安全性</strong>）</li>
+</ul>
+</li>
+<li><p>缺点</p>
+<ul>
+<li><strong>性能低，需要频繁的切换用户态/核心态</strong>。</li>
+<li>用户态下的各功能模块不可以直接相互调用，只能通过内核的”消息传递”来间接通信</li>
+</ul>
+</li>
+<li><p>微内核的特点</p>
+<ul>
+<li><p>扩展性和灵活性</p>
+<ul>
+<li>许多功能从内核中分离出来，当要修改某些功能或增加新功能时，<br>只需在相应的服务器中修改或新增功能，或再增加一个专用的服务器，而无须改动内核代码。</li>
+</ul>
+</li>
+<li><p>可靠性和安全性</p>
+<ul>
+<li>内核外的某个功能模块出错不会导致整个系统崩溃</li>
+</ul>
+</li>
+<li><p>可移植性</p>
+<ul>
+<li>与CPU和I/O硬件有关的代码均放在内核中，而其他各种服务器均与硬件平台无关，<br>因而将操作系统移植到另一个平台上所需做的修改是比较小的。</li>
+</ul>
+</li>
+<li><p>分布式计算</p>
+<ul>
+<li>客户和服务器之间、服务器和服务器之间的通信采用消息传递机制，<br>这就使得微内核系统能很好地支持分布式系统和网络系统。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>虽然宏内核在桌面操作系统中取得了绝对的胜利，但是微内核在实时、工业、航空及军事应用中特别流行，<br>这些领域都是关键任务，需要有高度的可靠性。</p>
+</li>
+</ul>
+</li>
+<li><p>图片</p>
+<ul>
+<li><img src="https://s1.ax1x.com/2023/08/18/pP3EqgJ.png" alt="pP3EqgJ.png"></li>
+</ul>
+</li>
+</ul>
+<h3 id="五-操作系统引导（boot-✠）"><a href="#五-操作系统引导（boot-✠）" class="headerlink" title="五.操作系统引导（boot ✠）"></a>五.操作系统引导（boot ✠）</h3><ul>
+<li><strong>操作系统引导程序(boot)位于磁盘，操作系统在初始化过程中需要创建中断向量表</strong></li>
+<li><strong>活动分区又称主分区，即安装了操作系统的分区，通常在C盘，MBR(主引导记录可以确定活动分区)</strong></li>
+<li><p>操作系统引导过程</p>
+<ul>
+<li>①<strong>激活CPU</strong>。激活的CPU读取ROM中的boot程序，开始执行BIOS的指令（自举程序）</li>
+<li>②<strong>硬件自检</strong>。启动BIOS程序后，先进行硬件自检，检查硬件是否出现故障。如有故障，主板会发出不同含义的蜂鸣，启动中止;如无故障，屏幕会显示CPU、内存、硬盘等信息。</li>
+<li>③<strong>加载带有操作系统的硬盘。将磁盘读入内存</strong></li>
+<li>④<strong>加载主引导记录MBR</strong>。<strong>主引导记录MBR告诉CPU去硬盘的哪个主分区去找操作系统</strong>。</li>
+<li>⑤<strong>扫描硬盘分区表，并加载硬盘活动分区</strong>。</li>
+<li><strong>⑥加载分区引导记录PBR。其作用是寻找并激活分区根目录下用于引导操作系统的程序（启动管理器）。</strong></li>
+<li>⑦加载启动管理器</li>
+<li>⑧加载操作系统</li>
+</ul>
+</li>
+<li><p>图片</p>
+<ul>
+<li><img src="https://s1.ax1x.com/2023/08/18/pP3eSpD.png" alt="pP3eSpD.png"></li>
+</ul>
+</li>
+</ul>
+<h3 id="六-虚拟机"><a href="#六-虚拟机" class="headerlink" title="六.虚拟机"></a>六.虚拟机</h3><ul>
+<li>虚拟机：使用虚拟化技术，将一台物理机器虚拟化为多台虚拟机器(Virtual Machine,VM)<br>每个虚拟机器都可以独立运行一个操作系统</li>
+<li>也可称为虚拟机管理程序/虚拟机监控程序Virtual Machine Monitor/Hypervisor</li>
+<li><p>运行在两类虚拟机管理程序上的操作系统都称为客户操作系统，Guest OS<br>对于第二类虚拟机管理程序，运行在底层硬件上的操作系统称为宿主操作系统，Host OS</p>
+</li>
+<li><p>1.第一类VMM（裸金属架构）</p>
+<ul>
+<li>直接运行在硬件之上，能直接控制和分配物理资源</li>
+<li>运行在最高特权级(Ring 0)，可以执行最高特权的指令是唯一一个运行在最高特权级的程序</li>
+<li>在安装Guest OS时，VMM要在原本的硬盘上自行分配存储空间，类似于“外核”的分配方式，分配未经抽象的物理硬件</li>
+<li>性能更好；虚拟机的可迁移性更差</li>
+<li>可支持的虚拟机数量更多，不需要和Host OS竞争资源，相同的硬件资源可以支持更多的虚拟机</li>
+</ul>
+</li>
+<li><p>2.第二类VMM（寄宿架构）</p>
+<ul>
+<li>它是一个依赖于Windows、Linux等操作系统分配和调度资源的程序，很像一个普通的进程<br>运行在Host OS之上，依赖于Host OS为其分配物理资源</li>
+<li>第二类VMM分运行在用户态、部分运行在内核态。<br>GuestOS发出的系统调用会被VMM截获，并转化为VMM对HostOS的系统调用</li>
+<li>GuestOS拥有自己的虚拟磁盘，该盘实际上是Host OS文件系统中的一个大文件。GuestOS分配到的内存是虚拟内存。<ul>
+<li>首次启动时，第二类虚拟机管理程序像一台刚启动的计算机那样运转，期望找到的驱动器可以是虚拟设备。<br>然后将操作系统安装到虚拟磁盘上（其实只是宿主操作系统中的一个文件）</li>
+</ul>
+</li>
+<li>性能更差，需要HostOS作为”中介”；可迁移性更好，只需导出虚拟机镜像文件即可迁移到另一台HostOS上，商业化应用更广泛</li>
+<li>可支持的虚拟机数量更少，Host OS本身需要使用物理资源，HostOS上运行的其他进程也需要物理资源</li>
+</ul>
+</li>
+<li>图片<ul>
+<li><img src="https://s1.ax1x.com/2023/08/18/pP3mrrj.png" alt="pP3mrrj.png"></li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+
+
+    
+
+    
+
+    
+
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>-------------</div>
+    
+</div>
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag"><i class="fa fa-tag"></i> 操作系统</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2024/08/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%AC%E5%85%AD%E7%AB%A0-%E5%BA%94%E7%94%A8%E5%B1%82/" rel="next" title="计算机网络第六章-应用层">
+                <i class="fa fa-chevron-left"></i> 计算机网络第六章-应用层
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2024/08/12/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B/" rel="prev" title="操作系统第二章-进程与线程">
+                操作系统第二章-进程与线程 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+
+  </div>
+  
+  
+  
+  </article>
+  
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+      
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/header.gif"
+                alt="沙漠客" />
+            
+              <p class="site-author-name" itemprop="name">沙漠客</p>
+              <p class="site-description motion-element" itemprop="description">Action speak louder than words!</p>
+          </div>
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=100 src="//music.163.com/outchain/player?type=2&id=1396311816&auto=1&height=66"></iframe>
+        </iframe>
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/">
+              
+                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/sichuanshamoke" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://blog.csdn.net/m0_51960673?spm=1000.2115.3001.5343" target="_blank" title="CSDN">
+                      
+                        <i class="fa fa-fw fa-fa fa-codiepie"></i>CSDN</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.kaggle.com/sichuanshamoke" target="_blank" title="kaggle">
+                      
+                        <i class="fa fa-fw fa-stack-overflow"></i>kaggle</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://leetcode.cn/u/amazing-snyderdc5/" target="_blank" title="LeetCode">
+                      
+                        <i class="fa fa-fw fa-skype"></i>LeetCode</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <!-- modify icon to fire by szw -->
+                <i class="fa fa-history fa-" aria-hidden="true"></i>
+                近期文章
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                
+                  <li class="recent_posts_li">
+                    <a href="/2024/08/12/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%AC%AC%E4%BA%94%E7%AB%A0-%E8%BE%93%E5%85%A5-%E8%BE%93%E5%87%BA-I-O-%E7%AE%A1%E7%90%86/" title="操作系统第五章-输入/输出(I/O)管理" target="_blank">操作系统第五章-输入/输出(I/O)管理</a>
+                  </li>
+                
+                  <li class="recent_posts_li">
+                    <a href="/2024/08/12/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86/" title="操作系统第四章-文件管理" target="_blank">操作系统第四章-文件管理</a>
+                  </li>
+                
+                  <li class="recent_posts_li">
+                    <a href="/2024/08/12/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%AC%AC%E4%B8%89%E7%AB%A0-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/" title="操作系统第三章-内存管理" target="_blank">操作系统第三章-内存管理</a>
+                  </li>
+                
+                  <li class="recent_posts_li">
+                    <a href="/2024/08/12/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B/" title="操作系统第二章-进程与线程" target="_blank">操作系统第二章-进程与线程</a>
+                  </li>
+                
+                  <li class="recent_posts_li">
+                    <a href="/2024/08/12/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%AC%AC%E4%B8%80%E7%AB%A0-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0/" title="操作系统第一章-计算机系统概述" target="_blank">操作系统第一章-计算机系统概述</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://space.bilibili.com/562700874?spm_id_from=333.1365.0.0" title="风翼飞镰" target="_blank">风翼飞镰</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://space.bilibili.com/383551518/?spm_id_from=333.999.0.0" title="水论文的程序猿" target="_blank">水论文的程序猿</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%AC%AC%E4%B8%80%E7%AB%A0-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0"><span class="nav-text">操作系统第一章 计算机系统概述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5%EF%BC%88%E2%9C%A0%EF%BC%89"><span class="nav-text">一.操作系统的基本概念（✠）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-text">1.操作系统的基本概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E7%89%B9%E5%BE%81%EF%BC%88%E2%9C%AA%EF%BC%89"><span class="nav-text">2.操作系统的特征（✪）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E7%9B%AE%E6%A0%87%E4%B8%8E%E5%8A%9F%E8%83%BD"><span class="nav-text">3.操作系统的目标与功能</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%8F%91%E5%B1%95%E5%8E%86%E7%A8%8B"><span class="nav-text">二.操作系统的发展历程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E6%89%B9%E5%A4%84%E7%90%86%E9%98%B6%E6%AE%B5%EF%BC%88%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%BC%80%E5%A7%8B%E5%87%BA%E7%8E%B0%EF%BC%9A%E5%A4%9A%E9%81%93%EF%BC%89"><span class="nav-text">1.批处理阶段（操作系统开始出现：多道）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E5%88%86%E6%97%B6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F"><span class="nav-text">2.分时操作系统</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E5%AE%9E%E6%97%B6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F"><span class="nav-text">3.实时操作系统</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E8%BF%90%E8%A1%8C%E7%8E%AF%E5%A2%83%EF%BC%88%E2%9C%AA%EF%BC%89"><span class="nav-text">三.操作系统运行环境（✪）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E8%BF%90%E8%A1%8C%E7%9A%84%E6%9C%BA%E5%88%B6%EF%BC%88%E2%9C%A0%EF%BC%89"><span class="nav-text">1.操作系统运行的机制（✠）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E4%B8%AD%E6%96%AD%E5%92%8C%E5%BC%82%E5%B8%B8%E7%9A%84%E6%A6%82%E5%BF%B5%EF%BC%88%E2%9C%AA%EF%BC%89"><span class="nav-text">2.中断和异常的概念（✪）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8%EF%BC%88%E2%9C%AA%EF%BC%89"><span class="nav-text">3.系统调用（✪）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9B-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%BB%93%E6%9E%84%EF%BC%88%E2%9C%A0%EF%BC%89"><span class="nav-text">四.操作系统结构（✠）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E5%88%86%E5%B1%82%E7%BB%93%E6%9E%84"><span class="nav-text">1.分层结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E6%A8%A1%E5%9D%97%E5%8C%96"><span class="nav-text">2.模块化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E5%AE%8F%E5%86%85%E6%A0%B8%E4%B8%8E%E5%BE%AE%E5%86%85%E6%A0%B8"><span class="nav-text">3.宏内核与微内核</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%94-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%BC%95%E5%AF%BC%EF%BC%88boot-%E2%9C%A0%EF%BC%89"><span class="nav-text">五.操作系统引导（boot ✠）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%AD-%E8%99%9A%E6%8B%9F%E6%9C%BA"><span class="nav-text">六.虚拟机</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2023 &mdash; <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Shamoke</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">172.1k</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: true,
+        appId: 'wsUYJtlLslOYlG6pA3pS9i30-gzGzoHsz',
+        appKey: 'd1H2YDHxgJkfTsFw0UhNNMFJ',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+    <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+ 
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+ 
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+ 
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+ 
+  <script>
+    $('.highlight').each(function (i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap')
+      $(e).after($wrap)
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function (e) {
+        var code = $(this).parent().find('.code').find('.line').map(function (i, e) {
+          return $(e).text()
+        }).toArray().join('\n')
+        var ta = document.createElement('textarea')
+        document.body.appendChild(ta)
+        ta.style.position = 'absolute'
+        ta.style.top = '0px'
+        ta.style.left = '0px'
+        ta.value = code
+        ta.select()
+        ta.focus()
+        var result = document.execCommand('copy')
+        document.body.removeChild(ta)
+ 
+        if(result)$(this).text('复制成功')
+        else $(this).text('复制失败')
+ 
+        $(this).blur()
+      })).on('mouseleave', function (e) {
+        var $b = $(this).find('.copy-btn')
+        setTimeout(function () {
+          $b.text('复制')
+        }, 300)
+      }).append(e)
+    })
+  </script>	
+  
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

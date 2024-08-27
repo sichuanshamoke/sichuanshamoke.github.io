@@ -14,6 +14,274 @@
       </tags>
   </entry>
   <entry>
+    <title>MRI超分辨率</title>
+    <url>/2024/08/23/MRI%E8%B6%85%E5%88%86%E8%BE%A8%E7%8E%87/</url>
+    <content><![CDATA[<h1 id="MRI超分辨率"><a href="#MRI超分辨率" class="headerlink" title="MRI超分辨率"></a>MRI超分辨率</h1><blockquote>
+<p>参考文献：<a href="https://kns.cnki.net/kcms2/article/abstract?v=MBTPQIn9ZKHwJKNtmL5eu7ZFUIb7_nCdbjKrKYFXDX6PgaFW9ljQXL28jn2X8Tj-Fz9N66Pw2G-7sZKyd45rdpBDmk8uzaCVlHLs8CrT9djwL1vEujSi471jNVkdUlEig7F0PF8coO7qxlD8DotHOeCi2IyxGNPoEJVYW6xeQwx-YP19kSVBS-Q5b6eyw2jueAmJScamN0AezEUaa59P5Xn_eLIAQ_aMAfpnTy3Ubv6W8vCSIDYLpFbFr3BReGkWAXsly07QS-ieh65-u_RMjowiogGdel8q&amp;uniplatform=NZKPT&amp;language=CHS">单幅3D磁共振图像超分辨率算法研究</a></p>
+</blockquote>
+<span id="more"></span>
+<h2 id="一-研究背景"><a href="#一-研究背景" class="headerlink" title="一.研究背景"></a>一.研究背景</h2><h3 id="1-MRI图像存在的问题"><a href="#1-MRI图像存在的问题" class="headerlink" title="1.MRI图像存在的问题"></a>1.MRI图像存在的问题</h3><ul>
+<li><p>MRI图像的质量受到信噪比（SNR，Signal to Noise Ratio）、分辨率和扫描时间等多方面因素影响</p>
+</li>
+<li><p>层厚的概念</p>
+<ul>
+<li><blockquote>
+<p>层厚的定义：表示成像层面在三维空间中的厚度。在MRI扫描中，由于技术的限制，无法直接获取无限薄的层面，因此层面的选取在实际操作中都是有一定厚度的。</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>层厚对图片质量的影响</p>
+<ul>
+<li>分辨率：层厚直接影响到MRI图像的分辨率。层厚越小，图像的分辨率越高，能够显示更细微的解剖结构。但过小的层厚会导致扫描时间增加，且可能因信号强度不足而影响图像质量。</li>
+<li>信噪比：层厚还影响图像的信噪比。层厚较小时，每个体素内质子数量减少，产生的信号强度降低，可能导致信噪比下降。而适当增加层厚，可以提高信号强度，改善图像质量。</li>
+<li>扫描时间：层厚越大，扫描时间越短</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-优化MRI图像的方法—-超分辨率"><a href="#2-优化MRI图像的方法—-超分辨率" class="headerlink" title="2.优化MRI图像的方法—-超分辨率"></a>2.优化MRI图像的方法—-超分辨率</h3><ul>
+<li>定义：超分辨率（SR，Super-resolution）算法是一种从软件层面提高 MRI 图像分辨率的有效方案。从软件方面提升 MRI 图像分辨率的方式具有良好的可移植性与扩展性。</li>
+<li>MRI 图像超分辨率问题是典型的病态逆问题，其主要目的是从一幅或多幅低分辨率MRI图像中重建出对应的高分辨率 MRI 图像</li>
+</ul>
+<h3 id="3-超分辨率的不同研究类别"><a href="#3-超分辨率的不同研究类别" class="headerlink" title="3.超分辨率的不同研究类别"></a>3.超分辨率的不同研究类别</h3><ul>
+<li><p>静态对象与动态对象</p>
+</li>
+<li><p>单幅低分辨率图像和多幅低分辨率图像</p>
+<ul>
+<li><p>多幅的方法需要将多幅低分辨率的 MRI 图像进行配准与重采样</p>
+</li>
+<li><p>配准概念</p>
+<blockquote>
+<ul>
+<li><p>配准（Image Registration）也被称为图像匹配或图像相关，是图像处理中的一个关键步骤。它旨在将两幅或多幅图像中的相应部分进行空间上的对齐，使它们在同一坐标系下具有相同的空间位置。这个过程要求相邻图像之间有一部分在逻辑上是相同的，即相邻的图像有一部分反映了同一目标区域，这是实现图像配准的基本条件。</p>
+<p>配准通常包括两个主要步骤：空间变换和灰度变换。</p>
+<ul>
+<li><strong>空间变换</strong>：将图像像素的坐标从一个坐标系映射到另一个新的坐标系中，通常使用多项式函数或其他变换模型来描述这种映射关系。对于具有全局性形变的图像配准问题，非线性变换（如将直线映射为曲线）是一个常用的选择。</li>
+<li><strong>灰度变换</strong>：在空间变换完成后，对变换后的图像值进行重新赋值，以确保图像在视觉上保持一致性和连续性。这一步骤与重采样紧密相关。</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+</li>
+<li><p>重采样概念</p>
+<blockquote>
+<ul>
+<li><p>重采样（Resampling）是指根据一类象元（像素）的信息内插出另一类象元信息的过程。在遥感、图像处理及GIS等领域中，重采样常用于从高分辨率图像中提取低分辨率图像，或者对图像进行几何校正、尺寸调整等操作。</p>
+<p>重采样的方法多种多样，常见的包括最邻近法、双线性内插法和三次卷积内插法等。</p>
+<ul>
+<li><strong>最邻近法</strong>：将距离某像元位置最近的像元值作为该像元的新值。这种方法简单高效，但可能会产生半个像元大小的位移，计算不够精确。</li>
+<li><strong>双线性内插法</strong>：通过取采样点到周围4个邻域像元的距离加权来计算其新值。这种方法通常比最邻近法产生的结果更加光滑，但可能会改变原始栅格值，丢失一些局部细微的特征。</li>
+<li><strong>三次卷积内插法</strong>：通过增加参与内插计算的邻近像元的数目来提高重采样的精度。这种方法能够增强图像的细节表现，但计算量较大，且同样会改变原始栅格值。</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>频域与空间域：空间域中处理更优</p>
+</li>
+<li><p>各向同性与各向异性</p>
+<ul>
+<li>各向同性 3D MRI 图像超分辨率方法主要目标是提高 3D MRI 图像所有层面的分辨率，使其整体的分辨率更高。</li>
+<li>各向异性：由于成像技术的限制，图像在不同方向上的分辨率往往是不均等的。这种在不同方向上分辨率存在差异的现象被称为“各向异性”。<ul>
+<li>对于3D MRI图像来说，这种各向异性主要体现在层面选择方向（通常指的是沿着成像序列中切片堆叠的方向，即深度或厚度方向）与层面内方向（即每个切片内部的二维空间，包括宽度和高度方向）的分辨率差异上</li>
+<li>在3D MRI图像中，沿着层面选择方向（深度或厚度）的像素（或体素）尺寸通常比层面内方向的像素尺寸要大，因此在这个方向上的图像细节相对较少，分辨率较低。</li>
+<li>相比之下，层面内的切片包含了更多的细节信息，即高频信息（图像中变化较快的部分，如边缘、纹理等），这些信息的分辨率较高。</li>
+<li>对于各向异性的3D MRI图像，超分辨率方法的主要目标是提高层面选择方向的分辨率，以减小或消除与层面内方向分辨率之间的差异。</li>
+<li>通过这种方法，可以使得3D MRI图像在所有方向上的分辨率更加均匀，从而提高图像的整体质量和可用性。</li>
+</ul>
+</li>
+</ul>
+<h3 id="4-超分辨率的研究算法分类"><a href="#4-超分辨率的研究算法分类" class="headerlink" title="4.超分辨率的研究算法分类"></a>4.超分辨率的研究算法分类</h3><ul>
+<li>基于插值的超分辨率算法<ul>
+<li>方法：预定义一个变换函数，并利用已知的 MRI 图像像素或体素信息来对未知的像素或体素信息进行拟合。</li>
+<li>该类算法虽然简单高效，但也存在着一定的缺陷，如插值后的图像具有比较明显的块效应、振铃效应与锯齿效应。</li>
+</ul>
+</li>
+<li>基于重构的超分辨算法<ul>
+<li>方法：从图像的降质退化模型出发，对高分辨率 MRI 图像退化到低分辨率 MRI 图像的过程进行建模（运动变换、模糊及噪声等），而后求解成像系统的逆过程。这种算法会提取低分辨率图像中的关键信息，并通过先验知识来约束高分辨率图像的的重建过程。</li>
+<li>该类算法在重建系数较小时能达到令人满意的结果，但当重建系数较大时，很难获得合适的人工定义的先验知识与正则参数，因此难以保证超分辨率图像的质量。</li>
+</ul>
+</li>
+<li>基于学习的超分辨率算法（✪）<ul>
+<li>从大量的训练数据中学习高分辨率图像和低分辨率图像之间某种映射关系，并根据学习到的映射关系提高目标低分辨率图像的分辨率</li>
+<li>分类<ul>
+<li>基于浅层学习的超分辨率算法<ul>
+<li>将整个超分辨率过程分为样本库的建立（特征提取）、特征映射（学习与搜索）、高频信息重建三个阶段，且每个阶段独立优化</li>
+</ul>
+</li>
+<li>基于深度学习的超分辨率算法（✪）<ul>
+<li>直线结构    <ul>
+<li>指整个图像超分辨率网络结构是一个不包含任何跳接或分支的线性结构，即模型是由多个卷积层依次堆叠组成。该类结构具有简单、效率高等特点</li>
+<li>使用线性结构的算法具有结构简单、重建速度快等优点，但同时存在收敛速度慢，训练过程中容易产生梯度消失与爆炸的问题</li>
+</ul>
+</li>
+<li>跳接结构<ul>
+<li>是指在线性结构的基础上加入卷积层之间的跨层跳接。跳接结构通过信息跨层传递的方式来缓解梯度消失与爆炸问题，同时为设计更深的网络结构提供可能。</li>
+<li>残差跳接是将不同卷积层的特征进行对应通道的相加，即融合后的特征图保持通道数量不变，但特征图内容发生了变化。</li>
+<li>通道连接跳接则是将不同卷积层的特征以通道方向进行拼接，融合后的特征图不变，但通道数量增加。</li>
+</ul>
+</li>
+<li>递归结构<ul>
+<li>将卷积层的输出继续作为该层卷积的输入，由于多次卷积操作的参数是一样的，该种递归卷积的方式可以有效地减少网络的参数数量。</li>
+</ul>
+</li>
+<li>生成对抗结构<ul>
+<li>采用的是一种博弈论的思想，该类模型由生成器与鉴别器两部分组成。生成器生成高分辨率图像，鉴别器区分真实的高分辨率图像与生成器生成的高分辨率图像。</li>
+</ul>
+</li>
+<li>注意力结构<ul>
+<li>注意力结构则是利用人类视觉中的注意力机制，对网络所提取的特征进行重新校准</li>
+<li>注意力结构可以有效的调整特征通道或特征本身不同区域的权重，专注于模型中对最终结果贡献大的特征或特征区域</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>图示<ul>
+<li><img src="/E:/typora图片\image-20240823154322400.png" alt="image-20240823154322400"></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="二-基础知识（基于CNN的算法）"><a href="#二-基础知识（基于CNN的算法）" class="headerlink" title="二.基础知识（基于CNN的算法）"></a>二.基础知识（基于CNN的算法）</h2><h3 id="1-数据预处理"><a href="#1-数据预处理" class="headerlink" title="1.数据预处理"></a>1.数据预处理</h3><ul>
+<li><p><img src="/E:/typora图片\image-20240823162442108.png" alt="image-20240823162442108"></p>
+</li>
+<li><h4 id="数据归一化"><a href="#数据归一化" class="headerlink" title="数据归一化"></a>数据归一化</h4><ul>
+<li>需将 MRI 图像的体素值归一化到相同的取值范围（如[0，1]），使优化时大部分位置的梯度方向近似于最优搜索方向，从而提高训练效率。否则会导致模型收敛慢。</li>
+</ul>
+</li>
+<li><h4 id="模拟退化"><a href="#模拟退化" class="headerlink" title="模拟退化"></a>模拟退化</h4><ul>
+<li>首先将高分辨率 MRI 图像经过傅里叶变换至 k 空间。<ul>
+<li>k 空间中央部分包含的数据具有高信号振幅和低分辨率，决定 MRI 图像的对比度</li>
+<li>边缘的部分具有低信号振幅和高分辨率，决定 MRI 图像的解剖细节。</li>
+</ul>
+</li>
+<li>k 空间的模拟退化中，本文仅保留中央部分的信息。根据超分辨率重建系数对 k 空间数据的边缘部分进行截断处理，并用零填充的方式对截断的部分进行填充。随后对填充过的 k 空间数据进行傅里叶逆变换，将其转化至图像空间。</li>
+<li>最后，对 MRI 图像进行空间下采样至目标大小，生成最终的低分辨率 MRI 图像</li>
+<li>傅里叶变换：将图像从空间域（spatial domain）转换到频率域（frequency domain）。这种转换使我们能够分析图像的频率成分，即图像中不同模式的强度或频率。</li>
+<li><img src="/E:/typora图片\image-20240823164544490.png" alt="image-20240823164544490"></li>
+</ul>
+</li>
+<li><h4 id="块切分"><a href="#块切分" class="headerlink" title="块切分"></a>块切分</h4><ul>
+<li>在构建训练集时将整幅 3D MRI 图像切割成固定大小的 3D MRI 图像块。本文采用固定步长的滑动窗口方式来对图像进 行切割，保证相邻图像块既有相似重叠区域又有不同区域，从而提升训练数据的 数量与训练数据的丰富度。</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-模型框架"><a href="#2-模型框架" class="headerlink" title="2.模型框架"></a>2.模型框架</h3><ul>
+<li><p><img src="/E:/typora图片\image-20240823165054087.png" alt="image-20240823165054087"></p>
+</li>
+<li><p>预采样模型框架</p>
+<ul>
+<li>该类框架需将低分辨率图像在输入网络前用传统的插值方法（线性插值法或双三次插值法）上采样到目标高分辨率图像的大小，而后再用 CNN 模型重建出高质量的纹理细节， 进一步提高图像的质量。</li>
+</ul>
+</li>
+<li><p>后上采样模型框架</p>
+<ul>
+<li>该类模型框架以原始的低分辨率图像作为输入，将上采样任务放在模型的尾端。该类模型直接从原始低分辨率图像中提取特征并学习数据的原始分布，用可学习的上采样方式（如：反卷积与亚像素卷积）对图像进行上采样与重建。</li>
+</ul>
+</li>
+<li><p>渐进式上采样模型框架</p>
+<ul>
+<li>该框架将大尺度超分辨率重建问题分解为多个小尺度的超分辨率重建问题。该框架利用级联的方式进行对图像进行逐步的上采样，并在此过程中融入多监督机制来缓解学习难度大的问题。</li>
+</ul>
+</li>
+<li>迭代上下采样模型框架<ul>
+<li>该类模型框架通过反复的将低分辨率空间图像上采样至高分辨率空间，再将高分辨率空间图像下采样至低分辨率空间，在此过程中利用投影误差来反复纠正超分辨率结果，达到提升超分辨性能的目的。</li>
+</ul>
+</li>
+</ul>
+<h2 id="三-评价标准"><a href="#三-评价标准" class="headerlink" title="三.评价标准"></a>三.评价标准</h2><ul>
+<li>峰值信噪比（PSNR）<ul>
+<li><script type="math/tex; mode=display">M S E = \frac { 1 } { N } \sum _ { I = 1 } ^ { N } ( I _ { y } ( i ) - \widehat { I } _ { y } ( i ) ) ^ { 2 }</script></li>
+<li><script type="math/tex; mode=display">P S N R = 1 0 \cdot \log _ { 1 0 } ( \frac { L ^ { 2 } } { M S E } )</script></li>
+</ul>
+</li>
+<li><p>结构相似度指数（SSIM）</p>
+<ul>
+<li><img src="/E:/typora图片\image-20240823215038507.png" alt="image-20240823215038507"></li>
+</ul>
+</li>
+<li><p>主观评价</p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>学术总结</category>
+      </categories>
+      <tags>
+        <tag>超分辨率</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>医学图像降噪概况</title>
+    <url>/2024/08/19/%E5%8C%BB%E5%AD%A6%E5%9B%BE%E5%83%8F%E9%99%8D%E5%99%AA%E6%A6%82%E5%86%B5/</url>
+    <content><![CDATA[<h1 id="医学图像降噪概况"><a href="#医学图像降噪概况" class="headerlink" title="医学图像降噪概况"></a>医学图像降噪概况</h1><blockquote>
+<p>医学图像降噪概况-参考论文：<a href="https://www.sciencedirect.com/science/article/pii/S1746809420301920">A review on medical image denoising algorithms</a></p>
+</blockquote>
+<span id="more"></span>
+<h2 id="一-主要的问题"><a href="#一-主要的问题" class="headerlink" title="一.主要的问题"></a>一.主要的问题</h2><ul>
+<li>医学图像将被噪音影响，噪声包括随机噪声，白噪声（在一定频率范围内的功率谱密度均匀分布的噪声），伪影</li>
+<li>伪影（Artifacts）：与患者有关或者与机器有关，指的是原本被扫描或拍摄的物体上并不存在，但在最终生成的图像上却出现的各种形态的影像。</li>
+</ul>
+<h2 id="二-医学图像分类"><a href="#二-医学图像分类" class="headerlink" title="二.医学图像分类"></a>二.医学图像分类</h2><h3 id="1-Ultrasound-US-images（超声图像）"><a href="#1-Ultrasound-US-images（超声图像）" class="headerlink" title="1.Ultrasound (US) images（超声图像）"></a>1.Ultrasound (US) images（超声图像）</h3><ul>
+<li><p>概述：利用超声波在组织内的传播、反射和衍射等现象，通过声波与组织之间的相互作用，获取人体内部结构的图像（对气体及骨性结构成像效果差）</p>
+</li>
+<li><p>斑点噪声（Speckle）</p>
+<blockquote>
+<p>由于超声波在人体组织中的散射效应而产生的随机分布的亮点或暗点。这些斑点噪声的形成主要是由于人体软组织对探头发射出的超声波会形成大量大小不等、方向各异的回波界面，这些回波在局部空间相互叠加或抵消，从而形成回声强度不一的斑点，即超声散斑。</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="2-Magnetic-Resonance-MR-images（核磁共振图像）"><a href="#2-Magnetic-Resonance-MR-images（核磁共振图像）" class="headerlink" title="2.Magnetic Resonance (MR) images（核磁共振图像）"></a>2.Magnetic Resonance (MR) images（核磁共振图像）</h3><ul>
+<li><p>利用原子核在磁场内共振所产生的信号经重建成像而得到的。</p>
+<blockquote>
+<p>当人体置于特定的磁场中，并接受一定频率的射频脉冲激励时，人体组织中的氢原子核会发生磁共振现象。射频脉冲终止后，氢原子核在驰豫过程中会感应出MR信号，这些信号被接收并经过空间编码和图像重建等处理过程，最终生成MR图像。</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="3-Computed-Tomography-CT-计算机断层扫描"><a href="#3-Computed-Tomography-CT-计算机断层扫描" class="headerlink" title="3.Computed Tomography (CT,计算机断层扫描)"></a>3.Computed Tomography (CT,计算机断层扫描)</h3><ul>
+<li>使用X射线束从一些不同的角度观察对象，然后将其横截面图像重建为3D数据</li>
+<li>由X射线量子的统计涨落引起的量子噪声是CT投影（正弦图）中的主要噪声源</li>
+</ul>
+<h3 id="4-Positron-Emission-Tomog-raphy-images-PET-正电子发射断层扫描"><a href="#4-Positron-Emission-Tomog-raphy-images-PET-正电子发射断层扫描" class="headerlink" title="4.Positron Emission Tomog-raphy  images (PET,正电子发射断层扫描)"></a>4.Positron Emission Tomog-raphy  images (PET,正电子发射断层扫描)</h3><ul>
+<li>PET通过检测放射性物质发出的辐射来产生身体的图像。这些物质被注射到体内，通常用放射性原子标记，如衰变时间短的碳11。</li>
+</ul>
+<h2 id="三-医学图像降噪的基本需求"><a href="#三-医学图像降噪的基本需求" class="headerlink" title="三.医学图像降噪的基本需求"></a>三.医学图像降噪的基本需求</h2><ul>
+<li>边缘保护和细节</li>
+<li>保持结构相似性（不出现伪影）</li>
+<li>降低复杂度</li>
+<li>对数据集的数量要求不多</li>
+</ul>
+<h2 id="四-相关技术"><a href="#四-相关技术" class="headerlink" title="四.相关技术"></a>四.相关技术</h2><h3 id="1-超声图像（US）"><a href="#1-超声图像（US）" class="headerlink" title="1.超声图像（US）"></a>1.超声图像（US）</h3><ul>
+<li>斑点噪声（由散射现象引起的）会降低图片的质量</li>
+<li></li>
+</ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
+<li>医学图像去噪问题<ul>
+<li>（i）保留边缘和其他更精细的细节</li>
+<li>（ii）保持结构相似性</li>
+<li>（iii）不出现伪影和</li>
+<li>（iv）低操作复杂度。</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>学术研究概况</category>
+      </categories>
+      <tags>
+        <tag>医学图像降噪</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>操作系统第五章-输入/输出(I/O)管理</title>
     <url>/2024/08/12/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%AC%AC%E4%BA%94%E7%AB%A0-%E8%BE%93%E5%85%A5-%E8%BE%93%E5%87%BA-I-O-%E7%AE%A1%E7%90%86/</url>
     <content><![CDATA[<h2 id="操作系统第五章-输入-输出（I-O）管理"><a href="#操作系统第五章-输入-输出（I-O）管理" class="headerlink" title="操作系统第五章 输入/输出（I/O）管理"></a>操作系统第五章 输入/输出（I/O）管理</h2><blockquote>
@@ -1045,7 +1313,7 @@
 </li>
 <li><p>例题</p>
 <ul>
-<li>例1：此时最大长度直接套公式计算：1KB/4=$2^8$个项，此时最大长度为$2^{8<em>2}$</em>1KB=64MB<ul>
+<li>例1：此时最大长度直接套公式计算：1KB/4=$2^8$个项，此时最大长度为${2^{8<em>2}}$</em>1KB=64MB<ul>
 <li><img src="https://s1.ax1x.com/2023/08/23/pPYaeB9.png" alt="pPYaeB9.png"></li>
 </ul>
 </li>

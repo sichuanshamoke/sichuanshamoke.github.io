@@ -14,9 +14,42 @@
       </tags>
   </entry>
   <entry>
-    <title>MRI超分辨率</title>
-    <url>/2024/08/23/MRI%E8%B6%85%E5%88%86%E8%BE%A8%E7%8E%87/</url>
-    <content><![CDATA[<h1 id="MRI超分辨率"><a href="#MRI超分辨率" class="headerlink" title="MRI超分辨率"></a>MRI超分辨率</h1><blockquote>
+    <title>深度学习第一章-LeNet搭建</title>
+    <url>/2024/08/29/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%AC%AC%E4%B8%80%E7%AB%A0-LeNET%E6%90%AD%E5%BB%BA/</url>
+    <content><![CDATA[<h1 id="深度学习第一章-LeNet搭建"><a href="#深度学习第一章-LeNet搭建" class="headerlink" title="深度学习第一章-LeNet搭建"></a>深度学习第一章-LeNet搭建</h1><blockquote>
+<p>基于PyTorch框架，本模型存放于目录：</p>
+<p>E:\python文件\deep-learning-for-image-processing-master\pytorch_classification\Test1_official_demo</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> torchvision</span><br><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn</span><br><span class="line"><span class="keyword">import</span> torch.nn.functional <span class="keyword">as</span> F</span><br><span class="line"><span class="keyword">import</span> torch.optim <span class="keyword">as</span> optim</span><br><span class="line"><span class="keyword">import</span> torchvision.transforms <span class="keyword">as</span> transforms</span><br><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br></pre></td></tr></table></figure>
+</blockquote>
+<span id="more"></span>
+<h2 id="一-设置运行设备：GPU运行"><a href="#一-设置运行设备：GPU运行" class="headerlink" title="一.设置运行设备：GPU运行"></a>一.设置运行设备：GPU运行</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">device = torch.device(<span class="string">&quot;cuda&quot;</span> <span class="keyword">if</span> torch.cuda.is_available() <span class="keyword">else</span> <span class="string">&quot;cpu&quot;</span>) <span class="comment">#确认运行设备为GPU</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;定义了一个名字为Net的网络模型&#x27;&#x27;&#x27;</span></span><br><span class="line">net = Net().to(device) <span class="comment">#实例化一个网络模型,并将网络模型在GPU上运算</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;定义训练方法&#x27;&#x27;&#x27;</span></span><br><span class="line">data,target=data.to(device),target.to(device) <span class="comment">#将数据集添加到GPU上运算</span></span><br></pre></td></tr></table></figure>
+<h2 id="二-下载数据集-CIFAR10"><a href="#二-下载数据集-CIFAR10" class="headerlink" title="二.下载数据集-CIFAR10"></a>二.下载数据集-CIFAR10</h2><p>It has the classes:’airplane’,’automobile’,’bird’,’cat’,’deer’,dog’,’frog’,’horse’, ship’,’truck’.</p>
+<p>The images in CIFAR-10 are of size 3x32x32</p>
+<h3 id="1-定义预处理函数"><a href="#1-定义预处理函数" class="headerlink" title="1.定义预处理函数"></a>1.定义预处理函数</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">transform = transforms.Compose( <span class="comment">#预处理函数</span></span><br><span class="line">        [transforms.ToTensor(), <span class="comment">#将图片数据转换为张量</span></span><br><span class="line">         transforms.Normalize((<span class="number">0.5</span>, <span class="number">0.5</span>, <span class="number">0.5</span>), (<span class="number">0.5</span>, <span class="number">0.5</span>, <span class="number">0.5</span>))]) <span class="comment">#进行标准化,分别为均值与标准差，			              #output[channel] = (input[channel] - mean[channel]) / std[channel]</span></span><br></pre></td></tr></table></figure>
+<h3 id="2-分别下载训练集，测试集并加载"><a href="#2-分别下载训练集，测试集并加载" class="headerlink" title="2.分别下载训练集，测试集并加载"></a>2.分别下载训练集，测试集并加载</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 50000张训练图片</span></span><br><span class="line"><span class="comment"># 第一次使用时要将download设置为True才会自动去下载数据集</span></span><br><span class="line">train_set = torchvision.datasets.CIFAR10(root=<span class="string">&#x27;./data&#x27;</span>, train=<span class="literal">True</span>,  <span class="comment">#下载训练集集</span></span><br><span class="line">                                         download=<span class="literal">False</span>, transform=transform)</span><br><span class="line">train_loader = torch.utils.data.DataLoader(train_set, batch_size=<span class="number">36</span>,  <span class="comment">#加载训练集</span></span><br><span class="line">                                           shuffle=<span class="literal">True</span>, num_workers=<span class="number">0</span>)</span><br><span class="line"><span class="comment"># 10000张验证图片</span></span><br><span class="line"><span class="comment"># 第一次使用时要将download设置为True才会自动去下载数据集</span></span><br><span class="line">val_set = torchvision.datasets.CIFAR10(root=<span class="string">&#x27;./data&#x27;</span>, train=<span class="literal">False</span>,</span><br><span class="line">                                       download=<span class="literal">False</span>, transform=transform)</span><br><span class="line">val_loader = torch.utils.data.DataLoader(val_set, batch_size=<span class="number">5000</span>,</span><br><span class="line">                                         shuffle=<span class="literal">False</span>, num_workers=<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="3-设置一个数据迭代器"><a href="#3-设置一个数据迭代器" class="headerlink" title="3.设置一个数据迭代器"></a>3.设置一个数据迭代器</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">val_data_iter = <span class="built_in">iter</span>(val_loader) <span class="comment">#将数据转换为迭代器</span></span><br><span class="line">val_image, val_label = <span class="built_in">next</span>(val_data_iter) <span class="comment">#设置迭代器下的输入与输出</span></span><br><span class="line">val_image, val_label = val_image.to(device), val_label.to(device) <span class="comment">#移到GPU</span></span><br></pre></td></tr></table></figure>
+<h2 id="三-定义网络模型"><a href="#三-定义网络模型" class="headerlink" title="三.定义网络模型"></a>三.定义网络模型</h2><ul>
+<li><strong>张量的序列：（batch,channel,height,width）</strong></li>
+</ul>
+<figure class="highlight py"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">LeNet</span>(nn.Module):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>): <span class="comment">#网络模型搭建</span></span><br><span class="line">        <span class="built_in">super</span>(LeNet, <span class="variable language_">self</span>).__init__() <span class="comment">#必要的初识化函数</span></span><br><span class="line">        <span class="variable language_">self</span>.conv1 = nn.Conv2d(<span class="number">3</span>, <span class="number">16</span>, <span class="number">5</span>)</span><br><span class="line">        <span class="variable language_">self</span>.pool1 = nn.MaxPool2d(<span class="number">2</span>, <span class="number">2</span>)</span><br><span class="line">        <span class="variable language_">self</span>.conv2 = nn.Conv2d(<span class="number">16</span>, <span class="number">32</span>, <span class="number">5</span>)</span><br><span class="line">        <span class="variable language_">self</span>.pool2 = nn.MaxPool2d(<span class="number">2</span>, <span class="number">2</span>) </span><br><span class="line">        <span class="variable language_">self</span>.fc1 = nn.Linear(<span class="number">32</span>*<span class="number">5</span>*<span class="number">5</span>, <span class="number">120</span>)</span><br><span class="line">        <span class="variable language_">self</span>.fc2 = nn.Linear(<span class="number">120</span>, <span class="number">84</span>)</span><br><span class="line">        <span class="variable language_">self</span>.fc3 = nn.Linear(<span class="number">84</span>, <span class="number">10</span>)</span><br><span class="line">        </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, x</span>): <span class="comment">#前向传播设置</span></span><br><span class="line">        x = F.relu(<span class="variable language_">self</span>.conv1(x))    <span class="comment"># input(3, 32, 32) output(16, 28, 28)</span></span><br><span class="line">        x = <span class="variable language_">self</span>.pool1(x)            <span class="comment"># output(16, 14, 14)</span></span><br><span class="line">        x = F.relu(<span class="variable language_">self</span>.conv2(x))    <span class="comment"># output(32, 10, 10)</span></span><br><span class="line">        x = <span class="variable language_">self</span>.pool2(x)            <span class="comment"># output(32, 5, 5)</span></span><br><span class="line">        x = x.view(-<span class="number">1</span>, <span class="number">32</span>*<span class="number">5</span>*<span class="number">5</span>)       <span class="comment"># output(32*5*5),此处在进入全连接层时，需要将张量展平</span></span><br><span class="line">        x = F.relu(<span class="variable language_">self</span>.fc1(x))      <span class="comment"># output(120)</span></span><br><span class="line">        x = F.relu(<span class="variable language_">self</span>.fc2(x))      <span class="comment"># output(84)</span></span><br><span class="line">        x = <span class="variable language_">self</span>.fc3(x)              <span class="comment"># output(10)</span></span><br><span class="line">        <span class="keyword">return</span> x</span><br></pre></td></tr></table></figure>
+<h2 id="四-训练网络模型"><a href="#四-训练网络模型" class="headerlink" title="四.训练网络模型"></a>四.训练网络模型</h2><figure class="highlight py"><table><tr><td class="code"><pre><span class="line">net = LeNet().to(device) <span class="comment">#实例化神经网络模型</span></span><br><span class="line">loss_function = nn.CrossEntropyLoss() <span class="comment">#设置损失函数为交叉熵函数</span></span><br><span class="line">optimizer = optim.Adam(net.parameters(), lr=<span class="number">0.001</span>) <span class="comment">#设置参数更新方法</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> epoch <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">5</span>):  <span class="comment"># loop over the dataset multiple times</span></span><br><span class="line">    </span><br><span class="line">    running_loss = <span class="number">0.0</span> <span class="comment">#损失率累加</span></span><br><span class="line">    <span class="keyword">for</span> step, data <span class="keyword">in</span> <span class="built_in">enumerate</span>(train_loader, start=<span class="number">0</span>):</span><br><span class="line">        inputs, labels = data <span class="comment"># get the inputs; data is a list of [inputs, labels]</span></span><br><span class="line">        inputs, labels = inputs.to(device), labels.to(device) <span class="comment">#移到GPU</span></span><br><span class="line"></span><br><span class="line">        optimizer.zero_grad()  <span class="comment">#梯度清零以防止梯度累计</span></span><br><span class="line">        outputs = net(inputs) <span class="comment">#输入数据训练，得到预测值</span></span><br><span class="line">        loss = loss_function(outputs, labels) <span class="comment">#计算损失值</span></span><br><span class="line">        loss.backward()  <span class="comment">#根据损失值进行反向传播，计算梯度</span></span><br><span class="line">        optimizer.step() <span class="comment">#更新参数</span></span><br><span class="line">        running_loss += loss.item() <span class="comment">#进行损失值累加</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> step % <span class="number">500</span> == <span class="number">499</span>:    <span class="comment"># print every 500 mini-batches</span></span><br><span class="line">            <span class="keyword">with</span> torch.no_grad():  <span class="comment">#在测试过程中不要计算损失梯度</span></span><br><span class="line">                outputs = net(val_image)  <span class="comment"># [batch, 10]</span></span><br><span class="line">                predict_y = torch.<span class="built_in">max</span>(outputs, dim=<span class="number">1</span>)[<span class="number">1</span>]</span><br><span class="line">                accuracy = torch.eq(predict_y, val_label).<span class="built_in">sum</span>().item() / val_label.size(<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">                <span class="built_in">print</span>(<span class="string">&#x27;[%d, %5d] train_loss: %.3f  test_accuracy: %.3f&#x27;</span> %</span><br><span class="line">                      (epoch + <span class="number">1</span>, step + <span class="number">1</span>, running_loss / <span class="number">500</span>, accuracy))</span><br><span class="line">                running_loss = <span class="number">0.0</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;Finished Training&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="五-保存训练完成之后的模型权重文件"><a href="#五-保存训练完成之后的模型权重文件" class="headerlink" title="五.保存训练完成之后的模型权重文件"></a>五.保存训练完成之后的模型权重文件</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">save_path = <span class="string">&#x27;./Lenet.pth&#x27;</span></span><br><span class="line">torch.save(net.state_dict(), save_path) </span><br></pre></td></tr></table></figure>
+<h2 id="六-使用任意图片测试分类效果"><a href="#六-使用任意图片测试分类效果" class="headerlink" title="六.使用任意图片测试分类效果"></a>六.使用任意图片测试分类效果</h2><ul>
+<li>此处在文件夹里面添加了一个文件名为“1.jpg”的飞机图片</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">transform = transforms.Compose(</span><br><span class="line">    [transforms.Resize((<span class="number">32</span>, <span class="number">32</span>)), <span class="comment">#将图像分辨率改变</span></span><br><span class="line">     transforms.ToTensor(), <span class="comment">#将图像数据变为张量形式</span></span><br><span class="line">     transforms.Normalize((<span class="number">0.5</span>, <span class="number">0.5</span>, <span class="number">0.5</span>), (<span class="number">0.5</span>, <span class="number">0.5</span>, <span class="number">0.5</span>))]) <span class="comment">#标准化图像</span></span><br><span class="line"></span><br><span class="line">classes = (<span class="string">&#x27;plane&#x27;</span>, <span class="string">&#x27;car&#x27;</span>, <span class="string">&#x27;bird&#x27;</span>, <span class="string">&#x27;cat&#x27;</span>,</span><br><span class="line">           <span class="string">&#x27;deer&#x27;</span>, <span class="string">&#x27;dog&#x27;</span>, <span class="string">&#x27;frog&#x27;</span>, <span class="string">&#x27;horse&#x27;</span>, <span class="string">&#x27;ship&#x27;</span>, <span class="string">&#x27;truck&#x27;</span>)</span><br><span class="line"></span><br><span class="line">net = LeNet()</span><br><span class="line">net.load_state_dict(torch.load(<span class="string">&#x27;Lenet.pth&#x27;</span>)) <span class="comment">#载入权重文件</span></span><br><span class="line"></span><br><span class="line">im = Image.<span class="built_in">open</span>(<span class="string">&#x27;1.jpg&#x27;</span>)</span><br><span class="line">im = transform(im)  <span class="comment"># [C, H, W] #调整图像</span></span><br><span class="line">im = torch.unsqueeze(im, dim=<span class="number">0</span>)  <span class="comment"># [N, C, H, W] #增添一个维度</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> torch.no_grad():</span><br><span class="line">    outputs = net(im)</span><br><span class="line">    predict = torch.<span class="built_in">max</span>(outputs, dim=<span class="number">1</span>)[<span class="number">1</span>].numpy()</span><br><span class="line"><span class="built_in">print</span>(classes[<span class="built_in">int</span>(predict)])</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>硕士阶段学习笔记</category>
+      </categories>
+      <tags>
+        <tag>深度学习基础</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>MRI超分辨率-初见</title>
+    <url>/2024/08/23/MRI%E8%B6%85%E5%88%86%E8%BE%A8%E7%8E%87-%E5%88%9D%E8%A7%81/</url>
+    <content><![CDATA[<h1 id="MRI超分辨率-初见"><a href="#MRI超分辨率-初见" class="headerlink" title="MRI超分辨率-初见"></a>MRI超分辨率-初见</h1><blockquote>
 <p>参考文献：<a href="https://kns.cnki.net/kcms2/article/abstract?v=MBTPQIn9ZKHwJKNtmL5eu7ZFUIb7_nCdbjKrKYFXDX6PgaFW9ljQXL28jn2X8Tj-Fz9N66Pw2G-7sZKyd45rdpBDmk8uzaCVlHLs8CrT9djwL1vEujSi471jNVkdUlEig7F0PF8coO7qxlD8DotHOeCi2IyxGNPoEJVYW6xeQwx-YP19kSVBS-Q5b6eyw2jueAmJScamN0AezEUaa59P5Xn_eLIAQ_aMAfpnTy3Ubv6W8vCSIDYLpFbFr3BReGkWAXsly07QS-ieh65-u_RMjowiogGdel8q&amp;uniplatform=NZKPT&amp;language=CHS">单幅3D磁共振图像超分辨率算法研究</a></p>
 </blockquote>
 <span id="more"></span>
@@ -141,7 +174,7 @@
 </ul>
 </li>
 <li>图示<ul>
-<li><img src="/E:/typora图片\image-20240823154322400.png" alt="image-20240823154322400"></li>
+<li><img src="https://s21.ax1x.com/2024/08/27/pAk4BcT.png" alt="pAk4BcT.png"></li>
 </ul>
 </li>
 </ul>
@@ -152,7 +185,7 @@
 </li>
 </ul>
 <h2 id="二-基础知识（基于CNN的算法）"><a href="#二-基础知识（基于CNN的算法）" class="headerlink" title="二.基础知识（基于CNN的算法）"></a>二.基础知识（基于CNN的算法）</h2><h3 id="1-数据预处理"><a href="#1-数据预处理" class="headerlink" title="1.数据预处理"></a>1.数据预处理</h3><ul>
-<li><p><img src="/E:/typora图片\image-20240823162442108.png" alt="image-20240823162442108"></p>
+<li><p><img src="https://s21.ax1x.com/2024/08/27/pAk4DjU.png" alt="pAk4DjU.png"></p>
 </li>
 <li><h4 id="数据归一化"><a href="#数据归一化" class="headerlink" title="数据归一化"></a>数据归一化</h4><ul>
 <li>需将 MRI 图像的体素值归一化到相同的取值范围（如[0，1]），使优化时大部分位置的梯度方向近似于最优搜索方向，从而提高训练效率。否则会导致模型收敛慢。</li>
@@ -167,7 +200,7 @@
 <li>k 空间的模拟退化中，本文仅保留中央部分的信息。根据超分辨率重建系数对 k 空间数据的边缘部分进行截断处理，并用零填充的方式对截断的部分进行填充。随后对填充过的 k 空间数据进行傅里叶逆变换，将其转化至图像空间。</li>
 <li>最后，对 MRI 图像进行空间下采样至目标大小，生成最终的低分辨率 MRI 图像</li>
 <li>傅里叶变换：将图像从空间域（spatial domain）转换到频率域（frequency domain）。这种转换使我们能够分析图像的频率成分，即图像中不同模式的强度或频率。</li>
-<li><img src="/E:/typora图片\image-20240823164544490.png" alt="image-20240823164544490"></li>
+<li><img src="https://s21.ax1x.com/2024/08/27/pAk4f9x.png" alt="pAk4f9x.png"></li>
 </ul>
 </li>
 <li><h4 id="块切分"><a href="#块切分" class="headerlink" title="块切分"></a>块切分</h4><ul>
@@ -176,7 +209,7 @@
 </li>
 </ul>
 <h3 id="2-模型框架"><a href="#2-模型框架" class="headerlink" title="2.模型框架"></a>2.模型框架</h3><ul>
-<li><p><img src="/E:/typora图片\image-20240823165054087.png" alt="image-20240823165054087"></p>
+<li><p><img src="https://s21.ax1x.com/2024/08/27/pAk4h36.png" alt="pAk4h36.png"></p>
 </li>
 <li><p>预采样模型框架</p>
 <ul>
@@ -206,24 +239,55 @@
 </li>
 <li><p>结构相似度指数（SSIM）</p>
 <ul>
-<li><img src="/E:/typora图片\image-20240823215038507.png" alt="image-20240823215038507"></li>
+<li><img src="https://s21.ax1x.com/2024/08/27/pAk45jO.png" alt="pAk45jO.png"></li>
 </ul>
 </li>
 <li><p>主观评价</p>
 </li>
 </ul>
+<h2 id="四-超分辨率的相关总结"><a href="#四-超分辨率的相关总结" class="headerlink" title="四.超分辨率的相关总结"></a>四.超分辨率的相关总结</h2><h3 id="1-超分辨率算法分类"><a href="#1-超分辨率算法分类" class="headerlink" title="1.超分辨率算法分类"></a>1.超分辨率算法分类</h3><h4 id="①-基于插值的算法"><a href="#①-基于插值的算法" class="headerlink" title="① 基于插值的算法"></a>① 基于插值的算法</h4><h4 id="②-基于重建的算法"><a href="#②-基于重建的算法" class="headerlink" title="② 基于重建的算法"></a>② 基于重建的算法</h4><h4 id="③-基于学习的算法-（常用）"><a href="#③-基于学习的算法-（常用）" class="headerlink" title="③ 基于学习的算法 （常用）"></a>③ 基于学习的算法 （常用）</h4><ul>
+<li>基于深度学习的算法：基于深度学习的ＳＲ重建算法通常是构建一个端对端的网络模型，将ＬＲ图像输入到该特定网络模型中，通过特征映射和尺度放大等方式优化网络的损失函数，进而得到ＨＲ图 像</li>
+</ul>
+<h3 id="2-尺度放大方式"><a href="#2-尺度放大方式" class="headerlink" title="2.尺度放大方式"></a>2.尺度放大方式</h3><h4 id="①-上采样方法"><a href="#①-上采样方法" class="headerlink" title="① 上采样方法"></a>① 上采样方法</h4><h5 id="基于插值的上采样"><a href="#基于插值的上采样" class="headerlink" title="基于插值的上采样"></a>基于插值的上采样</h5><h5 id="基于反卷积的上采样-（常用）"><a href="#基于反卷积的上采样-（常用）" class="headerlink" title="基于反卷积的上采样 （常用）"></a>基于反卷积的上采样 （常用）</h5><h5 id="基于亚像素卷积的上采样"><a href="#基于亚像素卷积的上采样" class="headerlink" title="基于亚像素卷积的上采样"></a>基于亚像素卷积的上采样</h5><h4 id="②-上采样实施方式"><a href="#②-上采样实施方式" class="headerlink" title="② 上采样实施方式"></a>② 上采样实施方式</h4><h5 id="预先上采样"><a href="#预先上采样" class="headerlink" title="预先上采样"></a>预先上采样</h5><h5 id="单次上采样"><a href="#单次上采样" class="headerlink" title="单次上采样"></a>单次上采样</h5><h5 id="渐进上采样"><a href="#渐进上采样" class="headerlink" title="渐进上采样"></a>渐进上采样</h5><h5 id="迭代上采样-（常用）"><a href="#迭代上采样-（常用）" class="headerlink" title="迭代上采样 （常用）"></a>迭代上采样 （常用）</h5><h3 id="3-模型结构组成"><a href="#3-模型结构组成" class="headerlink" title="3.模型结构组成"></a>3.模型结构组成</h3><h4 id="①-基于CNN的模型（一般不使用池化层）"><a href="#①-基于CNN的模型（一般不使用池化层）" class="headerlink" title="① 基于CNN的模型（一般不使用池化层）"></a>① 基于CNN的模型（一般不使用池化层）</h4><h5 id="直线连接模型"><a href="#直线连接模型" class="headerlink" title="直线连接模型"></a>直线连接模型</h5><ul>
+<li>最大问题就是随着网络深度的加深，参数逐渐增加，网络训练的难度越来越大，导致网络难以收敛，</li>
+</ul>
+<h5 id="残差连接模型"><a href="#残差连接模型" class="headerlink" title="残差连接模型"></a>残差连接模型</h5><ul>
+<li>由于原始ＬＲ图像和输出的ＨＲ图像在很大程度上是相似的， 也就是说ＬＲ图像携带的低频信息与ＨＲ图像的低频信息基本一致。残差连接的应用使得原始的稠密矩阵学习转化为稀疏矩阵学习，因而使得计算量大幅度降低</li>
+</ul>
+<h5 id="密集连接模型"><a href="#密集连接模型" class="headerlink" title="密集连接模型"></a>密集连接模型</h5><ul>
+<li>在保证网络中层与层之间最大程度的信息传输的前提下，直接将所有层连接起来，使网络中每一层输入为之前卷积层输出的总和，极大地增强了信息流动的能力，有效抑制了梯度爆炸和消失的问题。</li>
+</ul>
+<h5 id="注意力模型"><a href="#注意力模型" class="headerlink" title="注意力模型"></a>注意力模型</h5><ul>
+<li>通过学习不同通道的重要性得到一个权重值，这相当于对信道间特征的相互关系进行建模， 自适应调整每个信道特征，从而在有效强化有用特 征通道的同时抑制无用特征通道，使计算资源得到更充分的利用。</li>
+</ul>
+<h4 id="②-基于CNN-RNN的模型"><a href="#②-基于CNN-RNN的模型" class="headerlink" title="② 基于CNN-RNN的模型"></a>② 基于CNN-RNN的模型</h4><ul>
+<li>递归神经网络就是充分利用参数共享机制，使其在不增加参数的情况下加深网络的深度，降低网络的复杂度，加快训练速度</li>
+</ul>
+<h4 id="③-基于GAN的模型"><a href="#③-基于GAN的模型" class="headerlink" title="③ 基于GAN的模型"></a>③ 基于GAN的模型</h4><ul>
+<li><img src="https://s21.ax1x.com/2024/08/27/pAk7O6x.png" alt="pAk7O6x.png"></li>
+</ul>
+<h3 id="4-损失函数分类"><a href="#4-损失函数分类" class="headerlink" title="4.损失函数分类"></a>4.损失函数分类</h3><h4 id="①基于像素的损失函数"><a href="#①基于像素的损失函数" class="headerlink" title="①基于像素的损失函数"></a>①基于像素的损失函数</h4><ul>
+<li>均方误差（MSE）</li>
+<li>平均绝对值误差（MAE）</li>
+<li>本质上都是反映对应像素之间的误差关系，忽略了像素与邻域像素间存在的内在联系，因 而重建图像质量存在边缘模糊和振铃现象。</li>
+</ul>
+<h4 id="②基于感知的损失函数"><a href="#②基于感知的损失函数" class="headerlink" title="②基于感知的损失函数"></a>②基于感知的损失函数</h4><ul>
+<li>内容损失函数</li>
+<li>对抗损失函数</li>
+<li>上下文损失函数</li>
+</ul>
 ]]></content>
       <categories>
-        <category>学术总结</category>
+        <category>学术论文总结</category>
       </categories>
       <tags>
-        <tag>超分辨率</tag>
+        <tag>MRI超分辨率</tag>
       </tags>
   </entry>
   <entry>
-    <title>医学图像降噪概况</title>
-    <url>/2024/08/19/%E5%8C%BB%E5%AD%A6%E5%9B%BE%E5%83%8F%E9%99%8D%E5%99%AA%E6%A6%82%E5%86%B5/</url>
-    <content><![CDATA[<h1 id="医学图像降噪概况"><a href="#医学图像降噪概况" class="headerlink" title="医学图像降噪概况"></a>医学图像降噪概况</h1><blockquote>
+    <title>医学图像降噪-初见</title>
+    <url>/2024/08/19/%E5%8C%BB%E5%AD%A6%E5%9B%BE%E5%83%8F%E9%99%8D%E5%99%AA-%E5%88%9D%E8%A7%81/</url>
+    <content><![CDATA[<h1 id="医学图像降噪-初见（未完待续）"><a href="#医学图像降噪-初见（未完待续）" class="headerlink" title="医学图像降噪-初见（未完待续）"></a>医学图像降噪-初见（未完待续）</h1><blockquote>
 <p>医学图像降噪概况-参考论文：<a href="https://www.sciencedirect.com/science/article/pii/S1746809420301920">A review on medical image denoising algorithms</a></p>
 </blockquote>
 <span id="more"></span>
@@ -262,7 +326,7 @@
 </ul>
 <h2 id="四-相关技术"><a href="#四-相关技术" class="headerlink" title="四.相关技术"></a>四.相关技术</h2><h3 id="1-超声图像（US）"><a href="#1-超声图像（US）" class="headerlink" title="1.超声图像（US）"></a>1.超声图像（US）</h3><ul>
 <li>斑点噪声（由散射现象引起的）会降低图片的质量</li>
-<li></li>
+<li>待续</li>
 </ul>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
 <li>医学图像去噪问题<ul>
@@ -275,7 +339,7 @@
 </ul>
 ]]></content>
       <categories>
-        <category>学术研究概况</category>
+        <category>学术论文总结</category>
       </categories>
       <tags>
         <tag>医学图像降噪</tag>

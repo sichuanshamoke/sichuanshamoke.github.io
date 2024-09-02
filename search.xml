@@ -14,6 +14,28 @@
       </tags>
   </entry>
   <entry>
+    <title>深度学习基础第三章-VGG网络</title>
+    <url>/2024/09/02/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%AC%AC%E4%B8%89%E7%AB%A0-VGG%E7%BD%91%E7%BB%9C/</url>
+    <content><![CDATA[<h1 id="深度学习基础第三章-VGG网络"><a href="#深度学习基础第三章-VGG网络" class="headerlink" title="深度学习基础第三章-VGG网络"></a>深度学习基础第三章-VGG网络</h1><blockquote>
+<p>本模型存放于目录：</p>
+<p>E:\python文件\deep-learning-for-image-processing-master\pytorch_classification\Test3_vggnet</p>
+</blockquote>
+<span id="more"></span>
+<h1 id="一-模型介绍"><a href="#一-模型介绍" class="headerlink" title="一.模型介绍"></a>一.模型介绍</h1><p>特点：</p>
+<ul>
+<li>通过堆叠多个3x3的卷积核来替代大尺度卷积核（减少所需参数）</li>
+<li>论文中提到，可以通过堆叠两个3x3的卷积核替代5x5的卷积核，堆叠三个3x3的卷积核替代7x7的卷积核 （拥有相同的感受野）</li>
+</ul>
+<p><img src="https://s21.ax1x.com/2024/09/02/pAVk8Ag.jpg" alt="pAVk8Ag.jpg"></p>
+]]></content>
+      <categories>
+        <category>硕士阶段学习笔记</category>
+      </categories>
+      <tags>
+        <tag>深度学习基础</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>深度学习第二章-AlexNet</title>
     <url>/2024/08/30/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%AC%AC%E4%BA%8C%E7%AB%A0-AlexNet/</url>
     <content><![CDATA[<h1 id="深度学习第二章-AlexNet搭建"><a href="#深度学习第二章-AlexNet搭建" class="headerlink" title="深度学习第二章-AlexNet搭建"></a>深度学习第二章-AlexNet搭建</h1><blockquote>

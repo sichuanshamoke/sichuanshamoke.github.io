@@ -123,7 +123,17 @@
 <li><script type="math/tex; mode=display">L _ { r e c - l2 } ( I ^ { S R } , I ) = \frac { 1 } { h w c } \sum _ { i , j , k } ( I _ { i , j , k } ^ { s R } - I _ { i , j , k } ) ^ { 2 } 。</script></li>
 <li>h，w和c分别表示图像的长、宽和通道数；ISR表示生成的HR图像；I表示真实图像。</li>
 </ul>
-<h3 id="2-感知损失"><a href="#2-感知损失" class="headerlink" title="2.感知损失"></a>2.感知损失</h3>]]></content>
+<h3 id="2-感知损失"><a href="#2-感知损失" class="headerlink" title="2.感知损失"></a>2.感知损失</h3><ul>
+<li><script type="math/tex; mode=display">L _ { p e r } = | | \varphi _ { i } ( I ^ { S R } ) - \varphi _ { i } ( I ) | | _ { 2 } 。</script></li>
+</ul>
+<h3 id="3-对抗损失"><a href="#3-对抗损失" class="headerlink" title="3.对抗损失"></a>3.对抗损失</h3><ul>
+<li><script type="math/tex; mode=display">L _ { g a n - c e - g } = - \lg D ( I ^ { S R } ) ,</script></li>
+</ul>
+<h3 id="4-纹理损失"><a href="#4-纹理损失" class="headerlink" title="4.纹理损失"></a>4.纹理损失</h3><ul>
+<li>$ L _ { t e x } = \sum _ { l } \lambda _ { l } | | G _ { r } ( \varphi _ { l } ( I ^ { S R } ) \odot S _ { l } ^ { <em> } ) - G _ { r } ( \varphi _ { l } ( I ^ { R e f } ) \odot S _ { l } ^ { </em> } ) | _ { F } 。$</li>
+</ul>
+<h2 id="四-总结"><a href="#四-总结" class="headerlink" title="四.总结"></a>四.总结</h2><p><img src="https://s21.ax1x.com/2024/09/09/pAmn5DJ.png" alt="pAmn5DJ.png"></p>
+]]></content>
       <categories>
         <category>学术论文总结</category>
       </categories>

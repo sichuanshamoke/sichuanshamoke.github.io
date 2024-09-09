@@ -130,9 +130,11 @@
 <li><script type="math/tex; mode=display">L _ { g a n - c e - g } = - \lg D ( I ^ { S R } ) ,</script></li>
 </ul>
 <h3 id="4-纹理损失"><a href="#4-纹理损失" class="headerlink" title="4.纹理损失"></a>4.纹理损失</h3><ul>
-<li>$ L _ { t e x } = \sum _ { l } \lambda _ { l } | | G _ { r } ( \varphi _ { l } ( I ^ { S R } ) \odot S _ { l } ^ { <em> } ) - G _ { r } ( \varphi _ { l } ( I ^ { R e f } ) \odot S _ { l } ^ { </em> } ) | _ { F } 。$</li>
+<li><script type="math/tex; mode=display">L _ { t e x } = \sum _ { l } \lambda _ { l } | | G _ { r } ( \varphi _ { l } ( I ^ { S R } ) \odot S _ { l } ^ { * } ) - G _ { r } ( \varphi _ { l } ( I ^ { R e f } ) \odot S _ { l } ^ { * } ) | _ { F } 。</script></li>
 </ul>
-<h2 id="四-总结"><a href="#四-总结" class="headerlink" title="四.总结"></a>四.总结</h2><p><img src="https://s21.ax1x.com/2024/09/09/pAmn5DJ.png" alt="pAmn5DJ.png"></p>
+<h2 id="四-总结"><a href="#四-总结" class="headerlink" title="四.总结"></a>四.总结</h2><ul>
+<li><img src="https://s21.ax1x.com/2024/09/09/pAmn5DJ.png" alt="pAmn5DJ.png"></li>
+</ul>
 ]]></content>
       <categories>
         <category>学术论文总结</category>

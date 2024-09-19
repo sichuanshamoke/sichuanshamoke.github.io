@@ -1,0 +1,1474 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="超分辨率," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="懷仁堂" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="超分辨率第三章-SRGAN SRGNN是2017年提出的模型，首次使用GAN在超分辨领域。 参考文献：Photo-Realistic Single Image Super-Resolution Using a Generative Adversarial Network 参考博客：基于pytorch的SRGAN实现(全网最细!!!)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="超分辨率第三章-SRGAN">
+<meta property="og:url" content="http://example.com/2024/09/17/%E8%B6%85%E5%88%86%E8%BE%A8%E7%8E%87%E7%AC%AC%E4%B8%89%E7%AB%A0-SRGAN/index.html">
+<meta property="og:site_name" content="懷仁堂">
+<meta property="og:description" content="超分辨率第三章-SRGAN SRGNN是2017年提出的模型，首次使用GAN在超分辨领域。 参考文献：Photo-Realistic Single Image Super-Resolution Using a Generative Adversarial Network 参考博客：基于pytorch的SRGAN实现(全网最细!!!)">
+<meta property="og:locale">
+<meta property="og:image" content="https://s21.ax1x.com/2024/09/19/pAKsjR1.png">
+<meta property="article:published_time" content="2024-09-17T07:33:29.000Z">
+<meta property="article:modified_time" content="2024-09-19T13:56:30.064Z">
+<meta property="article:author" content="Shamoke">
+<meta property="article:tag" content="超分辨率">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s21.ax1x.com/2024/09/19/pAKsjR1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":true,"scrollpercent":true,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://example.com/2024/09/17/超分辨率第三章-SRGAN/"/>
+
+
+
+
+
+  <title>超分辨率第三章-SRGAN | 懷仁堂</title>
+  
+
+
+
+
+
+
+
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+  
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <a target="_blank" rel="noopener" href="https://github.com/sichuanshamoke" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">懷仁堂</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Studying and Recording</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-schedule">
+          <a href="/schedule/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />
+            
+            日程表
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/09/17/%E8%B6%85%E5%88%86%E8%BE%A8%E7%8E%87%E7%AC%AC%E4%B8%89%E7%AB%A0-SRGAN/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="沙漠客">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="懷仁堂">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">超分辨率第三章-SRGAN</h1>
+        
+
+        <div class="post-meta">
+          
+          
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2024-09-17T15:33:29+08:00">
+                2024-09-17
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2024-09-19T21:56:30+08:00">
+                2024-09-19
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%A1%95%E5%A3%AB%E9%98%B6%E6%AE%B5%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%85%A5%E9%97%A8%E9%98%B6%E6%AE%B5/" itemprop="url" rel="index">
+                    <span itemprop="name">硕士阶段学习笔记(入门阶段)</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%A1%95%E5%A3%AB%E9%98%B6%E6%AE%B5%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%85%A5%E9%97%A8%E9%98%B6%E6%AE%B5/%E6%A8%A1%E5%9E%8B/" itemprop="url" rel="index">
+                    <span itemprop="name">模型</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2024/09/17/%E8%B6%85%E5%88%86%E8%BE%A8%E7%8E%87%E7%AC%AC%E4%B8%89%E7%AB%A0-SRGAN/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2024/09/17/%E8%B6%85%E5%88%86%E8%BE%A8%E7%8E%87%E7%AC%AC%E4%B8%89%E7%AB%A0-SRGAN/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  4.9k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  22
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="超分辨率第三章-SRGAN"><a href="#超分辨率第三章-SRGAN" class="headerlink" title="超分辨率第三章-SRGAN"></a>超分辨率第三章-SRGAN</h1><blockquote>
+<p>SRGNN是2017年提出的模型，首次使用GAN在超分辨领域。</p>
+<p>参考文献：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/1609.04802">Photo-Realistic Single Image Super-Resolution Using a Generative Adversarial Network</a></p>
+<p>参考博客：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_47071847/article/details/130859675">基于pytorch的SRGAN实现(全网最细!!!)</a></p>
+</blockquote>
+<span id="more"></span>
+<h2 id="一-模型介绍"><a href="#一-模型介绍" class="headerlink" title="一.模型介绍"></a>一.模型介绍</h2><ul>
+<li><p>先前超分辨率模型的局限性：虽然具有较高的峰值信噪比，但它们通常缺乏高频细节，并且在感知上不令人满意。</p>
+</li>
+<li><p>SRGAN中的生成网络就是SRResNet网络，其以ResNet块为基本结构，是一个具有深度的SR网络。生成网络使用感知损失进行训练，而不是传统的MSE方法，它使用预训练之后的VGG-16网络产生的feature map级进行计算，再加上本身生成网络带有的对抗损失。此外判别器也需要去训练，两个网络结合起来就是我们的SRGAN网络。</p>
+</li>
+<li><p>SRGNN提出了感知损失函数（Perceptual loss function），包括对抗损失与内容损失，在感知质量方面有了极大改进。MOS（平均意见得分）很高。</p>
+</li>
+</ul>
+<h3 id="1-感知损失函数（Perceptual-loss-function）"><a href="#1-感知损失函数（Perceptual-loss-function）" class="headerlink" title="1.感知损失函数（Perceptual loss function）"></a>1.感知损失函数（Perceptual loss function）</h3><ul>
+<li><script type="math/tex; mode=display">l ^ { S R } = l _ { X } ^ { S R } + 1 0 ^ { - 3 } l _ { G e n } ^ { S R }</script><ul>
+<li>由基于VGG-16的内容损失函数和GAN的对抗损失函数组成</li>
+</ul>
+</li>
+<li>内容损失函数<ul>
+<li><script type="math/tex; mode=display">I _ { X } ^ { S R } = I _ { V G G / ( i , j ) } ^ { S R } = \frac { 1 } { W _ { i , j } H _ { i , j } } \sum _ { x = 1 } ^ { W _ { i , j } } ( \phi _ { i , j } ( G _ { 0 , i } ( I ^ { L R } ) ) _ { x , y } - \phi _ { i , j } ( I ^ { H R } ) _ { x , y } ) ^ { 2 } .</script></li>
+<li>采用预训练好的VGG-16网络的特征向量，使得生成网络的结果<script type="math/tex">G( I ^ { L R })</script>通过VGG某一层之后产生的feature map和原始高分辨率图像<script type="math/tex">I ^ { H R }</script>通过VGG-16网络产生的feature map做loss，作者指出这种loss更能反应图片之间的感知相似度。</li>
+</ul>
+</li>
+<li>对抗损失函数<ul>
+<li><script type="math/tex; mode=display">I _ { G e n } ^ { S R } = \sum _ { n = 1 } ^ { N } - \log D _ { \theta _ { D } } ( G _ { \theta _ { G } } ( I ^ { L R } ) ) .</script></li>
+</ul>
+</li>
+</ul>
+<h3 id="2-论文贡献"><a href="#2-论文贡献" class="headerlink" title="2.论文贡献"></a>2.论文贡献</h3><ul>
+<li>深度RESNet（SRRESNet）针对MSE进行了优化，通过PSNR和结构相似度(SSIM)来测量图像SR的高放大因子</li>
+<li>SRGAN，是一种基于GAN的网络，针对一种新的感知损失进行了优化。用在VGG网络的特征映射上计算的损失来代替基于MSE的内容损失，该特征映射对像素空间的变化更加不变，这样相较于原来像素损失超分的图像更具有纹理等高频细节.</li>
+<li>对来自三个公共基准数据集的图像进行广泛的平均意见得分(MOS)测试，证实SRGAN在很大程度上是高放大因子(4×)的照片真实感SR图像估计的最新技术, 即超分后的图像更加接近自然图像.</li>
+</ul>
+<h3 id="3-模型结构"><a href="#3-模型结构" class="headerlink" title="3.模型结构"></a>3.模型结构</h3><p><img src="https://s21.ax1x.com/2024/09/19/pAKsjR1.png" alt="pAKsjR1.png"></p>
+<h2 id="二-数据集"><a href="#二-数据集" class="headerlink" title="二.数据集"></a>二.数据集</h2><ul>
+<li>训练集使用：VOC2012（训练数据集包含16700张图片，验证数据集包含425张图片）</li>
+<li>测试集使用：Set5 Set14 BSD100 Urban100 SunHays80</li>
+</ul>
+<h2 id="三-模型搭建"><a href="#三-模型搭建" class="headerlink" title="三.模型搭建"></a>三.模型搭建</h2><h3 id="1-生成器结构"><a href="#1-生成器结构" class="headerlink" title="1.生成器结构"></a>1.生成器结构</h3><ul>
+<li>输入一张低分辨率图片，生成高分辨率图片</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Generator</span>(nn.Module):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, scale_factor</span>):</span><br><span class="line">        upsample_block_num = <span class="built_in">int</span>(math.log(scale_factor, <span class="number">2</span>)) <span class="comment">#计算上采样块的数量，输入放大因子为4，则有两个上采样块	</span></span><br><span class="line"></span><br><span class="line">        <span class="built_in">super</span>(Generator, <span class="variable language_">self</span>).__init__()</span><br><span class="line">        <span class="variable language_">self</span>.block1 = nn.Sequential( <span class="comment">#首先放大维度，特征提取</span></span><br><span class="line">            nn.Conv2d(<span class="number">3</span>, <span class="number">64</span>, kernel_size=<span class="number">9</span>, padding=<span class="number">4</span>),</span><br><span class="line">            nn.PReLU()</span><br><span class="line">        )</span><br><span class="line">        <span class="variable language_">self</span>.block2 = ResidualBlock(<span class="number">64</span>) <span class="comment">#5个残差网络块，特征提取</span></span><br><span class="line">        <span class="variable language_">self</span>.block3 = ResidualBlock(<span class="number">64</span>)</span><br><span class="line">        <span class="variable language_">self</span>.block4 = ResidualBlock(<span class="number">64</span>)</span><br><span class="line">        <span class="variable language_">self</span>.block5 = ResidualBlock(<span class="number">64</span>)</span><br><span class="line">        <span class="variable language_">self</span>.block6 = ResidualBlock(<span class="number">64</span>)</span><br><span class="line">        <span class="variable language_">self</span>.block7 = nn.Sequential(</span><br><span class="line">            nn.Conv2d(<span class="number">64</span>, <span class="number">64</span>, kernel_size=<span class="number">3</span>, padding=<span class="number">1</span>),</span><br><span class="line">            nn.BatchNorm2d(<span class="number">64</span>)</span><br><span class="line">        )</span><br><span class="line">        block8 = [UpsampleBLock(<span class="number">64</span>, <span class="number">2</span>) <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(upsample_block_num)] <span class="comment">#定义了一个列表，进行上采样两次提高分辨率，每次提高2倍，共提升4倍</span></span><br><span class="line">        block8.append(nn.Conv2d(<span class="number">64</span>, <span class="number">3</span>, kernel_size=<span class="number">9</span>, padding=<span class="number">4</span>))<span class="comment">#向该列表添加一个卷积层</span></span><br><span class="line">        <span class="variable language_">self</span>.block8 = nn.Sequential(*block8)<span class="comment">#将这些层组合成一个顺序模型</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, x</span>):</span><br><span class="line">        block1 = <span class="variable language_">self</span>.block1(x)</span><br><span class="line">        block2 = <span class="variable language_">self</span>.block2(block1)</span><br><span class="line">        block3 = <span class="variable language_">self</span>.block3(block2)</span><br><span class="line">        block4 = <span class="variable language_">self</span>.block4(block3)</span><br><span class="line">        block5 = <span class="variable language_">self</span>.block5(block4)</span><br><span class="line">        block6 = <span class="variable language_">self</span>.block6(block5)</span><br><span class="line">        block7 = <span class="variable language_">self</span>.block7(block6)</span><br><span class="line">        block8 = <span class="variable language_">self</span>.block8(block1 + block7) <span class="comment">#特征融合相加</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> (torch.tanh(block8) + <span class="number">1</span>) / <span class="number">2</span> <span class="comment">#使用torch.tanh函数将输出值映射到[-1, 1]区间，并通过(torch.tanh(block8) + 1) / 2将其缩放到[0, 1]区间，这是图像数据常见的归一化范围。</span></span><br></pre></td></tr></table></figure>
+<h3 id="2-判别器结构"><a href="#2-判别器结构" class="headerlink" title="2.判别器结构"></a>2.判别器结构</h3><ul>
+<li>输入图片，判断真假</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Discriminator</span>(nn.Module):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">super</span>(Discriminator, <span class="variable language_">self</span>).__init__()</span><br><span class="line">        <span class="variable language_">self</span>.net = nn.Sequential(</span><br><span class="line">            nn.Conv2d(<span class="number">3</span>, <span class="number">64</span>, kernel_size=<span class="number">3</span>, padding=<span class="number">1</span>),</span><br><span class="line">            nn.LeakyReLU(<span class="number">0.2</span>),</span><br><span class="line"></span><br><span class="line">            nn.Conv2d(<span class="number">64</span>, <span class="number">64</span>, kernel_size=<span class="number">3</span>, stride=<span class="number">2</span>, padding=<span class="number">1</span>),</span><br><span class="line">            nn.BatchNorm2d(<span class="number">64</span>),</span><br><span class="line">            nn.LeakyReLU(<span class="number">0.2</span>),</span><br><span class="line"></span><br><span class="line">            nn.Conv2d(<span class="number">64</span>, <span class="number">128</span>, kernel_size=<span class="number">3</span>, padding=<span class="number">1</span>),</span><br><span class="line">            nn.BatchNorm2d(<span class="number">128</span>),</span><br><span class="line">            nn.LeakyReLU(<span class="number">0.2</span>),</span><br><span class="line"></span><br><span class="line">            nn.Conv2d(<span class="number">128</span>, <span class="number">128</span>, kernel_size=<span class="number">3</span>, stride=<span class="number">2</span>, padding=<span class="number">1</span>),</span><br><span class="line">            nn.BatchNorm2d(<span class="number">128</span>),</span><br><span class="line">            nn.LeakyReLU(<span class="number">0.2</span>),</span><br><span class="line"></span><br><span class="line">            nn.Conv2d(<span class="number">128</span>, <span class="number">256</span>, kernel_size=<span class="number">3</span>, padding=<span class="number">1</span>),</span><br><span class="line">            nn.BatchNorm2d(<span class="number">256</span>),</span><br><span class="line">            nn.LeakyReLU(<span class="number">0.2</span>),</span><br><span class="line"></span><br><span class="line">            nn.Conv2d(<span class="number">256</span>, <span class="number">256</span>, kernel_size=<span class="number">3</span>, stride=<span class="number">2</span>, padding=<span class="number">1</span>),</span><br><span class="line">            nn.BatchNorm2d(<span class="number">256</span>),</span><br><span class="line">            nn.LeakyReLU(<span class="number">0.2</span>),</span><br><span class="line"></span><br><span class="line">            nn.Conv2d(<span class="number">256</span>, <span class="number">512</span>, kernel_size=<span class="number">3</span>, padding=<span class="number">1</span>),</span><br><span class="line">            nn.BatchNorm2d(<span class="number">512</span>),</span><br><span class="line">            nn.LeakyReLU(<span class="number">0.2</span>),</span><br><span class="line"></span><br><span class="line">            nn.Conv2d(<span class="number">512</span>, <span class="number">512</span>, kernel_size=<span class="number">3</span>, stride=<span class="number">2</span>, padding=<span class="number">1</span>),</span><br><span class="line">            nn.BatchNorm2d(<span class="number">512</span>),</span><br><span class="line">            nn.LeakyReLU(<span class="number">0.2</span>),</span><br><span class="line"></span><br><span class="line">            nn.AdaptiveAvgPool2d(<span class="number">1</span>), <span class="comment">#一个自适应平均池化层，它该层都会将其空间维度（高度和宽度）压缩到1x1，而保持通道数不变</span></span><br><span class="line">            nn.Conv2d(<span class="number">512</span>, <span class="number">1024</span>, kernel_size=<span class="number">1</span>),</span><br><span class="line">            nn.LeakyReLU(<span class="number">0.2</span>),</span><br><span class="line">            nn.Conv2d(<span class="number">1024</span>, <span class="number">1</span>, kernel_size=<span class="number">1</span>)</span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, x</span>):</span><br><span class="line">        batch_size = x.size(<span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> torch.sigmoid(<span class="variable language_">self</span>.net(x).view(batch_size)) <span class="comment">#显示输入图片为真实的概率，将最终的输出（原本是一个形状为(batch_size, 1, 1, 1)的四维张量）展平成一个一维张量，其长度为批次大小，其元素对应于批次中每个样本的判别结果</span></span><br></pre></td></tr></table></figure>
+<h3 id="3-resnet结构"><a href="#3-resnet结构" class="headerlink" title="3.resnet结构"></a>3.resnet结构</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">ResidualBlock</span>(nn.Module):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, channels</span>):</span><br><span class="line">        <span class="built_in">super</span>(ResidualBlock, <span class="variable language_">self</span>).__init__()</span><br><span class="line">        <span class="variable language_">self</span>.conv1 = nn.Conv2d(channels, channels, kernel_size=<span class="number">3</span>, padding=<span class="number">1</span>)</span><br><span class="line">        <span class="variable language_">self</span>.bn1 = nn.BatchNorm2d(channels)</span><br><span class="line">        <span class="variable language_">self</span>.prelu = nn.PReLU()</span><br><span class="line">        <span class="variable language_">self</span>.conv2 = nn.Conv2d(channels, channels, kernel_size=<span class="number">3</span>, padding=<span class="number">1</span>)</span><br><span class="line">        <span class="variable language_">self</span>.bn2 = nn.BatchNorm2d(channels)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, x</span>):</span><br><span class="line">        residual = <span class="variable language_">self</span>.conv1(x)</span><br><span class="line">        residual = <span class="variable language_">self</span>.bn1(residual)</span><br><span class="line">        residual = <span class="variable language_">self</span>.prelu(residual)</span><br><span class="line">        residual = <span class="variable language_">self</span>.conv2(residual)</span><br><span class="line">        residual = <span class="variable language_">self</span>.bn2(residual)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> x + residual</span><br></pre></td></tr></table></figure>
+<h3 id="4-上采样结构"><a href="#4-上采样结构" class="headerlink" title="4.上采样结构"></a>4.上采样结构</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">UpsampleBLock</span>(nn.Module):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, in_channels, up_scale</span>):</span><br><span class="line">        <span class="built_in">super</span>(UpsampleBLock, <span class="variable language_">self</span>).__init__()</span><br><span class="line">        <span class="variable language_">self</span>.conv = nn.Conv2d(in_channels, in_channels * up_scale ** <span class="number">2</span>, kernel_size=<span class="number">3</span>, padding=<span class="number">1</span>)<span class="comment">#up_scale ** 2是因为之后的像素重排（pixel shuffle）操作会将通道数重排成空间维度，以达到上采样的效果，此时增加维度可以保持整体维度不变。</span></span><br><span class="line">        <span class="variable language_">self</span>.pixel_shuffle = nn.PixelShuffle(up_scale) <span class="comment">#这个层将输入特征图的通道数重新排列成空间维度，以实现上采样（新的通道数将是原始通道数除以up_scale^2，而高度和宽度将会乘以up_scale）</span></span><br><span class="line">        <span class="variable language_">self</span>.prelu = nn.PReLU()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, x</span>):</span><br><span class="line">        x = <span class="variable language_">self</span>.conv(x)</span><br><span class="line">        x = <span class="variable language_">self</span>.pixel_shuffle(x)</span><br><span class="line">        x = <span class="variable language_">self</span>.prelu(x)</span><br><span class="line">        <span class="keyword">return</span> x</span><br></pre></td></tr></table></figure>
+<h2 id="四-损失函数"><a href="#四-损失函数" class="headerlink" title="四.损失函数"></a>四.损失函数</h2><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">from</span> torch <span class="keyword">import</span> nn</span><br><span class="line"><span class="keyword">from</span> torchvision.models.vgg <span class="keyword">import</span> vgg16</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">GeneratorLoss</span>(nn.Module):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">super</span>(GeneratorLoss, <span class="variable language_">self</span>).__init__()</span><br><span class="line">        <span class="comment">#使用预训练的 VGG16 模型来构建特征提取网络</span></span><br><span class="line">        vgg = vgg16(pretrained=<span class="literal">True</span>)</span><br><span class="line">        <span class="comment">#选择 VGG16 模型的前 31 层作为损失网络，并将其设置为评估模式（不进行梯度更新）</span></span><br><span class="line">        loss_network = nn.Sequential(*<span class="built_in">list</span>(vgg.features)[:<span class="number">31</span>]).<span class="built_in">eval</span>()</span><br><span class="line">        <span class="comment">#冻结其参数，不进行梯度更新</span></span><br><span class="line">        <span class="keyword">for</span> param <span class="keyword">in</span> loss_network.parameters():</span><br><span class="line">            param.requires_grad = <span class="literal">False</span></span><br><span class="line">        <span class="comment">#定义VGG16网络</span></span><br><span class="line">        <span class="variable language_">self</span>.loss_network = loss_network</span><br><span class="line">        <span class="comment">#定义均方误差损失函数，计算生成器生成图像与目标图像之间的均方误差损失</span></span><br><span class="line">        <span class="variable language_">self</span>.mse_loss = nn.MSELoss()</span><br><span class="line">        <span class="comment">#定义总变差损失函数，计算生成器生成图像的总变差损失，用于平滑生成的图像</span></span><br><span class="line">        <span class="variable language_">self</span>.tv_loss = TVLoss()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, out_labels, out_images, target_images</span>): <span class="comment">#分别传入判别器判定概率，伪高分辨率图像，真图像</span></span><br><span class="line">        <span class="comment"># Adversarial Loss（对抗损失）：使生成的图像更接近真实图像，目标是最小化生成器对图像的判别结果的平均值与 1(真实值)的差距</span></span><br><span class="line">        adversarial_loss = torch.mean(<span class="number">1</span> - out_labels)</span><br><span class="line">        <span class="comment"># Perception Loss（感知损失）：计算生成图像和目标图像在vgg-16网络中提取的特征之间的均方误差损失</span></span><br><span class="line">        perception_loss = <span class="variable language_">self</span>.mse_loss(<span class="variable language_">self</span>.loss_network(out_images), <span class="variable language_">self</span>.loss_network(target_images))</span><br><span class="line">        <span class="comment"># Image Loss（图像损失）：计算生成图像和目标图像之间的均方误差损失</span></span><br><span class="line">        image_loss = <span class="variable language_">self</span>.mse_loss(out_images, target_images)</span><br><span class="line">        <span class="comment"># TV Loss（总变差损失）：计算生成图像的总变差损失，用于平滑生成的图像</span></span><br><span class="line">        tv_loss = <span class="variable language_">self</span>.tv_loss(out_images)</span><br><span class="line">        <span class="comment"># 返回生成器的总损失，四个损失项加权求和</span></span><br><span class="line">        <span class="keyword">return</span> image_loss + <span class="number">0.001</span> * adversarial_loss + <span class="number">0.006</span> * perception_loss + <span class="number">2e-8</span> * tv_loss</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 总变差损失衡量的是图像中相邻像素之间的差异程度</span></span><br><span class="line"><span class="comment"># 在模型训练过程中，将总变差损失作为损失函数的一部分，可以引导模型在优化过程中考虑图像的空间连续性，从而生成更加符合人类直觉的图像。</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">TVLoss</span>(nn.Module):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, tv_loss_weight=<span class="number">1</span></span>):</span><br><span class="line">        <span class="built_in">super</span>(TVLoss, <span class="variable language_">self</span>).__init__()</span><br><span class="line">        <span class="variable language_">self</span>.tv_loss_weight = tv_loss_weight</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, x</span>):</span><br><span class="line">        batch_size = x.size()[<span class="number">0</span>]</span><br><span class="line">        h_x = x.size()[<span class="number">2</span>]</span><br><span class="line">        w_x = x.size()[<span class="number">3</span>]</span><br><span class="line">        count_h = <span class="variable language_">self</span>.tensor_size(x[:, :, <span class="number">1</span>:, :])</span><br><span class="line">        count_w = <span class="variable language_">self</span>.tensor_size(x[:, :, :, <span class="number">1</span>:])</span><br><span class="line">        <span class="comment"># 计算水平方向上的总变差损失</span></span><br><span class="line">        h_tv = torch.<span class="built_in">pow</span>((x[:, :, <span class="number">1</span>:, :] - x[:, :, :h_x - <span class="number">1</span>, :]), <span class="number">2</span>).<span class="built_in">sum</span>()</span><br><span class="line">        <span class="comment"># 计算垂直方向上的总变差损失</span></span><br><span class="line">        w_tv = torch.<span class="built_in">pow</span>((x[:, :, :, <span class="number">1</span>:] - x[:, :, :, :w_x - <span class="number">1</span>]), <span class="number">2</span>).<span class="built_in">sum</span>()</span><br><span class="line">        <span class="comment"># 返回总变差损失</span></span><br><span class="line">        <span class="keyword">return</span> <span class="variable language_">self</span>.tv_loss_weight * <span class="number">2</span> * (h_tv / count_h + w_tv / count_w) / batch_size</span><br><span class="line"></span><br><span class="line"><span class="meta">    @staticmethod</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">tensor_size</span>(<span class="params">t</span>):</span><br><span class="line">        <span class="comment"># 返回张量的尺寸大小，即通道数乘以高度乘以宽度</span></span><br><span class="line">        <span class="keyword">return</span> t.size()[<span class="number">1</span>] * t.size()[<span class="number">2</span>] * t.size()[<span class="number">3</span>]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    g_loss = GeneratorLoss()</span><br><span class="line">    <span class="built_in">print</span>(g_loss)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="五-模型训练"><a href="#五-模型训练" class="headerlink" title="五.模型训练"></a>五.模型训练</h2><h3 id="1-载入数据集与初始化网络"><a href="#1-载入数据集与初始化网络" class="headerlink" title="1.载入数据集与初始化网络"></a>1.载入数据集与初始化网络</h3><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">opt = parser.parse_args()<span class="comment">#用户可以在命令行中指定一些参数（如裁剪大小、放大因子、训练轮数等），这些参数将被存储在opt对象中</span></span><br><span class="line"></span><br><span class="line">CROP_SIZE = opt.crop_size</span><br><span class="line">UPSCALE_FACTOR = opt.upscale_factor</span><br><span class="line">NUM_EPOCHS = opt.num_epochs</span><br><span class="line"></span><br><span class="line"><span class="comment">#创建训练和验证数据集</span></span><br><span class="line">train_set = TrainDatasetFromFolder(<span class="string">&#x27;data/VOC2012/train&#x27;</span>, crop_size=CROP_SIZE, upscale_factor=UPSCALE_FACTOR)</span><br><span class="line">val_set = ValDatasetFromFolder(<span class="string">&#x27;data/VOC2012/val&#x27;</span>, upscale_factor=UPSCALE_FACTOR)</span><br><span class="line"><span class="comment">#创建数据加载器</span></span><br><span class="line">train_loader = DataLoader(dataset=train_set, num_workers=<span class="number">4</span>, batch_size=<span class="number">64</span>, shuffle=<span class="literal">True</span>)</span><br><span class="line">val_loader = DataLoader(dataset=val_set, num_workers=<span class="number">4</span>, batch_size=<span class="number">1</span>, shuffle=<span class="literal">False</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#初始化生成器（netG）和判别器（netD）网络，并打印生成器和判别器的参数数量</span></span><br><span class="line">netG = Generator(UPSCALE_FACTOR)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;# generator parameters:&#x27;</span>, <span class="built_in">sum</span>(param.numel() <span class="keyword">for</span> param <span class="keyword">in</span> netG.parameters()))</span><br><span class="line">netD = Discriminator()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;# discriminator parameters:&#x27;</span>, <span class="built_in">sum</span>(param.numel() <span class="keyword">for</span> param <span class="keyword">in</span> netD.parameters()))</span><br><span class="line"></span><br><span class="line">generator_criterion = GeneratorLoss()<span class="comment">#定义生成器的内容损失函数，此处会引入VGG16网络进行计算</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> torch.cuda.is_available():</span><br><span class="line">    netG.cuda()</span><br><span class="line">    netD.cuda()</span><br><span class="line">    generator_criterion.cuda()</span><br><span class="line"></span><br><span class="line"><span class="comment">#初始化优化器</span></span><br><span class="line">optimizerG = optim.Adam(netG.parameters())</span><br><span class="line">optimizerD = optim.Adam(netD.parameters())</span><br><span class="line"></span><br><span class="line"><span class="comment">#初始化一个字典results，用于存储训练过程中的各种指标（如判别器和生成器的损失、评分、PSNR、SSIM等）。这些指标将用于评估训练过程中的模型性能。</span></span><br><span class="line">results = &#123;<span class="string">&#x27;d_loss&#x27;</span>: [], <span class="string">&#x27;g_loss&#x27;</span>: [], <span class="string">&#x27;d_score&#x27;</span>: [], <span class="string">&#x27;g_score&#x27;</span>: [], <span class="string">&#x27;psnr&#x27;</span>: [], <span class="string">&#x27;ssim&#x27;</span>: []&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="2-训练阶段"><a href="#2-训练阶段" class="headerlink" title="2.训练阶段"></a>2.训练阶段</h3><ul>
+<li>生成器（Generator）和判别器（Discriminator）交替训练</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> epoch <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, NUM_EPOCHS + <span class="number">1</span>):</span><br><span class="line">    train_bar = tqdm(train_loader)</span><br><span class="line">    running_results = &#123;<span class="string">&#x27;batch_sizes&#x27;</span>: <span class="number">0</span>, <span class="string">&#x27;d_loss&#x27;</span>: <span class="number">0</span>, <span class="string">&#x27;g_loss&#x27;</span>: <span class="number">0</span>, <span class="string">&#x27;d_score&#x27;</span>: <span class="number">0</span>, <span class="string">&#x27;g_score&#x27;</span>: <span class="number">0</span>&#125;</span><br><span class="line"></span><br><span class="line">    netG.train()</span><br><span class="line">    netD.train()</span><br><span class="line">    <span class="keyword">for</span> data, target <span class="keyword">in</span> train_bar:</span><br><span class="line">        g_update_first = <span class="literal">True</span></span><br><span class="line">        batch_size = data.size(<span class="number">0</span>)</span><br><span class="line">        running_results[<span class="string">&#x27;batch_sizes&#x27;</span>] += batch_size</span><br><span class="line"></span><br><span class="line">        <span class="comment">#先训练判别器，输入就是真图片、假图片和它们对应的标签。</span></span><br><span class="line">        <span class="comment"># (1) Update D network: maximize D(x)-1-D(G(z))</span></span><br><span class="line">        real_img = target <span class="comment">#真实图片</span></span><br><span class="line">        <span class="keyword">if</span> torch.cuda.is_available():</span><br><span class="line">            real_img = real_img.<span class="built_in">float</span>().cuda()</span><br><span class="line">        z = data <span class="comment">#低分辨率图片</span></span><br><span class="line">        <span class="keyword">if</span> torch.cuda.is_available():</span><br><span class="line">            z = z.<span class="built_in">float</span>().cuda()</span><br><span class="line"></span><br><span class="line">        fake_img = netG(z) <span class="comment">#通过生成器生成高分辨率伪图片</span></span><br><span class="line">        optimizerD.zero_grad() <span class="comment">#清除判别器的梯度</span></span><br><span class="line">        real_out = netD(real_img).mean() <span class="comment">#通过判别器对真实图像进行前向传播，并计算其输出的平均值</span></span><br><span class="line">        fake_out = netD(fake_img).mean() <span class="comment">#通过判别器对伪图像进行前向传播，并计算其输出的平均值</span></span><br><span class="line">        d_loss = <span class="number">1</span> - real_out + fake_out <span class="comment">#计算判别器的损失</span></span><br><span class="line">        d_loss.backward(retain_graph=<span class="literal">True</span>) <span class="comment">#反向传播，计算判别器的梯度，并保留计算图以进行后续优化步骤</span></span><br><span class="line">        optimizerD.step() <span class="comment">#对判别器网络梯度进行更新</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">#再训练生成器，在训练生成器的时候我们希望生成器可以生成极为真实的假图片。因此我们在训练生成器需要知道判别器认为什么图片是真图片</span></span><br><span class="line">        <span class="comment"># (2) Update G network: minimize 1-D(G(z)) + Perception Loss + Image Loss + TV Loss</span></span><br><span class="line">        optimizerG.zero_grad() <span class="comment">#清除生成器的梯度</span></span><br><span class="line">        fake_img = netG(z) <span class="comment">#通过生成器生成高分辨率伪图片</span></span><br><span class="line">        fake_out = netD(fake_img).mean() <span class="comment">#通过判别器对伪图像进行前向传播，并计算其输出的平均值</span></span><br><span class="line">        g_loss = generator_criterion(fake_out, fake_img, real_img)<span class="comment"># 计算生成器的损失，包括对抗损失、感知损失、图像损失和TV损失</span></span><br><span class="line">        g_loss.backward() <span class="comment">#反向传播，计算生成器的梯度</span></span><br><span class="line">        optimizerG.step() <span class="comment">#对生成器网络梯度进行更新</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># loss for current batch before optimization</span></span><br><span class="line">        <span class="comment">#累加当前批次生成器的损失值乘以批次大小，用于计算平均损失</span></span><br><span class="line">        running_results[<span class="string">&#x27;g_loss&#x27;</span>] += g_loss.item() * batch_size</span><br><span class="line">        <span class="comment">#累加当前批次判别器的损失值乘以批次大小，用于计算平均损失</span></span><br><span class="line">        running_results[<span class="string">&#x27;d_loss&#x27;</span>] += d_loss.item() * batch_size</span><br><span class="line">        <span class="comment">#累加当前批次真实图像在判别器的输出得分乘以批次大小，用于计算平均得分</span></span><br><span class="line">        running_results[<span class="string">&#x27;d_score&#x27;</span>] += real_out.item() * batch_size</span><br><span class="line">        <span class="comment">#累加当前批次伪图像在判别器的输出得分乘以批次大小，用于计算平均得分</span></span><br><span class="line">        running_results[<span class="string">&#x27;g_score&#x27;</span>] += fake_out.item() * batch_size</span><br><span class="line"></span><br><span class="line">        <span class="comment">#更新训练进度条的描述信息</span></span><br><span class="line">        train_bar.set_description(desc=<span class="string">&#x27;[%d/%d] Loss_D: %.4f Loss_G: %.4f D(x): %.4f D(G(z)): %.4f&#x27;</span> % (</span><br><span class="line">            epoch, NUM_EPOCHS, running_results[<span class="string">&#x27;d_loss&#x27;</span>] / running_results[<span class="string">&#x27;batch_sizes&#x27;</span>],</span><br><span class="line">            running_results[<span class="string">&#x27;g_loss&#x27;</span>] / running_results[<span class="string">&#x27;batch_sizes&#x27;</span>],</span><br><span class="line">            running_results[<span class="string">&#x27;d_score&#x27;</span>] / running_results[<span class="string">&#x27;batch_sizes&#x27;</span>],</span><br><span class="line">            running_results[<span class="string">&#x27;g_score&#x27;</span>] / running_results[<span class="string">&#x27;batch_sizes&#x27;</span>]))</span><br></pre></td></tr></table></figure>
+<h3 id="3-验证阶段"><a href="#3-验证阶段" class="headerlink" title="3.验证阶段"></a>3.验证阶段</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">netG.<span class="built_in">eval</span>() <span class="comment">#生成器验证模式</span></span><br><span class="line">out_path = <span class="string">&#x27;training_results/SRF_&#x27;</span> + <span class="built_in">str</span>(UPSCALE_FACTOR) + <span class="string">&#x27;/&#x27;</span> <span class="comment">#创建用于保存训练结果的目录</span></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(out_path):</span><br><span class="line">    os.makedirs(out_path)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> torch.no_grad():</span><br><span class="line">    val_bar = tqdm(val_loader) <span class="comment">#验证集进度条</span></span><br><span class="line">    valing_results = &#123;<span class="string">&#x27;mse&#x27;</span>: <span class="number">0</span>, <span class="string">&#x27;ssims&#x27;</span>: <span class="number">0</span>, <span class="string">&#x27;psnr&#x27;</span>: <span class="number">0</span>, <span class="string">&#x27;ssim&#x27;</span>: <span class="number">0</span>, <span class="string">&#x27;batch_sizes&#x27;</span>: <span class="number">0</span>&#125;</span><br><span class="line">    val_images = []</span><br><span class="line">    <span class="keyword">for</span> val_lr, val_hr_restore, val_hr <span class="keyword">in</span> val_bar: <span class="comment">#遍历验证数据集(低分辨率图 恢复的高分辨率图 高分辨率图）</span></span><br><span class="line">        batch_size = val_lr.size(<span class="number">0</span>)</span><br><span class="line">        valing_results[<span class="string">&#x27;batch_sizes&#x27;</span>] += batch_size</span><br><span class="line">        lr = val_lr</span><br><span class="line">        hr = val_hr</span><br><span class="line">        <span class="keyword">if</span> torch.cuda.is_available():</span><br><span class="line">            lr = lr.<span class="built_in">float</span>().cuda()</span><br><span class="line">            hr = hr.<span class="built_in">float</span>().cuda()</span><br><span class="line">        sr = netG(lr) <span class="comment">#生成超分辨率图像</span></span><br><span class="line"></span><br><span class="line">        batch_mse = ((sr - hr) ** <span class="number">2</span>).data.mean() <span class="comment">#计算批量图像的均方误差，这里应该使用.mean()而不是.data.mean()，后者在PyTorch新版本中已不推荐</span></span><br><span class="line">        valing_results[<span class="string">&#x27;mse&#x27;</span>] += batch_mse * batch_size <span class="comment">#累加均方误差</span></span><br><span class="line">        batch_ssim = pytorch_ssim.ssim(sr, hr).item() <span class="comment">#计算批量图像的结构相似度指数</span></span><br><span class="line">        valing_results[<span class="string">&#x27;ssims&#x27;</span>] += batch_ssim * batch_size <span class="comment">#累加结构相似度指数</span></span><br><span class="line">        <span class="comment">#计算平均峰值信噪比</span></span><br><span class="line">        valing_results[<span class="string">&#x27;psnr&#x27;</span>] = <span class="number">10</span> * log10((hr.<span class="built_in">max</span>()**<span class="number">2</span>) / (valing_results[<span class="string">&#x27;mse&#x27;</span>] / valing_results[<span class="string">&#x27;batch_sizes&#x27;</span>]))</span><br><span class="line">        <span class="comment">#计算平均结构相似度指数</span></span><br><span class="line">        valing_results[<span class="string">&#x27;ssim&#x27;</span>] = valing_results[<span class="string">&#x27;ssims&#x27;</span>] / valing_results[<span class="string">&#x27;batch_sizes&#x27;</span>]</span><br><span class="line">        <span class="comment">#更新训练进度条的描述信息</span></span><br><span class="line">        val_bar.set_description(</span><br><span class="line">            desc=<span class="string">&#x27;[converting LR images to SR images] PSNR: %.4f dB SSIM: %.4f&#x27;</span> % (</span><br><span class="line">                valing_results[<span class="string">&#x27;psnr&#x27;</span>], valing_results[<span class="string">&#x27;ssim&#x27;</span>]))</span><br><span class="line"></span><br><span class="line">        <span class="comment">#将验证图像添加到列表中，用于后续保存</span></span><br><span class="line">        val_images.extend(</span><br><span class="line">            [display_transform()(val_hr_restore.squeeze(<span class="number">0</span>)), display_transform()(hr.data.cpu().squeeze(<span class="number">0</span>)),</span><br><span class="line">             display_transform()(sr.data.cpu().squeeze(<span class="number">0</span>))])</span><br><span class="line">    val_images = torch.stack(val_images)  <span class="comment">#将验证图像列表堆叠为张量</span></span><br><span class="line">    val_images = torch.chunk(val_images, val_images.size(<span class="number">0</span>) // <span class="number">15</span>) <span class="comment">#将堆叠后的张量分割为多个小块，每个小块包含15张图像</span></span><br><span class="line">    val_save_bar = tqdm(val_images, desc=<span class="string">&#x27;[saving training results]&#x27;</span>) <span class="comment">#创建保存图像进度条，并设置描述为“[saving training results]”</span></span><br><span class="line">    index = <span class="number">1</span></span><br><span class="line">    <span class="comment">#遍历图像批次并保存</span></span><br><span class="line">    <span class="keyword">for</span> image <span class="keyword">in</span> val_save_bar:</span><br><span class="line">        image = utils.make_grid(image, nrow=<span class="number">3</span>, padding=<span class="number">5</span>) <span class="comment">#将小块中的图像创建为一个网格，每行显示3张图像，图像之间有5个像素的间隔</span></span><br><span class="line">        utils.save_image(image, out_path + <span class="string">&#x27;epoch_%d_index_%d.png&#x27;</span> % (epoch, index), padding=<span class="number">5</span>)</span><br><span class="line">        index += <span class="number">1</span></span><br></pre></td></tr></table></figure>
+<h4 id="4-保存文件"><a href="#4-保存文件" class="headerlink" title="4.保存文件"></a>4.保存文件</h4><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#将判别器和生成器的参数保存到指定文件</span></span><br><span class="line">torch.save(netG.state_dict(), <span class="string">&#x27;epochs/netG_epoch_%d_%d.pth&#x27;</span> % (UPSCALE_FACTOR, epoch))</span><br><span class="line">torch.save(netD.state_dict(), <span class="string">&#x27;epochs/netD_epoch_%d_%d.pth&#x27;</span> % (UPSCALE_FACTOR, epoch))</span><br><span class="line"><span class="comment"># save loss\scores\psnr\ssim</span></span><br><span class="line">results[<span class="string">&#x27;d_loss&#x27;</span>].append(running_results[<span class="string">&#x27;d_loss&#x27;</span>] / running_results[<span class="string">&#x27;batch_sizes&#x27;</span>])</span><br><span class="line">results[<span class="string">&#x27;g_loss&#x27;</span>].append(running_results[<span class="string">&#x27;g_loss&#x27;</span>] / running_results[<span class="string">&#x27;batch_sizes&#x27;</span>])</span><br><span class="line">results[<span class="string">&#x27;d_score&#x27;</span>].append(running_results[<span class="string">&#x27;d_score&#x27;</span>] / running_results[<span class="string">&#x27;batch_sizes&#x27;</span>])</span><br><span class="line">results[<span class="string">&#x27;g_score&#x27;</span>].append(running_results[<span class="string">&#x27;g_score&#x27;</span>] / running_results[<span class="string">&#x27;batch_sizes&#x27;</span>])</span><br><span class="line">results[<span class="string">&#x27;psnr&#x27;</span>].append(valing_results[<span class="string">&#x27;psnr&#x27;</span>])</span><br><span class="line">results[<span class="string">&#x27;ssim&#x27;</span>].append(valing_results[<span class="string">&#x27;ssim&#x27;</span>])</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> epoch % <span class="number">10</span> == <span class="number">0</span> <span class="keyword">and</span> epoch != <span class="number">0</span>:</span><br><span class="line">    out_path = <span class="string">&#x27;statistics/&#x27;</span></span><br><span class="line">    <span class="comment"># 创建一个DataFrame对象，用于存储训练结果数据</span></span><br><span class="line">    data_frame = pd.DataFrame(</span><br><span class="line">        data=&#123;<span class="string">&#x27;Loss_D&#x27;</span>: results[<span class="string">&#x27;d_loss&#x27;</span>], <span class="string">&#x27;Loss_G&#x27;</span>: results[<span class="string">&#x27;g_loss&#x27;</span>], <span class="string">&#x27;Score_D&#x27;</span>: results[<span class="string">&#x27;d_score&#x27;</span>],</span><br><span class="line">              <span class="string">&#x27;Score_G&#x27;</span>: results[<span class="string">&#x27;g_score&#x27;</span>], <span class="string">&#x27;PSNR&#x27;</span>: results[<span class="string">&#x27;psnr&#x27;</span>], <span class="string">&#x27;SSIM&#x27;</span>: results[<span class="string">&#x27;ssim&#x27;</span>]&#125;,</span><br><span class="line">        index=<span class="built_in">range</span>(<span class="number">1</span>, epoch + <span class="number">1</span>))</span><br><span class="line">    <span class="comment"># 将DataFrame对象保存为CSV文件</span></span><br><span class="line">    data_frame.to_csv(out_path + <span class="string">&#x27;srf_&#x27;</span> + <span class="built_in">str</span>(UPSCALE_FACTOR) + <span class="string">&#x27;_train_results.csv&#x27;</span>, index_label=<span class="string">&#x27;Epoch&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="五-模型测试"><a href="#五-模型测试" class="headerlink" title="五.模型测试"></a>五.模型测试</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> argparse</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">from</span> math <span class="keyword">import</span> log10</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> torchvision.utils <span class="keyword">as</span> utils</span><br><span class="line"><span class="keyword">from</span> torch.autograd <span class="keyword">import</span> Variable</span><br><span class="line"><span class="keyword">from</span> torch.utils.data <span class="keyword">import</span> DataLoader</span><br><span class="line"><span class="keyword">from</span> tqdm <span class="keyword">import</span> tqdm</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> pytorch_ssim</span><br><span class="line"><span class="keyword">from</span> data_utils <span class="keyword">import</span> TestDatasetFromFolder, display_transform</span><br><span class="line"><span class="keyword">from</span> model <span class="keyword">import</span> Generator</span><br><span class="line"></span><br><span class="line">parser = argparse.ArgumentParser(description=<span class="string">&#x27;Test Benchmark Datasets&#x27;</span>)</span><br><span class="line">parser.add_argument(<span class="string">&#x27;--upscale_factor&#x27;</span>, default=<span class="number">4</span>, <span class="built_in">type</span>=<span class="built_in">int</span>, <span class="built_in">help</span>=<span class="string">&#x27;super resolution upscale factor&#x27;</span>)</span><br><span class="line">parser.add_argument(<span class="string">&#x27;--model_name&#x27;</span>, default=<span class="string">&#x27;netG_epoch_4_150.pth&#x27;</span>, <span class="built_in">type</span>=<span class="built_in">str</span>, <span class="built_in">help</span>=<span class="string">&#x27;generator model epoch name&#x27;</span>)</span><br><span class="line">opt = parser.parse_args()</span><br><span class="line"></span><br><span class="line">UPSCALE_FACTOR = opt.upscale_factor</span><br><span class="line">MODEL_NAME = opt.model_name</span><br><span class="line"></span><br><span class="line"><span class="comment"># 保存每个测试数据集的结果</span></span><br><span class="line">results = &#123;<span class="string">&#x27;Set5&#x27;</span>: &#123;<span class="string">&#x27;psnr&#x27;</span>: [], <span class="string">&#x27;ssim&#x27;</span>: []&#125;, <span class="string">&#x27;Set14&#x27;</span>: &#123;<span class="string">&#x27;psnr&#x27;</span>: [], <span class="string">&#x27;ssim&#x27;</span>: []&#125;, <span class="string">&#x27;BSD100&#x27;</span>: &#123;<span class="string">&#x27;psnr&#x27;</span>: [], <span class="string">&#x27;ssim&#x27;</span>: []&#125;,</span><br><span class="line">           <span class="string">&#x27;Urban100&#x27;</span>: &#123;<span class="string">&#x27;psnr&#x27;</span>: [], <span class="string">&#x27;ssim&#x27;</span>: []&#125;, <span class="string">&#x27;SunHays80&#x27;</span>: &#123;<span class="string">&#x27;psnr&#x27;</span>: [], <span class="string">&#x27;ssim&#x27;</span>: []&#125;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建一个 Generator 对象</span></span><br><span class="line">model = Generator(UPSCALE_FACTOR).<span class="built_in">eval</span>()</span><br><span class="line"><span class="keyword">if</span> torch.cuda.is_available():</span><br><span class="line">    model = model.cuda()</span><br><span class="line"><span class="comment"># 加载训练好的模型参数</span></span><br><span class="line">model.load_state_dict(torch.load(<span class="string">&#x27;epochs/&#x27;</span> + MODEL_NAME))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 加载测试数据集</span></span><br><span class="line">test_set = TestDatasetFromFolder(<span class="string">&#x27;data/test&#x27;</span>, upscale_factor=UPSCALE_FACTOR)</span><br><span class="line">test_loader = DataLoader(dataset=test_set, num_workers=<span class="number">4</span>, batch_size=<span class="number">1</span>, shuffle=<span class="literal">False</span>)</span><br><span class="line"><span class="comment"># 创建一个用于 test_loader 的 tqdm 进度条</span></span><br><span class="line">test_bar = tqdm(test_loader, desc=<span class="string">&#x27;[testing benchmark datasets]&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 测试结果输出路径</span></span><br><span class="line">out_path = <span class="string">&#x27;benchmark_results/SRF_&#x27;</span> + <span class="built_in">str</span>(UPSCALE_FACTOR) + <span class="string">&#x27;/&#x27;</span></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(out_path):</span><br><span class="line">    os.makedirs(out_path)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> image_name, lr_image, hr_restore_img, hr_image <span class="keyword">in</span> test_bar:</span><br><span class="line">    <span class="comment"># 由于 image_name 是一个包含单个元素的列表，所以将其取出</span></span><br><span class="line">    image_name = image_name[<span class="number">0</span>]</span><br><span class="line">    <span class="comment"># 将 lr_image 转换为 Variable 对象，并设置 volatile=True</span></span><br><span class="line">    <span class="comment"># volatile=True 表示不会计算梯度，这在推理阶段通常是需要的</span></span><br><span class="line">    lr_image = Variable(lr_image, volatile=<span class="literal">True</span>)</span><br><span class="line">    hr_image = Variable(hr_image, volatile=<span class="literal">True</span>)</span><br><span class="line">    <span class="keyword">if</span> torch.cuda.is_available():</span><br><span class="line">        lr_image = lr_image.cuda()</span><br><span class="line">        hr_image = hr_image.cuda()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 生成超分变率图像</span></span><br><span class="line">    sr_image = model(lr_image)</span><br><span class="line"></span><br><span class="line">    mse = ((hr_image - sr_image) ** <span class="number">2</span>).data.mean()</span><br><span class="line">    <span class="comment"># 计算峰值信噪比（Peak Signal-to-Noise Ratio）</span></span><br><span class="line">    psnr = <span class="number">10</span> * log10(<span class="number">255</span> ** <span class="number">2</span> / mse)</span><br><span class="line">    <span class="comment"># 计算结构相似性指数（Structural Similarity Index）</span></span><br><span class="line">    <span class="comment"># 使用 pytorch_ssim 库中的 ssim 函数计算 SSIM</span></span><br><span class="line">    ssim = pytorch_ssim.ssim(sr_image, hr_image).data[<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 创建一个包含三张图像的张量，分别是原始恢复的高分辨率图像、原始高分辨率图像和生成的超分辨率图像</span></span><br><span class="line">    <span class="comment"># 将每张图像应用 display_transform() 转换，并通过 squeeze(0) 去除批次维度</span></span><br><span class="line">    test_images = torch.stack(</span><br><span class="line">        [display_transform()(hr_restore_img.squeeze(<span class="number">0</span>)), display_transform()(hr_image.data.cpu().squeeze(<span class="number">0</span>)),</span><br><span class="line">         display_transform()(sr_image.data.cpu().squeeze(<span class="number">0</span>))])</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 使用 make_grid 函数将三张图像拼接成一张大图像</span></span><br><span class="line">    <span class="comment"># nrow=3 表示每行显示 3 张图像，padding=5 表示图像之间的间距为 5</span></span><br><span class="line">    image = utils.make_grid(test_images, nrow=<span class="number">3</span>, padding=<span class="number">5</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 使用 save_image 函数将合成的图像保存到指定路径</span></span><br><span class="line">    utils.save_image(image, out_path + image_name.split(<span class="string">&#x27;.&#x27;</span>)[<span class="number">0</span>] + <span class="string">&#x27;_psnr_%.4f_ssim_%.4f.&#x27;</span> % (psnr, ssim) +</span><br><span class="line">                     image_name.split(<span class="string">&#x27;.&#x27;</span>)[-<span class="number">1</span>], padding=<span class="number">5</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 将对应数据集的PSNR和SSIM保存到对应的字典当中</span></span><br><span class="line">    results[image_name.split(<span class="string">&#x27;_&#x27;</span>)[<span class="number">0</span>]][<span class="string">&#x27;psnr&#x27;</span>].append(psnr)</span><br><span class="line">    results[image_name.split(<span class="string">&#x27;_&#x27;</span>)[<span class="number">0</span>]][<span class="string">&#x27;ssim&#x27;</span>].append(ssim)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 最终结果保存路径</span></span><br><span class="line">out_path = <span class="string">&#x27;statistics/&#x27;</span></span><br><span class="line">saved_results = &#123;<span class="string">&#x27;psnr&#x27;</span>: [], <span class="string">&#x27;ssim&#x27;</span>: []&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 遍历 results 字典中的每个值</span></span><br><span class="line"><span class="keyword">for</span> item <span class="keyword">in</span> results.values():</span><br><span class="line">    <span class="comment"># 获取 PSNR 和 SSIM 的列表</span></span><br><span class="line">    psnr = np.array(item[<span class="string">&#x27;psnr&#x27;</span>])</span><br><span class="line">    ssim = np.array(item[<span class="string">&#x27;ssim&#x27;</span>])</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 如果列表为空，将 PSNR 和 SSIM 设置为 &#x27;No data&#x27;</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">len</span>(psnr) == <span class="number">0</span>) <span class="keyword">or</span> (<span class="built_in">len</span>(ssim) == <span class="number">0</span>):</span><br><span class="line">        psnr = <span class="string">&#x27;No data&#x27;</span></span><br><span class="line">        ssim = <span class="string">&#x27;No data&#x27;</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="comment"># 如果列表不为空，计算 PSNR 和 SSIM 的均值</span></span><br><span class="line">        psnr = psnr.mean()</span><br><span class="line">        ssim = ssim.mean()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 将计算得到的 PSNR 和 SSIM 添加到 saved_results 字典的相应列表中</span></span><br><span class="line">    saved_results[<span class="string">&#x27;psnr&#x27;</span>].append(psnr)</span><br><span class="line">    saved_results[<span class="string">&#x27;ssim&#x27;</span>].append(ssim)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建一个 DataFrame 对象，使用 saved_results 字典作为数据，以 results.keys() 作为列标签</span></span><br><span class="line">data_frame = pd.DataFrame(saved_results, results.keys())</span><br><span class="line"><span class="comment"># 将 DataFrame 对象保存为 CSV 文件</span></span><br><span class="line"><span class="comment"># 文件路径由 out_path、&#x27;srf_&#x27;、UPSCALE_FACTOR 值和 &#x27;_test_results.csv&#x27; 组成</span></span><br><span class="line"><span class="comment"># index_label=&#x27;DataSet&#x27; 表示使用 &#x27;DataSet&#x27; 作为索引标签</span></span><br><span class="line">data_frame.to_csv(out_path + <span class="string">&#x27;srf_&#x27;</span> + <span class="built_in">str</span>(UPSCALE_FACTOR) + <span class="string">&#x27;_test_results.csv&#x27;</span>, index_label=<span class="string">&#x27;DataSet&#x27;</span>)</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+
+
+    
+
+    
+
+    
+
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>-------------</div>
+    
+</div>
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E8%B6%85%E5%88%86%E8%BE%A8%E7%8E%87/" rel="tag"><i class="fa fa-tag"></i> 超分辨率</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2024/09/13/%E8%B6%85%E5%88%86%E8%BE%A8%E7%8E%87%E7%AC%AC%E4%BA%8C%E7%AB%A0-FSRCNN/" rel="next" title="超分辨率第二章-FSRCNN">
+                <i class="fa fa-chevron-left"></i> 超分辨率第二章-FSRCNN
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+
+  </div>
+  
+  
+  
+  </article>
+  
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+      
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/header.gif"
+                alt="沙漠客" />
+            
+              <p class="site-author-name" itemprop="name">沙漠客</p>
+              <p class="site-description motion-element" itemprop="description">Action speak louder than words!</p>
+          </div>
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=100 src="//music.163.com/outchain/player?type=2&id=1396311816&auto=1&height=66"></iframe>
+        </iframe>
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/">
+              
+                  <span class="site-state-item-count">32</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/sichuanshamoke" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://blog.csdn.net/m0_51960673?spm=1000.2115.3001.5343" target="_blank" title="CSDN">
+                      
+                        <i class="fa fa-fw fa-fa fa-codiepie"></i>CSDN</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.kaggle.com/sichuanshamoke" target="_blank" title="kaggle">
+                      
+                        <i class="fa fa-fw fa-stack-overflow"></i>kaggle</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://leetcode.cn/u/amazing-snyderdc5/" target="_blank" title="LeetCode">
+                      
+                        <i class="fa fa-fw fa-skype"></i>LeetCode</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <!-- modify icon to fire by szw -->
+                <i class="fa fa-history fa-" aria-hidden="true"></i>
+                近期文章
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                
+                  <li class="recent_posts_li">
+                    <a href="/2024/09/17/%E8%B6%85%E5%88%86%E8%BE%A8%E7%8E%87%E7%AC%AC%E4%B8%89%E7%AB%A0-SRGAN/" title="超分辨率第三章-SRGAN" target="_blank">超分辨率第三章-SRGAN</a>
+                  </li>
+                
+                  <li class="recent_posts_li">
+                    <a href="/2024/09/13/%E8%B6%85%E5%88%86%E8%BE%A8%E7%8E%87%E7%AC%AC%E4%BA%8C%E7%AB%A0-FSRCNN/" title="超分辨率第二章-FSRCNN" target="_blank">超分辨率第二章-FSRCNN</a>
+                  </li>
+                
+                  <li class="recent_posts_li">
+                    <a href="/2024/09/09/%E5%9F%BA%E4%BA%8E%E5%8F%82%E8%80%83%E5%9B%BE%E5%83%8F%E7%9A%84%E8%B6%85%E5%88%86%E8%BE%A8%E7%8E%87-%E7%BB%BC%E8%BF%B0/" title="基于参考图像的超分辨率-综述" target="_blank">基于参考图像的超分辨率-综述</a>
+                  </li>
+                
+                  <li class="recent_posts_li">
+                    <a href="/2024/09/08/%E8%B6%85%E5%88%86%E8%BE%A8%E7%8E%87%E7%AC%AC%E4%B8%80%E7%AB%A0-SRCNN/" title="超分辨率第一章-SRCNN" target="_blank">超分辨率第一章-SRCNN</a>
+                  </li>
+                
+                  <li class="recent_posts_li">
+                    <a href="/2024/09/06/%E8%B6%85%E5%88%86%E8%BE%A8%E7%8E%87-%E7%BB%BC%E8%BF%B0/" title="超分辨率-综述" target="_blank">超分辨率-综述</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://space.bilibili.com/562700874?spm_id_from=333.1365.0.0" title="风翼飞镰" target="_blank">风翼飞镰</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%B6%85%E5%88%86%E8%BE%A8%E7%8E%87%E7%AC%AC%E4%B8%89%E7%AB%A0-SRGAN"><span class="nav-text">超分辨率第三章-SRGAN</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80-%E6%A8%A1%E5%9E%8B%E4%BB%8B%E7%BB%8D"><span class="nav-text">一.模型介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E6%84%9F%E7%9F%A5%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0%EF%BC%88Perceptual-loss-function%EF%BC%89"><span class="nav-text">1.感知损失函数（Perceptual loss function）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E8%AE%BA%E6%96%87%E8%B4%A1%E7%8C%AE"><span class="nav-text">2.论文贡献</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E6%A8%A1%E5%9E%8B%E7%BB%93%E6%9E%84"><span class="nav-text">3.模型结构</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C-%E6%95%B0%E6%8D%AE%E9%9B%86"><span class="nav-text">二.数据集</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89-%E6%A8%A1%E5%9E%8B%E6%90%AD%E5%BB%BA"><span class="nav-text">三.模型搭建</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E7%94%9F%E6%88%90%E5%99%A8%E7%BB%93%E6%9E%84"><span class="nav-text">1.生成器结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%88%A4%E5%88%AB%E5%99%A8%E7%BB%93%E6%9E%84"><span class="nav-text">2.判别器结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-resnet%E7%BB%93%E6%9E%84"><span class="nav-text">3.resnet结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E4%B8%8A%E9%87%87%E6%A0%B7%E7%BB%93%E6%9E%84"><span class="nav-text">4.上采样结构</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B-%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0"><span class="nav-text">四.损失函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94-%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83"><span class="nav-text">五.模型训练</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E8%BD%BD%E5%85%A5%E6%95%B0%E6%8D%AE%E9%9B%86%E4%B8%8E%E5%88%9D%E5%A7%8B%E5%8C%96%E7%BD%91%E7%BB%9C"><span class="nav-text">1.载入数据集与初始化网络</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E8%AE%AD%E7%BB%83%E9%98%B6%E6%AE%B5"><span class="nav-text">2.训练阶段</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E9%AA%8C%E8%AF%81%E9%98%B6%E6%AE%B5"><span class="nav-text">3.验证阶段</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E4%BF%9D%E5%AD%98%E6%96%87%E4%BB%B6"><span class="nav-text">4.保存文件</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94-%E6%A8%A1%E5%9E%8B%E6%B5%8B%E8%AF%95"><span class="nav-text">五.模型测试</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2023 &mdash; <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Shamoke</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">202.5k</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: true,
+        appId: 'wsUYJtlLslOYlG6pA3pS9i30-gzGzoHsz',
+        appKey: 'd1H2YDHxgJkfTsFw0UhNNMFJ',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+    <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+ 
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+ 
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+ 
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+ 
+  <script>
+    $('.highlight').each(function (i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap')
+      $(e).after($wrap)
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function (e) {
+        var code = $(this).parent().find('.code').find('.line').map(function (i, e) {
+          return $(e).text()
+        }).toArray().join('\n')
+        var ta = document.createElement('textarea')
+        document.body.appendChild(ta)
+        ta.style.position = 'absolute'
+        ta.style.top = '0px'
+        ta.style.left = '0px'
+        ta.value = code
+        ta.select()
+        ta.focus()
+        var result = document.execCommand('copy')
+        document.body.removeChild(ta)
+ 
+        if(result)$(this).text('复制成功')
+        else $(this).text('复制失败')
+ 
+        $(this).blur()
+      })).on('mouseleave', function (e) {
+        var $b = $(this).find('.copy-btn')
+        setTimeout(function () {
+          $b.text('复制')
+        }, 300)
+      }).append(e)
+    })
+  </script>	
+  
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

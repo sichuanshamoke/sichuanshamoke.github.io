@@ -1319,67 +1319,6 @@
       </tags>
   </entry>
   <entry>
-    <title>医学图像降噪-初见</title>
-    <url>/2024/08/19/%E5%8C%BB%E5%AD%A6%E5%9B%BE%E5%83%8F%E9%99%8D%E5%99%AA-%E5%88%9D%E8%A7%81/</url>
-    <content><![CDATA[<h1 id="医学图像降噪-初见（未完待续）"><a href="#医学图像降噪-初见（未完待续）" class="headerlink" title="医学图像降噪-初见（未完待续）"></a>医学图像降噪-初见（未完待续）</h1><blockquote>
-<p>医学图像降噪概况-参考论文：<a href="https://www.sciencedirect.com/science/article/pii/S1746809420301920">A review on medical image denoising algorithms</a></p>
-</blockquote>
-<span id="more"></span>
-<h2 id="一-主要的问题"><a href="#一-主要的问题" class="headerlink" title="一.主要的问题"></a>一.主要的问题</h2><ul>
-<li>医学图像将被噪音影响，噪声包括随机噪声，白噪声（在一定频率范围内的功率谱密度均匀分布的噪声），伪影</li>
-<li>伪影（Artifacts）：与患者有关或者与机器有关，指的是原本被扫描或拍摄的物体上并不存在，但在最终生成的图像上却出现的各种形态的影像。</li>
-</ul>
-<h2 id="二-医学图像分类"><a href="#二-医学图像分类" class="headerlink" title="二.医学图像分类"></a>二.医学图像分类</h2><h3 id="1-Ultrasound-US-images（超声图像）"><a href="#1-Ultrasound-US-images（超声图像）" class="headerlink" title="1.Ultrasound (US) images（超声图像）"></a>1.Ultrasound (US) images（超声图像）</h3><ul>
-<li><p>概述：利用超声波在组织内的传播、反射和衍射等现象，通过声波与组织之间的相互作用，获取人体内部结构的图像（对气体及骨性结构成像效果差）</p>
-</li>
-<li><p>斑点噪声（Speckle）</p>
-<blockquote>
-<p>由于超声波在人体组织中的散射效应而产生的随机分布的亮点或暗点。这些斑点噪声的形成主要是由于人体软组织对探头发射出的超声波会形成大量大小不等、方向各异的回波界面，这些回波在局部空间相互叠加或抵消，从而形成回声强度不一的斑点，即超声散斑。</p>
-</blockquote>
-</li>
-</ul>
-<h3 id="2-Magnetic-Resonance-MR-images（核磁共振图像）"><a href="#2-Magnetic-Resonance-MR-images（核磁共振图像）" class="headerlink" title="2.Magnetic Resonance (MR) images（核磁共振图像）"></a>2.Magnetic Resonance (MR) images（核磁共振图像）</h3><ul>
-<li><p>利用原子核在磁场内共振所产生的信号经重建成像而得到的。</p>
-<blockquote>
-<p>当人体置于特定的磁场中，并接受一定频率的射频脉冲激励时，人体组织中的氢原子核会发生磁共振现象。射频脉冲终止后，氢原子核在驰豫过程中会感应出MR信号，这些信号被接收并经过空间编码和图像重建等处理过程，最终生成MR图像。</p>
-</blockquote>
-</li>
-</ul>
-<h3 id="3-Computed-Tomography-CT-计算机断层扫描"><a href="#3-Computed-Tomography-CT-计算机断层扫描" class="headerlink" title="3.Computed Tomography (CT,计算机断层扫描)"></a>3.Computed Tomography (CT,计算机断层扫描)</h3><ul>
-<li>使用X射线束从一些不同的角度观察对象，然后将其横截面图像重建为3D数据</li>
-<li>由X射线量子的统计涨落引起的量子噪声是CT投影（正弦图）中的主要噪声源</li>
-</ul>
-<h3 id="4-Positron-Emission-Tomog-raphy-images-PET-正电子发射断层扫描"><a href="#4-Positron-Emission-Tomog-raphy-images-PET-正电子发射断层扫描" class="headerlink" title="4.Positron Emission Tomog-raphy  images (PET,正电子发射断层扫描)"></a>4.Positron Emission Tomog-raphy  images (PET,正电子发射断层扫描)</h3><ul>
-<li>PET通过检测放射性物质发出的辐射来产生身体的图像。这些物质被注射到体内，通常用放射性原子标记，如衰变时间短的碳11。</li>
-</ul>
-<h2 id="三-医学图像降噪的基本需求"><a href="#三-医学图像降噪的基本需求" class="headerlink" title="三.医学图像降噪的基本需求"></a>三.医学图像降噪的基本需求</h2><ul>
-<li>边缘保护和细节</li>
-<li>保持结构相似性（不出现伪影）</li>
-<li>降低复杂度</li>
-<li>对数据集的数量要求不多</li>
-</ul>
-<h2 id="四-相关技术"><a href="#四-相关技术" class="headerlink" title="四.相关技术"></a>四.相关技术</h2><h3 id="1-超声图像（US）"><a href="#1-超声图像（US）" class="headerlink" title="1.超声图像（US）"></a>1.超声图像（US）</h3><ul>
-<li>斑点噪声（由散射现象引起的）会降低图片的质量</li>
-<li>待续</li>
-</ul>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
-<li>医学图像去噪问题<ul>
-<li>（i）保留边缘和其他更精细的细节</li>
-<li>（ii）保持结构相似性</li>
-<li>（iii）不出现伪影和</li>
-<li>（iv）低操作复杂度。</li>
-</ul>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>学术论文总结</category>
-      </categories>
-      <tags>
-        <tag>医学图像降噪</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>操作系统第五章-输入/输出(I/O)管理</title>
     <url>/2024/08/12/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%AC%AC%E4%BA%94%E7%AB%A0-%E8%BE%93%E5%85%A5-%E8%BE%93%E5%87%BA-I-O-%E7%AE%A1%E7%90%86/</url>
     <content><![CDATA[<h2 id="操作系统第五章-输入-输出（I-O）管理"><a href="#操作系统第五章-输入-输出（I-O）管理" class="headerlink" title="操作系统第五章 输入/输出（I/O）管理"></a>操作系统第五章 输入/输出（I/O）管理</h2><blockquote>

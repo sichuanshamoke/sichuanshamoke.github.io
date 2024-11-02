@@ -88,12 +88,12 @@
 
 
 
-<meta name="description" content="超分辨率第七章-SRFBN SRFBN发表于2019年，引入了反馈网络机制，不会增加额外的参数，并且多次回传相当于加深了网络。 论文地址：Feedback Network for Image Super-Resoluition 参考博客：【CVPR2019】超分辨率文章，SRFBN: Feedback Network for Image Super-Resoluition 代码位置：">
+<meta name="description" content="超分辨率第七章-SRFBN SRFBN发表于2019年，引入了反馈网络机制，不会增加额外的参数，并且多次回传相当于加深了网络。 论文地址：Feedback Network for Image Super-Resoluition MRI论文：A trusted medical image super-resolution method based on feedback adaptive weigh">
 <meta property="og:type" content="article">
 <meta property="og:title" content="超分辨率第七章-SRFBN">
 <meta property="og:url" content="http://example.com/2024/10/20/%E8%B6%85%E5%88%86%E8%BE%A8%E7%8E%87%E7%AC%AC%E4%B8%83%E7%AB%A0-SRFBN/index.html">
 <meta property="og:site_name" content="懷仁堂">
-<meta property="og:description" content="超分辨率第七章-SRFBN SRFBN发表于2019年，引入了反馈网络机制，不会增加额外的参数，并且多次回传相当于加深了网络。 论文地址：Feedback Network for Image Super-Resoluition 参考博客：【CVPR2019】超分辨率文章，SRFBN: Feedback Network for Image Super-Resoluition 代码位置：">
+<meta property="og:description" content="超分辨率第七章-SRFBN SRFBN发表于2019年，引入了反馈网络机制，不会增加额外的参数，并且多次回传相当于加深了网络。 论文地址：Feedback Network for Image Super-Resoluition MRI论文：A trusted medical image super-resolution method based on feedback adaptive weigh">
 <meta property="og:locale">
 <meta property="og:image" content="https://s21.ax1x.com/2024/10/21/pAa20Xt.png">
 <meta property="og:image" content="https://s21.ax1x.com/2024/10/21/pAasUEQ.png">
@@ -103,7 +103,7 @@
 <meta property="og:image" content="https://s21.ax1x.com/2024/10/21/pAaI0PK.png">
 <meta property="og:image" content="https://s21.ax1x.com/2024/10/21/pAa7k8K.png">
 <meta property="article:published_time" content="2024-10-20T14:44:16.000Z">
-<meta property="article:modified_time" content="2024-10-25T06:59:40.967Z">
+<meta property="article:modified_time" content="2024-10-28T08:12:50.407Z">
 <meta property="article:author" content="Shamoke">
 <meta property="article:tag" content="超分辨率">
 <meta name="twitter:card" content="summary">
@@ -377,8 +377,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2024-10-25T14:59:40+08:00">
-                2024-10-25
+              <time title="更新于" itemprop="dateModified" datetime="2024-10-28T16:12:50+08:00">
+                2024-10-28
               </time>
             
           </span>
@@ -448,7 +448,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  3.8k
+                  3.9k
                 </span>
               
 
@@ -488,8 +488,9 @@
         <h1 id="超分辨率第七章-SRFBN"><a href="#超分辨率第七章-SRFBN" class="headerlink" title="超分辨率第七章-SRFBN"></a>超分辨率第七章-SRFBN</h1><blockquote>
 <p>SRFBN发表于2019年，引入了反馈网络机制，不会增加额外的参数，并且多次回传相当于加深了网络。</p>
 <p>论文地址：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/1903.09814">Feedback Network for Image Super-Resoluition</a></p>
+<p>MRI论文：<a target="_blank" rel="noopener" href="https://www.sciencedirect.com/science/article/pii/S0933365719310073">A trusted medical image super-resolution method based on feedback adaptive weighted dense network</a></p>
 <p>参考博客：<a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_37615398/article/details/89199251">【CVPR2019】超分辨率文章，SRFBN: Feedback Network for Image Super-Resoluition</a></p>
-<p>代码位置：</p>
+<p>代码位置：F:\Github下载\SRFBN_CVPR19-master</p>
 </blockquote>
 <span id="more"></span>
 <h2 id="一-模型介绍"><a href="#一-模型介绍" class="headerlink" title="一.模型介绍"></a>一.模型介绍</h2><p><strong>之前基于RNN的模型，如DRCN、DRRN使用前馈方式，先前的层无法从之后的层得到有效信息。</strong></p>
@@ -615,7 +616,8 @@
 <li>$ L _ { 0 } ^ { t } = C _ { 0 } ( \left[ F _ { o u t } ^ { t - 1 } , F _ { i n } ^ { t } \right] ) ,$</li>
 </ul>
 </li>
-<li>之后交替式地进行上采样和下采样，并通过稠密连接进行连接。<ul>
+<li>之后交替式地进行上采样和下采样，并通过稠密连接进行连接。（高尺度连接到高尺度、低尺度连接到低尺度）<ul>
+<li>这样做的目的提取跨尺度的特征，提取图片内部特征的先验信息。</li>
 <li>使用反卷积Deconv(k, m)进行上采样，$ H _ { g } ^ { t } = C _ { g } ^ { t } ( \left[ L _ { 0 } ^ { t } , L _ { 1 } ^ { t } , . . . , L _ { g - 1 } ^ { t } \right] ) ,$</li>
 <li>使用Conv(k, m)进行下采样，$ L _ { g } ^ { t } = C _ { g } ^ { \downarrow } ( \left[ H _ { 1 } ^ { t } , H _ { 2 } ^ { t } , \ldots , H _ { g } ^ { t } \right] ) ,$</li>
 <li>除了第一个组，在上采样层和下采样层之前使用Conv(1, m)，提高计算效率</li>
@@ -686,6 +688,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2024/10/28/%E8%B6%85%E5%88%86%E8%BE%A8%E7%8E%87%E7%AC%AC%E5%85%AB%E7%AB%A0-SR&transformer/" rel="prev" title="超分辨率第八章-SR&transformer">
+                超分辨率第八章-SR&transformer <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -772,7 +778,7 @@
               
                 <a href="/">
               
-                  <span class="site-state-item-count">35</span>
+                  <span class="site-state-item-count">36</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -853,6 +859,10 @@
                 
                 
                   <li class="recent_posts_li">
+                    <a href="/2024/10/28/%E8%B6%85%E5%88%86%E8%BE%A8%E7%8E%87%E7%AC%AC%E5%85%AB%E7%AB%A0-SR&transformer/" title="超分辨率第八章-SR&transformer" target="_blank">超分辨率第八章-SR&transformer</a>
+                  </li>
+                
+                  <li class="recent_posts_li">
                     <a href="/2024/10/20/%E8%B6%85%E5%88%86%E8%BE%A8%E7%8E%87%E7%AC%AC%E4%B8%83%E7%AB%A0-SRFBN/" title="超分辨率第七章-SRFBN" target="_blank">超分辨率第七章-SRFBN</a>
                   </li>
                 
@@ -866,10 +876,6 @@
                 
                   <li class="recent_posts_li">
                     <a href="/2024/09/20/%E8%B6%85%E5%88%86%E8%BE%A8%E7%8E%87%E7%AC%AC%E5%9B%9B%E7%AB%A0-VDSR&EDSR/" title="超分辨率第四章-VDSR&EDSR" target="_blank">超分辨率第四章-VDSR&EDSR</a>
-                  </li>
-                
-                  <li class="recent_posts_li">
-                    <a href="/2024/09/17/%E8%B6%85%E5%88%86%E8%BE%A8%E7%8E%87%E7%AC%AC%E4%B8%89%E7%AB%A0-SRGAN/" title="超分辨率第三章-SRGAN" target="_blank">超分辨率第三章-SRGAN</a>
                   </li>
                 
               </ul>
@@ -953,7 +959,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">211.1k</span>
+    <span title="Site words total count">217.6k</span>
   
 </div>
 

@@ -14,9 +14,26 @@
       </tags>
   </entry>
   <entry>
-    <title>超分辨率第八章-RDN</title>
-    <url>/2024/11/04/%E8%B6%85%E5%88%86%E8%BE%A8%E7%8E%87%E7%AC%AC%E5%85%AB%E7%AB%A0-RDN/</url>
-    <content><![CDATA[<h1 id="超分辨率第八章-RDN"><a href="#超分辨率第八章-RDN" class="headerlink" title="超分辨率第八章-RDN"></a>超分辨率第八章-RDN</h1><blockquote>
+    <title>超分辨率第十章-NormalizingFlow&amp;SR</title>
+    <url>/2024/12/02/%E8%B6%85%E5%88%86%E8%BE%A8%E7%8E%87%E7%AC%AC%E5%8D%81%E7%AB%A0-NormalizingFlow-SR/</url>
+    <content><![CDATA[<h1 id="超分辨率第十章-NormalizingFlow-amp-SR"><a href="#超分辨率第十章-NormalizingFlow-amp-SR" class="headerlink" title="超分辨率第十章-NormalizingFlow&amp;SR"></a>超分辨率第十章-NormalizingFlow&amp;SR</h1><blockquote>
+<p>本文介绍标准化流（Normalizing Flow）以及其对应的超分辨率模型SRflow</p>
+<p>参考文献：</p>
+</blockquote>
+<span id="more"></span>
+]]></content>
+      <categories>
+        <category>硕士阶段学习笔记(入门阶段)</category>
+        <category>模型</category>
+      </categories>
+      <tags>
+        <tag>超分辨率</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>超分辨率第九章-RDN</title>
+    <url>/2024/11/04/%E8%B6%85%E5%88%86%E8%BE%A8%E7%8E%87%E7%AC%AC%E4%B9%9D%E7%AB%A0-RDN/</url>
+    <content><![CDATA[<h1 id="超分辨率第九章-RDN"><a href="#超分辨率第九章-RDN" class="headerlink" title="超分辨率第九章-RDN"></a>超分辨率第九章-RDN</h1><blockquote>
 <p>Residual Dense Network for Image Super-Resolution（RDN）发表于2018年的CVPR</p>
 <p>论文地址：<a href="https://arxiv.org/abs/1802.08797">Residual Dense Network for Image Super-Resolution</a></p>
 </blockquote>

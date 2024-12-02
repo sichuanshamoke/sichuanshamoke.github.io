@@ -88,21 +88,18 @@
 
 
 
-<meta name="description" content="超分辨率第八章-RDN Residual Dense Network for Image Super-Resolution（RDN）发表于2018年的CVPR 论文地址：Residual Dense Network for Image Super-Resolution">
+<meta name="description" content="超分辨率第十章-NormalizingFlow&amp;SR 本文介绍标准化流（Normalizing Flow）以及其对应的超分辨率模型SRflow 参考文献：">
 <meta property="og:type" content="article">
-<meta property="og:title" content="超分辨率第八章-RDN">
-<meta property="og:url" content="http://example.com/2024/11/04/%E8%B6%85%E5%88%86%E8%BE%A8%E7%8E%87%E7%AC%AC%E5%85%AB%E7%AB%A0-RDN/index.html">
+<meta property="og:title" content="超分辨率第十章-NormalizingFlow&amp;SR">
+<meta property="og:url" content="http://example.com/2024/12/02/%E8%B6%85%E5%88%86%E8%BE%A8%E7%8E%87%E7%AC%AC%E5%8D%81%E7%AB%A0-NormalizingFlow-SR/index.html">
 <meta property="og:site_name" content="Hello World">
-<meta property="og:description" content="超分辨率第八章-RDN Residual Dense Network for Image Super-Resolution（RDN）发表于2018年的CVPR 论文地址：Residual Dense Network for Image Super-Resolution">
+<meta property="og:description" content="超分辨率第十章-NormalizingFlow&amp;SR 本文介绍标准化流（Normalizing Flow）以及其对应的超分辨率模型SRflow 参考文献：">
 <meta property="og:locale">
-<meta property="og:image" content="https://s21.ax1x.com/2024/11/04/pArHBpd.png">
-<meta property="og:image" content="https://s21.ax1x.com/2024/11/04/pArHsXt.png">
-<meta property="article:published_time" content="2024-11-04T05:09:14.000Z">
-<meta property="article:modified_time" content="2024-11-04T08:49:31.672Z">
+<meta property="article:published_time" content="2024-12-02T05:38:03.000Z">
+<meta property="article:modified_time" content="2024-12-02T05:52:07.706Z">
 <meta property="article:author" content="Shamoke">
 <meta property="article:tag" content="超分辨率">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://s21.ax1x.com/2024/11/04/pArHBpd.png">
 
 
 
@@ -132,13 +129,13 @@
 
 
 
-  <link rel="canonical" href="http://example.com/2024/11/04/超分辨率第八章-RDN/"/>
+  <link rel="canonical" href="http://example.com/2024/12/02/超分辨率第十章-NormalizingFlow-SR/"/>
 
 
 
 
 
-  <title>超分辨率第八章-RDN | Hello World</title>
+  <title>超分辨率第十章-NormalizingFlow&SR | Hello World</title>
   
 
 
@@ -325,7 +322,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2024/11/04/%E8%B6%85%E5%88%86%E8%BE%A8%E7%8E%87%E7%AC%AC%E5%85%AB%E7%AB%A0-RDN/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/12/02/%E8%B6%85%E5%88%86%E8%BE%A8%E7%8E%87%E7%AC%AC%E5%8D%81%E7%AB%A0-NormalizingFlow-SR/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="沙漠客">
@@ -342,7 +339,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">超分辨率第八章-RDN</h1>
+          <h1 class="post-title" itemprop="name headline">超分辨率第十章-NormalizingFlow&SR</h1>
         
 
         <div class="post-meta">
@@ -356,8 +353,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2024-11-04T13:09:14+08:00">
-                2024-11-04
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2024-12-02T13:38:03+08:00">
+                2024-12-02
               </time>
             
 
@@ -372,8 +369,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2024-11-04T16:49:31+08:00">
-                2024-11-04
+              <time title="更新于" itemprop="dateModified" datetime="2024-12-02T13:52:07+08:00">
+                2024-12-02
               </time>
             
           </span>
@@ -420,8 +417,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2024/11/04/%E8%B6%85%E5%88%86%E8%BE%A8%E7%8E%87%E7%AC%AC%E5%85%AB%E7%AB%A0-RDN/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2024/11/04/%E8%B6%85%E5%88%86%E8%BE%A8%E7%8E%87%E7%AC%AC%E5%85%AB%E7%AB%A0-RDN/" itemprop="commentCount"></span>
+                <a href="/2024/12/02/%E8%B6%85%E5%88%86%E8%BE%A8%E7%8E%87%E7%AC%AC%E5%8D%81%E7%AB%A0-NormalizingFlow-SR/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2024/12/02/%E8%B6%85%E5%88%86%E8%BE%A8%E7%8E%87%E7%AC%AC%E5%8D%81%E7%AB%A0-NormalizingFlow-SR/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -443,7 +440,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  17k
+                  37
                 </span>
               
 
@@ -459,7 +456,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1:01
+                  1
                 </span>
               
             </div>
@@ -480,21 +477,11 @@
       
 
       
-        <h1 id="超分辨率第八章-RDN"><a href="#超分辨率第八章-RDN" class="headerlink" title="超分辨率第八章-RDN"></a>超分辨率第八章-RDN</h1><blockquote>
-<p>Residual Dense Network for Image Super-Resolution（RDN）发表于2018年的CVPR</p>
-<p>论文地址：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/1802.08797">Residual Dense Network for Image Super-Resolution</a></p>
+        <h1 id="超分辨率第十章-NormalizingFlow-amp-SR"><a href="#超分辨率第十章-NormalizingFlow-amp-SR" class="headerlink" title="超分辨率第十章-NormalizingFlow&amp;SR"></a>超分辨率第十章-NormalizingFlow&amp;SR</h1><blockquote>
+<p>本文介绍标准化流（Normalizing Flow）以及其对应的超分辨率模型SRflow</p>
+<p>参考文献：</p>
 </blockquote>
 <span id="more"></span>
-<h2 id="一-模型介绍"><a href="#一-模型介绍" class="headerlink" title="一.模型介绍"></a>一.模型介绍</h2><ul>
-<li>残差密集块( RDB )，它不仅可以通过连续内存( CM )机制从前一个RDB中读取状态，还可以通过局部密集连接充分利用其内部的所有层。</li>
-<li>局部特征融合( LFF )，自适应地保留积累的特征。</li>
-<li>全局特征融合，以自适应地融合来自LR空间中所有RDB的分层特征。</li>
-<li>通过全局残差学习，将浅层特征和深层特征结合在一起，从而得到原始LR图像的全局稠密特征</li>
-<li><img src="https://s21.ax1x.com/2024/11/04/pArHBpd.png" alt="pArHBpd.png"></li>
-<li><img src="https://s21.ax1x.com/2024/11/04/pArHsXt.png" alt="pArHsXt.png"></li>
-</ul>
-<h2 id="二-网络结构"><a href="#二-网络结构" class="headerlink" title="二.网络结构"></a>二.网络结构</h2><h3 id="1-RDB模块"><a href="#1-RDB模块" class="headerlink" title="1.RDB模块"></a>1.RDB模块</h3><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">RDB_Conv</span>(nn.Module):  </span><br><span class="line">    <span class="comment"># 初始化方法，接收输入通道数inChannels，增长率growRate，以及可选的卷积核大小kSize（默认为3）  </span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, inChannels, growRate, kSize=<span class="number">3</span></span>):  </span><br><span class="line">        <span class="built_in">super</span>(RDB_Conv, <span class="variable language_">self</span>).__init__()  <span class="comment"># 调用父类的初始化方法  </span></span><br><span class="line">        Cin = inChannels  <span class="comment"># 输入通道数  </span></span><br><span class="line">        G  = growRate  <span class="comment"># 增长率  </span></span><br><span class="line">        <span class="comment"># 构建一个卷积层序列，包含一个2D卷积层和一个ReLU激活函数  </span></span><br><span class="line">        <span class="variable language_">self</span>.conv = nn.Sequential(*[  </span><br><span class="line">            nn.Conv2d(Cin, G, kSize, padding=(kSize-<span class="number">1</span>)//<span class="number">2</span>, stride=<span class="number">1</span>),  <span class="comment"># 2D卷积层，使用适当的填充以保持输入和输出尺寸相同  </span></span><br><span class="line">            nn.ReLU()  <span class="comment"># ReLU激活函数  </span></span><br><span class="line">        ])  </span><br><span class="line">  </span><br><span class="line">    <span class="comment"># 前向传播方法，接收输入x  </span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, x</span>):  </span><br><span class="line">        out = <span class="variable language_">self</span>.conv(x)  <span class="comment"># 通过卷积层和激活函数处理输入x  </span></span><br><span class="line">        <span class="comment"># 将处理后的输出out与原始输入x在通道维度（维度1）上拼接起来  </span></span><br><span class="line">        <span class="keyword">return</span> torch.cat((x, out), <span class="number">1</span>)  </span><br><span class="line">  </span><br><span class="line"><span class="comment"># 定义一个名为RDB的类，它继承自nn.Module，表示一个残差密集块  </span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">RDB</span>(nn.Module):  </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, growRate0, growRate, nConvLayers, kSize=<span class="number">3</span></span>):  </span><br><span class="line">        <span class="built_in">super</span>(RDB, <span class="variable language_">self</span>).__init__()  <span class="comment"># 调用父类的初始化方法  </span></span><br><span class="line">        G0 = growRate0  <span class="comment"># 初始特征数 </span></span><br><span class="line">        G  = growRate  <span class="comment"># 每个RDB_Conv层的最终输出特征数 </span></span><br><span class="line">        C  = nConvLayers  <span class="comment"># RDB_Conv层的数量  </span></span><br><span class="line">          </span><br><span class="line">        convs = []  <span class="comment"># 初始化一个空列表，用于存储RDB_Conv层  </span></span><br><span class="line">        <span class="comment"># 循环创建RDB_Conv层，每个层的输入通道数根据增长率和层数动态计算  </span></span><br><span class="line">        <span class="keyword">for</span> c <span class="keyword">in</span> <span class="built_in">range</span>(C):  </span><br><span class="line">            convs.append(RDB_Conv(G0 + c*G, G))  </span><br><span class="line">        <span class="variable language_">self</span>.convs = nn.Sequential(*convs)  <span class="comment"># 将RDB_Conv层序列化为一个nn.Sequential模块  </span></span><br><span class="line">          </span><br><span class="line">        <span class="comment"># Local Feature Fusion（局部特征融合），使用一个1x1卷积层来融合所有RDB_Conv层的输出  </span></span><br><span class="line">        <span class="variable language_">self</span>.LFF = nn.Conv2d(G0 + C*G, G0, <span class="number">1</span>, padding=<span class="number">0</span>, stride=<span class="number">1</span>)  </span><br><span class="line">  </span><br><span class="line">    <span class="comment"># 前向传播方法，接收输入x  </span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, x</span>):  </span><br><span class="line">        <span class="comment"># 通过所有RDB_Conv层处理输入x，并通过局部特征融合层LFF融合特征  </span></span><br><span class="line">        <span class="keyword">return</span> <span class="variable language_">self</span>.LFF(<span class="variable language_">self</span>.convs(x)) + x  <span class="comment"># 将融合后的特征与原始输入x相加，形成残差连接</span></span><br></pre></td></tr></table></figure>
-<h3 id="2-RDN模块"><a href="#2-RDN模块" class="headerlink" title="2.RDN模块"></a>2.RDN模块</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">RDN</span>(nn.Module):  </span><br><span class="line">    <span class="comment"># 初始化RDN网络，包括输入通道数、输出通道数、特征数、RDB块数、每一个RDB所含卷积层数、上采样因子  </span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, in_channels, out_channels, num_features, num_blocks, num_layers, upscale_factor</span>):  </span><br><span class="line">        <span class="built_in">super</span>(RDN, <span class="variable language_">self</span>).__init__()  <span class="comment"># 调用父类nn.Module的初始化方法  </span></span><br><span class="line">        r = upscale_factor  <span class="comment"># 上采样因子  </span></span><br><span class="line">        G0 = num_features  <span class="comment"># 初始特征数  </span></span><br><span class="line">        kSize = <span class="number">3</span>  <span class="comment"># 卷积核大小  </span></span><br><span class="line">  </span><br><span class="line">        <span class="comment"># 将RDB块数、卷积层数、特征数分别赋值给D、C、G  </span></span><br><span class="line">        <span class="variable language_">self</span>.D, C, G = [num_blocks, num_layers, num_features]  </span><br><span class="line">  </span><br><span class="line">        <span class="comment"># 浅层特征提取网络  </span></span><br><span class="line">        <span class="variable language_">self</span>.SFENet1 = nn.Conv2d(in_channels, G0, kSize, padding=(kSize-<span class="number">1</span>)//<span class="number">2</span>, stride=<span class="number">1</span>)  <span class="comment"># 第一个卷积层  </span></span><br><span class="line">        <span class="variable language_">self</span>.SFENet2 = nn.Conv2d(G0, G0, kSize, padding=(kSize-<span class="number">1</span>)//<span class="number">2</span>, stride=<span class="number">1</span>)  <span class="comment"># 第二个卷积层  </span></span><br><span class="line">  </span><br><span class="line">        <span class="comment"># 残差密集块和密集特征融合  </span></span><br><span class="line">        <span class="variable language_">self</span>.RDBs = nn.ModuleList()  <span class="comment"># 创建一个模块列表来存储RDB块  </span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="variable language_">self</span>.D):  </span><br><span class="line">            <span class="variable language_">self</span>.RDBs.append(  </span><br><span class="line">                RDB(growRate0 = G0, growRate = G, nConvLayers = C)  <span class="comment"># 向列表中添加RDB块  </span></span><br><span class="line">            )  </span><br><span class="line">  </span><br><span class="line">        <span class="comment"># 全局特征融合  </span></span><br><span class="line">        <span class="variable language_">self</span>.GFF = nn.Sequential(*[  </span><br><span class="line">            nn.Conv2d(<span class="variable language_">self</span>.D * G0, G0, <span class="number">1</span>, padding=<span class="number">0</span>, stride=<span class="number">1</span>),  <span class="comment"># 1x1卷积层，用于融合RDB块的输出  </span></span><br><span class="line">            nn.Conv2d(G0, G0, kSize, padding=(kSize-<span class="number">1</span>)//<span class="number">2</span>, stride=<span class="number">1</span>)  <span class="comment"># 3x3卷积层  </span></span><br><span class="line">        ])  </span><br><span class="line">  </span><br><span class="line">        <span class="comment"># 上采样网络  </span></span><br><span class="line">        <span class="keyword">if</span> r == <span class="number">2</span> <span class="keyword">or</span> r == <span class="number">3</span>:  </span><br><span class="line">            <span class="variable language_">self</span>.UPNet = nn.Sequential(*[  </span><br><span class="line">                nn.Conv2d(G0, G * r * r, kSize, padding=(kSize-<span class="number">1</span>)//<span class="number">2</span>, stride=<span class="number">1</span>),  <span class="comment"># 卷积层，调整通道数以匹配PixelShuffle  </span></span><br><span class="line">                nn.PixelShuffle(r),  <span class="comment"># PixelShuffle层，实现上采样  </span></span><br><span class="line">                nn.Conv2d(G, out_channels, kSize, padding=(kSize-<span class="number">1</span>)//<span class="number">2</span>, stride=<span class="number">1</span>)  <span class="comment"># 输出卷积层  </span></span><br><span class="line">            ])  </span><br><span class="line">        <span class="keyword">elif</span> r == <span class="number">4</span>:  </span><br><span class="line">            <span class="variable language_">self</span>.UPNet = nn.Sequential(*[  </span><br><span class="line">                nn.Conv2d(G0, G * <span class="number">2</span> * <span class="number">2</span>, kSize, padding=(kSize-<span class="number">1</span>)//<span class="number">2</span>, stride=<span class="number">1</span>),  <span class="comment"># 第一步卷积层  </span></span><br><span class="line">                nn.PixelShuffle(<span class="number">2</span>),  <span class="comment"># 第一次PixelShuffle，上采样2倍  </span></span><br><span class="line">                nn.Conv2d(G, G * <span class="number">2</span> * <span class="number">2</span>, kSize, padding=(kSize-<span class="number">1</span>)//<span class="number">2</span>, stride=<span class="number">1</span>),  <span class="comment"># 第二步卷积层  </span></span><br><span class="line">                nn.PixelShuffle(<span class="number">2</span>),  <span class="comment"># 第二次PixelShuffle，再次上采样2倍，总共4倍  </span></span><br><span class="line">                nn.Conv2d(G, out_channels, kSize, padding=(kSize-<span class="number">1</span>)//<span class="number">2</span>, stride=<span class="number">1</span>)  <span class="comment"># 输出卷积层  </span></span><br><span class="line">            ])  </span><br><span class="line">        <span class="keyword">else</span>:  </span><br><span class="line">            <span class="keyword">raise</span> ValueError(<span class="string">&quot;scale must be 2 or 3 or 4.&quot;</span>)  <span class="comment"># 如果上采样因子不是2、3或4，抛出错误  </span></span><br><span class="line">  </span><br><span class="line">    <span class="comment"># 前向传播函数  </span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, x</span>):  </span><br><span class="line">        f__1 = <span class="variable language_">self</span>.SFENet1(x)  <span class="comment"># 通过第一个浅层特征提取网络  </span></span><br><span class="line">        x  = <span class="variable language_">self</span>.SFENet2(f__1)  <span class="comment"># 通过第二个浅层特征提取网络  </span></span><br><span class="line">  </span><br><span class="line">        RDBs_out = []  <span class="comment"># 创建一个列表来存储RDB块的输出  </span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="variable language_">self</span>.D):  </span><br><span class="line">            x = <span class="variable language_">self</span>.RDBs[i](x)  <span class="comment"># 通过每个RDB块  </span></span><br><span class="line">            RDBs_out.append(x)  <span class="comment"># 将RDB块的输出添加到列表中  </span></span><br><span class="line">  </span><br><span class="line">        x = <span class="variable language_">self</span>.GFF(torch.cat(RDBs_out,<span class="number">1</span>))  <span class="comment"># 将所有RDB块的输出拼接起来，并通过全局特征融合网络  </span></span><br><span class="line">        x += f__1  <span class="comment"># 将全局特征融合的输出与第一个浅层特征提取网络的输出相加，形成残差连接  </span></span><br><span class="line">  </span><br><span class="line">        <span class="keyword">return</span> <span class="variable language_">self</span>.UPNet(x)  <span class="comment"># 通过上采样网络，输出最终结果  </span></span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -539,8 +526,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2024/10/28/%E8%B6%85%E5%88%86%E8%BE%A8%E7%8E%87%E7%AC%AC%E5%85%AB%E7%AB%A0-SR&transformer/" rel="next" title="超分辨率第八章-SR&transformer">
-                <i class="fa fa-chevron-left"></i> 超分辨率第八章-SR&transformer
+              <a href="/2024/11/04/%E8%B6%85%E5%88%86%E8%BE%A8%E7%8E%87%E7%AC%AC%E4%B9%9D%E7%AB%A0-RDN/" rel="next" title="超分辨率第九章-RDN">
+                <i class="fa fa-chevron-left"></i> 超分辨率第九章-RDN
               </a>
             
           </div>
@@ -634,7 +621,7 @@
               
                 <a href="/">
               
-                  <span class="site-state-item-count">37</span>
+                  <span class="site-state-item-count">38</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -715,7 +702,11 @@
                 
                 
                   <li class="recent_posts_li">
-                    <a href="/2024/11/04/%E8%B6%85%E5%88%86%E8%BE%A8%E7%8E%87%E7%AC%AC%E5%85%AB%E7%AB%A0-RDN/" title="超分辨率第八章-RDN" target="_blank">超分辨率第八章-RDN</a>
+                    <a href="/2024/12/02/%E8%B6%85%E5%88%86%E8%BE%A8%E7%8E%87%E7%AC%AC%E5%8D%81%E7%AB%A0-NormalizingFlow-SR/" title="超分辨率第十章-NormalizingFlow&SR" target="_blank">超分辨率第十章-NormalizingFlow&SR</a>
+                  </li>
+                
+                  <li class="recent_posts_li">
+                    <a href="/2024/11/04/%E8%B6%85%E5%88%86%E8%BE%A8%E7%8E%87%E7%AC%AC%E4%B9%9D%E7%AB%A0-RDN/" title="超分辨率第九章-RDN" target="_blank">超分辨率第九章-RDN</a>
                   </li>
                 
                   <li class="recent_posts_li">
@@ -728,10 +719,6 @@
                 
                   <li class="recent_posts_li">
                     <a href="/2024/09/26/%E8%B6%85%E5%88%86%E8%BE%A8%E7%8E%87%E7%AC%AC%E5%85%AD%E7%AB%A0-RCAN/" title="超分辨率第六章-RCAN" target="_blank">超分辨率第六章-RCAN</a>
-                  </li>
-                
-                  <li class="recent_posts_li">
-                    <a href="/2024/09/23/%E8%B6%85%E5%88%86%E8%BE%A8%E7%8E%87%E7%AC%AC%E4%BA%94%E7%AB%A0-SRDenseNet/" title="超分辨率第五章-SRDenseNet" target="_blank">超分辨率第五章-SRDenseNet</a>
                   </li>
                 
               </ul>
@@ -774,7 +761,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%B6%85%E5%88%86%E8%BE%A8%E7%8E%87%E7%AC%AC%E5%85%AB%E7%AB%A0-RDN"><span class="nav-text">超分辨率第八章-RDN</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80-%E6%A8%A1%E5%9E%8B%E4%BB%8B%E7%BB%8D"><span class="nav-text">一.模型介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C-%E7%BD%91%E7%BB%9C%E7%BB%93%E6%9E%84"><span class="nav-text">二.网络结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-RDB%E6%A8%A1%E5%9D%97"><span class="nav-text">1.RDB模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-RDN%E6%A8%A1%E5%9D%97"><span class="nav-text">2.RDN模块</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%B6%85%E5%88%86%E8%BE%A8%E7%8E%87%E7%AC%AC%E5%8D%81%E7%AB%A0-NormalizingFlow-amp-SR"><span class="nav-text">超分辨率第十章-NormalizingFlow&amp;SR</span></a></li></ol></div>
             
 
           </div>
@@ -815,7 +802,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">258k</span>
+    <span title="Site words total count">218.9k</span>
   
 </div>
 

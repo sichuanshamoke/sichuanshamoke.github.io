@@ -13232,6 +13232,7 @@
       </categories>
       <tags>
         <tag>超分辨率</tag>
+        <tag>生成式模型</tag>
       </tags>
   </entry>
   <entry>
@@ -14048,9 +14049,9 @@
 <p>神经网络$f_0$被分成 N个可逆层 $ h ^ { n + 1 } = f _ { \theta } ^ { n } ( h ^ { n } ; g _ { \theta } ( x ) )$，$h^0=y,h^N=z$</p>
 <p>在通道维度上的特征图被划分成两部分<script type="math/tex">h ^ { n } = ( h _ { A } ^ { n } , h _ { B } ^ { n } )</script>，分别进行以下操作：</p>
 <script type="math/tex; mode=display">h _ { A } ^ { n + 1 } = h _ { A } ^ { n }</script><script type="math/tex; mode=display">h _ { B } ^ { n + 1 } = e x p ( f _ { \theta , s } ^ { n } ( h _ { A } ^ { n } ; u ) ) \cdot h _ { B } ^ { n } + f _ { \theta , b } ^ { n } ( h _ { A } ^ { n } ; u )</script><p>u是一个条件变量，即低分辨率图像的编码，$u=g_θ(x)$。</p>
-<script type="math/tex; mode=display">f _ { \theta , s } ^ { n }$$和$$ f _ { \theta , b } ^ { n }$$代表产生$$ h _ { B } ^ { n }$$的scaling和bias的任意神经网络。
-
-此时该层的雅可比矩阵为块三角矩阵，可以简化对行列式的计算，使网络在训练过程中可以高效计算负对数似然损失：$$ \sum _ { i j k } f _ { \theta , s } ^ { n } ( h _ { A } ^ { n } ; u ) _ { i j k }</script><p><img src="https://s21.ax1x.com/2024/12/03/pAIxBM4.png" alt="pAIxBM4.png"></p>
+<p>$ f _ { \theta , s } ^ { n }$和$ f _ { \theta , b } ^ { n }$代表产生$ h _ { B } ^ { n }$的scaling和bias的任意神经网络。</p>
+<p>此时该层的雅可比矩阵为块三角矩阵，可以简化对行列式的计算，使网络在训练过程中可以高效计算负对数似然损失：<script type="math/tex">\sum _ { i j k } f _ { \theta , s } ^ { n } ( h _ { A } ^ { n } ; u ) _ { i j k }</script></p>
+<p><img src="https://s21.ax1x.com/2024/12/03/pAIxBM4.png" alt="pAIxBM4.png"></p>
 <h4 id="⑥Split"><a href="#⑥Split" class="headerlink" title="⑥Split"></a>⑥Split</h4><p>Split 层主要用于将输入数据分成两部分。在 SRFlow 架构中，它将来自条件耦合层（Conditional Coupling Layer）的数据进行分割。</p>
 <p>一部分数据被传递到下一个条件流步骤（Conditional Flow Step），而另一部分数据则被分流出去。这有助于模型在不同尺度和层次上提取特征。</p>
 ]]></content>
@@ -14060,6 +14061,82 @@
       </categories>
       <tags>
         <tag>超分辨率</tag>
+        <tag>生成式模型</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>VAE介绍</title>
+    <url>/2024/12/09/VAE%E4%BB%8B%E7%BB%8D/</url>
+    <content><![CDATA[<h1 id="VAE介绍"><a href="#VAE介绍" class="headerlink" title="VAE介绍"></a>VAE介绍</h1><p>VAE（变分自编码器）为一个经典的生成式模型，属于编码器-解码器结构。</p>
+<p>编码器用于采用复杂部分的特征，之后将复杂分布转换到简单分布的隐空间（如高斯分布）。</p>
+<p>解码器采样高斯分布中的数据，生成符合原始分布的图像。</p>
+<p>参考视频：</p>
+<p><a href="https://www.bilibili.com/video/BV1JY411q72n/?vd_source=f9578e20917b03f6b5eb19c9031cefd2">【10分钟】了解香农熵，交叉熵和KL散度</a></p>
+<p><a href="https://www.bilibili.com/video/BV1Gs4y157BU/?spm_id_from=333.999.0.0&amp;vd_source=f9578e20917b03f6b5eb19c9031cefd2">【15分钟】了解变分推理</a></p>
+<span id="more"></span>
+<h2 id="一-公式推导"><a href="#一-公式推导" class="headerlink" title="一.公式推导"></a>一.公式推导</h2><h3 id="1-KL散度"><a href="#1-KL散度" class="headerlink" title="1.KL散度"></a>1.KL散度</h3><h4 id="①信息量"><a href="#①信息量" class="headerlink" title="①信息量"></a>①信息量</h4><ul>
+<li>信息量用于描述单个概率的信息，概率越小，信息量越大。</li>
+<li><script type="math/tex; mode=display">I ( x ) = \log _ { 2 } ( \frac { 1 } { p ( x ) } ) = - \log _ { 2 } ( p ( x ) )</script></li>
+<li><img src="https://s21.ax1x.com/2024/12/09/pAHSKeg.png" alt="pAHSKeg.png"></li>
+</ul>
+<h4 id="②香农熵"><a href="#②香农熵" class="headerlink" title="②香农熵"></a>②香农熵</h4><ul>
+<li>香农熵用于描述一个概率分布的平均预期信息量。</li>
+<li><script type="math/tex; mode=display">H ( p ) = \sum p _ { i } I _ { i } ^ { p } = \sum p _ { i } \log _ { 2 } ( \frac { 1 } { p _ { i } } ) = - \sum p _ { i } \log _ { 2 } ( p _ { i } )</script></li>
+<li>概率分布越均匀，产生结果越不确定，熵越大。</li>
+<li>概率分布越不均匀，产生结果越确定，熵越小。</li>
+<li><img src="https://s21.ax1x.com/2024/12/09/pAHSc6K.png" alt="pAHSc6K.png"></li>
+</ul>
+<h4 id="③交叉熵"><a href="#③交叉熵" class="headerlink" title="③交叉熵"></a>③交叉熵</h4><ul>
+<li>交叉熵用于描述根据估计的概率分布，对真实概率分布的预期信息量的估计。</li>
+<li>p（x）为真实概率；q（x）为估计概率；估计概率分布与真实概率分布越接近，交叉熵越小</li>
+<li><script type="math/tex; mode=display">H ( p , q ) = \sum p _ { i } I _ { i } ^ { q } = \sum p _ { i } \log _ { 2 } ( \frac { 1 } { q _ { i } } ) = - \sum p _ { i } \log _ { 2 } ( q _ { i } )</script></li>
+<li>当真实概率分布 P(h)=0.5；p(t)=0.5时</li>
+<li><a href="https://imgse.com/i/pAHS4kd"><img src="https://s21.ax1x.com/2024/12/09/pAHS4kd.png" alt="pAHS4kd.png"></a></li>
+</ul>
+<h4 id="④KL散度"><a href="#④KL散度" class="headerlink" title="④KL散度"></a>④KL散度</h4><ul>
+<li>衡量两个概率分布之间的区别</li>
+<li><script type="math/tex; mode=display">D ( p | | q ) = H ( p , q ) - H ( p ) = \sum p _ { i } I _ { i } ^ { q } - \sum p _ { i } I _ { i } ^ { p }</script><ul>
+<li><script type="math/tex; mode=display">= \sum p _ { i } \log _ { 2 } ( \frac { 1 } { q _ { i } } ) - \sum p _ { i } \log _ { 2 } ( \frac { 1 } { p _ { i } } )</script></li>
+<li><script type="math/tex; mode=display">= \sum p _ { i } \log _ { 2 } ( \frac { p _ { i } } { q _ { i } } )</script></li>
+</ul>
+</li>
+<li><script type="math/tex; mode=display">D ( q | | p ) = H ( q , p ) - H ( q ) = \int q ( x ) \log \frac { q ( x ) } { p ( x ) } d x = E _ { x - q } \left[ \log q ( x ) - \log p ( x ) \right]</script></li>
+<li><script type="math/tex">D ( p 1 1 q ) \geq 0</script>   恒成立，p=q时等于0</li>
+<li>最小化KL散度，需要对KL散度表达式求梯度，等同于对交叉熵求梯度<ul>
+<li><script type="math/tex; mode=display">\nabla _ { \theta } D ( p | | q _ { \theta } ) = \nabla _ { \theta } H ( p , q _ { \theta } ) - \nabla _ { \theta } H ( p ) = \nabla _ { \theta } H ( p , q _ { \theta } )</script></li>
+</ul>
+</li>
+</ul>
+<h3 id="2-ELBO（变分推断-证据下界）"><a href="#2-ELBO（变分推断-证据下界）" class="headerlink" title="2.ELBO（变分推断-证据下界）"></a>2.ELBO（变分推断-证据下界）</h3><h4 id="①被观测数据与隐变量"><a href="#①被观测数据与隐变量" class="headerlink" title="①被观测数据与隐变量"></a>①被观测数据与隐变量</h4><ul>
+<li><p><script type="math/tex">x \sim p ( x )</script>：表示被观测数据的概率分布</p>
+</li>
+<li><p><script type="math/tex">z \sim p ( z | x )</script>：表示隐变量的后验概率分布</p>
+</li>
+<li>$p(z)$：一般为高斯分布（正态分布）</li>
+<li>$p(x|z)$：条件概率，即似然度</li>
+<li><script type="math/tex; mode=display">p ( z | x ) = \frac { p ( x | z ) p ( z ) } { p ( x ) } = \frac { p ( x | z ) p ( z ) } { \int _ { z } p ( x , z ) d z }</script></li>
+</ul>
+<h4 id="②ELBO"><a href="#②ELBO" class="headerlink" title="②ELBO"></a>②ELBO</h4><ul>
+<li>为使隐变量的概率分布近似于后验概率分布 <script type="math/tex">q _ { \theta } ( z ) \approx p ( z | x )</script></li>
+<li>计算KL散度<ul>
+<li><script type="math/tex; mode=display">D ( q _ { \theta } ( z ) | | p ( z | x ) ) = E _ { z - q } \left[ \log \frac { q _ { \theta } ( z ) } { p ( z | x ) } \right] = E _ { z - q } \left[ \log q _ { \theta } ( z ) - \log p ( z | x ) \right]</script></li>
+<li><script type="math/tex; mode=display">= E _ { z - q } \left[ \log q _ { \theta } ( z ) - \log \frac { p ( z , x ) } { p ( x ) } \right]</script></li>
+<li><script type="math/tex; mode=display">= E _ { z - q } \left[ \log q _ { \theta } ( z ) - \log p ( z , x ) \right] + \log p ( x )</script></li>
+</ul>
+</li>
+<li>转换为ELBO变分下界，变为求最大的该值<ul>
+<li><script type="math/tex; mode=display">\log p ( x ) = E _ { z - q } \left[ \log p ( z , x ) - \log q _ { \theta } ( z ) \right] + D ( q _ { \theta } ( z ) | | p ( z | x ) )</script></li>
+<li><script type="math/tex; mode=display">\log p ( x ) \geq E _ { z - q } \left[ \log p ( z , x ) - \log q _ { \theta } ( z ) \right] \equiv C _ { q }</script></li>
+</ul>
+</li>
+</ul>
+<p><img src="https://s21.ax1x.com/2024/12/09/pAHeel4.png" alt="pAHeel4.png"></p>
+]]></content>
+      <categories>
+        <category>硕士阶段学习笔记(入门阶段)</category>
+      </categories>
+      <tags>
+        <tag>生成式模型</tag>
       </tags>
   </entry>
 </search>

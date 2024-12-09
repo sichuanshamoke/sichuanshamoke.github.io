@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="超分辨率," />
+  <meta name="keywords" content="超分辨率,生成式模型," />
 
 
 
@@ -101,9 +101,10 @@
 <meta property="og:image" content="https://s21.ax1x.com/2024/12/03/pAIXILn.png">
 <meta property="og:image" content="https://s21.ax1x.com/2024/12/03/pAIxBM4.png">
 <meta property="article:published_time" content="2024-12-02T05:38:03.000Z">
-<meta property="article:modified_time" content="2024-12-03T05:07:24.874Z">
+<meta property="article:modified_time" content="2024-12-09T05:57:25.941Z">
 <meta property="article:author" content="Shamoke">
 <meta property="article:tag" content="超分辨率">
+<meta property="article:tag" content="生成式模型">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://s21.ax1x.com/2024/12/02/pAID0G4.png">
 
@@ -375,8 +376,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2024-12-03T13:07:24+08:00">
-                2024-12-03
+              <time title="更新于" itemprop="dateModified" datetime="2024-12-09T13:57:25+08:00">
+                2024-12-09
               </time>
             
           </span>
@@ -579,9 +580,9 @@
 <p>神经网络$f_0$被分成 N个可逆层 $ h ^ { n + 1 } = f _ { \theta } ^ { n } ( h ^ { n } ; g _ { \theta } ( x ) )$，$h^0=y,h^N=z$</p>
 <p>在通道维度上的特征图被划分成两部分<script type="math/tex">h ^ { n } = ( h _ { A } ^ { n } , h _ { B } ^ { n } )</script>，分别进行以下操作：</p>
 <script type="math/tex; mode=display">h _ { A } ^ { n + 1 } = h _ { A } ^ { n }</script><script type="math/tex; mode=display">h _ { B } ^ { n + 1 } = e x p ( f _ { \theta , s } ^ { n } ( h _ { A } ^ { n } ; u ) ) \cdot h _ { B } ^ { n } + f _ { \theta , b } ^ { n } ( h _ { A } ^ { n } ; u )</script><p>u是一个条件变量，即低分辨率图像的编码，$u=g_θ(x)$。</p>
-<script type="math/tex; mode=display">f _ { \theta , s } ^ { n }$$和$$ f _ { \theta , b } ^ { n }$$代表产生$$ h _ { B } ^ { n }$$的scaling和bias的任意神经网络。
-
-此时该层的雅可比矩阵为块三角矩阵，可以简化对行列式的计算，使网络在训练过程中可以高效计算负对数似然损失：$$ \sum _ { i j k } f _ { \theta , s } ^ { n } ( h _ { A } ^ { n } ; u ) _ { i j k }</script><p><img src="https://s21.ax1x.com/2024/12/03/pAIxBM4.png" alt="pAIxBM4.png"></p>
+<p>$ f _ { \theta , s } ^ { n }$和$ f _ { \theta , b } ^ { n }$代表产生$ h _ { B } ^ { n }$的scaling和bias的任意神经网络。</p>
+<p>此时该层的雅可比矩阵为块三角矩阵，可以简化对行列式的计算，使网络在训练过程中可以高效计算负对数似然损失：<script type="math/tex">\sum _ { i j k } f _ { \theta , s } ^ { n } ( h _ { A } ^ { n } ; u ) _ { i j k }</script></p>
+<p><img src="https://s21.ax1x.com/2024/12/03/pAIxBM4.png" alt="pAIxBM4.png"></p>
 <h4 id="⑥Split"><a href="#⑥Split" class="headerlink" title="⑥Split"></a>⑥Split</h4><p>Split 层主要用于将输入数据分成两部分。在 SRFlow 架构中，它将来自条件耦合层（Conditional Coupling Layer）的数据进行分割。</p>
 <p>一部分数据被传递到下一个条件流步骤（Conditional Flow Step），而另一部分数据则被分流出去。这有助于模型在不同尺度和层次上提取特征。</p>
 
@@ -617,6 +618,8 @@
           
             <a href="/tags/%E8%B6%85%E5%88%86%E8%BE%A8%E7%8E%87/" rel="tag"><i class="fa fa-tag"></i> 超分辨率</a>
           
+            <a href="/tags/%E7%94%9F%E6%88%90%E5%BC%8F%E6%A8%A1%E5%9E%8B/" rel="tag"><i class="fa fa-tag"></i> 生成式模型</a>
+          
         </div>
       
 
@@ -637,6 +640,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2024/12/09/VAE%E4%BB%8B%E7%BB%8D/" rel="prev" title="VAE介绍">
+                VAE介绍 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -723,7 +730,7 @@
               
                 <a href="/">
               
-                  <span class="site-state-item-count">38</span>
+                  <span class="site-state-item-count">39</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -745,7 +752,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -804,6 +811,10 @@
                 
                 
                   <li class="recent_posts_li">
+                    <a href="/2024/12/09/VAE%E4%BB%8B%E7%BB%8D/" title="VAE介绍" target="_blank">VAE介绍</a>
+                  </li>
+                
+                  <li class="recent_posts_li">
                     <a href="/2024/12/02/%E8%B6%85%E5%88%86%E8%BE%A8%E7%8E%87%E7%AC%AC%E5%8D%81%E7%AB%A0-NormalizingFlow-SR/" title="超分辨率第十章-NormalizingFlow&SR" target="_blank">超分辨率第十章-NormalizingFlow&SR</a>
                   </li>
                 
@@ -817,10 +828,6 @@
                 
                   <li class="recent_posts_li">
                     <a href="/2024/10/20/%E8%B6%85%E5%88%86%E8%BE%A8%E7%8E%87%E7%AC%AC%E4%B8%83%E7%AB%A0-SRFBN/" title="超分辨率第七章-SRFBN" target="_blank">超分辨率第七章-SRFBN</a>
-                  </li>
-                
-                  <li class="recent_posts_li">
-                    <a href="/2024/09/26/%E8%B6%85%E5%88%86%E8%BE%A8%E7%8E%87%E7%AC%AC%E5%85%AD%E7%AB%A0-RCAN/" title="超分辨率第六章-RCAN" target="_blank">超分辨率第六章-RCAN</a>
                   </li>
                 
               </ul>
@@ -904,7 +911,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">221.4k</span>
+    <span title="Site words total count">222.2k</span>
   
 </div>
 

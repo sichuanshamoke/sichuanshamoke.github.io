@@ -88,19 +88,20 @@
 
 
 
-<meta name="description" content="VAE介绍VAE（变分自编码器）为一个经典的生成式模型，属于编码器-解码器结构。 编码器用于采用复杂部分的特征，之后将复杂分布转换到简单分布的隐空间（如高斯分布）。 解码器采样高斯分布中的数据，生成符合原始分布的图像。 参考视频： 【10分钟】了解香农熵，交叉熵和KL散度 【15分钟】了解变分推理">
+<meta name="description" content="VAE介绍 VAE（变分自编码器）为一个经典的生成式模型，属于编码器-解码器结构。 编码器用于采用复杂部分的特征，之后将复杂分布转换到简单分布的隐空间（如高斯分布）。 解码器采样高斯分布中的数据，生成符合原始分布的图像。 参考视频： 【10分钟】了解香农熵，交叉熵和KL散度 【15分钟】了解变分推理 参考博客 深度理解变分自编码器(VAE) | 从入门到精通  VAE 模型基本原理简单介绍">
 <meta property="og:type" content="article">
 <meta property="og:title" content="VAE介绍">
 <meta property="og:url" content="http://example.com/2024/12/09/VAE%E4%BB%8B%E7%BB%8D/index.html">
 <meta property="og:site_name" content="Hello World">
-<meta property="og:description" content="VAE介绍VAE（变分自编码器）为一个经典的生成式模型，属于编码器-解码器结构。 编码器用于采用复杂部分的特征，之后将复杂分布转换到简单分布的隐空间（如高斯分布）。 解码器采样高斯分布中的数据，生成符合原始分布的图像。 参考视频： 【10分钟】了解香农熵，交叉熵和KL散度 【15分钟】了解变分推理">
+<meta property="og:description" content="VAE介绍 VAE（变分自编码器）为一个经典的生成式模型，属于编码器-解码器结构。 编码器用于采用复杂部分的特征，之后将复杂分布转换到简单分布的隐空间（如高斯分布）。 解码器采样高斯分布中的数据，生成符合原始分布的图像。 参考视频： 【10分钟】了解香农熵，交叉熵和KL散度 【15分钟】了解变分推理 参考博客 深度理解变分自编码器(VAE) | 从入门到精通  VAE 模型基本原理简单介绍">
 <meta property="og:locale">
 <meta property="og:image" content="https://s21.ax1x.com/2024/12/09/pAHSKeg.png">
 <meta property="og:image" content="https://s21.ax1x.com/2024/12/09/pAHSc6K.png">
 <meta property="og:image" content="https://s21.ax1x.com/2024/12/09/pAHS4kd.png">
 <meta property="og:image" content="https://s21.ax1x.com/2024/12/09/pAHeel4.png">
+<meta property="og:image" content="https://s21.ax1x.com/2024/12/10/pAHKpCV.png">
 <meta property="article:published_time" content="2024-12-09T05:55:08.000Z">
-<meta property="article:modified_time" content="2024-12-09T13:31:13.429Z">
+<meta property="article:modified_time" content="2024-12-10T01:58:36.801Z">
 <meta property="article:author" content="Shamoke">
 <meta property="article:tag" content="生成式模型">
 <meta name="twitter:card" content="summary">
@@ -374,8 +375,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2024-12-09T21:31:13+08:00">
-                2024-12-09
+              <time title="更新于" itemprop="dateModified" datetime="2024-12-10T09:58:36+08:00">
+                2024-12-10
               </time>
             
           </span>
@@ -434,7 +435,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  833
+                  6.3k
                 </span>
               
 
@@ -450,7 +451,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  3
+                  23 mins.
                 </span>
               
             </div>
@@ -471,12 +472,17 @@
       
 
       
-        <h1 id="VAE介绍"><a href="#VAE介绍" class="headerlink" title="VAE介绍"></a>VAE介绍</h1><p>VAE（变分自编码器）为一个经典的生成式模型，属于编码器-解码器结构。</p>
+        <h1 id="VAE介绍"><a href="#VAE介绍" class="headerlink" title="VAE介绍"></a>VAE介绍</h1><blockquote>
+<p>VAE（变分自编码器）为一个经典的生成式模型，属于编码器-解码器结构。</p>
 <p>编码器用于采用复杂部分的特征，之后将复杂分布转换到简单分布的隐空间（如高斯分布）。</p>
 <p>解码器采样高斯分布中的数据，生成符合原始分布的图像。</p>
 <p>参考视频：</p>
 <p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1JY411q72n/?vd_source=f9578e20917b03f6b5eb19c9031cefd2">【10分钟】了解香农熵，交叉熵和KL散度</a></p>
 <p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Gs4y157BU/?spm_id_from=333.999.0.0&amp;vd_source=f9578e20917b03f6b5eb19c9031cefd2">【15分钟】了解变分推理</a></p>
+<p>参考博客</p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/wxkang/p/17128108.html">深度理解变分自编码器(VAE) | 从入门到精通 </a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/smileyan9/article/details/107362252">VAE 模型基本原理简单介绍</a></p>
+</blockquote>
 <span id="more"></span>
 <h2 id="一-公式推导"><a href="#一-公式推导" class="headerlink" title="一.公式推导"></a>一.公式推导</h2><h3 id="1-KL散度"><a href="#1-KL散度" class="headerlink" title="1.KL散度"></a>1.KL散度</h3><h4 id="①信息量"><a href="#①信息量" class="headerlink" title="①信息量"></a>①信息量</h4><ul>
 <li>信息量用于描述单个概率的信息，概率越小，信息量越大。</li>
@@ -499,42 +505,62 @@
 </ul>
 <h4 id="④KL散度"><a href="#④KL散度" class="headerlink" title="④KL散度"></a>④KL散度</h4><ul>
 <li>衡量两个概率分布之间的区别</li>
+<li><script type="math/tex; mode=display">D _ { K L } ( p | | q ) = \int p ( x ) \log \frac { p ( x ) } { q ( x ) } d x= E _ { x \sim P } \left[ \log \frac { P ( x ) } { q ( x ) } \right] = E _ { x \sim P } \left[ \log P ( x ) \right] - E _ { x \sim P } \left[ \log q ( x ) \right]</script></li>
 <li><script type="math/tex; mode=display">D ( p | | q ) = H ( p , q ) - H ( p ) = \sum p _ { i } I _ { i } ^ { q } - \sum p _ { i } I _ { i } ^ { p }</script><ul>
 <li><script type="math/tex; mode=display">= \sum p _ { i } \log _ { 2 } ( \frac { 1 } { q _ { i } } ) - \sum p _ { i } \log _ { 2 } ( \frac { 1 } { p _ { i } } )</script></li>
 <li><script type="math/tex; mode=display">= \sum p _ { i } \log _ { 2 } ( \frac { p _ { i } } { q _ { i } } )</script></li>
 </ul>
 </li>
-<li><script type="math/tex; mode=display">D ( q | | p ) = H ( q , p ) - H ( q ) = \int q ( x ) \log \frac { q ( x ) } { p ( x ) } d x = E _ { x - q } \left[ \log q ( x ) - \log p ( x ) \right]</script></li>
-<li><script type="math/tex">D ( p 1 1 q ) \geq 0</script>   恒成立，p=q时等于0</li>
+<li>$D ( p || q ) \geq 0 $   恒成立，p=q时等于0</li>
 <li>最小化KL散度，需要对KL散度表达式求梯度，等同于对交叉熵求梯度<ul>
-<li><script type="math/tex; mode=display">\nabla _ { \theta } D ( p | | q _ { \theta } ) = \nabla _ { \theta } H ( p , q _ { \theta } ) - \nabla _ { \theta } H ( p ) = \nabla _ { \theta } H ( p , q _ { \theta } )</script></li>
+<li>$ \nabla _ { \theta } D ( p | | q _ { \theta } ) = \nabla _ { \theta } H ( p , q _ { \theta } ) - \nabla _ { \theta } H ( p ) = \nabla _ { \theta } H ( p , q _ { \theta } )$</li>
 </ul>
 </li>
 </ul>
 <h3 id="2-ELBO（变分推断-证据下界）"><a href="#2-ELBO（变分推断-证据下界）" class="headerlink" title="2.ELBO（变分推断-证据下界）"></a>2.ELBO（变分推断-证据下界）</h3><h4 id="①被观测数据与隐变量"><a href="#①被观测数据与隐变量" class="headerlink" title="①被观测数据与隐变量"></a>①被观测数据与隐变量</h4><ul>
 <li><p><script type="math/tex">x \sim p ( x )</script>：表示被观测数据的概率分布</p>
 </li>
-<li><p><script type="math/tex">z \sim p ( z | x )</script>：表示隐变量的后验概率分布</p>
+<li><p><script type="math/tex">z \sim q ( z | x )</script>：表示隐变量的后验概率分布</p>
 </li>
 <li>$p(z)$：一般为高斯分布（正态分布）</li>
 <li>$p(x|z)$：条件概率，即似然度</li>
 <li><script type="math/tex; mode=display">p ( z | x ) = \frac { p ( x | z ) p ( z ) } { p ( x ) } = \frac { p ( x | z ) p ( z ) } { \int _ { z } p ( x , z ) d z }</script></li>
 </ul>
 <h4 id="②ELBO"><a href="#②ELBO" class="headerlink" title="②ELBO"></a>②ELBO</h4><ul>
-<li>为使隐变量的概率分布近似于后验概率分布 <script type="math/tex">q _ { \theta } ( z ) \approx p ( z | x )</script></li>
+<li>为使后验概率分布近似于隐变量的概率分布 $q_ { \theta }( z | x ) \approx p  ( z )$</li>
 <li>计算KL散度<ul>
 <li><script type="math/tex; mode=display">D ( q _ { \theta } ( z ) | | p ( z | x ) ) = E _ { z - q } \left[ \log \frac { q _ { \theta } ( z ) } { p ( z | x ) } \right] = E _ { z - q } \left[ \log q _ { \theta } ( z ) - \log p ( z | x ) \right]</script></li>
 <li><script type="math/tex; mode=display">= E _ { z - q } \left[ \log q _ { \theta } ( z ) - \log \frac { p ( z , x ) } { p ( x ) } \right]</script></li>
 <li><script type="math/tex; mode=display">= E _ { z - q } \left[ \log q _ { \theta } ( z ) - \log p ( z , x ) \right] + \log p ( x )</script></li>
 </ul>
 </li>
-<li>转换为ELBO变分下界，变为求最大的该值<ul>
+<li>转换为ELBO下界，变为求最大的该值<ul>
 <li><script type="math/tex; mode=display">\log p ( x ) = E _ { z - q } \left[ \log p ( z , x ) - \log q _ { \theta } ( z ) \right] + D ( q _ { \theta } ( z ) | | p ( z | x ) )</script></li>
-<li><script type="math/tex; mode=display">\log p ( x ) \geq E _ { z - q } \left[ \log p ( z , x ) - \log q _ { \theta } ( z ) \right] \equiv C _ { q }</script></li>
+<li><script type="math/tex; mode=display">\log p ( x ) \geq E _ { z - q } \left[ \log p ( z , x ) - \log q _ { \theta } ( z ) \right]</script></li>
 </ul>
 </li>
 </ul>
 <p><img src="https://s21.ax1x.com/2024/12/09/pAHeel4.png" alt="pAHeel4.png"></p>
+<h3 id="3-模型架构"><a href="#3-模型架构" class="headerlink" title="3.模型架构"></a>3.模型架构</h3><ul>
+<li>在 VAE 中，我们希望编码器产生的潜在变量分布$ q _ { \phi } ( z | x ) = N ( z ; \mu , \sigma ^ { 2 } )$接近标准正态分布$ p ( z ) = N ( z ; 0 , 1 ) $。</li>
+<li>需要使两者之间的KL散度最小$ D _ { K L } ( q _ { \phi } ( z | x ) | | p ( z ) ) = \int q _ { \phi } ( z | x ) \log \frac { q _ { \phi } ( z | x ) } { p ( z ) } d z$<ul>
+<li>$ = \int q _ { \phi } ( z | x ) \left[ \log q _ { \phi } ( z | x ) - \log p ( z ) \right] d z$</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://s21.ax1x.com/2024/12/10/pAHKpCV.png" alt="pAHKpCV.png"></p>
+<ul>
+<li>编码器：输出两组编码，均值编码m与控制噪声干扰程度的方差编码$\sigma$（为噪音$e$分配权重），分配权重之前为方差编码套上一层指数运算$exp$（保证权重为正值），将原编码和经过权重分配后噪声编码进行叠加，就得到了新的latent code $c$<ul>
+<li><strong>（$m$均值）</strong>：编码器输出的均值向量，表示潜在空间中分布的中心位置。</li>
+<li><strong>（$\sigma$标准差）</strong>：编码器输出的标准差向量，表示潜在空间中分布的离散程度。</li>
+</ul>
+</li>
+<li><p>解码器：进行重构</p>
+</li>
+<li><p><strong>（$m$均值）</strong>：编码器输出的均值向量，表示潜在空间中分布的中心位置。</p>
+</li>
+<li><strong>（$\sigma$标准差）</strong>：编码器输出的标准差向量，表示潜在空间中分布的离散程度。</li>
+</ul>
 
       
     </div>
@@ -814,7 +840,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#VAE%E4%BB%8B%E7%BB%8D"><span class="nav-text">VAE介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80-%E5%85%AC%E5%BC%8F%E6%8E%A8%E5%AF%BC"><span class="nav-text">一.公式推导</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-KL%E6%95%A3%E5%BA%A6"><span class="nav-text">1.KL散度</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E2%91%A0%E4%BF%A1%E6%81%AF%E9%87%8F"><span class="nav-text">①信息量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E2%91%A1%E9%A6%99%E5%86%9C%E7%86%B5"><span class="nav-text">②香农熵</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E2%91%A2%E4%BA%A4%E5%8F%89%E7%86%B5"><span class="nav-text">③交叉熵</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E2%91%A3KL%E6%95%A3%E5%BA%A6"><span class="nav-text">④KL散度</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-ELBO%EF%BC%88%E5%8F%98%E5%88%86%E6%8E%A8%E6%96%AD-%E8%AF%81%E6%8D%AE%E4%B8%8B%E7%95%8C%EF%BC%89"><span class="nav-text">2.ELBO（变分推断-证据下界）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E2%91%A0%E8%A2%AB%E8%A7%82%E6%B5%8B%E6%95%B0%E6%8D%AE%E4%B8%8E%E9%9A%90%E5%8F%98%E9%87%8F"><span class="nav-text">①被观测数据与隐变量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E2%91%A1ELBO"><span class="nav-text">②ELBO</span></a></li></ol></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#VAE%E4%BB%8B%E7%BB%8D"><span class="nav-text">VAE介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80-%E5%85%AC%E5%BC%8F%E6%8E%A8%E5%AF%BC"><span class="nav-text">一.公式推导</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-KL%E6%95%A3%E5%BA%A6"><span class="nav-text">1.KL散度</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E2%91%A0%E4%BF%A1%E6%81%AF%E9%87%8F"><span class="nav-text">①信息量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E2%91%A1%E9%A6%99%E5%86%9C%E7%86%B5"><span class="nav-text">②香农熵</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E2%91%A2%E4%BA%A4%E5%8F%89%E7%86%B5"><span class="nav-text">③交叉熵</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E2%91%A3KL%E6%95%A3%E5%BA%A6"><span class="nav-text">④KL散度</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-ELBO%EF%BC%88%E5%8F%98%E5%88%86%E6%8E%A8%E6%96%AD-%E8%AF%81%E6%8D%AE%E4%B8%8B%E7%95%8C%EF%BC%89"><span class="nav-text">2.ELBO（变分推断-证据下界）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E2%91%A0%E8%A2%AB%E8%A7%82%E6%B5%8B%E6%95%B0%E6%8D%AE%E4%B8%8E%E9%9A%90%E5%8F%98%E9%87%8F"><span class="nav-text">①被观测数据与隐变量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E2%91%A1ELBO"><span class="nav-text">②ELBO</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E6%A8%A1%E5%9E%8B%E6%9E%B6%E6%9E%84"><span class="nav-text">3.模型架构</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
@@ -855,7 +881,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">222.2k</span>
+    <span title="Site words total count">248k</span>
   
 </div>
 

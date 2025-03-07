@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="生成式模型,超分辨率," />
 
 
 
@@ -88,15 +88,27 @@
 
 
 
-<meta name="description" content="千里之行，始于足下">
-<meta property="og:type" content="website">
-<meta property="og:title" content="沙漠客的学习驿站">
-<meta property="og:url" content="http://example.com/categories/%E5%AD%A6%E6%9C%AF%E8%AE%BA%E6%96%87%E6%80%BB%E7%BB%93/index.html">
+<meta name="description" content="超分辨率第十一章-Diffusion_model&amp;SR Denoising Diffusion Probabilistic Models 于2020年发布。 参考文献：Denoising Diffusion Probabilistic Models 此后在超分领域出现了两篇以扩散模型为基础的文章： 参考文献： SR3: Image Super-Resolution via Iterativ">
+<meta property="og:type" content="article">
+<meta property="og:title" content="超分辨率第十一章-Diffusion_model&amp;SR">
+<meta property="og:url" content="http://example.com/2025/03/07/%E8%B6%85%E5%88%86%E8%BE%A8%E7%8E%87%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0-Diffusion-model-SR/index.html">
 <meta property="og:site_name" content="沙漠客的学习驿站">
-<meta property="og:description" content="千里之行，始于足下">
+<meta property="og:description" content="超分辨率第十一章-Diffusion_model&amp;SR Denoising Diffusion Probabilistic Models 于2020年发布。 参考文献：Denoising Diffusion Probabilistic Models 此后在超分领域出现了两篇以扩散模型为基础的文章： 参考文献： SR3: Image Super-Resolution via Iterativ">
 <meta property="og:locale">
+<meta property="og:image" content="https://s21.ax1x.com/2025/03/07/pEtuVmt.png">
+<meta property="og:image" content="https://s21.ax1x.com/2025/03/07/pEtltKJ.png">
+<meta property="og:image" content="https://s21.ax1x.com/2025/03/07/pEtlr8O.png">
+<meta property="og:image" content="https://s21.ax1x.com/2025/03/07/pEtlqqs.png">
+<meta property="og:image" content="https://s21.ax1x.com/2025/03/07/pEtKNDI.png">
+<meta property="og:image" content="https://s21.ax1x.com/2025/03/07/pEt1qSO.png">
+<meta property="og:image" content="https://s21.ax1x.com/2025/03/07/pEtunk8.png">
+<meta property="article:published_time" content="2025-03-07T07:50:06.000Z">
+<meta property="article:modified_time" content="2025-03-07T12:43:11.355Z">
 <meta property="article:author" content="Shamoke">
+<meta property="article:tag" content="生成式模型">
+<meta property="article:tag" content="超分辨率">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s21.ax1x.com/2025/03/07/pEtuVmt.png">
 
 
 
@@ -126,13 +138,13 @@
 
 
 
-  <link rel="canonical" href="http://example.com/categories/学术论文总结/"/>
+  <link rel="canonical" href="http://example.com/2025/03/07/超分辨率第十一章-Diffusion-model-SR/"/>
 
 
 
 
 
-  <title>分类: 学术论文总结 | 沙漠客的学习驿站</title>
+  <title>超分辨率第十一章-Diffusion_model&SR | 沙漠客的学习驿站</title>
   
 
 
@@ -156,7 +168,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <a target="_blank" rel="noopener" href="https://github.com/sichuanshamoke" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
@@ -305,84 +317,349 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block category">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>学术论文总结<small>分类</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/03/07/%E8%B6%85%E5%88%86%E8%BE%A8%E7%8E%87%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0-Diffusion-model-SR/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="沙漠客">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="沙漠客的学习驿站">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2024/09/06/%E8%B6%85%E5%88%86%E8%BE%A8%E7%8E%87-%E7%BB%BC%E8%BF%B0/" itemprop="url">
-              
-                <span itemprop="name">超分辨率-综述</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">超分辨率第十一章-Diffusion_model&SR</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2024-09-06T16:55:56+08:00"
-              content="2024-09-06" >
-          09-06
-        </time>
-      </div>
+        <div class="post-meta">
+          
+          
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2025-03-07T15:50:06+08:00">
+                2025-03-07
+              </time>
+            
 
-    </header>
-  </article>
+            
+              <span class="post-meta-divider">|</span>
+            
 
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2025-03-07T20:43:11+08:00">
+                2025-03-07
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%B6%85%E5%88%86%E8%BE%A8%E7%8E%87%E5%9F%BA%E7%A1%80%E6%A8%A1%E5%9E%8B/" itemprop="url" rel="index">
+                    <span itemprop="name">超分辨率基础模型</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2025/03/07/%E8%B6%85%E5%88%86%E8%BE%A8%E7%8E%87%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0-Diffusion-model-SR/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2025/03/07/%E8%B6%85%E5%88%86%E8%BE%A8%E7%8E%87%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0-Diffusion-model-SR/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.9k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  7
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-        
+      
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2024/08/23/MRI%E8%B6%85%E5%88%86%E8%BE%A8%E7%8E%87-%E5%88%9D%E8%A7%81/" itemprop="url">
-              
-                <span itemprop="name">MRI超分辨率-初见</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2024-08-23T11:04:29+08:00"
-              content="2024-08-23" >
-          08-23
-        </time>
-      </div>
-
-    </header>
-  </article>
-
+      
+        <h1 id="超分辨率第十一章-Diffusion-model-amp-SR"><a href="#超分辨率第十一章-Diffusion-model-amp-SR" class="headerlink" title="超分辨率第十一章-Diffusion_model&amp;SR"></a>超分辨率第十一章-Diffusion_model&amp;SR</h1><blockquote>
+<p>Denoising Diffusion Probabilistic Models 于2020年发布。</p>
+<p>参考文献：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2006.11239">Denoising Diffusion Probabilistic Models</a></p>
+<p>此后在超分领域出现了两篇以扩散模型为基础的文章：</p>
+<p>参考文献：</p>
+<p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2104.07636">SR3: Image Super-Resolution via Iterative Refinement</a> (2021)</p>
+<p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2104.14951">SRDiff: Single Image Super-Resolution with Diffusion Probabilistic Models</a> (2021)</p>
+</blockquote>
+<span id="more"></span>
+<h2 id="一-Diffusion-model介绍"><a href="#一-Diffusion-model介绍" class="headerlink" title="一.Diffusion_model介绍"></a>一.Diffusion_model介绍</h2><h3 id="1-应用背景"><a href="#1-应用背景" class="headerlink" title="1.应用背景"></a>1.应用背景</h3><p>基于其它模型的缺点：</p>
+<ul>
+<li><p>PSNR-oriented：导致图像过度平滑并导致高频信息丢失。</p>
+</li>
+<li><p>GAN-driven：“mode collapse（模式崩溃）“、训练时很难收敛</p>
+<ul>
+<li>模式崩溃是指模型未能生成数据分布的所有模式，而是只生成部分模式或重复生成相同的模式。</li>
+</ul>
+</li>
+<li><p>VAE: 生成后的图片较为模糊。</p>
+</li>
+<li><p>Flow-based：占用空间过大，损失函数计算负对数似然时雅可比行列式的值难以计算</p>
+</li>
+</ul>
+<h3 id="2-Diffusion-Models原理"><a href="#2-Diffusion-Models原理" class="headerlink" title="2.Diffusion Models原理"></a>2.Diffusion Models原理</h3><blockquote>
+<p>扩散模型使用马尔可夫链，通过在扩散过程中逐渐添加噪声，将数据 x0（复杂分布） 转换为简单分布的潜在变量 xt，并预测每个扩散步骤中的噪声。</p>
+<p>一般加噪过程最后会将数据变为高斯分布xT~N（0,1），即最简单的标准正态分布。</p>
+<p>最后通过逆向的去噪从高斯分布逐步恢复原始数据 x0</p>
+</blockquote>
+<h4 id="①马尔科夫链"><a href="#①马尔科夫链" class="headerlink" title="①马尔科夫链"></a>①马尔科夫链</h4><blockquote>
+<p>马尔科夫链是一个随机过程{X_n ，n=0,1,2,⋯}，其中X_n表示在时间步n时系统所处的状态，且状态空间<em>S</em>是离散的。</p>
+<p>它具有马尔科夫性质，即给定当前状态，未来的状态只取决于当前状态，而与过去的历史状态无关。</p>
+</blockquote>
+<ul>
+<li>马尔科夫链的三要素：</li>
+</ul>
+<p>​    1.状态空间：t0=[1,0] or t0=[0,1]，初始值</p>
+<p>​    2.无记忆性：当前选择的概率只受上一期的选择概率的影响，与以前的无关</p>
+<p>​    3.转移矩阵：每一个状态都以一定的概率转化到下一个状态，这种概率可以用一个矩阵表示，即转移概率矩阵。</p>
+<ul>
+<li><p>马尔科夫链在扩散模型中的应用：</p>
+<ul>
+<li><p>正向加噪过程</p>
+<ul>
+<li>扩散模型通常基于马尔科夫链来构建正向扩散过程。从初始的清晰数据分布（如自然图像分布）开始，逐步向数据中添加噪声，这个过程可以看作是马尔科夫链的状态转移。每一步添加噪声的过程只依赖于当前的数据状态，符合马尔科夫性质。</li>
+<li>即给定当前时刻的数据状态 x_t，下一时刻 t+1的数据状态 x_t+1的概率分布只取决于 x_t，可以表示为q(x_t+1∣x_t)。</li>
+<li>随着时间步<em>t</em>的增加，数据逐渐被噪声淹没，最终达到一个纯噪声的分布。例如在图像扩散模型中，从一张清晰的图像开始，经过多次添加噪声的操作，最终图像变得完全像随机噪声。</li>
+</ul>
+</li>
+<li><p>逆向去噪过程</p>
+<ul>
+<li>基于马尔科夫链的反向过程是从纯噪声开始，逐步去除噪声以恢复原始数据。在反向过程中，根据马尔科夫性质，给定当前的噪声状态 x_t，模型需要学习预测前一时刻的状态 x_t−1的概率分布p(x_t−1∣xt)。</li>
+<li>通过不断地从这个条件分布中采样，逐步向原始数据分布靠近，最终生成出接近真实数据的样本。从一个随机的噪声向量开始，通过一系列的马尔科夫链状态转移，逐步生成原图像。</li>
+<li>在反向过程中，马尔科夫链的转移概率通常通过神经网络来参数化。例如使用一个基于深度学习的生成器网络，以当前的噪声状态 x_t和时间步 t 作为输入，输出预测的前一时刻状态 x_t−1的概率分布或直接输出一个估计的 x_t−1样本。</li>
+</ul>
+<p><img src="https://s21.ax1x.com/2025/03/07/pEtuVmt.png" alt="pEtuVmt.png"></p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="②前向加噪"><a href="#②前向加噪" class="headerlink" title="②前向加噪"></a>②前向加噪</h4><ul>
+<li><p>从原始数据x0出发，着时间步<em>t</em>从0增加到<em>T</em>，数据 xt逐渐被噪声淹没，最终xT服从一个纯噪声分布，通常是标准正态分布<script type="math/tex">N ( 0 , I )</script>。</p>
+</li>
+<li><p>在每个时间步t逐步向数据中添加噪声。通常使用高斯噪声，在时间步t，给定 xt−1，通过以下公式得到xt：<script type="math/tex">x _ { t } = \sqrt { 1 - \beta } _ { t } x _ { t - 1 } + \sqrt { \beta } _ { t } \epsilon _ { t }</script></p>
+<ul>
+<li>其中βt是一个与时间步t相关的噪声系数，控制着噪声添加的强度，ϵt是从标准正态分布N(0,I)中采样得到的噪声向量。</li>
+</ul>
+</li>
+<li>过程如下面表达式所示<ul>
+<li><script type="math/tex; mode=display">q ( y _ { t } | y _ { t - 1 } ) = N ( y _ { t } | \sqrt { \alpha _ { t } } y _ { t - 1 } , ( 1 - \alpha _ { t } ) I )</script></li>
+<li><script type="math/tex; mode=display">q ( y _ { T } \ | y _ { 0 } ) = N ( y _ { T } \ | \sqrt { \gamma _ { t } } y _ { 0 } , ( 1 - \gamma _ { t } ) I )</script><ul>
+<li><script type="math/tex; mode=display">\gamma _ { t } = \pi _ { i = 1 } ^ { T } \alpha _ { i }</script></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>训练过程</strong>：$f _ { \theta } ( x , \tilde { y } , \gamma )$，该神经网络经过训练之后预测当前次迭代步t产生的噪声$ \widehat { \epsilon } _ { t }$</p>
+<p><strong>需要最小化该步预测噪声和该步实际的噪声的差值（会转换为求极大似然估计）：</strong></p>
+<p><img src="https://s21.ax1x.com/2025/03/07/pEtltKJ.png" alt="pEtltKJ.png"></p>
+<h4 id="③反向去噪"><a href="#③反向去噪" class="headerlink" title="③反向去噪"></a>③反向去噪</h4><ul>
+<li>从纯噪声采样：从纯噪声分布中采样得到 xT，由于前向加噪过程的结果，xT通常服从标准正态分布<script type="math/tex">N ( 0 , I )</script></li>
+<li>学习条件分布：模型需要学习在给定xt的情况下，xt - 1的条件分布<script type="math/tex">p _ { \theta } ( x _ { t - 1 } | x _ { t } )</script>，之后逐步开始去噪，向前采样，T步之后得到超分辨率重建图片。</li>
+<li>过程如下面表达式所示：<ul>
+<li><script type="math/tex; mode=display">p ( y _ { T } ) = N ( y _ { T } | 0 , I )</script></li>
+<li><script type="math/tex; mode=display">p _ { \theta } ( y _ { 0 : T } | x ) = p ( y _ { T } ) \prod _ { t = 1 } ^ { T } p _ { \theta } ( y _ { t - 1 } | y _ { t } , x )</script></li>
+<li><script type="math/tex; mode=display">p _ { \theta } ( y _ { t - 1 } | y _ { t } , x ) = N ( y _ { t - 1 } | \mu _ { \theta } ( x , y _ { t } , \gamma _ { t } ) , \sigma _ { t } ^ { 2 } I )</script></li>
+<li><script type="math/tex; mode=display">\mu _ { 0 } ( x , y _ { t } , \gamma _ { t } ) = \frac { 1 } { \sqrt { \alpha _ { t } } } \left( y _ { t } - \frac { 1 - \alpha _ { t } } { \sqrt { 1 - \gamma _ { t } } } f _ { 0 } ( x , y _ { t } , \gamma _ { t } ) \right) _ { x }</script></li>
+</ul>
+</li>
+</ul>
+<p><strong>推理过程需要添加额外的高斯噪声，避免陷入局部最优</strong></p>
+<p><img src="https://s21.ax1x.com/2025/03/07/pEtlr8O.png" alt="pEtlr8O.png"></p>
+<h2 id="二-SR3介绍"><a href="#二-SR3介绍" class="headerlink" title="二.SR3介绍"></a>二.SR3介绍</h2><p>SR3架构基于<strong>DDPM</strong>架构并做了改进。</p>
+<blockquote>
+<p><strong>DDPM</strong>在正向加噪后，训练阶段，将加噪后的图输入U-Net预测每次迭代添加的噪声。</p>
+<p>推理阶段，从一张标准正态分布的噪声，输入U-Net后可通过预测出的噪声逆向去噪，迭代后生成新图像。</p>
+<p><img src="https://s21.ax1x.com/2025/03/07/pEtlqqs.png" alt="pEtlqqs.png"></p>
+</blockquote>
+<p><strong>SR3的改进为：SR3在每一步的输入为：concat  y_t and x (将低分辨率图片用插值法到目标高分辨率再于当前时间步图片连接)</strong></p>
+<p><img src="https://s21.ax1x.com/2025/03/07/pEtKNDI.png" alt="pEtKNDI.png"></p>
+<h2 id="三-SRDiff介绍"><a href="#三-SRDiff介绍" class="headerlink" title="三.SRDiff介绍"></a>三.SRDiff介绍</h2><p><strong>过程：与SR3不同，它预测的是残差：<script type="math/tex">x _ { r } = x _ { H } - U P ( x _ { L } )</script></strong></p>
+<p>加噪：将残差xr=XH-up（xL）t步加噪迭代后转化为高斯分布的潜在xT</p>
+<p>训练：输入xr=XH-up（xL）和经过基于RRDB编码器的XL，经过U-net结构，预测每一步迭代的噪声</p>
+<p>去噪：采样一个高斯分布的XT，将每一步预测的噪声进行去噪，还需添加一个随机采样的噪声z引入随机性，经过T次迭代后得出残差，与低分辨率图片相加即可得到超分辨率图片：<script type="math/tex">x _ { S R } = x _ { 0 } + U P ( x _ { L } )</script></p>
+<p><img src="https://s21.ax1x.com/2025/03/07/pEt1qSO.png" alt="pEt1qSO.png"></p>
+<p>优化目标为：<script type="math/tex">\nabla _ { \theta } | | \epsilon - \epsilon _ { \theta } ( x _ { t } , x _ { e } , t ) | | ^ { 2 } , x_t=\sqrt { \alpha } _ { t } x _ { r } + \sqrt { 1 - \overline { \alpha } } _ { t } \epsilon</script></p>
+<p><strong>LR Encoder:RRDB结构，将低分图片上采样到与xt相同的维度</strong></p>
+<p><img src="https://s21.ax1x.com/2025/03/07/pEtunk8.png" alt="pEtunk8.png"></p>
 
       
     </div>
+    
+    
+    
+
+
+
+    
+
+    
+
+    
+
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>-------------</div>
+    
+</div>
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E7%94%9F%E6%88%90%E5%BC%8F%E6%A8%A1%E5%9E%8B/" rel="tag"><i class="fa fa-tag"></i> 生成式模型</a>
+          
+            <a href="/tags/%E8%B6%85%E5%88%86%E8%BE%A8%E7%8E%87/" rel="tag"><i class="fa fa-tag"></i> 超分辨率</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2024/12/09/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%AC%AC%E5%85%AD%E7%AB%A0-VAE%E6%9E%B6%E6%9E%84/" rel="next" title="深度学习第六章-VAE架构">
+                <i class="fa fa-chevron-left"></i> 深度学习第六章-VAE架构
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
 
   </div>
   
   
   
-
+  </article>
   
 
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -390,6 +667,13 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
 
         </div>
         
@@ -410,8 +694,17 @@
     <div class="sidebar-inner">
       
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -431,7 +724,7 @@
               
                 <a href="/">
               
-                  <span class="site-state-item-count">38</span>
+                  <span class="site-state-item-count">39</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -453,7 +746,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -512,11 +805,15 @@
                 
                 
                   <li class="recent_posts_li">
-                    <a href="/2024/12/09/VAE%E4%BB%8B%E7%BB%8D/" title="VAE介绍" target="_blank">VAE介绍</a>
+                    <a href="/2025/03/07/%E8%B6%85%E5%88%86%E8%BE%A8%E7%8E%87%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0-Diffusion-model-SR/" title="超分辨率第十一章-Diffusion_model&SR" target="_blank">超分辨率第十一章-Diffusion_model&SR</a>
                   </li>
                 
                   <li class="recent_posts_li">
-                    <a href="/2024/12/02/%E8%B6%85%E5%88%86%E8%BE%A8%E7%8E%87%E7%AC%AC%E5%8D%81%E7%AB%A0-NormalizingFlow-SR/" title="超分辨率第十章-NormalizingFlow&SR" target="_blank">超分辨率第十章-NormalizingFlow&SR</a>
+                    <a href="/2024/12/09/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%AC%AC%E5%85%AD%E7%AB%A0-VAE%E6%9E%B6%E6%9E%84/" title="深度学习第六章-VAE架构" target="_blank">深度学习第六章-VAE架构</a>
+                  </li>
+                
+                  <li class="recent_posts_li">
+                    <a href="/2024/12/02/%E8%B6%85%E5%88%86%E8%BE%A8%E7%8E%87%E7%AC%AC%E5%8D%81%E7%AB%A0-NormalizingFlow-SR/" title="超分辨率第十章-SR&NormalizingFlow" target="_blank">超分辨率第十章-SR&NormalizingFlow</a>
                   </li>
                 
                   <li class="recent_posts_li">
@@ -525,10 +822,6 @@
                 
                   <li class="recent_posts_li">
                     <a href="/2024/10/28/%E8%B6%85%E5%88%86%E8%BE%A8%E7%8E%87%E7%AC%AC%E5%85%AB%E7%AB%A0-SR&transformer/" title="超分辨率第八章-SR&transformer" target="_blank">超分辨率第八章-SR&transformer</a>
-                  </li>
-                
-                  <li class="recent_posts_li">
-                    <a href="/2024/10/20/%E8%B6%85%E5%88%86%E8%BE%A8%E7%8E%87%E7%AC%AC%E4%B8%83%E7%AB%A0-SRFBN/" title="超分辨率第七章-SRFBN" target="_blank">超分辨率第七章-SRFBN</a>
                   </li>
                 
               </ul>
@@ -549,7 +842,15 @@
               <ul class="links-of-blogroll-list">
                 
                   <li class="links-of-blogroll-item">
+                    <a href="https://www.marxists.org/chinese/maozedong/index.htm" title="五件法宝" target="_blank">五件法宝</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
                     <a href="https://space.bilibili.com/562700874?spm_id_from=333.1365.0.0" title="风翼飞镰" target="_blank">风翼飞镰</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://mieawentuirba.github.io/" title="风沙侠客" target="_blank">风沙侠客</a>
                   </li>
                 
               </ul>
@@ -561,6 +862,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%B6%85%E5%88%86%E8%BE%A8%E7%8E%87%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0-Diffusion-model-amp-SR"><span class="nav-text">超分辨率第十一章-Diffusion_model&amp;SR</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80-Diffusion-model%E4%BB%8B%E7%BB%8D"><span class="nav-text">一.Diffusion_model介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%BA%94%E7%94%A8%E8%83%8C%E6%99%AF"><span class="nav-text">1.应用背景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Diffusion-Models%E5%8E%9F%E7%90%86"><span class="nav-text">2.Diffusion Models原理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E2%91%A0%E9%A9%AC%E5%B0%94%E7%A7%91%E5%A4%AB%E9%93%BE"><span class="nav-text">①马尔科夫链</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E2%91%A1%E5%89%8D%E5%90%91%E5%8A%A0%E5%99%AA"><span class="nav-text">②前向加噪</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E2%91%A2%E5%8F%8D%E5%90%91%E5%8E%BB%E5%99%AA"><span class="nav-text">③反向去噪</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C-SR3%E4%BB%8B%E7%BB%8D"><span class="nav-text">二.SR3介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89-SRDiff%E4%BB%8B%E7%BB%8D"><span class="nav-text">三.SRDiff介绍</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -596,7 +913,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">220.4k</span>
+    <span title="Site words total count">223k</span>
   
 </div>
 
@@ -712,6 +1029,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 

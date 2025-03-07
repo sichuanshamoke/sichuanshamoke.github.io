@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="超分辨率,生成式模型," />
+  <meta name="keywords" content="生成式模型,超分辨率," />
 
 
 
@@ -88,12 +88,12 @@
 
 
 
-<meta name="description" content="超分辨率第十章-NormalizingFlow&amp;SR 本文介绍标准化流（Normalizing Flow）以及其对应的超分辨率模型SRflow 参考文献： Normalizing Flows: An Introduction and Review of Current Methods 参考博客：SRFlow: Learning the Super-Resolution Space with">
+<meta name="description" content="超分辨率第十章-SR&amp;NormalizingFlow 本文介绍标准化流（Normalizing Flow）以及其对应的超分辨率模型SRflow 参考文献： Normalizing Flows: An Introduction and Review of Current Methods 参考博客：SRFlow: Learning the Super-Resolution Space with">
 <meta property="og:type" content="article">
-<meta property="og:title" content="超分辨率第十章-NormalizingFlow&amp;SR">
+<meta property="og:title" content="超分辨率第十章-SR&amp;NormalizingFlow">
 <meta property="og:url" content="http://example.com/2024/12/02/%E8%B6%85%E5%88%86%E8%BE%A8%E7%8E%87%E7%AC%AC%E5%8D%81%E7%AB%A0-NormalizingFlow-SR/index.html">
 <meta property="og:site_name" content="沙漠客的学习驿站">
-<meta property="og:description" content="超分辨率第十章-NormalizingFlow&amp;SR 本文介绍标准化流（Normalizing Flow）以及其对应的超分辨率模型SRflow 参考文献： Normalizing Flows: An Introduction and Review of Current Methods 参考博客：SRFlow: Learning the Super-Resolution Space with">
+<meta property="og:description" content="超分辨率第十章-SR&amp;NormalizingFlow 本文介绍标准化流（Normalizing Flow）以及其对应的超分辨率模型SRflow 参考文献： Normalizing Flows: An Introduction and Review of Current Methods 参考博客：SRFlow: Learning the Super-Resolution Space with">
 <meta property="og:locale">
 <meta property="og:image" content="https://s21.ax1x.com/2024/12/02/pAID0G4.png">
 <meta property="og:image" content="https://s21.ax1x.com/2024/12/02/pAI7eUg.png">
@@ -102,10 +102,10 @@
 <meta property="og:image" content="https://s21.ax1x.com/2024/12/10/pAHMQJ0.png">
 <meta property="og:image" content="https://s21.ax1x.com/2024/12/03/pAIxBM4.png">
 <meta property="article:published_time" content="2024-12-02T05:38:03.000Z">
-<meta property="article:modified_time" content="2024-12-10T06:19:53.826Z">
+<meta property="article:modified_time" content="2025-03-07T13:23:45.141Z">
 <meta property="article:author" content="Shamoke">
-<meta property="article:tag" content="超分辨率">
 <meta property="article:tag" content="生成式模型">
+<meta property="article:tag" content="超分辨率">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://s21.ax1x.com/2024/12/02/pAID0G4.png">
 
@@ -143,7 +143,7 @@
 
 
 
-  <title>超分辨率第十章-NormalizingFlow&SR | 沙漠客的学习驿站</title>
+  <title>超分辨率第十章-SR&NormalizingFlow | 沙漠客的学习驿站</title>
   
 
 
@@ -347,7 +347,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">超分辨率第十章-NormalizingFlow&SR</h1>
+          <h1 class="post-title" itemprop="name headline">超分辨率第十章-SR&NormalizingFlow</h1>
         
 
         <div class="post-meta">
@@ -377,8 +377,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2024-12-10T14:19:53+08:00">
-                2024-12-10
+              <time title="更新于" itemprop="dateModified" datetime="2025-03-07T21:23:45+08:00">
+                2025-03-07
               </time>
             
           </span>
@@ -396,19 +396,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%A1%95%E5%A3%AB%E9%98%B6%E6%AE%B5%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%85%A5%E9%97%A8%E9%98%B6%E6%AE%B5/" itemprop="url" rel="index">
-                    <span itemprop="name">硕士阶段学习笔记(入门阶段)</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%A1%95%E5%A3%AB%E9%98%B6%E6%AE%B5%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%85%A5%E9%97%A8%E9%98%B6%E6%AE%B5/%E6%A8%A1%E5%9E%8B/" itemprop="url" rel="index">
-                    <span itemprop="name">模型</span>
+                  <a href="/categories/%E8%B6%85%E5%88%86%E8%BE%A8%E7%8E%87%E5%9F%BA%E7%A1%80%E6%A8%A1%E5%9E%8B/" itemprop="url" rel="index">
+                    <span itemprop="name">超分辨率基础模型</span>
                   </a>
                 </span>
 
@@ -448,7 +437,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  2.5k
+                  3.1k
                 </span>
               
 
@@ -464,7 +453,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  9
+                  12
                 </span>
               
             </div>
@@ -485,94 +474,120 @@
       
 
       
-        <h1 id="超分辨率第十章-NormalizingFlow-amp-SR"><a href="#超分辨率第十章-NormalizingFlow-amp-SR" class="headerlink" title="超分辨率第十章-NormalizingFlow&amp;SR"></a>超分辨率第十章-NormalizingFlow&amp;SR</h1><blockquote>
+        <h1 id="超分辨率第十章-SR-amp-NormalizingFlow"><a href="#超分辨率第十章-SR-amp-NormalizingFlow" class="headerlink" title="超分辨率第十章-SR&amp;NormalizingFlow"></a>超分辨率第十章-SR&amp;NormalizingFlow</h1><blockquote>
 <p><strong>本文介绍标准化流（Normalizing Flow）以及其对应的超分辨率模型SRflow</strong></p>
 <p>参考文献：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1908.09257"> Normalizing Flows: An Introduction and Review of Current Methods</a></p>
 <p>参考博客：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/358281628">SRFlow: Learning the Super-Resolution Space with Normalizing Flow</a></p>
 </blockquote>
 <span id="more"></span>
-<h2 id="一-Normalizing-Flows（标准化流）"><a href="#一-Normalizing-Flows（标准化流）" class="headerlink" title="一.Normalizing Flows（标准化流）"></a>一.Normalizing Flows（标准化流）</h2><p>标准化流，与VAE、GAN同属于生成式方法</p>
+<h2 id="一-Normalizing-Flows（标准化流）"><a href="#一-Normalizing-Flows（标准化流）" class="headerlink" title="一.Normalizing Flows（标准化流）"></a>一.Normalizing Flows（标准化流）</h2><blockquote>
+<p>标准化流，与VAE、GAN同属于生成式方法</p>
+<p>Normalizing flow 是一种可逆生成模型，用于将一个原始分布通过学习的变换映射到另一个已知的<a target="_blank" rel="noopener" href="https://zhida.zhihu.com/search?content_id=234879792&amp;content_type=Article&amp;match_order=1&amp;q=概率分布&amp;zhida_source=entity">概率分布</a>。它可以将数据从原始分布转换为<a target="_blank" rel="noopener" href="https://zhida.zhihu.com/search?content_id=234879792&amp;content_type=Article&amp;match_order=1&amp;q=目标分布&amp;zhida_source=entity">目标分布</a>，从而实现数据的生成和采样。</p>
+<p>•标准化（normalize）：它可以将任意的复杂数据分布进行标准化，类似于<a target="_blank" rel="noopener" href="https://zhida.zhihu.com/search?content_id=168932433&amp;content_type=Article&amp;match_order=1&amp;q=数据预处理&amp;zhida_source=entity">数据预处理</a>中常用的数据0均值1方差的标准化，但是要精细很多；</p>
+<p>•流（Flows）：数据的分布可以非常的复杂，需要多个同样的操作组合来达到标准化的效果，这个组合的过程称为流。</p>
+</blockquote>
 <h3 id="1-标准化流的概念"><a href="#1-标准化流的概念" class="headerlink" title="1.标准化流的概念"></a>1.标准化流的概念</h3><h4 id="①标准化流的方法"><a href="#①标准化流的方法" class="headerlink" title="①标准化流的方法"></a>①标准化流的方法</h4><p><strong>通过一系列可逆且可微的变换（invertible and differentiable）将简单(复杂)的概率分布转换为复杂(简单)的概率分布</strong></p>
 <blockquote>
 <p>The density of a sample can be evaluated by transforming it back to the original simple distribution and then computing the product of i) the density of the inverse-transformed sample under this distribution and ii) the associated change in volume induced by the sequence of inverse transformations. The change in volume is the product of the absolute values of the determinants of the Jacobians for each transformation, as required by the change of variables formula.</p>
-<p><strong>样本的密度可以通过将其转换回原始简单分布，然后计算以下两者的乘积来评估：i) 该分布下逆变换后样本的密度；ii) 由一系列逆变换引起的相关体积变化。体积的变化是按照变量替换公式的要求，等于每个变换的雅可比行列式的绝对值的乘积。</strong></p>
+<p><strong>样本的密度可以通过将其转换回原始简单分布，然后计算以下两者的乘积来评估：</strong></p>
+<p><strong>i) 该分布下逆变换后样本的密度；</strong></p>
+<p><strong>ii) 由一系列逆变换引起的相关体积变化。体积的变化是按照变量替换公式的要求，等于每个变换的雅可比行列式的绝对值的乘积。</strong></p>
 </blockquote>
 <p>由此可见，标准化流需要用到：行列式(Determinant)、雅可比矩阵(Jacobi)、变量替换定理(Change of Variable Theorem)</p>
-<h4 id="②雅可比行列式（Jacobians）"><a href="#②雅可比行列式（Jacobians）" class="headerlink" title="②雅可比行列式（Jacobians）"></a>②雅可比行列式（Jacobians）</h4><ol>
-<li><strong>密度计算</strong>：在逆变换后的分布中，我们可以计算样本的密度。但是，由于我们进行了变换，所以还需要考虑由变换引起的体积变化（在多维空间中，这通常被称为“雅可比行列式”）。</li>
-<li><strong>雅可比行列式</strong>：在多维空间中，雅可比行列式是一个矩阵，其行列式值表示了从一个空间到另一个空间的体积变化因子。在进行变量替换时，我们需要计算雅可比行列式的绝对值，以确保体积的变化被正确考虑。</li>
-</ol>
+<h4 id="②雅可比行列式（Jacobians）"><a href="#②雅可比行列式（Jacobians）" class="headerlink" title="②雅可比行列式（Jacobians）"></a>②雅可比行列式（Jacobians）</h4><p><strong>密度计算</strong>：在逆变换后的分布中，我们可以计算样本的密度。但是，由于我们进行了变换，所以还需要考虑由变换引起的体积变化（在多维空间中，这通常被称为“雅可比行列式”）。</p>
+<p><strong>雅可比行列式</strong>：在多维空间中，雅可比行列式是一个矩阵，其行列式值表示了从一个空间到另一个空间的体积变化因子。在进行变量替换时，我们需要计算雅可比行列式的绝对值，以确保体积的变化被正确考虑。</p>
 <p>由$x=f(z)$的变化后的相关雅可比矩阵：$J_f = \begin{bmatrix} \frac{\partial z_1}{\partial x_1} &amp; \frac{\partial z_1}{\partial x_2} \\ \frac{\partial z_2}{\partial x_1} &amp; \frac{\partial z_2}{\partial x_2} \end{bmatrix}$</p>
-<h4 id="③概率密度函数的计算"><a href="#③概率密度函数的计算" class="headerlink" title="③概率密度函数的计算"></a>③概率密度函数的计算</h4><p>进行可逆变化后<script type="math/tex">Y = g ( Z )</script> ，计算Y的概率密度函数的方法</p>
+<p>即给出一个 原始概率分布，使用一个<a target="_blank" rel="noopener" href="https://zhida.zhihu.com/search?content_id=234879792&amp;content_type=Article&amp;match_order=1&amp;q=可逆变换&amp;zhida_source=entity">可逆变换</a> f(⋅) 将原始分布变为目标分布，这两个分布之间相差的就是这样一个雅可比行列式。</p>
+<h4 id="③概率密度函数的计算"><a href="#③概率密度函数的计算" class="headerlink" title="③概率密度函数的计算"></a>③概率密度函数的计算</h4><p>在正则化流中，定义一个<a target="_blank" rel="noopener" href="https://zhida.zhihu.com/search?content_id=234879792&amp;content_type=Article&amp;match_order=1&amp;q=变换函数&amp;zhida_source=entity">变换函数</a>，它将输入样本从原始分布映射到目标分布。这个映射是一个<strong>可逆函数</strong>，确保转换是可逆的，也就是说，在给定目标分布样本的情况下，可以逆向计算出原始分布的样本。</p>
+<p>进行可逆变化后<script type="math/tex">Y = g ( Z )</script> ，计算Y的概率密度函数的方法：</p>
 <script type="math/tex; mode=display">p _ { Y } ( y ) = p _ { Z } ( f ( y ) ) | d e t D f ( y ) | \\ = p _ { Z } ( f ( y ) ) | d e t D g ( f ( y ) ) | ^ { - 1 }</script><p><img src="https://s21.ax1x.com/2024/12/02/pAID0G4.png" alt="pAID0G4.png"></p>
-<h4 id="④损失函数-最大似然估计"><a href="#④损失函数-最大似然估计" class="headerlink" title="④损失函数-最大似然估计"></a>④损失函数-最大似然估计</h4><p>高-低分辨率图片对，通过可逆神经网络进行编码，将y编码为z</p>
-<script type="math/tex; mode=display">z=f _ { \theta } ( y , x )</script><p>此时可以逆向解码</p>
-<script type="math/tex; mode=display">y = f _ { \theta } ^ { - 1 } ( z , x ) , z \sim p _ { z } 。</script><p>若需通过$z$分布下的概率密度函数计算y分布下的概率密度函数，需要乘雅可比矩阵的绝对值</p>
+<h4 id="④损失函数-最大似然估计"><a href="#④损失函数-最大似然估计" class="headerlink" title="④损失函数-最大似然估计"></a>④损失函数-最大似然估计</h4><p>高-低分辨率图片对，通过可逆神经网络进行编码，将y编码为z：<script type="math/tex">z=f _ { \theta } ( y , x )</script></p>
+<p>此时可以逆向解码：<script type="math/tex">y = f _ { \theta } ^ { - 1 } ( z , x ) , z \sim p _ { z } 。</script></p>
+<p>若需通过$z$分布下的概率密度函数计算y分布下的概率密度函数，需要乘雅可比矩阵的绝对值：</p>
 <script type="math/tex; mode=display">p _ { y | x } ( y | x , \theta ) = p _ { z } ( f _ { \theta } ( y ; x ) ) | d e t \frac { \partial f _ { \theta } } { \partial y } ( y ; x ) | .</script><p>此时计算极大似然估计，使用负对数似然的方法，两边取负对数，使负对数似然最小：</p>
-<script type="math/tex; mode=display">\complement ( \theta ; x , y ) = - \log p _ { y / x } ( y | x , \theta ) = - \log p _ { z } ( f _ { \theta } ( y ; x ) ) - \log | d e t \frac { \partial f _ { \theta } } { \partial y } ( y ; x ) | .</script><h4 id="⑤关于flow"><a href="#⑤关于flow" class="headerlink" title="⑤关于flow"></a>⑤关于flow</h4><p>为了将一个高斯分布 $z0$ 转换为一个复杂的分布 $zK$，normalizing flow 会对初始的分布 $z0$ 进行多次可逆的变换，将其逐渐转换为 $zK$。由于每一次变换都是可逆的，从 $zK$ 出发也能得到高斯分布 $z0$。这样，我们就实现了复杂分布与高斯分布之间的互相转换，从而能从简单的高斯分布建立任意复杂分布。</p>
+<script type="math/tex; mode=display">L ( \theta ; x , y ) = - l o g p _ { y | x } ( y | x , \theta ) = - l o g p _ { z } ( f _ { \theta } ( y ; x ) ) - l o g | d e t \frac { \partial f \theta } { \partial y } ( y ; x ) |</script><h4 id="⑤关于flow"><a href="#⑤关于flow" class="headerlink" title="⑤关于flow"></a>⑤关于flow</h4><p>为了将一个高斯分布 $z0$ 转换为一个复杂的分布 $zK$，normalizing flow 会对初始的分布 $z0$ 进行多次可逆的变换，将其逐渐转换为 $zK$。由于每一次变换都是可逆的，从 $zK$ 出发也能得到高斯分布 $z0$。这样，我们就实现了复杂分布与高斯分布之间的互相转换，从而能从简单的高斯分布建立任意复杂分布。</p>
+<script type="math/tex; mode=display">x = f _ { 1 } ( f _ { 2 } ( \ldots f _ { K } ( z ) ) )</script><p>注：</p>
+<ol>
+<li><strong>与扩散模型的对比</strong><ul>
+<li>扩散模型需要逐步去噪（如从<script type="math/tex">x _ { T } \rightarrow x _ { T - 1 } \rightarrow \cdots \rightarrow x _ { 0 }</script>），每一步依赖前一步的结果，生成过程是迭代的（多步）。</li>
+<li>标准化流的生成是<strong>单次前向传播</strong>，无论模型多深，均一次性输出结果。属于串联计算：<script type="math/tex">x = f _ { 1 } ( f _ { 2 } ( \ldots f _ { K } ( z ) ) )</script></li>
+</ul>
+</li>
+</ol>
 <p><img src="https://s21.ax1x.com/2024/12/02/pAI7eUg.png" alt="pAI7eUg.png"></p>
 <p><img src="https://s21.ax1x.com/2024/12/03/pAIX4Mj.png" alt="pAIX4Mj.png"></p>
 <p><strong>关键：计算每一层的雅可比行列式</strong></p>
-<h2 id="二-SRflow"><a href="#二-SRflow" class="headerlink" title="二.SRflow"></a>二.SRflow</h2><h3 id="1-SRflow解决的问题"><a href="#1-SRflow解决的问题" class="headerlink" title="1.SRflow解决的问题"></a>1.SRflow解决的问题</h3><p>对于生成式方法GAN，容易出现模式崩溃的问题。</p>
+<h2 id="二-SRflow"><a href="#二-SRflow" class="headerlink" title="二.SRflow"></a>二.SRflow</h2><blockquote>
+<p>参考文献：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2006.14200">SRFlow: Learning the Super-Resolution Space with Normalizing Flow</a></p>
+</blockquote>
+<h3 id="1-SRflow解决的问题"><a href="#1-SRflow解决的问题" class="headerlink" title="1.SRflow解决的问题"></a>1.SRflow解决的问题</h3><p>超分辨率从根本上来说是一个不适定问题。事实上，对于给定的低分辨率（LR）图像，存在无限多个兼容的高分辨率（HR）预测。</p>
+<p>对于生成式方法GAN，容易出现模式崩溃的问题。</p>
+<p>而标准化流能够在给定低分辨率输入的情况下学习输出的条件分布，直接解释了问题的不适定性质，并学习预测各种逼真的高分辨率图像。且避免了GAN的模式崩溃的问题。&lt;得到LR 图像 x 相对应的自然 HR 图像 y 的完整条件分布 p y|x (y|x, θ)。&gt;</p>
 <p>SRFlow：一种基于归一化流的超分辨率方法，能够学习给定低分辨率输入$x$的在高分辨率图像下$y$的条件概率分布。模型使用单一损失（即负对数似然）进行训练，可以生成多幅SR图片，解决了”ill-posed”问题 </p>
 <h3 id="2-模型架构"><a href="#2-模型架构" class="headerlink" title="2.模型架构"></a>2.模型架构</h3><p><img src="https://s21.ax1x.com/2024/12/03/pAIXILn.png" alt="pAIXILn.png"></p>
 <p>本模型基于GLOW</p>
 <p>模型由一个可逆流网络 $f_{\theta}$ 组成，以低分辨率图像的编码（绿色）为条件。流网络在多个比例级别（灰色）上运行。输入通过一系列流步骤（蓝色）进行处理，每个流步骤由四个不同的层组成。通过精确的对数似然训练，我们的网络学习将高斯密度 $p_{z}(z)$ 转换为条件 HR 图像分布 $p_{y | x}(y | x, \theta)$。</p>
-<p>在训练期间，输入 LR-HR $(x, y)$ 图像对，以计算负对数似然损失。</p>
-<script type="math/tex; mode=display">L ( \theta ; x , y ) = - \log p _ { x } ( z ) - \sum _ { n = 0 } ^ { N - 1 } \log | d e t \frac { \partial f _ { \theta } ^ { n } } { \partial h ^ { n } } ( h ^ { n } ; g_0 ( x ) ) |</script><p>在推理过程中，网络通过输入 LR 图像和随机变量 $z=(z_{l})_{l=1}^{L} ~ p_{z}$ 来反向运行，该随机变量从学习的分布 $p_{y | x}$ 生成样本 SR 图像。</p>
+<ul>
+<li><p>在训练期间，输入 LR-HR $(x, y)$ 图像对，以计算负对数似然损失。</p>
+<ul>
+<li><script type="math/tex; mode=display">L ( \theta ; x , y ) = - \log p _ { x } ( z ) - \sum _ { n = 0 } ^ { N - 1 } \log | d e t \frac { \partial f _ { \theta } ^ { n } } { \partial h ^ { n } } ( h ^ { n } ; g_0 ( x ) ) |</script></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>在推理过程中，网络通过输入 LR 图像和随机变量 $z=(z_{l})_{l=1}^{L} ~ p_{z}$ 来反向运行，该随机变量从学习的分布 $p_{y | x}$ 生成样本 SR 图像。</li>
+</ul>
+<p>步骤：</p>
+<p>在训练期间，输入 LR-HR (x, y) 图像对，以计算负对数似然损失。</p>
+<p>编码器g0使用RRDB，提取低分辨率图像特征，之后输入到<strong>Affine Injector</strong>、 <strong>Conditional Affine Coupling</strong></p>
+<p>通过精确的对数似然训练，网络可将将高斯密度 p(z) 转换为条件 HR 图像分布 p{y | x}(y | x，θ)。</p>
+<p>在推理过程中，网络通过输入 LR 图像和随机变量 z来反向运行，该随机变量从学习的分布 p_{y | x} 生成样本 SR 图像。</p>
+<hr>
 <p>编码器g0架构基于RRDB，用于提取低分辨率图像的特征。</p>
 <blockquote>
 <p>SRFlow是一种基于归一化流（Normalizing Flow）的超分辨率（Super - Resolution，SR）方法，能够学习到高分辨率图像的分布，并在给定低分辨率图像时生成高分辨率图像。以下是从图中详细介绍SRFlow的训练流程和推理流程： </p>
 <p><strong>一、训练流程</strong> </p>
 <ol>
 <li><strong>输入数据</strong>   <ul>
-<li><strong>训练输入（Training Input）</strong>：高分辨率图像（High - Resolution）。</li>
+<li><strong>训练输入（Training Input）</strong>：高低分辨率图像对</li>
 </ul>
 </li>
-<li><strong>低分辨率编码器（Low Resolution Encoder $g_{\theta}$）</strong>   <ul>
-<li>高分辨率图像首先经过下采样得到低分辨率图像。   -</li>
-<li>低分辨率图像被送入低分辨率编码器($g_{\theta}$)，该编码器基于残差密集块（RRDB）架构，用于提取低分辨率图像的特征。</li>
-</ul>
-</li>
-<li><p><strong>可逆归一化流（Invertible Normalizing Flow ($f_{\theta}$）</strong>   -</p>
+<li><p><strong>低分辨率编码器（Low Resolution Encoder $g_{\theta}$）</strong>   </p>
 <ul>
-<li>低分辨率编码器的输出被送入可逆归一化流$f{\theta}$。   </li>
-<li>可逆归一化流由多个条件流步骤（Conditional Flow Step）和过渡步骤（Transition Step）组成。   </li>
-<li>每个条件流步骤包括仿射耦合层（Affine Coupling）、1x1卷积（1x1 Convolution）、Actnorm和Squeeze操作。    </li>
-<li>过渡步骤用于在不同尺度级别（Scale Level）之间进行转换。   </li>
-<li>可逆归一化流的目标是学习从低分辨率图像到高分辨率图像的映射。 </li>
+<li><p>提取低分辨率图像特征，生成多尺度特征<script type="math/tex">\left\{ c _ { 1 } , c _ { 2 } , \ldots , c _ { L } \right\}</script></p>
+</li>
+<li><p>之后将将 LR 的全局和局部信息编码为流模型的条件输入。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>前向变换：</strong></p>
+<ul>
+<li>HR 图像 y 通过多尺度流模型 f 的正向变换映射到潜在变量 z：<script type="math/tex">z = f ( y ; c _ { 1 } , c _ { 2 } , \ldots , c _ { L } )</script></li>
 </ul>
 </li>
 <li><p><strong>训练目标</strong>   </p>
 <ul>
 <li>训练过程中，模型通过最小化负对数似然（Negative Log - Likelihood）来优化参数。   </li>
+<li><script type="math/tex; mode=display">\log p ( y | x ) = \log p ( z ) + \sum _ { k = 1 } ^ { K } \log | d e t \frac { \partial f _ { k } } { \partial y _ { k - 1 } } |</script></li>
 <li>模型学习到低分辨率图像和高分辨率图像之间的条件分布。 </li>
 </ul>
 </li>
 </ol>
 <p><strong>二、推理流程</strong> </p>
 <ol>
-<li><p><strong>输入数据</strong>   - <strong>推理输入（Inference Input）</strong>：低分辨率图像（Low - Resolution）。 </p>
-</li>
-<li><p><strong>低分辨率编码器（Low Resolution Encoder $g_{\theta}$)）</strong> </p>
-<ul>
+<li><strong>输入数据</strong>   - <strong>推理输入（Inference Input）</strong>：低分辨率图像（Low - Resolution）。 </li>
+<li><strong>低分辨率编码器（Low Resolution Encoder $g_{\theta}$)）</strong> <ul>
 <li>低分辨率图像被送入低分辨率编码器$g_{\theta}$，提取特征。 </li>
 </ul>
 </li>
-<li><strong>可逆归一化流（Invertible Normalizing Flow $f_{\theta}$</strong> <ul>
-<li>低分辨率编码器的输出被送入可逆归一化流$f_{\theta}$。   </li>
-<li>通过可逆归一化流的正向传播，生成高分辨率图像。 </li>
-</ul>
-</li>
-<li><strong>输出数据</strong>   <ul>
-<li><strong>推理输出（Inference Output）</strong>：高分辨率图像（Super - Resolution）。 </li>
-</ul>
-</li>
+<li>从高斯分布采样潜在变量：<script type="math/tex">z \sim N ( 0 , I )</script></li>
+<li>将 z 通过流模型的逆变换 <script type="math/tex">f ^ { - 1 } :</script>生成 HR 图像 y：<script type="math/tex">y = f ^ { - 1 } ( z ; c _ { 1 } , c _ { 2 } , \dots , c _ { L } )</script></li>
 </ol>
 </blockquote>
+<hr>
 <h3 id="3-可逆归一化流结构"><a href="#3-可逆归一化流结构" class="headerlink" title="3.可逆归一化流结构"></a>3.可逆归一化流结构</h3><p>分为四块，每块由squeeze(挤压层)、过度步骤，条件流步骤（多个）、split。</p>
 <h4 id="①squeeze"><a href="#①squeeze" class="headerlink" title="①squeeze"></a>①squeeze</h4><p>将输入图像分辨率减半</p>
-<h4 id="②Actnorm"><a href="#②Actnorm" class="headerlink" title="②Actnorm"></a>②Actnorm</h4><p><strong>归一化层</strong></p>
+<h4 id="②Actnorm"><a href="#②Actnorm" class="headerlink" title="②Actnorm"></a>②Actnorm</h4><p>归一化层</p>
 <h4 id="③Invertible-1-×-1-Convolution"><a href="#③Invertible-1-×-1-Convolution" class="headerlink" title="③Invertible 1 × 1 Convolution"></a>③Invertible 1 × 1 Convolution</h4><p><strong>基于：Glow: Generative Flow with Invertible 1x1 Convolutions</strong></p>
 <script type="math/tex; mode=display">h _ { i j } ^ { n + 1 } = W h _ { i j } ^ { n }</script><p>形成块对角结构，减少计算量</p>
 <h4 id="④Affine-Injector（仿射注入）"><a href="#④Affine-Injector（仿射注入）" class="headerlink" title="④Affine Injector（仿射注入）"></a>④Affine Injector（仿射注入）</h4><script type="math/tex; mode=display">h ^ { n + 1 } = e x p ( f _ { \theta , s } ^ { n } ( u ) ) \cdot h ^ { n } + f _ { \theta , b } ( u )</script><p>其中<script type="math/tex">f _ { \theta , s } ^ { n } ( u )</script>用于预测缩放因子，<script type="math/tex">f _ { \theta , b } ( u )</script>用于预测偏差。通过将激活图与基于条件编码预测得到的缩放因子相乘，并加上偏差，得到更新后的激活图$h_n+1$</p>
@@ -618,9 +633,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/%E8%B6%85%E5%88%86%E8%BE%A8%E7%8E%87/" rel="tag"><i class="fa fa-tag"></i> 超分辨率</a>
-          
             <a href="/tags/%E7%94%9F%E6%88%90%E5%BC%8F%E6%A8%A1%E5%9E%8B/" rel="tag"><i class="fa fa-tag"></i> 生成式模型</a>
+          
+            <a href="/tags/%E8%B6%85%E5%88%86%E8%BE%A8%E7%8E%87/" rel="tag"><i class="fa fa-tag"></i> 超分辨率</a>
           
         </div>
       
@@ -643,8 +658,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2024/12/09/VAE%E4%BB%8B%E7%BB%8D/" rel="prev" title="VAE介绍">
-                VAE介绍 <i class="fa fa-chevron-right"></i>
+              <a href="/2024/12/09/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%AC%AC%E5%85%AD%E7%AB%A0-VAE%E6%9E%B6%E6%9E%84/" rel="prev" title="深度学习第六章-VAE架构">
+                深度学习第六章-VAE架构 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -732,7 +747,7 @@
               
                 <a href="/">
               
-                  <span class="site-state-item-count">38</span>
+                  <span class="site-state-item-count">39</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -754,7 +769,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -813,11 +828,15 @@
                 
                 
                   <li class="recent_posts_li">
-                    <a href="/2024/12/09/VAE%E4%BB%8B%E7%BB%8D/" title="VAE介绍" target="_blank">VAE介绍</a>
+                    <a href="/2025/03/07/%E8%B6%85%E5%88%86%E8%BE%A8%E7%8E%87%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0-Diffusion-model-SR/" title="超分辨率第十一章-Diffusion_model&SR" target="_blank">超分辨率第十一章-Diffusion_model&SR</a>
                   </li>
                 
                   <li class="recent_posts_li">
-                    <a href="/2024/12/02/%E8%B6%85%E5%88%86%E8%BE%A8%E7%8E%87%E7%AC%AC%E5%8D%81%E7%AB%A0-NormalizingFlow-SR/" title="超分辨率第十章-NormalizingFlow&SR" target="_blank">超分辨率第十章-NormalizingFlow&SR</a>
+                    <a href="/2024/12/09/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%AC%AC%E5%85%AD%E7%AB%A0-VAE%E6%9E%B6%E6%9E%84/" title="深度学习第六章-VAE架构" target="_blank">深度学习第六章-VAE架构</a>
+                  </li>
+                
+                  <li class="recent_posts_li">
+                    <a href="/2024/12/02/%E8%B6%85%E5%88%86%E8%BE%A8%E7%8E%87%E7%AC%AC%E5%8D%81%E7%AB%A0-NormalizingFlow-SR/" title="超分辨率第十章-SR&NormalizingFlow" target="_blank">超分辨率第十章-SR&NormalizingFlow</a>
                   </li>
                 
                   <li class="recent_posts_li">
@@ -826,10 +845,6 @@
                 
                   <li class="recent_posts_li">
                     <a href="/2024/10/28/%E8%B6%85%E5%88%86%E8%BE%A8%E7%8E%87%E7%AC%AC%E5%85%AB%E7%AB%A0-SR&transformer/" title="超分辨率第八章-SR&transformer" target="_blank">超分辨率第八章-SR&transformer</a>
-                  </li>
-                
-                  <li class="recent_posts_li">
-                    <a href="/2024/10/20/%E8%B6%85%E5%88%86%E8%BE%A8%E7%8E%87%E7%AC%AC%E4%B8%83%E7%AB%A0-SRFBN/" title="超分辨率第七章-SRFBN" target="_blank">超分辨率第七章-SRFBN</a>
                   </li>
                 
               </ul>
@@ -850,7 +865,15 @@
               <ul class="links-of-blogroll-list">
                 
                   <li class="links-of-blogroll-item">
+                    <a href="https://www.marxists.org/chinese/maozedong/index.htm" title="五件法宝" target="_blank">五件法宝</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
                     <a href="https://space.bilibili.com/562700874?spm_id_from=333.1365.0.0" title="风翼飞镰" target="_blank">风翼飞镰</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://mieawentuirba.github.io/" title="风沙侠客" target="_blank">风沙侠客</a>
                   </li>
                 
               </ul>
@@ -872,7 +895,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%B6%85%E5%88%86%E8%BE%A8%E7%8E%87%E7%AC%AC%E5%8D%81%E7%AB%A0-NormalizingFlow-amp-SR"><span class="nav-text">超分辨率第十章-NormalizingFlow&amp;SR</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80-Normalizing-Flows%EF%BC%88%E6%A0%87%E5%87%86%E5%8C%96%E6%B5%81%EF%BC%89"><span class="nav-text">一.Normalizing Flows（标准化流）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E6%A0%87%E5%87%86%E5%8C%96%E6%B5%81%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="nav-text">1.标准化流的概念</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E2%91%A0%E6%A0%87%E5%87%86%E5%8C%96%E6%B5%81%E7%9A%84%E6%96%B9%E6%B3%95"><span class="nav-text">①标准化流的方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E2%91%A1%E9%9B%85%E5%8F%AF%E6%AF%94%E8%A1%8C%E5%88%97%E5%BC%8F%EF%BC%88Jacobians%EF%BC%89"><span class="nav-text">②雅可比行列式（Jacobians）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E2%91%A2%E6%A6%82%E7%8E%87%E5%AF%86%E5%BA%A6%E5%87%BD%E6%95%B0%E7%9A%84%E8%AE%A1%E7%AE%97"><span class="nav-text">③概率密度函数的计算</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E2%91%A3%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0-%E6%9C%80%E5%A4%A7%E4%BC%BC%E7%84%B6%E4%BC%B0%E8%AE%A1"><span class="nav-text">④损失函数-最大似然估计</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E2%91%A4%E5%85%B3%E4%BA%8Eflow"><span class="nav-text">⑤关于flow</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C-SRflow"><span class="nav-text">二.SRflow</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-SRflow%E8%A7%A3%E5%86%B3%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-text">1.SRflow解决的问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E6%A8%A1%E5%9E%8B%E6%9E%B6%E6%9E%84"><span class="nav-text">2.模型架构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E5%8F%AF%E9%80%86%E5%BD%92%E4%B8%80%E5%8C%96%E6%B5%81%E7%BB%93%E6%9E%84"><span class="nav-text">3.可逆归一化流结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E2%91%A0squeeze"><span class="nav-text">①squeeze</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E2%91%A1Actnorm"><span class="nav-text">②Actnorm</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E2%91%A2Invertible-1-%C3%97-1-Convolution"><span class="nav-text">③Invertible 1 × 1 Convolution</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E2%91%A3Affine-Injector%EF%BC%88%E4%BB%BF%E5%B0%84%E6%B3%A8%E5%85%A5%EF%BC%89"><span class="nav-text">④Affine Injector（仿射注入）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E2%91%A4Conditional-Affine-Coupling-%E6%9D%A1%E4%BB%B6%E4%BB%BF%E5%B0%84%E8%80%A6%E5%90%88"><span class="nav-text">⑤Conditional Affine Coupling(条件仿射耦合)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E2%91%A5Split"><span class="nav-text">⑥Split</span></a></li></ol></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%B6%85%E5%88%86%E8%BE%A8%E7%8E%87%E7%AC%AC%E5%8D%81%E7%AB%A0-SR-amp-NormalizingFlow"><span class="nav-text">超分辨率第十章-SR&amp;NormalizingFlow</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80-Normalizing-Flows%EF%BC%88%E6%A0%87%E5%87%86%E5%8C%96%E6%B5%81%EF%BC%89"><span class="nav-text">一.Normalizing Flows（标准化流）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E6%A0%87%E5%87%86%E5%8C%96%E6%B5%81%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="nav-text">1.标准化流的概念</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E2%91%A0%E6%A0%87%E5%87%86%E5%8C%96%E6%B5%81%E7%9A%84%E6%96%B9%E6%B3%95"><span class="nav-text">①标准化流的方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E2%91%A1%E9%9B%85%E5%8F%AF%E6%AF%94%E8%A1%8C%E5%88%97%E5%BC%8F%EF%BC%88Jacobians%EF%BC%89"><span class="nav-text">②雅可比行列式（Jacobians）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E2%91%A2%E6%A6%82%E7%8E%87%E5%AF%86%E5%BA%A6%E5%87%BD%E6%95%B0%E7%9A%84%E8%AE%A1%E7%AE%97"><span class="nav-text">③概率密度函数的计算</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E2%91%A3%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0-%E6%9C%80%E5%A4%A7%E4%BC%BC%E7%84%B6%E4%BC%B0%E8%AE%A1"><span class="nav-text">④损失函数-最大似然估计</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E2%91%A4%E5%85%B3%E4%BA%8Eflow"><span class="nav-text">⑤关于flow</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C-SRflow"><span class="nav-text">二.SRflow</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-SRflow%E8%A7%A3%E5%86%B3%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-text">1.SRflow解决的问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E6%A8%A1%E5%9E%8B%E6%9E%B6%E6%9E%84"><span class="nav-text">2.模型架构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E5%8F%AF%E9%80%86%E5%BD%92%E4%B8%80%E5%8C%96%E6%B5%81%E7%BB%93%E6%9E%84"><span class="nav-text">3.可逆归一化流结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E2%91%A0squeeze"><span class="nav-text">①squeeze</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E2%91%A1Actnorm"><span class="nav-text">②Actnorm</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E2%91%A2Invertible-1-%C3%97-1-Convolution"><span class="nav-text">③Invertible 1 × 1 Convolution</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E2%91%A3Affine-Injector%EF%BC%88%E4%BB%BF%E5%B0%84%E6%B3%A8%E5%85%A5%EF%BC%89"><span class="nav-text">④Affine Injector（仿射注入）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E2%91%A4Conditional-Affine-Coupling-%E6%9D%A1%E4%BB%B6%E4%BB%BF%E5%B0%84%E8%80%A6%E5%90%88"><span class="nav-text">⑤Conditional Affine Coupling(条件仿射耦合)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E2%91%A5Split"><span class="nav-text">⑥Split</span></a></li></ol></li></ol></li></ol></li></ol></div>
             
 
           </div>
@@ -913,7 +936,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">220.4k</span>
+    <span title="Site words total count">223k</span>
   
 </div>
 

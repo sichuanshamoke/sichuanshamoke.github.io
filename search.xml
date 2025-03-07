@@ -14,20 +14,142 @@
       </tags>
   </entry>
   <entry>
-    <title>VAE介绍</title>
-    <url>/2024/12/09/VAE%E4%BB%8B%E7%BB%8D/</url>
-    <content><![CDATA[<h1 id="VAE介绍"><a href="#VAE介绍" class="headerlink" title="VAE介绍"></a>VAE介绍</h1><blockquote>
+    <title>超分辨率第十一章-Diffusion_model&amp;SR</title>
+    <url>/2025/03/07/%E8%B6%85%E5%88%86%E8%BE%A8%E7%8E%87%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0-Diffusion-model-SR/</url>
+    <content><![CDATA[<h1 id="超分辨率第十一章-Diffusion-model-amp-SR"><a href="#超分辨率第十一章-Diffusion-model-amp-SR" class="headerlink" title="超分辨率第十一章-Diffusion_model&amp;SR"></a>超分辨率第十一章-Diffusion_model&amp;SR</h1><blockquote>
+<p>Denoising Diffusion Probabilistic Models 于2020年发布。</p>
+<p>参考文献：<a href="https://arxiv.org/abs/2006.11239">Denoising Diffusion Probabilistic Models</a></p>
+<p>此后在超分领域出现了两篇以扩散模型为基础的文章：</p>
+<p>参考文献：</p>
+<p><a href="https://arxiv.org/abs/2104.07636">SR3: Image Super-Resolution via Iterative Refinement</a> (2021)</p>
+<p><a href="https://arxiv.org/abs/2104.14951">SRDiff: Single Image Super-Resolution with Diffusion Probabilistic Models</a> (2021)</p>
+</blockquote>
+<span id="more"></span>
+<h2 id="一-Diffusion-model介绍"><a href="#一-Diffusion-model介绍" class="headerlink" title="一.Diffusion_model介绍"></a>一.Diffusion_model介绍</h2><h3 id="1-应用背景"><a href="#1-应用背景" class="headerlink" title="1.应用背景"></a>1.应用背景</h3><p>基于其它模型的缺点：</p>
+<ul>
+<li><p>PSNR-oriented：导致图像过度平滑并导致高频信息丢失。</p>
+</li>
+<li><p>GAN-driven：“mode collapse（模式崩溃）“、训练时很难收敛</p>
+<ul>
+<li>模式崩溃是指模型未能生成数据分布的所有模式，而是只生成部分模式或重复生成相同的模式。</li>
+</ul>
+</li>
+<li><p>VAE: 生成后的图片较为模糊。</p>
+</li>
+<li><p>Flow-based：占用空间过大，损失函数计算负对数似然时雅可比行列式的值难以计算</p>
+</li>
+</ul>
+<h3 id="2-Diffusion-Models原理"><a href="#2-Diffusion-Models原理" class="headerlink" title="2.Diffusion Models原理"></a>2.Diffusion Models原理</h3><blockquote>
+<p>扩散模型使用马尔可夫链，通过在扩散过程中逐渐添加噪声，将数据 x0（复杂分布） 转换为简单分布的潜在变量 xt，并预测每个扩散步骤中的噪声。</p>
+<p>一般加噪过程最后会将数据变为高斯分布xT~N（0,1），即最简单的标准正态分布。</p>
+<p>最后通过逆向的去噪从高斯分布逐步恢复原始数据 x0</p>
+</blockquote>
+<h4 id="①马尔科夫链"><a href="#①马尔科夫链" class="headerlink" title="①马尔科夫链"></a>①马尔科夫链</h4><blockquote>
+<p>马尔科夫链是一个随机过程{X_n ，n=0,1,2,⋯}，其中X_n表示在时间步n时系统所处的状态，且状态空间<em>S</em>是离散的。</p>
+<p>它具有马尔科夫性质，即给定当前状态，未来的状态只取决于当前状态，而与过去的历史状态无关。</p>
+</blockquote>
+<ul>
+<li>马尔科夫链的三要素：</li>
+</ul>
+<p>​    1.状态空间：t0=[1,0] or t0=[0,1]，初始值</p>
+<p>​    2.无记忆性：当前选择的概率只受上一期的选择概率的影响，与以前的无关</p>
+<p>​    3.转移矩阵：每一个状态都以一定的概率转化到下一个状态，这种概率可以用一个矩阵表示，即转移概率矩阵。</p>
+<ul>
+<li><p>马尔科夫链在扩散模型中的应用：</p>
+<ul>
+<li><p>正向加噪过程</p>
+<ul>
+<li>扩散模型通常基于马尔科夫链来构建正向扩散过程。从初始的清晰数据分布（如自然图像分布）开始，逐步向数据中添加噪声，这个过程可以看作是马尔科夫链的状态转移。每一步添加噪声的过程只依赖于当前的数据状态，符合马尔科夫性质。</li>
+<li>即给定当前时刻的数据状态 x_t，下一时刻 t+1的数据状态 x_t+1的概率分布只取决于 x_t，可以表示为q(x_t+1∣x_t)。</li>
+<li>随着时间步<em>t</em>的增加，数据逐渐被噪声淹没，最终达到一个纯噪声的分布。例如在图像扩散模型中，从一张清晰的图像开始，经过多次添加噪声的操作，最终图像变得完全像随机噪声。</li>
+</ul>
+</li>
+<li><p>逆向去噪过程</p>
+<ul>
+<li>基于马尔科夫链的反向过程是从纯噪声开始，逐步去除噪声以恢复原始数据。在反向过程中，根据马尔科夫性质，给定当前的噪声状态 x_t，模型需要学习预测前一时刻的状态 x_t−1的概率分布p(x_t−1∣xt)。</li>
+<li>通过不断地从这个条件分布中采样，逐步向原始数据分布靠近，最终生成出接近真实数据的样本。从一个随机的噪声向量开始，通过一系列的马尔科夫链状态转移，逐步生成原图像。</li>
+<li>在反向过程中，马尔科夫链的转移概率通常通过神经网络来参数化。例如使用一个基于深度学习的生成器网络，以当前的噪声状态 x_t和时间步 t 作为输入，输出预测的前一时刻状态 x_t−1的概率分布或直接输出一个估计的 x_t−1样本。</li>
+</ul>
+<p><img src="https://s21.ax1x.com/2025/03/07/pEtuVmt.png" alt="pEtuVmt.png"></p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="②前向加噪"><a href="#②前向加噪" class="headerlink" title="②前向加噪"></a>②前向加噪</h4><ul>
+<li><p>从原始数据x0出发，着时间步<em>t</em>从0增加到<em>T</em>，数据 xt逐渐被噪声淹没，最终xT服从一个纯噪声分布，通常是标准正态分布<script type="math/tex">N ( 0 , I )</script>。</p>
+</li>
+<li><p>在每个时间步t逐步向数据中添加噪声。通常使用高斯噪声，在时间步t，给定 xt−1，通过以下公式得到xt：<script type="math/tex">x _ { t } = \sqrt { 1 - \beta } _ { t } x _ { t - 1 } + \sqrt { \beta } _ { t } \epsilon _ { t }</script></p>
+<ul>
+<li>其中βt是一个与时间步t相关的噪声系数，控制着噪声添加的强度，ϵt是从标准正态分布N(0,I)中采样得到的噪声向量。</li>
+</ul>
+</li>
+<li>过程如下面表达式所示<ul>
+<li><script type="math/tex; mode=display">q ( y _ { t } | y _ { t - 1 } ) = N ( y _ { t } | \sqrt { \alpha _ { t } } y _ { t - 1 } , ( 1 - \alpha _ { t } ) I )</script></li>
+<li><script type="math/tex; mode=display">q ( y _ { T } \ | y _ { 0 } ) = N ( y _ { T } \ | \sqrt { \gamma _ { t } } y _ { 0 } , ( 1 - \gamma _ { t } ) I )</script><ul>
+<li><script type="math/tex; mode=display">\gamma _ { t } = \pi _ { i = 1 } ^ { T } \alpha _ { i }</script></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>训练过程</strong>：$f _ { \theta } ( x , \tilde { y } , \gamma )$，该神经网络经过训练之后预测当前次迭代步t产生的噪声$ \widehat { \epsilon } _ { t }$</p>
+<p><strong>需要最小化该步预测噪声和该步实际的噪声的差值（会转换为求极大似然估计）：</strong></p>
+<p><img src="https://s21.ax1x.com/2025/03/07/pEtltKJ.png" alt="pEtltKJ.png"></p>
+<h4 id="③反向去噪"><a href="#③反向去噪" class="headerlink" title="③反向去噪"></a>③反向去噪</h4><ul>
+<li>从纯噪声采样：从纯噪声分布中采样得到 xT，由于前向加噪过程的结果，xT通常服从标准正态分布<script type="math/tex">N ( 0 , I )</script></li>
+<li>学习条件分布：模型需要学习在给定xt的情况下，xt - 1的条件分布<script type="math/tex">p _ { \theta } ( x _ { t - 1 } | x _ { t } )</script>，之后逐步开始去噪，向前采样，T步之后得到超分辨率重建图片。</li>
+<li>过程如下面表达式所示：<ul>
+<li><script type="math/tex; mode=display">p ( y _ { T } ) = N ( y _ { T } | 0 , I )</script></li>
+<li><script type="math/tex; mode=display">p _ { \theta } ( y _ { 0 : T } | x ) = p ( y _ { T } ) \prod _ { t = 1 } ^ { T } p _ { \theta } ( y _ { t - 1 } | y _ { t } , x )</script></li>
+<li><script type="math/tex; mode=display">p _ { \theta } ( y _ { t - 1 } | y _ { t } , x ) = N ( y _ { t - 1 } | \mu _ { \theta } ( x , y _ { t } , \gamma _ { t } ) , \sigma _ { t } ^ { 2 } I )</script></li>
+<li><script type="math/tex; mode=display">\mu _ { 0 } ( x , y _ { t } , \gamma _ { t } ) = \frac { 1 } { \sqrt { \alpha _ { t } } } \left( y _ { t } - \frac { 1 - \alpha _ { t } } { \sqrt { 1 - \gamma _ { t } } } f _ { 0 } ( x , y _ { t } , \gamma _ { t } ) \right) _ { x }</script></li>
+</ul>
+</li>
+</ul>
+<p><strong>推理过程需要添加额外的高斯噪声，避免陷入局部最优</strong></p>
+<p><img src="https://s21.ax1x.com/2025/03/07/pEtlr8O.png" alt="pEtlr8O.png"></p>
+<h2 id="二-SR3介绍"><a href="#二-SR3介绍" class="headerlink" title="二.SR3介绍"></a>二.SR3介绍</h2><p>SR3架构基于<strong>DDPM</strong>架构并做了改进。</p>
+<blockquote>
+<p><strong>DDPM</strong>在正向加噪后，训练阶段，将加噪后的图输入U-Net预测每次迭代添加的噪声。</p>
+<p>推理阶段，从一张标准正态分布的噪声，输入U-Net后可通过预测出的噪声逆向去噪，迭代后生成新图像。</p>
+<p><img src="https://s21.ax1x.com/2025/03/07/pEtlqqs.png" alt="pEtlqqs.png"></p>
+</blockquote>
+<p><strong>SR3的改进为：SR3在每一步的输入为：concat  y_t and x (将低分辨率图片用插值法到目标高分辨率再于当前时间步图片连接)</strong></p>
+<p><img src="https://s21.ax1x.com/2025/03/07/pEtKNDI.png" alt="pEtKNDI.png"></p>
+<h2 id="三-SRDiff介绍"><a href="#三-SRDiff介绍" class="headerlink" title="三.SRDiff介绍"></a>三.SRDiff介绍</h2><p><strong>过程：与SR3不同，它预测的是残差：<script type="math/tex">x _ { r } = x _ { H } - U P ( x _ { L } )</script></strong></p>
+<p>加噪：将残差xr=XH-up（xL）t步加噪迭代后转化为高斯分布的潜在xT</p>
+<p>训练：输入xr=XH-up（xL）和经过基于RRDB编码器的XL，经过U-net结构，预测每一步迭代的噪声</p>
+<p>去噪：采样一个高斯分布的XT，将每一步预测的噪声进行去噪，还需添加一个随机采样的噪声z引入随机性，经过T次迭代后得出残差，与低分辨率图片相加即可得到超分辨率图片：<script type="math/tex">x _ { S R } = x _ { 0 } + U P ( x _ { L } )</script></p>
+<p><img src="https://s21.ax1x.com/2025/03/07/pEt1qSO.png" alt="pEt1qSO.png"></p>
+<p>优化目标为：<script type="math/tex">\nabla _ { \theta } | | \epsilon - \epsilon _ { \theta } ( x _ { t } , x _ { e } , t ) | | ^ { 2 } , x_t=\sqrt { \alpha } _ { t } x _ { r } + \sqrt { 1 - \overline { \alpha } } _ { t } \epsilon</script></p>
+<p><strong>LR Encoder:RRDB结构，将低分图片上采样到与xt相同的维度</strong></p>
+<p><img src="https://s21.ax1x.com/2025/03/07/pEtunk8.png" alt="pEtunk8.png"></p>
+]]></content>
+      <categories>
+        <category>超分辨率基础模型</category>
+      </categories>
+      <tags>
+        <tag>生成式模型</tag>
+        <tag>超分辨率</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>深度学习第六章-VAE架构</title>
+    <url>/2024/12/09/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%AC%AC%E5%85%AD%E7%AB%A0-VAE%E6%9E%B6%E6%9E%84/</url>
+    <content><![CDATA[<h1 id="深度学习第六章-VAE架构"><a href="#深度学习第六章-VAE架构" class="headerlink" title="深度学习第六章-VAE架构"></a>深度学习第六章-VAE架构</h1><blockquote>
 <p>VAE（变分自编码器）为一个经典的生成式模型，属于编码器-解码器结构。</p>
 <p>编码器用于采用复杂部分的特征，之后将复杂分布转换到简单分布的隐空间（如高斯分布）。</p>
 <p>解码器采样高斯分布中的数据，生成符合原始分布的图像。</p>
 <p>参考视频：</p>
 <p><a href="https://www.bilibili.com/video/BV1JY411q72n/?vd_source=f9578e20917b03f6b5eb19c9031cefd2">【10分钟】了解香农熵，交叉熵和KL散度</a></p>
 <p><a href="https://www.bilibili.com/video/BV1Gs4y157BU/?spm_id_from=333.999.0.0&amp;vd_source=f9578e20917b03f6b5eb19c9031cefd2">【15分钟】了解变分推理</a></p>
-<p>参考博客</p>
+<p>参考博客：</p>
 <p><a href="https://www.cnblogs.com/wxkang/p/17128108.html">深度理解变分自编码器(VAE) | 从入门到精通 </a></p>
 <p><a href="https://blog.csdn.net/smileyan9/article/details/107362252">VAE 模型基本原理简单介绍</a></p>
 </blockquote>
 <span id="more"></span>
+<h2 id="关于生成式架构的发展"><a href="#关于生成式架构的发展" class="headerlink" title="关于生成式架构的发展"></a>关于生成式架构的发展</h2><p>主要有以下四种：</p>
+<p><img src="https://s21.ax1x.com/2025/03/07/pEtm3CQ.png" alt="pEtm3CQ.png"></p>
 <h2 id="一-公式推导"><a href="#一-公式推导" class="headerlink" title="一.公式推导"></a>一.公式推导</h2><h3 id="1-KL散度"><a href="#1-KL散度" class="headerlink" title="1.KL散度"></a>1.KL散度</h3><h4 id="①信息量"><a href="#①信息量" class="headerlink" title="①信息量"></a>①信息量</h4><ul>
 <li>信息量用于描述单个概率的信息，概率越小，信息量越大。</li>
 <li><script type="math/tex; mode=display">I ( x ) = \log _ { 2 } ( \frac { 1 } { p ( x ) } ) = - \log _ { 2 } ( p ( x ) )</script></li>
@@ -85,7 +207,8 @@
 </li>
 </ul>
 <p><img src="https://s21.ax1x.com/2024/12/09/pAHeel4.png" alt="pAHeel4.png"></p>
-<h3 id="3-模型架构"><a href="#3-模型架构" class="headerlink" title="3.模型架构"></a>3.模型架构</h3><ul>
+<h3 id="3-模型架构"><a href="#3-模型架构" class="headerlink" title="3.模型架构"></a>3.模型架构</h3><p><img src="https://s21.ax1x.com/2025/03/07/pEtmo2d.png" alt="pEtmo2d.png"></p>
+<ul>
 <li>在 VAE 中，我们希望编码器产生的潜在变量分布$ q _ { \phi } ( z | x ) = N ( z ; \mu , \sigma ^ { 2 } )$接近标准正态分布$ p ( z ) = N ( z ; 0 , 1 ) $。</li>
 <li>需要使两者之间的KL散度最小$ D _ { K L } ( q _ { \phi } ( z | x ) | | p ( z ) ) = \int q _ { \phi } ( z | x ) \log \frac { q _ { \phi } ( z | x ) } { p ( z ) } d z$<ul>
 <li>$ = \int q _ { \phi } ( z | x ) \left[ \log q _ { \phi } ( z | x ) - \log p ( z ) \right] d z$</li>
@@ -104,103 +227,129 @@
 </ul>
 ]]></content>
       <categories>
-        <category>硕士阶段学习笔记(入门阶段)</category>
+        <category>深度学习基础模型</category>
       </categories>
       <tags>
         <tag>生成式模型</tag>
       </tags>
   </entry>
   <entry>
-    <title>超分辨率第十章-NormalizingFlow&amp;SR</title>
+    <title>超分辨率第十章-SR&amp;NormalizingFlow</title>
     <url>/2024/12/02/%E8%B6%85%E5%88%86%E8%BE%A8%E7%8E%87%E7%AC%AC%E5%8D%81%E7%AB%A0-NormalizingFlow-SR/</url>
-    <content><![CDATA[<h1 id="超分辨率第十章-NormalizingFlow-amp-SR"><a href="#超分辨率第十章-NormalizingFlow-amp-SR" class="headerlink" title="超分辨率第十章-NormalizingFlow&amp;SR"></a>超分辨率第十章-NormalizingFlow&amp;SR</h1><blockquote>
+    <content><![CDATA[<h1 id="超分辨率第十章-SR-amp-NormalizingFlow"><a href="#超分辨率第十章-SR-amp-NormalizingFlow" class="headerlink" title="超分辨率第十章-SR&amp;NormalizingFlow"></a>超分辨率第十章-SR&amp;NormalizingFlow</h1><blockquote>
 <p><strong>本文介绍标准化流（Normalizing Flow）以及其对应的超分辨率模型SRflow</strong></p>
 <p>参考文献：<a href="https://arxiv.org/pdf/1908.09257"> Normalizing Flows: An Introduction and Review of Current Methods</a></p>
 <p>参考博客：<a href="https://zhuanlan.zhihu.com/p/358281628">SRFlow: Learning the Super-Resolution Space with Normalizing Flow</a></p>
 </blockquote>
 <span id="more"></span>
-<h2 id="一-Normalizing-Flows（标准化流）"><a href="#一-Normalizing-Flows（标准化流）" class="headerlink" title="一.Normalizing Flows（标准化流）"></a>一.Normalizing Flows（标准化流）</h2><p>标准化流，与VAE、GAN同属于生成式方法</p>
+<h2 id="一-Normalizing-Flows（标准化流）"><a href="#一-Normalizing-Flows（标准化流）" class="headerlink" title="一.Normalizing Flows（标准化流）"></a>一.Normalizing Flows（标准化流）</h2><blockquote>
+<p>标准化流，与VAE、GAN同属于生成式方法</p>
+<p>Normalizing flow 是一种可逆生成模型，用于将一个原始分布通过学习的变换映射到另一个已知的<a href="https://zhida.zhihu.com/search?content_id=234879792&amp;content_type=Article&amp;match_order=1&amp;q=概率分布&amp;zhida_source=entity">概率分布</a>。它可以将数据从原始分布转换为<a href="https://zhida.zhihu.com/search?content_id=234879792&amp;content_type=Article&amp;match_order=1&amp;q=目标分布&amp;zhida_source=entity">目标分布</a>，从而实现数据的生成和采样。</p>
+<p>•标准化（normalize）：它可以将任意的复杂数据分布进行标准化，类似于<a href="https://zhida.zhihu.com/search?content_id=168932433&amp;content_type=Article&amp;match_order=1&amp;q=数据预处理&amp;zhida_source=entity">数据预处理</a>中常用的数据0均值1方差的标准化，但是要精细很多；</p>
+<p>•流（Flows）：数据的分布可以非常的复杂，需要多个同样的操作组合来达到标准化的效果，这个组合的过程称为流。</p>
+</blockquote>
 <h3 id="1-标准化流的概念"><a href="#1-标准化流的概念" class="headerlink" title="1.标准化流的概念"></a>1.标准化流的概念</h3><h4 id="①标准化流的方法"><a href="#①标准化流的方法" class="headerlink" title="①标准化流的方法"></a>①标准化流的方法</h4><p><strong>通过一系列可逆且可微的变换（invertible and differentiable）将简单(复杂)的概率分布转换为复杂(简单)的概率分布</strong></p>
 <blockquote>
 <p>The density of a sample can be evaluated by transforming it back to the original simple distribution and then computing the product of i) the density of the inverse-transformed sample under this distribution and ii) the associated change in volume induced by the sequence of inverse transformations. The change in volume is the product of the absolute values of the determinants of the Jacobians for each transformation, as required by the change of variables formula.</p>
-<p><strong>样本的密度可以通过将其转换回原始简单分布，然后计算以下两者的乘积来评估：i) 该分布下逆变换后样本的密度；ii) 由一系列逆变换引起的相关体积变化。体积的变化是按照变量替换公式的要求，等于每个变换的雅可比行列式的绝对值的乘积。</strong></p>
+<p><strong>样本的密度可以通过将其转换回原始简单分布，然后计算以下两者的乘积来评估：</strong></p>
+<p><strong>i) 该分布下逆变换后样本的密度；</strong></p>
+<p><strong>ii) 由一系列逆变换引起的相关体积变化。体积的变化是按照变量替换公式的要求，等于每个变换的雅可比行列式的绝对值的乘积。</strong></p>
 </blockquote>
 <p>由此可见，标准化流需要用到：行列式(Determinant)、雅可比矩阵(Jacobi)、变量替换定理(Change of Variable Theorem)</p>
-<h4 id="②雅可比行列式（Jacobians）"><a href="#②雅可比行列式（Jacobians）" class="headerlink" title="②雅可比行列式（Jacobians）"></a>②雅可比行列式（Jacobians）</h4><ol>
-<li><strong>密度计算</strong>：在逆变换后的分布中，我们可以计算样本的密度。但是，由于我们进行了变换，所以还需要考虑由变换引起的体积变化（在多维空间中，这通常被称为“雅可比行列式”）。</li>
-<li><strong>雅可比行列式</strong>：在多维空间中，雅可比行列式是一个矩阵，其行列式值表示了从一个空间到另一个空间的体积变化因子。在进行变量替换时，我们需要计算雅可比行列式的绝对值，以确保体积的变化被正确考虑。</li>
-</ol>
+<h4 id="②雅可比行列式（Jacobians）"><a href="#②雅可比行列式（Jacobians）" class="headerlink" title="②雅可比行列式（Jacobians）"></a>②雅可比行列式（Jacobians）</h4><p><strong>密度计算</strong>：在逆变换后的分布中，我们可以计算样本的密度。但是，由于我们进行了变换，所以还需要考虑由变换引起的体积变化（在多维空间中，这通常被称为“雅可比行列式”）。</p>
+<p><strong>雅可比行列式</strong>：在多维空间中，雅可比行列式是一个矩阵，其行列式值表示了从一个空间到另一个空间的体积变化因子。在进行变量替换时，我们需要计算雅可比行列式的绝对值，以确保体积的变化被正确考虑。</p>
 <p>由$x=f(z)$的变化后的相关雅可比矩阵：$J_f = \begin{bmatrix} \frac{\partial z_1}{\partial x_1} &amp; \frac{\partial z_1}{\partial x_2} \\ \frac{\partial z_2}{\partial x_1} &amp; \frac{\partial z_2}{\partial x_2} \end{bmatrix}$</p>
-<h4 id="③概率密度函数的计算"><a href="#③概率密度函数的计算" class="headerlink" title="③概率密度函数的计算"></a>③概率密度函数的计算</h4><p>进行可逆变化后<script type="math/tex">Y = g ( Z )</script> ，计算Y的概率密度函数的方法</p>
+<p>即给出一个 原始概率分布，使用一个<a href="https://zhida.zhihu.com/search?content_id=234879792&amp;content_type=Article&amp;match_order=1&amp;q=可逆变换&amp;zhida_source=entity">可逆变换</a> f(⋅) 将原始分布变为目标分布，这两个分布之间相差的就是这样一个雅可比行列式。</p>
+<h4 id="③概率密度函数的计算"><a href="#③概率密度函数的计算" class="headerlink" title="③概率密度函数的计算"></a>③概率密度函数的计算</h4><p>在正则化流中，定义一个<a href="https://zhida.zhihu.com/search?content_id=234879792&amp;content_type=Article&amp;match_order=1&amp;q=变换函数&amp;zhida_source=entity">变换函数</a>，它将输入样本从原始分布映射到目标分布。这个映射是一个<strong>可逆函数</strong>，确保转换是可逆的，也就是说，在给定目标分布样本的情况下，可以逆向计算出原始分布的样本。</p>
+<p>进行可逆变化后<script type="math/tex">Y = g ( Z )</script> ，计算Y的概率密度函数的方法：</p>
 <script type="math/tex; mode=display">p _ { Y } ( y ) = p _ { Z } ( f ( y ) ) | d e t D f ( y ) | \\ = p _ { Z } ( f ( y ) ) | d e t D g ( f ( y ) ) | ^ { - 1 }</script><p><img src="https://s21.ax1x.com/2024/12/02/pAID0G4.png" alt="pAID0G4.png"></p>
-<h4 id="④损失函数-最大似然估计"><a href="#④损失函数-最大似然估计" class="headerlink" title="④损失函数-最大似然估计"></a>④损失函数-最大似然估计</h4><p>高-低分辨率图片对，通过可逆神经网络进行编码，将y编码为z</p>
-<script type="math/tex; mode=display">z=f _ { \theta } ( y , x )</script><p>此时可以逆向解码</p>
-<script type="math/tex; mode=display">y = f _ { \theta } ^ { - 1 } ( z , x ) , z \sim p _ { z } 。</script><p>若需通过$z$分布下的概率密度函数计算y分布下的概率密度函数，需要乘雅可比矩阵的绝对值</p>
+<h4 id="④损失函数-最大似然估计"><a href="#④损失函数-最大似然估计" class="headerlink" title="④损失函数-最大似然估计"></a>④损失函数-最大似然估计</h4><p>高-低分辨率图片对，通过可逆神经网络进行编码，将y编码为z：<script type="math/tex">z=f _ { \theta } ( y , x )</script></p>
+<p>此时可以逆向解码：<script type="math/tex">y = f _ { \theta } ^ { - 1 } ( z , x ) , z \sim p _ { z } 。</script></p>
+<p>若需通过$z$分布下的概率密度函数计算y分布下的概率密度函数，需要乘雅可比矩阵的绝对值：</p>
 <script type="math/tex; mode=display">p _ { y | x } ( y | x , \theta ) = p _ { z } ( f _ { \theta } ( y ; x ) ) | d e t \frac { \partial f _ { \theta } } { \partial y } ( y ; x ) | .</script><p>此时计算极大似然估计，使用负对数似然的方法，两边取负对数，使负对数似然最小：</p>
-<script type="math/tex; mode=display">\complement ( \theta ; x , y ) = - \log p _ { y / x } ( y | x , \theta ) = - \log p _ { z } ( f _ { \theta } ( y ; x ) ) - \log | d e t \frac { \partial f _ { \theta } } { \partial y } ( y ; x ) | .</script><h4 id="⑤关于flow"><a href="#⑤关于flow" class="headerlink" title="⑤关于flow"></a>⑤关于flow</h4><p>为了将一个高斯分布 $z0$ 转换为一个复杂的分布 $zK$，normalizing flow 会对初始的分布 $z0$ 进行多次可逆的变换，将其逐渐转换为 $zK$。由于每一次变换都是可逆的，从 $zK$ 出发也能得到高斯分布 $z0$。这样，我们就实现了复杂分布与高斯分布之间的互相转换，从而能从简单的高斯分布建立任意复杂分布。</p>
+<script type="math/tex; mode=display">L ( \theta ; x , y ) = - l o g p _ { y | x } ( y | x , \theta ) = - l o g p _ { z } ( f _ { \theta } ( y ; x ) ) - l o g | d e t \frac { \partial f \theta } { \partial y } ( y ; x ) |</script><h4 id="⑤关于flow"><a href="#⑤关于flow" class="headerlink" title="⑤关于flow"></a>⑤关于flow</h4><p>为了将一个高斯分布 $z0$ 转换为一个复杂的分布 $zK$，normalizing flow 会对初始的分布 $z0$ 进行多次可逆的变换，将其逐渐转换为 $zK$。由于每一次变换都是可逆的，从 $zK$ 出发也能得到高斯分布 $z0$。这样，我们就实现了复杂分布与高斯分布之间的互相转换，从而能从简单的高斯分布建立任意复杂分布。</p>
+<script type="math/tex; mode=display">x = f _ { 1 } ( f _ { 2 } ( \ldots f _ { K } ( z ) ) )</script><p>注：</p>
+<ol>
+<li><strong>与扩散模型的对比</strong><ul>
+<li>扩散模型需要逐步去噪（如从<script type="math/tex">x _ { T } \rightarrow x _ { T - 1 } \rightarrow \cdots \rightarrow x _ { 0 }</script>），每一步依赖前一步的结果，生成过程是迭代的（多步）。</li>
+<li>标准化流的生成是<strong>单次前向传播</strong>，无论模型多深，均一次性输出结果。属于串联计算：<script type="math/tex">x = f _ { 1 } ( f _ { 2 } ( \ldots f _ { K } ( z ) ) )</script></li>
+</ul>
+</li>
+</ol>
 <p><img src="https://s21.ax1x.com/2024/12/02/pAI7eUg.png" alt="pAI7eUg.png"></p>
 <p><img src="https://s21.ax1x.com/2024/12/03/pAIX4Mj.png" alt="pAIX4Mj.png"></p>
 <p><strong>关键：计算每一层的雅可比行列式</strong></p>
-<h2 id="二-SRflow"><a href="#二-SRflow" class="headerlink" title="二.SRflow"></a>二.SRflow</h2><h3 id="1-SRflow解决的问题"><a href="#1-SRflow解决的问题" class="headerlink" title="1.SRflow解决的问题"></a>1.SRflow解决的问题</h3><p>对于生成式方法GAN，容易出现模式崩溃的问题。</p>
+<h2 id="二-SRflow"><a href="#二-SRflow" class="headerlink" title="二.SRflow"></a>二.SRflow</h2><blockquote>
+<p>参考文献：<a href="https://arxiv.org/abs/2006.14200">SRFlow: Learning the Super-Resolution Space with Normalizing Flow</a></p>
+</blockquote>
+<h3 id="1-SRflow解决的问题"><a href="#1-SRflow解决的问题" class="headerlink" title="1.SRflow解决的问题"></a>1.SRflow解决的问题</h3><p>超分辨率从根本上来说是一个不适定问题。事实上，对于给定的低分辨率（LR）图像，存在无限多个兼容的高分辨率（HR）预测。</p>
+<p>对于生成式方法GAN，容易出现模式崩溃的问题。</p>
+<p>而标准化流能够在给定低分辨率输入的情况下学习输出的条件分布，直接解释了问题的不适定性质，并学习预测各种逼真的高分辨率图像。且避免了GAN的模式崩溃的问题。&lt;得到LR 图像 x 相对应的自然 HR 图像 y 的完整条件分布 p y|x (y|x, θ)。&gt;</p>
 <p>SRFlow：一种基于归一化流的超分辨率方法，能够学习给定低分辨率输入$x$的在高分辨率图像下$y$的条件概率分布。模型使用单一损失（即负对数似然）进行训练，可以生成多幅SR图片，解决了”ill-posed”问题 </p>
 <h3 id="2-模型架构"><a href="#2-模型架构" class="headerlink" title="2.模型架构"></a>2.模型架构</h3><p><img src="https://s21.ax1x.com/2024/12/03/pAIXILn.png" alt="pAIXILn.png"></p>
 <p>本模型基于GLOW</p>
 <p>模型由一个可逆流网络 $f_{\theta}$ 组成，以低分辨率图像的编码（绿色）为条件。流网络在多个比例级别（灰色）上运行。输入通过一系列流步骤（蓝色）进行处理，每个流步骤由四个不同的层组成。通过精确的对数似然训练，我们的网络学习将高斯密度 $p_{z}(z)$ 转换为条件 HR 图像分布 $p_{y | x}(y | x, \theta)$。</p>
-<p>在训练期间，输入 LR-HR $(x, y)$ 图像对，以计算负对数似然损失。</p>
-<script type="math/tex; mode=display">L ( \theta ; x , y ) = - \log p _ { x } ( z ) - \sum _ { n = 0 } ^ { N - 1 } \log | d e t \frac { \partial f _ { \theta } ^ { n } } { \partial h ^ { n } } ( h ^ { n } ; g_0 ( x ) ) |</script><p>在推理过程中，网络通过输入 LR 图像和随机变量 $z=(z_{l})_{l=1}^{L} ~ p_{z}$ 来反向运行，该随机变量从学习的分布 $p_{y | x}$ 生成样本 SR 图像。</p>
+<ul>
+<li><p>在训练期间，输入 LR-HR $(x, y)$ 图像对，以计算负对数似然损失。</p>
+<ul>
+<li><script type="math/tex; mode=display">L ( \theta ; x , y ) = - \log p _ { x } ( z ) - \sum _ { n = 0 } ^ { N - 1 } \log | d e t \frac { \partial f _ { \theta } ^ { n } } { \partial h ^ { n } } ( h ^ { n } ; g_0 ( x ) ) |</script></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>在推理过程中，网络通过输入 LR 图像和随机变量 $z=(z_{l})_{l=1}^{L} ~ p_{z}$ 来反向运行，该随机变量从学习的分布 $p_{y | x}$ 生成样本 SR 图像。</li>
+</ul>
+<p>步骤：</p>
+<p>在训练期间，输入 LR-HR (x, y) 图像对，以计算负对数似然损失。</p>
+<p>编码器g0使用RRDB，提取低分辨率图像特征，之后输入到<strong>Affine Injector</strong>、 <strong>Conditional Affine Coupling</strong></p>
+<p>通过精确的对数似然训练，网络可将将高斯密度 p(z) 转换为条件 HR 图像分布 p{y | x}(y | x，θ)。</p>
+<p>在推理过程中，网络通过输入 LR 图像和随机变量 z来反向运行，该随机变量从学习的分布 p_{y | x} 生成样本 SR 图像。</p>
+<hr>
 <p>编码器g0架构基于RRDB，用于提取低分辨率图像的特征。</p>
 <blockquote>
 <p>SRFlow是一种基于归一化流（Normalizing Flow）的超分辨率（Super - Resolution，SR）方法，能够学习到高分辨率图像的分布，并在给定低分辨率图像时生成高分辨率图像。以下是从图中详细介绍SRFlow的训练流程和推理流程： </p>
 <p><strong>一、训练流程</strong> </p>
 <ol>
 <li><strong>输入数据</strong>   <ul>
-<li><strong>训练输入（Training Input）</strong>：高分辨率图像（High - Resolution）。</li>
+<li><strong>训练输入（Training Input）</strong>：高低分辨率图像对</li>
 </ul>
 </li>
-<li><strong>低分辨率编码器（Low Resolution Encoder $g_{\theta}$）</strong>   <ul>
-<li>高分辨率图像首先经过下采样得到低分辨率图像。   -</li>
-<li>低分辨率图像被送入低分辨率编码器($g_{\theta}$)，该编码器基于残差密集块（RRDB）架构，用于提取低分辨率图像的特征。</li>
-</ul>
-</li>
-<li><p><strong>可逆归一化流（Invertible Normalizing Flow ($f_{\theta}$）</strong>   -</p>
+<li><p><strong>低分辨率编码器（Low Resolution Encoder $g_{\theta}$）</strong>   </p>
 <ul>
-<li>低分辨率编码器的输出被送入可逆归一化流$f{\theta}$。   </li>
-<li>可逆归一化流由多个条件流步骤（Conditional Flow Step）和过渡步骤（Transition Step）组成。   </li>
-<li>每个条件流步骤包括仿射耦合层（Affine Coupling）、1x1卷积（1x1 Convolution）、Actnorm和Squeeze操作。    </li>
-<li>过渡步骤用于在不同尺度级别（Scale Level）之间进行转换。   </li>
-<li>可逆归一化流的目标是学习从低分辨率图像到高分辨率图像的映射。 </li>
+<li><p>提取低分辨率图像特征，生成多尺度特征<script type="math/tex">\left\{ c _ { 1 } , c _ { 2 } , \ldots , c _ { L } \right\}</script></p>
+</li>
+<li><p>之后将将 LR 的全局和局部信息编码为流模型的条件输入。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>前向变换：</strong></p>
+<ul>
+<li>HR 图像 y 通过多尺度流模型 f 的正向变换映射到潜在变量 z：<script type="math/tex">z = f ( y ; c _ { 1 } , c _ { 2 } , \ldots , c _ { L } )</script></li>
 </ul>
 </li>
 <li><p><strong>训练目标</strong>   </p>
 <ul>
 <li>训练过程中，模型通过最小化负对数似然（Negative Log - Likelihood）来优化参数。   </li>
+<li><script type="math/tex; mode=display">\log p ( y | x ) = \log p ( z ) + \sum _ { k = 1 } ^ { K } \log | d e t \frac { \partial f _ { k } } { \partial y _ { k - 1 } } |</script></li>
 <li>模型学习到低分辨率图像和高分辨率图像之间的条件分布。 </li>
 </ul>
 </li>
 </ol>
 <p><strong>二、推理流程</strong> </p>
 <ol>
-<li><p><strong>输入数据</strong>   - <strong>推理输入（Inference Input）</strong>：低分辨率图像（Low - Resolution）。 </p>
-</li>
-<li><p><strong>低分辨率编码器（Low Resolution Encoder $g_{\theta}$)）</strong> </p>
-<ul>
+<li><strong>输入数据</strong>   - <strong>推理输入（Inference Input）</strong>：低分辨率图像（Low - Resolution）。 </li>
+<li><strong>低分辨率编码器（Low Resolution Encoder $g_{\theta}$)）</strong> <ul>
 <li>低分辨率图像被送入低分辨率编码器$g_{\theta}$，提取特征。 </li>
 </ul>
 </li>
-<li><strong>可逆归一化流（Invertible Normalizing Flow $f_{\theta}$</strong> <ul>
-<li>低分辨率编码器的输出被送入可逆归一化流$f_{\theta}$。   </li>
-<li>通过可逆归一化流的正向传播，生成高分辨率图像。 </li>
-</ul>
-</li>
-<li><strong>输出数据</strong>   <ul>
-<li><strong>推理输出（Inference Output）</strong>：高分辨率图像（Super - Resolution）。 </li>
-</ul>
-</li>
+<li>从高斯分布采样潜在变量：<script type="math/tex">z \sim N ( 0 , I )</script></li>
+<li>将 z 通过流模型的逆变换 <script type="math/tex">f ^ { - 1 } :</script>生成 HR 图像 y：<script type="math/tex">y = f ^ { - 1 } ( z ; c _ { 1 } , c _ { 2 } , \dots , c _ { L } )</script></li>
 </ol>
 </blockquote>
+<hr>
 <h3 id="3-可逆归一化流结构"><a href="#3-可逆归一化流结构" class="headerlink" title="3.可逆归一化流结构"></a>3.可逆归一化流结构</h3><p>分为四块，每块由squeeze(挤压层)、过度步骤，条件流步骤（多个）、split。</p>
 <h4 id="①squeeze"><a href="#①squeeze" class="headerlink" title="①squeeze"></a>①squeeze</h4><p>将输入图像分辨率减半</p>
-<h4 id="②Actnorm"><a href="#②Actnorm" class="headerlink" title="②Actnorm"></a>②Actnorm</h4><p><strong>归一化层</strong></p>
+<h4 id="②Actnorm"><a href="#②Actnorm" class="headerlink" title="②Actnorm"></a>②Actnorm</h4><p>归一化层</p>
 <h4 id="③Invertible-1-×-1-Convolution"><a href="#③Invertible-1-×-1-Convolution" class="headerlink" title="③Invertible 1 × 1 Convolution"></a>③Invertible 1 × 1 Convolution</h4><p><strong>基于：Glow: Generative Flow with Invertible 1x1 Convolutions</strong></p>
 <script type="math/tex; mode=display">h _ { i j } ^ { n + 1 } = W h _ { i j } ^ { n }</script><p>形成块对角结构，减少计算量</p>
 <h4 id="④Affine-Injector（仿射注入）"><a href="#④Affine-Injector（仿射注入）" class="headerlink" title="④Affine Injector（仿射注入）"></a>④Affine Injector（仿射注入）</h4><script type="math/tex; mode=display">h ^ { n + 1 } = e x p ( f _ { \theta , s } ^ { n } ( u ) ) \cdot h ^ { n } + f _ { \theta , b } ( u )</script><p>其中<script type="math/tex">f _ { \theta , s } ^ { n } ( u )</script>用于预测缩放因子，<script type="math/tex">f _ { \theta , b } ( u )</script>用于预测偏差。通过将激活图与基于条件编码预测得到的缩放因子相乘，并加上偏差，得到更新后的激活图$h_n+1$</p>
@@ -217,12 +366,11 @@
 <p>一部分数据被传递到下一个条件流步骤（Conditional Flow Step），而另一部分数据则被分流出去。这有助于模型在不同尺度和层次上提取特征。</p>
 ]]></content>
       <categories>
-        <category>硕士阶段学习笔记(入门阶段)</category>
-        <category>模型</category>
+        <category>超分辨率基础模型</category>
       </categories>
       <tags>
-        <tag>超分辨率</tag>
         <tag>生成式模型</tag>
+        <tag>超分辨率</tag>
       </tags>
   </entry>
   <entry>
@@ -245,8 +393,7 @@
 <h3 id="2-RDN模块"><a href="#2-RDN模块" class="headerlink" title="2.RDN模块"></a>2.RDN模块</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">RDN</span>(nn.Module):  </span><br><span class="line">    <span class="comment"># 初始化RDN网络，包括输入通道数、输出通道数、特征数、RDB块数、每一个RDB所含卷积层数、上采样因子  </span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, in_channels, out_channels, num_features, num_blocks, num_layers, upscale_factor</span>):  </span><br><span class="line">        <span class="built_in">super</span>(RDN, <span class="variable language_">self</span>).__init__()  <span class="comment"># 调用父类nn.Module的初始化方法  </span></span><br><span class="line">        r = upscale_factor  <span class="comment"># 上采样因子  </span></span><br><span class="line">        G0 = num_features  <span class="comment"># 初始特征数  </span></span><br><span class="line">        kSize = <span class="number">3</span>  <span class="comment"># 卷积核大小  </span></span><br><span class="line">  </span><br><span class="line">        <span class="comment"># 将RDB块数、卷积层数、特征数分别赋值给D、C、G  </span></span><br><span class="line">        <span class="variable language_">self</span>.D, C, G = [num_blocks, num_layers, num_features]  </span><br><span class="line">  </span><br><span class="line">        <span class="comment"># 浅层特征提取网络  </span></span><br><span class="line">        <span class="variable language_">self</span>.SFENet1 = nn.Conv2d(in_channels, G0, kSize, padding=(kSize-<span class="number">1</span>)//<span class="number">2</span>, stride=<span class="number">1</span>)  <span class="comment"># 第一个卷积层  </span></span><br><span class="line">        <span class="variable language_">self</span>.SFENet2 = nn.Conv2d(G0, G0, kSize, padding=(kSize-<span class="number">1</span>)//<span class="number">2</span>, stride=<span class="number">1</span>)  <span class="comment"># 第二个卷积层  </span></span><br><span class="line">  </span><br><span class="line">        <span class="comment"># 残差密集块和密集特征融合  </span></span><br><span class="line">        <span class="variable language_">self</span>.RDBs = nn.ModuleList()  <span class="comment"># 创建一个模块列表来存储RDB块  </span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="variable language_">self</span>.D):  </span><br><span class="line">            <span class="variable language_">self</span>.RDBs.append(  </span><br><span class="line">                RDB(growRate0 = G0, growRate = G, nConvLayers = C)  <span class="comment"># 向列表中添加RDB块  </span></span><br><span class="line">            )  </span><br><span class="line">  </span><br><span class="line">        <span class="comment"># 全局特征融合  </span></span><br><span class="line">        <span class="variable language_">self</span>.GFF = nn.Sequential(*[  </span><br><span class="line">            nn.Conv2d(<span class="variable language_">self</span>.D * G0, G0, <span class="number">1</span>, padding=<span class="number">0</span>, stride=<span class="number">1</span>),  <span class="comment"># 1x1卷积层，用于融合RDB块的输出  </span></span><br><span class="line">            nn.Conv2d(G0, G0, kSize, padding=(kSize-<span class="number">1</span>)//<span class="number">2</span>, stride=<span class="number">1</span>)  <span class="comment"># 3x3卷积层  </span></span><br><span class="line">        ])  </span><br><span class="line">  </span><br><span class="line">        <span class="comment"># 上采样网络  </span></span><br><span class="line">        <span class="keyword">if</span> r == <span class="number">2</span> <span class="keyword">or</span> r == <span class="number">3</span>:  </span><br><span class="line">            <span class="variable language_">self</span>.UPNet = nn.Sequential(*[  </span><br><span class="line">                nn.Conv2d(G0, G * r * r, kSize, padding=(kSize-<span class="number">1</span>)//<span class="number">2</span>, stride=<span class="number">1</span>),  <span class="comment"># 卷积层，调整通道数以匹配PixelShuffle  </span></span><br><span class="line">                nn.PixelShuffle(r),  <span class="comment"># PixelShuffle层，实现上采样  </span></span><br><span class="line">                nn.Conv2d(G, out_channels, kSize, padding=(kSize-<span class="number">1</span>)//<span class="number">2</span>, stride=<span class="number">1</span>)  <span class="comment"># 输出卷积层  </span></span><br><span class="line">            ])  </span><br><span class="line">        <span class="keyword">elif</span> r == <span class="number">4</span>:  </span><br><span class="line">            <span class="variable language_">self</span>.UPNet = nn.Sequential(*[  </span><br><span class="line">                nn.Conv2d(G0, G * <span class="number">2</span> * <span class="number">2</span>, kSize, padding=(kSize-<span class="number">1</span>)//<span class="number">2</span>, stride=<span class="number">1</span>),  <span class="comment"># 第一步卷积层  </span></span><br><span class="line">                nn.PixelShuffle(<span class="number">2</span>),  <span class="comment"># 第一次PixelShuffle，上采样2倍  </span></span><br><span class="line">                nn.Conv2d(G, G * <span class="number">2</span> * <span class="number">2</span>, kSize, padding=(kSize-<span class="number">1</span>)//<span class="number">2</span>, stride=<span class="number">1</span>),  <span class="comment"># 第二步卷积层  </span></span><br><span class="line">                nn.PixelShuffle(<span class="number">2</span>),  <span class="comment"># 第二次PixelShuffle，再次上采样2倍，总共4倍  </span></span><br><span class="line">                nn.Conv2d(G, out_channels, kSize, padding=(kSize-<span class="number">1</span>)//<span class="number">2</span>, stride=<span class="number">1</span>)  <span class="comment"># 输出卷积层  </span></span><br><span class="line">            ])  </span><br><span class="line">        <span class="keyword">else</span>:  </span><br><span class="line">            <span class="keyword">raise</span> ValueError(<span class="string">&quot;scale must be 2 or 3 or 4.&quot;</span>)  <span class="comment"># 如果上采样因子不是2、3或4，抛出错误  </span></span><br><span class="line">  </span><br><span class="line">    <span class="comment"># 前向传播函数  </span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, x</span>):  </span><br><span class="line">        f__1 = <span class="variable language_">self</span>.SFENet1(x)  <span class="comment"># 通过第一个浅层特征提取网络  </span></span><br><span class="line">        x  = <span class="variable language_">self</span>.SFENet2(f__1)  <span class="comment"># 通过第二个浅层特征提取网络  </span></span><br><span class="line">  </span><br><span class="line">        RDBs_out = []  <span class="comment"># 创建一个列表来存储RDB块的输出  </span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="variable language_">self</span>.D):  </span><br><span class="line">            x = <span class="variable language_">self</span>.RDBs[i](x)  <span class="comment"># 通过每个RDB块  </span></span><br><span class="line">            RDBs_out.append(x)  <span class="comment"># 将RDB块的输出添加到列表中  </span></span><br><span class="line">  </span><br><span class="line">        x = <span class="variable language_">self</span>.GFF(torch.cat(RDBs_out,<span class="number">1</span>))  <span class="comment"># 将所有RDB块的输出拼接起来，并通过全局特征融合网络  </span></span><br><span class="line">        x += f__1  <span class="comment"># 将全局特征融合的输出与第一个浅层特征提取网络的输出相加，形成残差连接  </span></span><br><span class="line">  </span><br><span class="line">        <span class="keyword">return</span> <span class="variable language_">self</span>.UPNet(x)  <span class="comment"># 通过上采样网络，输出最终结果  </span></span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
-        <category>硕士阶段学习笔记(入门阶段)</category>
-        <category>模型</category>
+        <category>超分辨率基础模型</category>
       </categories>
       <tags>
         <tag>超分辨率</tag>
@@ -537,11 +684,11 @@
 </ul>
 ]]></content>
       <categories>
-        <category>硕士阶段学习笔记(入门阶段)</category>
-        <category>模型</category>
+        <category>超分辨率基础模型</category>
       </categories>
       <tags>
         <tag>超分辨率</tag>
+        <tag>transformer类型</tag>
       </tags>
   </entry>
   <entry>
@@ -699,8 +846,7 @@
 <h3 id="2-反馈层结构"><a href="#2-反馈层结构" class="headerlink" title="2.反馈层结构"></a>2.反馈层结构</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">FeedbackBlock</span>(nn.Module):  </span><br><span class="line">    <span class="comment"># 初始化函数，设置反馈块的各种参数  </span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, num_features, num_groups, upscale_factor, act_type, norm_type</span>):  </span><br><span class="line">        <span class="built_in">super</span>(FeedbackBlock, <span class="variable language_">self</span>).__init__()  <span class="comment"># 调用父类的初始化函数  </span></span><br><span class="line">        <span class="comment"># 存储分组数量  </span></span><br><span class="line">        <span class="variable language_">self</span>.num_groups = num_groups  </span><br><span class="line">  </span><br><span class="line">        <span class="comment"># 定义压缩卷积块，用于减少输入特征的维度  </span></span><br><span class="line">        <span class="variable language_">self</span>.compress_in = ConvBlock(<span class="number">2</span>*num_features, num_features, kernel_size=<span class="number">1</span>, act_type=act_type, norm_type=norm_type)  </span><br><span class="line">  </span><br><span class="line">        <span class="comment"># 初始化存储上采样、下采样、上采样转换、下采样转换块的列表  </span></span><br><span class="line">        <span class="variable language_">self</span>.upBlocks = nn.ModuleList()  </span><br><span class="line">        <span class="variable language_">self</span>.downBlocks = nn.ModuleList()  </span><br><span class="line">        <span class="variable language_">self</span>.uptranBlocks = nn.ModuleList()  </span><br><span class="line">        <span class="variable language_">self</span>.downtranBlocks = nn.ModuleList()  </span><br><span class="line">  </span><br><span class="line">        <span class="comment"># 循环创建指定数量的上采样、下采样、上采样转换、下采样转换块  </span></span><br><span class="line">        <span class="keyword">for</span> idx <span class="keyword">in</span> <span class="built_in">range</span>(<span class="variable language_">self</span>.num_groups):  </span><br><span class="line">            <span class="variable language_">self</span>.upBlocks.append(DeconvBlock(num_features, num_features, kernel_size=kernel_size, stride=stride, padding=padding, act_type=act_type, norm_type=norm_type))  </span><br><span class="line">            <span class="variable language_">self</span>.downBlocks.append(ConvBlock(num_features, num_features, kernel_size=kernel_size, stride=stride, padding=padding, act_type=act_type, norm_type=norm_type, valid_padding=<span class="literal">False</span>))  </span><br><span class="line">            <span class="keyword">if</span> idx &gt; <span class="number">0</span>:  <span class="comment"># 如果不是第一个分组，则需要转换块  </span></span><br><span class="line">                <span class="variable language_">self</span>.uptranBlocks.append(ConvBlock(num_features*(idx+<span class="number">1</span>), num_features, kernel_size=<span class="number">1</span>, stride=<span class="number">1</span>, act_type=act_type, norm_type=norm_type))  </span><br><span class="line">                <span class="variable language_">self</span>.downtranBlocks.append(ConvBlock(num_features*(idx+<span class="number">1</span>), num_features, kernel_size=<span class="number">1</span>, stride=<span class="number">1</span>, act_type=act_type, norm_type=norm_type))  </span><br><span class="line">  </span><br><span class="line">        <span class="comment"># 输出压缩卷积块，用于将所有分组的输出合并并减少维度  </span></span><br><span class="line">        <span class="variable language_">self</span>.compress_out = ConvBlock(num_groups*num_features, num_features, kernel_size=<span class="number">1</span>, act_type=act_type, norm_type=norm_type)  </span><br><span class="line">  </span><br><span class="line">        <span class="comment"># 状态重置标志和上一次隐藏状态  </span></span><br><span class="line">        <span class="variable language_">self</span>.should_reset = <span class="literal">True</span>  </span><br><span class="line">        <span class="variable language_">self</span>.last_hidden = <span class="literal">None</span>  </span><br><span class="line">  </span><br><span class="line">    <span class="comment"># 前向传播函数  </span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, x</span>):  </span><br><span class="line">        <span class="comment"># 如果是第一次运行，则重置隐藏状态并初始化为输入  </span></span><br><span class="line">        <span class="keyword">if</span> <span class="variable language_">self</span>.should_reset:  </span><br><span class="line">            <span class="variable language_">self</span>.last_hidden = torch.zeros(x.size()).cuda()  </span><br><span class="line">            <span class="variable language_">self</span>.last_hidden.copy_(x)  </span><br><span class="line">            <span class="variable language_">self</span>.should_reset = <span class="literal">False</span>  </span><br><span class="line">  </span><br><span class="line">        <span class="comment"># 将当前输入和上一次隐藏状态在特征维度上拼接!</span></span><br><span class="line">        x = torch.cat((x, <span class="variable language_">self</span>.last_hidden), dim=<span class="number">1</span>)  </span><br><span class="line">        <span class="comment"># 通过输入压缩卷积块  </span></span><br><span class="line">        x = <span class="variable language_">self</span>.compress_in(x)  </span><br><span class="line">  </span><br><span class="line">        <span class="comment"># 初始化低分辨率和高分辨率特征列表  </span></span><br><span class="line">        lr_features = []  </span><br><span class="line">        hr_features = []  </span><br><span class="line">        <span class="comment"># 将输入特征添加到低分辨率特征列表  </span></span><br><span class="line">        lr_features.append(x)  </span><br><span class="line">  </span><br><span class="line">        <span class="comment"># 循环处理每个分组  </span></span><br><span class="line">        <span class="keyword">for</span> idx <span class="keyword">in</span> <span class="built_in">range</span>(<span class="variable language_">self</span>.num_groups):  </span><br><span class="line">            <span class="comment"># 将当前低分辨率特征列表中的所有特征在特征维度上拼接  </span></span><br><span class="line">            LD_L = torch.cat(<span class="built_in">tuple</span>(lr_features), <span class="number">1</span>)  </span><br><span class="line">            <span class="comment"># 如果不是第一个分组，则通过上采样转换块  </span></span><br><span class="line">            <span class="keyword">if</span> idx &gt; <span class="number">0</span>:  </span><br><span class="line">                LD_L = <span class="variable language_">self</span>.uptranBlocks[idx-<span class="number">1</span>](LD_L)  </span><br><span class="line">            <span class="comment"># 通过上采样块  </span></span><br><span class="line">            LD_H = <span class="variable language_">self</span>.upBlocks[idx](LD_L)  </span><br><span class="line">            <span class="comment"># 将上采样后的特征添加到高分辨率特征列表  </span></span><br><span class="line">            hr_features.append(LD_H)  </span><br><span class="line">  </span><br><span class="line">            <span class="comment"># 将当前高分辨率特征列表中的所有特征在特征维度上拼接  </span></span><br><span class="line">            LD_H = torch.cat(<span class="built_in">tuple</span>(hr_features), <span class="number">1</span>)  </span><br><span class="line">            <span class="comment"># 如果不是第一个分组，则通过下采样转换块  </span></span><br><span class="line">            <span class="keyword">if</span> idx &gt; <span class="number">0</span>:  </span><br><span class="line">                LD_H = <span class="variable language_">self</span>.downtranBlocks[idx-<span class="number">1</span>](LD_H)  </span><br><span class="line">            <span class="comment"># 通过下采样块  </span></span><br><span class="line">            LD_L = <span class="variable language_">self</span>.downBlocks[idx](LD_H)  </span><br><span class="line">            <span class="comment"># 将下采样后的特征添加到低分辨率特征列表  </span></span><br><span class="line">            lr_features.append(LD_L)  </span><br><span class="line">  </span><br><span class="line">        <span class="comment"># 删除高分辨率特征列表以节省内存  </span></span><br><span class="line">        <span class="keyword">del</span> hr_features  </span><br><span class="line">        <span class="comment"># 将除输入外的所有低分辨率特征在特征维度上拼接，并通过输出压缩卷积块  </span></span><br><span class="line">        output = torch.cat(<span class="built_in">tuple</span>(lr_features[<span class="number">1</span>:]), <span class="number">1</span>)  </span><br><span class="line">        output = <span class="variable language_">self</span>.compress_out(output)  </span><br><span class="line">  </span><br><span class="line">        <span class="comment"># 更新隐藏状态  </span></span><br><span class="line">        <span class="variable language_">self</span>.last_hidden = output  </span><br><span class="line">  </span><br><span class="line">        <span class="comment"># 返回输出  </span></span><br><span class="line">        <span class="keyword">return</span> output  </span><br><span class="line">  </span><br><span class="line">    <span class="comment"># 重置状态函数  </span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">reset_state</span>(<span class="params">self</span>):  </span><br><span class="line">        <span class="variable language_">self</span>.should_reset = <span class="literal">True</span></span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
-        <category>硕士阶段学习笔记(入门阶段)</category>
-        <category>模型</category>
+        <category>超分辨率基础模型</category>
       </categories>
       <tags>
         <tag>超分辨率</tag>
@@ -820,8 +966,7 @@
 <h2 id="五-模型测试"><a href="#五-模型测试" class="headerlink" title="五.模型测试"></a>五.模型测试</h2><figure class="highlight py"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 1. 加载预训练的RCAN模型  </span></span><br><span class="line">model = RCAN(opt)  <span class="comment"># 使用配置选项opt初始化RCAN模型  </span></span><br><span class="line">  </span><br><span class="line"><span class="comment"># 2. 加载模型的权重  </span></span><br><span class="line">state_dict = model.state_dict()  <span class="comment"># 获取模型当前的权重字典  </span></span><br><span class="line"><span class="comment"># 加载预训练权重，并仅更新模型中存在的权重  </span></span><br><span class="line"><span class="keyword">for</span> n, p <span class="keyword">in</span> torch.load(opt.weights_path, map_location=<span class="keyword">lambda</span> storage, loc: storage).items():  </span><br><span class="line">    <span class="keyword">if</span> n <span class="keyword">in</span> state_dict.keys():  </span><br><span class="line">        state_dict[n].copy_(p)  </span><br><span class="line">    <span class="keyword">else</span>:  </span><br><span class="line">        <span class="keyword">raise</span> KeyError(n)  <span class="comment"># 如果预训练权重中的某个键在模型权重字典中不存在，则抛出错误  </span></span><br><span class="line">  </span><br><span class="line"><span class="comment"># 3. 将模型移动到指定的设备上（如CPU或GPU）  </span></span><br><span class="line">model = model.to(device)  </span><br><span class="line"><span class="comment"># 设置模型为评估模式  </span></span><br><span class="line">model.<span class="built_in">eval</span>()  </span><br><span class="line">  </span><br><span class="line"><span class="comment"># 4. 处理输入图像  </span></span><br><span class="line">filename = os.path.basename(opt.image_path).split(<span class="string">&#x27;.&#x27;</span>)[<span class="number">0</span>]  <span class="comment"># 从文件路径中提取文件名（不含扩展名）  </span></span><br><span class="line">  </span><br><span class="line"><span class="comment"># 使用PIL库打开并转换图像为RGB格式  </span></span><br><span class="line"><span class="built_in">input</span> = pil_image.<span class="built_in">open</span>(opt.image_path).convert(<span class="string">&#x27;RGB&#x27;</span>)  </span><br><span class="line">  </span><br><span class="line"><span class="comment"># 使用双三次插值降采样图像，作为模型的低分辨率输入  </span></span><br><span class="line">lr = <span class="built_in">input</span>.resize((<span class="built_in">input</span>.width // opt.scale, <span class="built_in">input</span>.height // opt.scale), pil_image.BICUBIC)  </span><br><span class="line">  </span><br><span class="line"><span class="comment"># 使用双三次插值将降采样后的图像上采样回原始尺寸，作为双三次插值的结果  </span></span><br><span class="line">bicubic = lr.resize((<span class="built_in">input</span>.width, <span class="built_in">input</span>.height), pil_image.BICUBIC)  </span><br><span class="line">bicubic.save(os.path.join(opt.outputs_dir, <span class="string">&#x27;&#123;&#125;_x&#123;&#125;_bicubic.png&#x27;</span>.<span class="built_in">format</span>(filename, opt.scale)))  <span class="comment"># 保存双三次插值结果  </span></span><br><span class="line">  </span><br><span class="line"><span class="comment"># 5. 准备模型输入  </span></span><br><span class="line"><span class="comment"># 将低分辨率图像转换为Tensor，并添加批次维度，然后移动到指定设备上  </span></span><br><span class="line"><span class="built_in">input</span> = transforms.ToTensor()(lr).unsqueeze(<span class="number">0</span>).to(device)  </span><br><span class="line">  </span><br><span class="line"><span class="comment"># 6. 使用模型进行超分辨率重建  </span></span><br><span class="line"><span class="keyword">with</span> torch.no_grad():  <span class="comment"># 不计算梯度，以节省内存和计算资源  </span></span><br><span class="line">    pred = model(<span class="built_in">input</span>)  <span class="comment"># 进行前向传播，得到超分辨率图像  </span></span><br><span class="line">  </span><br><span class="line"><span class="comment"># 7. 处理模型输出  </span></span><br><span class="line"><span class="comment"># 将输出Tensor转换为numpy数组，并进行必要的转换以匹配PIL图像的格式  </span></span><br><span class="line">output = pred.mul_(<span class="number">255.0</span>).clamp_(<span class="number">0.0</span>, <span class="number">255.0</span>).squeeze(<span class="number">0</span>).permute(<span class="number">1</span>, <span class="number">2</span>, <span class="number">0</span>).byte().cpu().numpy()  </span><br><span class="line"><span class="comment"># 将numpy数组转换为PIL图像  </span></span><br><span class="line">output = pil_image.fromarray(output, mode=<span class="string">&#x27;RGB&#x27;</span>)  </span><br><span class="line"><span class="comment"># 保存超分辨率图像  </span></span><br><span class="line">output.save(os.path.join(opt.outputs_dir, <span class="string">&#x27;&#123;&#125;_x&#123;&#125;_&#123;&#125;.png&#x27;</span>.<span class="built_in">format</span>(filename, opt.scale, opt.arch)))</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
-        <category>硕士阶段学习笔记(入门阶段)</category>
-        <category>模型</category>
+        <category>超分辨率基础模型</category>
       </categories>
       <tags>
         <tag>超分辨率</tag>
@@ -880,8 +1025,7 @@
 <h2 id="五-测试模型"><a href="#五-测试模型" class="headerlink" title="五.测试模型"></a>五.测试模型</h2><figure class="highlight py"><table><tr><td class="code"><pre><span class="line">cudnn.benchmark = <span class="literal">True</span></span><br><span class="line">device = torch.device(<span class="string">&#x27;cuda:0&#x27;</span> <span class="keyword">if</span> torch.cuda.is_available() <span class="keyword">else</span> <span class="string">&#x27;cpu&#x27;</span>)</span><br><span class="line"></span><br><span class="line">model = SRDenseNet().to(device)</span><br><span class="line"></span><br><span class="line">state_dict = model.state_dict()</span><br><span class="line"><span class="keyword">for</span> n, p <span class="keyword">in</span> torch.load(args.weights_file, map_location=<span class="keyword">lambda</span> storage, loc: storage).items():</span><br><span class="line">    <span class="keyword">if</span> n <span class="keyword">in</span> state_dict.keys():</span><br><span class="line">        state_dict[n].copy_(p)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">raise</span> KeyError(n)</span><br><span class="line"></span><br><span class="line">model.<span class="built_in">eval</span>()</span><br><span class="line"></span><br><span class="line">image = pil_image.<span class="built_in">open</span>(args.image_file).convert(<span class="string">&#x27;RGB&#x27;</span>)</span><br><span class="line"></span><br><span class="line">image_width = (image.width // args.scale) * args.scale</span><br><span class="line">image_height = (image.height // args.scale) * args.scale</span><br><span class="line"></span><br><span class="line">hr = image.resize((image_width, image_height), resample=pil_image.BICUBIC)</span><br><span class="line">lr = hr.resize((hr.width // args.scale, hr.height // args.scale), resample=pil_image.BICUBIC)</span><br><span class="line">bicubic = lr.resize((lr.width * args.scale, lr.height * args.scale), resample=pil_image.BICUBIC)</span><br><span class="line">bicubic.save(args.image_file.replace(<span class="string">&#x27;.&#x27;</span>, <span class="string">&#x27;_bicubic_x&#123;&#125;.&#x27;</span>.<span class="built_in">format</span>(args.scale)))</span><br><span class="line"></span><br><span class="line">lr, _ = preprocess(lr, device)<span class="comment">#分出y空间</span></span><br><span class="line">hr, _ = preprocess(hr, device)</span><br><span class="line">_, ycbcr = preprocess(bicubic, device) </span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> torch.no_grad():</span><br><span class="line">    preds = model(lr).clamp(<span class="number">0.0</span>, <span class="number">1.0</span>)</span><br><span class="line"></span><br><span class="line">psnr = calc_psnr(hr, preds)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;PSNR: &#123;:.2f&#125;&#x27;</span>.<span class="built_in">format</span>(psnr))</span><br><span class="line"></span><br><span class="line">preds = preds.mul(<span class="number">255.0</span>).cpu().numpy().squeeze(<span class="number">0</span>).squeeze(<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">output = np.array([preds, ycbcr[..., <span class="number">1</span>], ycbcr[..., <span class="number">2</span>]]).transpose([<span class="number">1</span>, <span class="number">2</span>, <span class="number">0</span>])</span><br><span class="line">output = np.clip(convert_ycbcr_to_rgb(output), <span class="number">0.0</span>, <span class="number">255.0</span>).astype(np.uint8)</span><br><span class="line">output = pil_image.fromarray(output)</span><br><span class="line">output.save(args.image_file.replace(<span class="string">&#x27;.&#x27;</span>, <span class="string">&#x27;_srdensenet_x&#123;&#125;.&#x27;</span>.<span class="built_in">format</span>(args.scale)))</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
-        <category>硕士阶段学习笔记(入门阶段)</category>
-        <category>模型</category>
+        <category>超分辨率基础模型</category>
       </categories>
       <tags>
         <tag>超分辨率</tag>
@@ -892,10 +1036,8 @@
     <url>/2024/09/20/%E8%B6%85%E5%88%86%E8%BE%A8%E7%8E%87%E7%AC%AC%E5%9B%9B%E7%AB%A0-VDSR&amp;EDSR/</url>
     <content><![CDATA[<h1 id="超分辨率第四章-VDSR-amp-EDSR"><a href="#超分辨率第四章-VDSR-amp-EDSR" class="headerlink" title="超分辨率第四章-VDSR&amp;EDSR"></a>超分辨率第四章-VDSR&amp;EDSR</h1><blockquote>
 <p>VDSR是2016年提出的模型</p>
-<ul>
-<li>论文地址：<a href="https://arxiv.org/abs/1511.04587">Accurate Image Super-Resolution Using Very Deep Convolutional Networks</a></li>
-<li>代码位置：F:\Github下载\pytorch-vdsr-recurrence-main</li>
-</ul>
+<p>论文地址：<a href="https://arxiv.org/abs/1511.04587">Accurate Image Super-Resolution Using Very Deep Convolutional Networks</a></p>
+<p>代码位置：F:\Github下载\pytorch-vdsr-recurrence-main</p>
 <p>EDSR是是SRResNet的增强版本,2017年提出</p>
 </blockquote>
 <span id="more"></span>
@@ -933,8 +1075,7 @@
 </ul>
 ]]></content>
       <categories>
-        <category>硕士阶段学习笔记(入门阶段)</category>
-        <category>模型</category>
+        <category>超分辨率基础模型</category>
       </categories>
       <tags>
         <tag>超分辨率</tag>
@@ -1003,12 +1144,11 @@
 <h2 id="五-模型测试"><a href="#五-模型测试" class="headerlink" title="五.模型测试"></a>五.模型测试</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> argparse</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">from</span> math <span class="keyword">import</span> log10</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> torchvision.utils <span class="keyword">as</span> utils</span><br><span class="line"><span class="keyword">from</span> torch.autograd <span class="keyword">import</span> Variable</span><br><span class="line"><span class="keyword">from</span> torch.utils.data <span class="keyword">import</span> DataLoader</span><br><span class="line"><span class="keyword">from</span> tqdm <span class="keyword">import</span> tqdm</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> pytorch_ssim</span><br><span class="line"><span class="keyword">from</span> data_utils <span class="keyword">import</span> TestDatasetFromFolder, display_transform</span><br><span class="line"><span class="keyword">from</span> model <span class="keyword">import</span> Generator</span><br><span class="line"></span><br><span class="line">parser = argparse.ArgumentParser(description=<span class="string">&#x27;Test Benchmark Datasets&#x27;</span>)</span><br><span class="line">parser.add_argument(<span class="string">&#x27;--upscale_factor&#x27;</span>, default=<span class="number">4</span>, <span class="built_in">type</span>=<span class="built_in">int</span>, <span class="built_in">help</span>=<span class="string">&#x27;super resolution upscale factor&#x27;</span>)</span><br><span class="line">parser.add_argument(<span class="string">&#x27;--model_name&#x27;</span>, default=<span class="string">&#x27;netG_epoch_4_150.pth&#x27;</span>, <span class="built_in">type</span>=<span class="built_in">str</span>, <span class="built_in">help</span>=<span class="string">&#x27;generator model epoch name&#x27;</span>)</span><br><span class="line">opt = parser.parse_args()</span><br><span class="line"></span><br><span class="line">UPSCALE_FACTOR = opt.upscale_factor</span><br><span class="line">MODEL_NAME = opt.model_name</span><br><span class="line"></span><br><span class="line"><span class="comment"># 保存每个测试数据集的结果</span></span><br><span class="line">results = &#123;<span class="string">&#x27;Set5&#x27;</span>: &#123;<span class="string">&#x27;psnr&#x27;</span>: [], <span class="string">&#x27;ssim&#x27;</span>: []&#125;, <span class="string">&#x27;Set14&#x27;</span>: &#123;<span class="string">&#x27;psnr&#x27;</span>: [], <span class="string">&#x27;ssim&#x27;</span>: []&#125;, <span class="string">&#x27;BSD100&#x27;</span>: &#123;<span class="string">&#x27;psnr&#x27;</span>: [], <span class="string">&#x27;ssim&#x27;</span>: []&#125;,</span><br><span class="line">           <span class="string">&#x27;Urban100&#x27;</span>: &#123;<span class="string">&#x27;psnr&#x27;</span>: [], <span class="string">&#x27;ssim&#x27;</span>: []&#125;, <span class="string">&#x27;SunHays80&#x27;</span>: &#123;<span class="string">&#x27;psnr&#x27;</span>: [], <span class="string">&#x27;ssim&#x27;</span>: []&#125;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建一个 Generator 对象</span></span><br><span class="line">model = Generator(UPSCALE_FACTOR).<span class="built_in">eval</span>()</span><br><span class="line"><span class="keyword">if</span> torch.cuda.is_available():</span><br><span class="line">    model = model.cuda()</span><br><span class="line"><span class="comment"># 加载训练好的模型参数</span></span><br><span class="line">model.load_state_dict(torch.load(<span class="string">&#x27;epochs/&#x27;</span> + MODEL_NAME))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 加载测试数据集</span></span><br><span class="line">test_set = TestDatasetFromFolder(<span class="string">&#x27;data/test&#x27;</span>, upscale_factor=UPSCALE_FACTOR)</span><br><span class="line">test_loader = DataLoader(dataset=test_set, num_workers=<span class="number">4</span>, batch_size=<span class="number">1</span>, shuffle=<span class="literal">False</span>)</span><br><span class="line"><span class="comment"># 创建一个用于 test_loader 的 tqdm 进度条</span></span><br><span class="line">test_bar = tqdm(test_loader, desc=<span class="string">&#x27;[testing benchmark datasets]&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 测试结果输出路径</span></span><br><span class="line">out_path = <span class="string">&#x27;benchmark_results/SRF_&#x27;</span> + <span class="built_in">str</span>(UPSCALE_FACTOR) + <span class="string">&#x27;/&#x27;</span></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(out_path):</span><br><span class="line">    os.makedirs(out_path)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> image_name, lr_image, hr_restore_img, hr_image <span class="keyword">in</span> test_bar:</span><br><span class="line">    <span class="comment"># 由于 image_name 是一个包含单个元素的列表，所以将其取出</span></span><br><span class="line">    image_name = image_name[<span class="number">0</span>]</span><br><span class="line">    <span class="comment"># 将 lr_image 转换为 Variable 对象，并设置 volatile=True</span></span><br><span class="line">    <span class="comment"># volatile=True 表示不会计算梯度，这在推理阶段通常是需要的</span></span><br><span class="line">    lr_image = Variable(lr_image, volatile=<span class="literal">True</span>)</span><br><span class="line">    hr_image = Variable(hr_image, volatile=<span class="literal">True</span>)</span><br><span class="line">    <span class="keyword">if</span> torch.cuda.is_available():</span><br><span class="line">        lr_image = lr_image.cuda()</span><br><span class="line">        hr_image = hr_image.cuda()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 生成超分变率图像</span></span><br><span class="line">    sr_image = model(lr_image)</span><br><span class="line"></span><br><span class="line">    mse = ((hr_image - sr_image) ** <span class="number">2</span>).data.mean()</span><br><span class="line">    <span class="comment"># 计算峰值信噪比（Peak Signal-to-Noise Ratio）</span></span><br><span class="line">    psnr = <span class="number">10</span> * log10(<span class="number">255</span> ** <span class="number">2</span> / mse)</span><br><span class="line">    <span class="comment"># 计算结构相似性指数（Structural Similarity Index）</span></span><br><span class="line">    <span class="comment"># 使用 pytorch_ssim 库中的 ssim 函数计算 SSIM</span></span><br><span class="line">    ssim = pytorch_ssim.ssim(sr_image, hr_image).data[<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 创建一个包含三张图像的张量，分别是原始恢复的高分辨率图像、原始高分辨率图像和生成的超分辨率图像</span></span><br><span class="line">    <span class="comment"># 将每张图像应用 display_transform() 转换，并通过 squeeze(0) 去除批次维度</span></span><br><span class="line">    test_images = torch.stack(</span><br><span class="line">        [display_transform()(hr_restore_img.squeeze(<span class="number">0</span>)), display_transform()(hr_image.data.cpu().squeeze(<span class="number">0</span>)),</span><br><span class="line">         display_transform()(sr_image.data.cpu().squeeze(<span class="number">0</span>))])</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 使用 make_grid 函数将三张图像拼接成一张大图像</span></span><br><span class="line">    <span class="comment"># nrow=3 表示每行显示 3 张图像，padding=5 表示图像之间的间距为 5</span></span><br><span class="line">    image = utils.make_grid(test_images, nrow=<span class="number">3</span>, padding=<span class="number">5</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 使用 save_image 函数将合成的图像保存到指定路径</span></span><br><span class="line">    utils.save_image(image, out_path + image_name.split(<span class="string">&#x27;.&#x27;</span>)[<span class="number">0</span>] + <span class="string">&#x27;_psnr_%.4f_ssim_%.4f.&#x27;</span> % (psnr, ssim) +</span><br><span class="line">                     image_name.split(<span class="string">&#x27;.&#x27;</span>)[-<span class="number">1</span>], padding=<span class="number">5</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 将对应数据集的PSNR和SSIM保存到对应的字典当中</span></span><br><span class="line">    results[image_name.split(<span class="string">&#x27;_&#x27;</span>)[<span class="number">0</span>]][<span class="string">&#x27;psnr&#x27;</span>].append(psnr)</span><br><span class="line">    results[image_name.split(<span class="string">&#x27;_&#x27;</span>)[<span class="number">0</span>]][<span class="string">&#x27;ssim&#x27;</span>].append(ssim)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 最终结果保存路径</span></span><br><span class="line">out_path = <span class="string">&#x27;statistics/&#x27;</span></span><br><span class="line">saved_results = &#123;<span class="string">&#x27;psnr&#x27;</span>: [], <span class="string">&#x27;ssim&#x27;</span>: []&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 遍历 results 字典中的每个值</span></span><br><span class="line"><span class="keyword">for</span> item <span class="keyword">in</span> results.values():</span><br><span class="line">    <span class="comment"># 获取 PSNR 和 SSIM 的列表</span></span><br><span class="line">    psnr = np.array(item[<span class="string">&#x27;psnr&#x27;</span>])</span><br><span class="line">    ssim = np.array(item[<span class="string">&#x27;ssim&#x27;</span>])</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 如果列表为空，将 PSNR 和 SSIM 设置为 &#x27;No data&#x27;</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">len</span>(psnr) == <span class="number">0</span>) <span class="keyword">or</span> (<span class="built_in">len</span>(ssim) == <span class="number">0</span>):</span><br><span class="line">        psnr = <span class="string">&#x27;No data&#x27;</span></span><br><span class="line">        ssim = <span class="string">&#x27;No data&#x27;</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="comment"># 如果列表不为空，计算 PSNR 和 SSIM 的均值</span></span><br><span class="line">        psnr = psnr.mean()</span><br><span class="line">        ssim = ssim.mean()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 将计算得到的 PSNR 和 SSIM 添加到 saved_results 字典的相应列表中</span></span><br><span class="line">    saved_results[<span class="string">&#x27;psnr&#x27;</span>].append(psnr)</span><br><span class="line">    saved_results[<span class="string">&#x27;ssim&#x27;</span>].append(ssim)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建一个 DataFrame 对象，使用 saved_results 字典作为数据，以 results.keys() 作为列标签</span></span><br><span class="line">data_frame = pd.DataFrame(saved_results, results.keys())</span><br><span class="line"><span class="comment"># 将 DataFrame 对象保存为 CSV 文件</span></span><br><span class="line"><span class="comment"># 文件路径由 out_path、&#x27;srf_&#x27;、UPSCALE_FACTOR 值和 &#x27;_test_results.csv&#x27; 组成</span></span><br><span class="line"><span class="comment"># index_label=&#x27;DataSet&#x27; 表示使用 &#x27;DataSet&#x27; 作为索引标签</span></span><br><span class="line">data_frame.to_csv(out_path + <span class="string">&#x27;srf_&#x27;</span> + <span class="built_in">str</span>(UPSCALE_FACTOR) + <span class="string">&#x27;_test_results.csv&#x27;</span>, index_label=<span class="string">&#x27;DataSet&#x27;</span>)</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
-        <category>硕士阶段学习笔记(入门阶段)</category>
-        <category>模型</category>
+        <category>超分辨率基础模型</category>
       </categories>
       <tags>
-        <tag>超分辨率</tag>
         <tag>生成式模型</tag>
+        <tag>超分辨率</tag>
       </tags>
   </entry>
   <entry>
@@ -1016,8 +1156,8 @@
     <url>/2024/09/13/%E8%B6%85%E5%88%86%E8%BE%A8%E7%8E%87%E7%AC%AC%E4%BA%8C%E7%AB%A0-FSRCNN/</url>
     <content><![CDATA[<h1 id="超分辨率第二章-FSRCNN"><a href="#超分辨率第二章-FSRCNN" class="headerlink" title="超分辨率第二章-FSRCNN"></a>超分辨率第二章-FSRCNN</h1><blockquote>
 <p>FSRCNN是2016年提出的超分辨率模型，使用后端上采样（转置卷积的方法），在一定程度上解决了SRCNN的问题。</p>
-<p><a href="https://blog.csdn.net/zzy_pphz/article/details/108408933">参考博客</a></p>
-<p><a href="https://arxiv.org/abs/1608.00367">论文地址</a></p>
+<p>论文地址：<a href="https://arxiv.org/abs/1608.00367">Accelerating the Super-Resolution Convolutional Neural Network</a></p>
+<p>参考博客：<a href="https://blog.csdn.net/zzy_pphz/article/details/108408933">超分辨率FSRCNN理解(附pytorch代码)_srcnn-pytorch代码解读-CSDN博客</a></p>
 <p>模型位置：F:\Github下载\FSRCNN-pytorch-master</p>
 </blockquote>
 <span id="more"></span>
@@ -1082,8 +1222,7 @@
 <figure class="highlight py"><table><tr><td class="code"><pre><span class="line">cudnn.benchmark = <span class="literal">True</span></span><br><span class="line">device = torch.device(<span class="string">&#x27;cuda:0&#x27;</span> <span class="keyword">if</span> torch.cuda.is_available() <span class="keyword">else</span> <span class="string">&#x27;cpu&#x27;</span>)</span><br><span class="line">model = FSRCNN(scale_factor=args.scale).to(device)</span><br><span class="line"></span><br><span class="line">state_dict = model.state_dict()</span><br><span class="line"><span class="comment">#加载模型权重文件</span></span><br><span class="line"><span class="keyword">for</span> n, p <span class="keyword">in</span> torch.load(args.weights_file, map_location=<span class="keyword">lambda</span> storage, loc: storage).items():</span><br><span class="line">    <span class="keyword">if</span> n <span class="keyword">in</span> state_dict.keys():</span><br><span class="line">        state_dict[n].copy_(p)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">raise</span> KeyError(n)</span><br><span class="line"></span><br><span class="line">model.<span class="built_in">eval</span>()</span><br><span class="line"><span class="comment"># 计算调整后的图像尺寸，确保它是缩放因子的整数倍</span></span><br><span class="line">image = pil_image.<span class="built_in">open</span>(args.image_file).convert(<span class="string">&#x27;RGB&#x27;</span>)</span><br><span class="line">image_width = (image.width // args.scale) * args.scale</span><br><span class="line">image_height = (image.height // args.scale) * args.scale</span><br><span class="line"></span><br><span class="line"><span class="comment"># 生成高分辨率（HR）、低分辨率（LR）和双三次插值放大后的图像（bicubic）  </span></span><br><span class="line">hr = image.resize((image_width, image_height), resample=pil_image.BICUBIC)</span><br><span class="line">lr = hr.resize((hr.width // args.scale, hr.height // args.scale), resample=pil_image.BICUBIC) <span class="comment">#下采样降低分辨率</span></span><br><span class="line">bicubic = lr.resize((lr.width * args.scale, lr.height * args.scale), resample=pil_image.BICUBIC) <span class="comment">#双三次插值增大分辨率</span></span><br><span class="line">bicubic.save(args.image_file.replace(<span class="string">&#x27;.&#x27;</span>, <span class="string">&#x27;_bicubic_x&#123;&#125;.&#x27;</span>.<span class="built_in">format</span>(args.scale)))</span><br><span class="line"></span><br><span class="line"><span class="comment">#将RGB图像转换为YCbCr色彩空间，并返回处理后的Y通道和原始的YCbCr图像，高分辨率和低分辨率图像接受Y通道，而双三次插值图像接受色度通道（（Cb、Cr通道）</span></span><br><span class="line">lr, _ = preprocess(lr, device)</span><br><span class="line">hr, _ = preprocess(hr, device)</span><br><span class="line">_, ycbcr = preprocess(bicubic, device)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> torch.no_grad():</span><br><span class="line">    preds = model(lr).clamp(<span class="number">0.0</span>, <span class="number">1.0</span>) <span class="comment">#此处只需输入原始低分辨率图像，不需要输入双三次插值后的图像，此时进行将超分处理。</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#计算峰值信噪比</span></span><br><span class="line">psnr = calc_psnr(hr, preds)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;PSNR: &#123;:.2f&#125;&#x27;</span>.<span class="built_in">format</span>(psnr))</span><br><span class="line"></span><br><span class="line">preds = preds.mul(<span class="number">255.0</span>).cpu().numpy().squeeze(<span class="number">0</span>).squeeze(<span class="number">0</span>)<span class="comment">#将模型预测结果缩放到0-255范围，并转换为NumPy数组，去除不必要的维度。</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#将预测的Y通道与bicubic图像的Cb和Cr通道结合，之后转换为RGB格式，裁剪到0-255范围，转换为PIL图像，并保存。</span></span><br><span class="line">output = np.array([preds, ycbcr[..., <span class="number">1</span>], ycbcr[..., <span class="number">2</span>]]).transpose([<span class="number">1</span>, <span class="number">2</span>, <span class="number">0</span>])</span><br><span class="line">output = np.clip(convert_ycbcr_to_rgb(output), <span class="number">0.0</span>, <span class="number">255.0</span>).astype(np.uint8)</span><br><span class="line">output = pil_image.fromarray(output)</span><br><span class="line">output.save(args.image_file.replace(<span class="string">&#x27;.&#x27;</span>, <span class="string">&#x27;_fsrcnn_x&#123;&#125;.&#x27;</span>.<span class="built_in">format</span>(args.scale)))</span><br><span class="line"></span><br><span class="line"><span class="comment">#python test.py --weights-file=outputs/x3/best.pth --image-file=data/car.bmp</span></span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
-        <category>硕士阶段学习笔记(入门阶段)</category>
-        <category>模型</category>
+        <category>超分辨率基础模型</category>
       </categories>
       <tags>
         <tag>超分辨率</tag>
@@ -1094,7 +1233,9 @@
     <url>/2024/09/08/%E8%B6%85%E5%88%86%E8%BE%A8%E7%8E%87%E7%AC%AC%E4%B8%80%E7%AB%A0-SRCNN/</url>
     <content><![CDATA[<h1 id="超分辨率第一章-SRCNN"><a href="#超分辨率第一章-SRCNN" class="headerlink" title="超分辨率第一章-SRCNN"></a>超分辨率第一章-SRCNN</h1><blockquote>
 <p>第一个超分辨率模型-SRCNN （SISR），2014年提出</p>
-<p>参考网址：<a href="https://blog.csdn.net/zhanjuex/article/details/124344864?spm=1001.2014.3001.5506">【超分辨率】【深度学习】SRCNN pytorch代码（附详细注释和数据集）_srcnn代码-CSDN博客</a></p>
+<p>论文地址：<a href="https://arxiv.org/abs/1501.00092">Image Super-Resolution Using Deep Convolutional Networks</a></p>
+<p>参考网址：</p>
+<p><a href="https://blog.csdn.net/zhanjuex/article/details/124344864?spm=1001.2014.3001.5506">【超分辨率】【深度学习】SRCNN pytorch代码（附详细注释和数据集）_srcnn代码-CSDN博客</a></p>
 <p><a href="https://blog.csdn.net/weixin_52261094/article/details/128389448">SRCNN超分辨率Pytorch实现，代码逐行讲解，附源码</a></p>
 <p>模型位置：F:\Github下载\SRCNN_Pytorch_1.0-master</p>
 </blockquote>
@@ -1131,8 +1272,7 @@
 </ul>
 ]]></content>
       <categories>
-        <category>硕士阶段学习笔记(入门阶段)</category>
-        <category>模型</category>
+        <category>超分辨率基础模型</category>
       </categories>
       <tags>
         <tag>超分辨率</tag>
@@ -1406,7 +1546,7 @@
 <h3 id="2-两种方式对比"><a href="#2-两种方式对比" class="headerlink" title="2.两种方式对比"></a>2.两种方式对比</h3><p><img src="https://s21.ax1x.com/2024/09/08/pAeWRQx.png" alt="pAeWRQx.png"></p>
 ]]></content>
       <categories>
-        <category>学术论文总结</category>
+        <category>综述类</category>
       </categories>
       <tags>
         <tag>超分辨率</tag>
@@ -1471,8 +1611,7 @@
 </ul>
 ]]></content>
       <categories>
-        <category>硕士阶段学习笔记(入门阶段)</category>
-        <category>模型</category>
+        <category>深度学习基础模型</category>
       </categories>
       <tags>
         <tag>深度学习基础</tag>
@@ -1512,8 +1651,7 @@
 <h2 id="四-训练模型"><a href="#四-训练模型" class="headerlink" title="四.训练模型"></a>四.训练模型</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">net = GoogLeNet(num_classes=<span class="number">5</span>, aux_logits=<span class="literal">True</span>, init_weights=<span class="literal">True</span>)</span><br><span class="line">net.to(device)</span><br><span class="line">loss_function = nn.CrossEntropyLoss()</span><br><span class="line">optimizer = optim.Adam(net.parameters(), lr=<span class="number">0.0003</span>)</span><br><span class="line"></span><br><span class="line">epochs = <span class="number">30</span></span><br><span class="line">best_acc = <span class="number">0.0</span></span><br><span class="line">save_path = <span class="string">&#x27;./googleNet.pth&#x27;</span></span><br><span class="line">train_steps = <span class="built_in">len</span>(train_loader)</span><br><span class="line"><span class="keyword">for</span> epoch <span class="keyword">in</span> <span class="built_in">range</span>(epochs):</span><br><span class="line">    <span class="comment"># train</span></span><br><span class="line">    net.train()</span><br><span class="line">    running_loss = <span class="number">0.0</span></span><br><span class="line">    train_bar = tqdm(train_loader, file=sys.stdout)</span><br><span class="line">    <span class="keyword">for</span> step, data <span class="keyword">in</span> <span class="built_in">enumerate</span>(train_bar):</span><br><span class="line">        images, labels = data</span><br><span class="line">        optimizer.zero_grad()</span><br><span class="line">        logits, aux_logits2, aux_logits1 = net(images.to(device))</span><br><span class="line">        loss0 = loss_function(logits, labels.to(device))</span><br><span class="line">        loss1 = loss_function(aux_logits1, labels.to(device))</span><br><span class="line">        loss2 = loss_function(aux_logits2, labels.to(device))</span><br><span class="line">        loss = loss0 + loss1 * <span class="number">0.3</span> + loss2 * <span class="number">0.3</span> <span class="comment">#总损失结合相应带权重的辅助分类器的损失</span></span><br><span class="line">        loss.backward()</span><br><span class="line">        optimizer.step()</span><br><span class="line"></span><br><span class="line">        <span class="comment"># print statistics</span></span><br><span class="line">        running_loss += loss.item()</span><br><span class="line"></span><br><span class="line">        train_bar.desc = <span class="string">&quot;train epoch[&#123;&#125;/&#123;&#125;] loss:&#123;:.3f&#125;&quot;</span>.<span class="built_in">format</span>(epoch + <span class="number">1</span>,</span><br><span class="line">                                                                 epochs,</span><br><span class="line">                                                                 loss)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># validate</span></span><br><span class="line">    net.<span class="built_in">eval</span>()</span><br><span class="line">    acc = <span class="number">0.0</span>  <span class="comment"># accumulate accurate number / epoch</span></span><br><span class="line">    <span class="keyword">with</span> torch.no_grad():</span><br><span class="line">        val_bar = tqdm(validate_loader, file=sys.stdout)</span><br><span class="line">        <span class="keyword">for</span> val_data <span class="keyword">in</span> val_bar:</span><br><span class="line">            val_images, val_labels = val_data</span><br><span class="line">            outputs = net(val_images.to(device))  <span class="comment"># eval model only have last output layer</span></span><br><span class="line">            predict_y = torch.<span class="built_in">max</span>(outputs, dim=<span class="number">1</span>)[<span class="number">1</span>]</span><br><span class="line">            acc += torch.eq(predict_y, val_labels.to(device)).<span class="built_in">sum</span>().item()</span><br><span class="line"></span><br><span class="line">    val_accurate = acc / val_num</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;[epoch %d] train_loss: %.3f  val_accuracy: %.3f&#x27;</span> %</span><br><span class="line">          (epoch + <span class="number">1</span>, running_loss / train_steps, val_accurate))</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> val_accurate &gt; best_acc:</span><br><span class="line">        best_acc = val_accurate</span><br><span class="line">        torch.save(net.state_dict(), save_path)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;Finished Training&#x27;</span>)</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
-        <category>硕士阶段学习笔记(入门阶段)</category>
-        <category>模型</category>
+        <category>深度学习基础模型</category>
       </categories>
       <tags>
         <tag>深度学习基础</tag>
@@ -1551,8 +1689,7 @@
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">device = torch.device(<span class="string">&quot;cuda:0&quot;</span> <span class="keyword">if</span> torch.cuda.is_available() <span class="keyword">else</span> <span class="string">&quot;cpu&quot;</span>)</span><br><span class="line"></span><br><span class="line">data_transform = transforms.Compose(</span><br><span class="line">    [transforms.Resize((<span class="number">224</span>, <span class="number">224</span>)),</span><br><span class="line">     transforms.ToTensor(),</span><br><span class="line">     transforms.Normalize((<span class="number">0.5</span>, <span class="number">0.5</span>, <span class="number">0.5</span>), (<span class="number">0.5</span>, <span class="number">0.5</span>, <span class="number">0.5</span>))])</span><br><span class="line"></span><br><span class="line"><span class="comment"># load image</span></span><br><span class="line">img_path = <span class="string">&quot;../tulip.jpg&quot;</span></span><br><span class="line"><span class="keyword">assert</span> os.path.exists(img_path), <span class="string">&quot;file: &#x27;&#123;&#125;&#x27; dose not exist.&quot;</span>.<span class="built_in">format</span>(img_path)</span><br><span class="line">img = Image.<span class="built_in">open</span>(img_path)</span><br><span class="line">plt.imshow(img)</span><br><span class="line"><span class="comment"># [N, C, H, W]</span></span><br><span class="line">img = data_transform(img)</span><br><span class="line"><span class="comment"># expand batch dimension</span></span><br><span class="line">img = torch.unsqueeze(img, dim=<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># read class_indict</span></span><br><span class="line">json_path = <span class="string">&#x27;./class_indices.json&#x27;</span></span><br><span class="line"><span class="keyword">assert</span> os.path.exists(json_path), <span class="string">&quot;file: &#x27;&#123;&#125;&#x27; dose not exist.&quot;</span>.<span class="built_in">format</span>(json_path)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(json_path, <span class="string">&quot;r&quot;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    class_indict = json.load(f)</span><br><span class="line"></span><br><span class="line"><span class="comment"># create model</span></span><br><span class="line">model = vgg(model_name=<span class="string">&quot;vgg16&quot;</span>, num_classes=<span class="number">5</span>).to(device)</span><br><span class="line"><span class="comment"># load model weights</span></span><br><span class="line">weights_path = <span class="string">&quot;./vgg16Net.pth&quot;</span></span><br><span class="line"><span class="keyword">assert</span> os.path.exists(weights_path), <span class="string">&quot;file: &#x27;&#123;&#125;&#x27; dose not exist.&quot;</span>.<span class="built_in">format</span>(weights_path)</span><br><span class="line">model.load_state_dict(torch.load(weights_path, map_location=device))</span><br><span class="line"></span><br><span class="line">model.<span class="built_in">eval</span>()</span><br><span class="line"><span class="keyword">with</span> torch.no_grad():</span><br><span class="line">    <span class="comment"># predict class</span></span><br><span class="line">    output = torch.squeeze(model(img.to(device))).cpu()</span><br><span class="line">    predict = torch.softmax(output, dim=<span class="number">0</span>)</span><br><span class="line">    predict_cla = torch.argmax(predict).numpy()</span><br><span class="line"></span><br><span class="line">print_res = <span class="string">&quot;class: &#123;&#125;   prob: &#123;:.3&#125;&quot;</span>.<span class="built_in">format</span>(class_indict[<span class="built_in">str</span>(predict_cla)],</span><br><span class="line">                                             predict[predict_cla].numpy())</span><br><span class="line">plt.title(print_res)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(predict)):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;class: &#123;:10&#125;   prob: &#123;:.3&#125;&quot;</span>.<span class="built_in">format</span>(class_indict[<span class="built_in">str</span>(i)],</span><br><span class="line">                                              predict[i].numpy()))</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
-        <category>硕士阶段学习笔记(入门阶段)</category>
-        <category>模型</category>
+        <category>深度学习基础模型</category>
       </categories>
       <tags>
         <tag>深度学习基础</tag>
@@ -1593,8 +1730,7 @@
 </ul>
 ]]></content>
       <categories>
-        <category>硕士阶段学习笔记(入门阶段)</category>
-        <category>模型</category>
+        <category>深度学习基础模型</category>
       </categories>
       <tags>
         <tag>深度学习基础</tag>
@@ -1637,8 +1773,7 @@
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">transform = transforms.Compose(</span><br><span class="line">    [transforms.Resize((<span class="number">32</span>, <span class="number">32</span>)), <span class="comment">#将图像分辨率改变</span></span><br><span class="line">     transforms.ToTensor(), <span class="comment">#将图像数据变为张量形式</span></span><br><span class="line">     transforms.Normalize((<span class="number">0.5</span>, <span class="number">0.5</span>, <span class="number">0.5</span>), (<span class="number">0.5</span>, <span class="number">0.5</span>, <span class="number">0.5</span>))]) <span class="comment">#标准化图像</span></span><br><span class="line"></span><br><span class="line">classes = (<span class="string">&#x27;plane&#x27;</span>, <span class="string">&#x27;car&#x27;</span>, <span class="string">&#x27;bird&#x27;</span>, <span class="string">&#x27;cat&#x27;</span>,</span><br><span class="line">           <span class="string">&#x27;deer&#x27;</span>, <span class="string">&#x27;dog&#x27;</span>, <span class="string">&#x27;frog&#x27;</span>, <span class="string">&#x27;horse&#x27;</span>, <span class="string">&#x27;ship&#x27;</span>, <span class="string">&#x27;truck&#x27;</span>)</span><br><span class="line"></span><br><span class="line">net = LeNet()</span><br><span class="line">net.load_state_dict(torch.load(<span class="string">&#x27;Lenet.pth&#x27;</span>)) <span class="comment">#载入参数文件</span></span><br><span class="line"></span><br><span class="line">im = Image.<span class="built_in">open</span>(<span class="string">&#x27;1.jpg&#x27;</span>)</span><br><span class="line">im = transform(im)  <span class="comment"># [C, H, W] #调整图像</span></span><br><span class="line">im = torch.unsqueeze(im, dim=<span class="number">0</span>)  <span class="comment"># [N, C, H, W] #增添一个维度</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> torch.no_grad():</span><br><span class="line">    outputs = net(im)</span><br><span class="line">    predict = torch.<span class="built_in">max</span>(outputs, dim=<span class="number">1</span>)[<span class="number">1</span>].numpy()</span><br><span class="line"><span class="built_in">print</span>(classes[<span class="built_in">int</span>(predict)])</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
-        <category>硕士阶段学习笔记(入门阶段)</category>
-        <category>模型</category>
+        <category>深度学习基础模型</category>
       </categories>
       <tags>
         <tag>深度学习基础</tag>
@@ -1876,7 +2011,7 @@
 </ul>
 ]]></content>
       <categories>
-        <category>学术论文总结</category>
+        <category>综述类</category>
       </categories>
       <tags>
         <tag>MRI超分辨率</tag>

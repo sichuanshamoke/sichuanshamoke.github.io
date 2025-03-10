@@ -14,9 +14,9 @@
       </tags>
   </entry>
   <entry>
-    <title>超分辨率第十一章-Diffusion_model&amp;SR</title>
-    <url>/2025/03/07/%E8%B6%85%E5%88%86%E8%BE%A8%E7%8E%87%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0-Diffusion-model-SR/</url>
-    <content><![CDATA[<h1 id="超分辨率第十一章-Diffusion-model-amp-SR"><a href="#超分辨率第十一章-Diffusion-model-amp-SR" class="headerlink" title="超分辨率第十一章-Diffusion_model&amp;SR"></a>超分辨率第十一章-Diffusion_model&amp;SR</h1><blockquote>
+    <title>超分辨率第十一章-SR&amp;Diffusion_model</title>
+    <url>/2025/03/07/%E8%B6%85%E5%88%86%E8%BE%A8%E7%8E%87%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0-SR&amp;Diffusion-model/</url>
+    <content><![CDATA[<h1 id="超分辨率第十一章-SR-amp-Diffusion-model"><a href="#超分辨率第十一章-SR-amp-Diffusion-model" class="headerlink" title="超分辨率第十一章-SR&amp;Diffusion_model"></a>超分辨率第十一章-SR&amp;Diffusion_model</h1><blockquote>
 <p>Denoising Diffusion Probabilistic Models 于2020年发布。</p>
 <p>参考文献：<a href="https://arxiv.org/abs/2006.11239">Denoising Diffusion Probabilistic Models</a></p>
 <p>此后在超分领域出现了两篇以扩散模型为基础的文章：</p>
@@ -235,7 +235,7 @@
   </entry>
   <entry>
     <title>超分辨率第十章-SR&amp;NormalizingFlow</title>
-    <url>/2024/12/02/%E8%B6%85%E5%88%86%E8%BE%A8%E7%8E%87%E7%AC%AC%E5%8D%81%E7%AB%A0-NormalizingFlow-SR/</url>
+    <url>/2024/12/02/%E8%B6%85%E5%88%86%E8%BE%A8%E7%8E%87%E7%AC%AC%E5%8D%81%E7%AB%A0-SR&amp;NormalizingFlow/</url>
     <content><![CDATA[<h1 id="超分辨率第十章-SR-amp-NormalizingFlow"><a href="#超分辨率第十章-SR-amp-NormalizingFlow" class="headerlink" title="超分辨率第十章-SR&amp;NormalizingFlow"></a>超分辨率第十章-SR&amp;NormalizingFlow</h1><blockquote>
 <p><strong>本文介绍标准化流（Normalizing Flow）以及其对应的超分辨率模型SRflow</strong></p>
 <p>参考文献：<a href="https://arxiv.org/pdf/1908.09257"> Normalizing Flows: An Introduction and Review of Current Methods</a></p>
@@ -404,8 +404,9 @@
     <url>/2024/10/28/%E8%B6%85%E5%88%86%E8%BE%A8%E7%8E%87%E7%AC%AC%E5%85%AB%E7%AB%A0-SR&amp;transformer/</url>
     <content><![CDATA[<h1 id="超分辨率第八章-SR-amp-transformer"><a href="#超分辨率第八章-SR-amp-transformer" class="headerlink" title="超分辨率第八章-SR&amp;transformer"></a>超分辨率第八章-SR&amp;transformer</h1><blockquote>
 <p><strong>超分辨率中的transformer-应用于MRI</strong></p>
-<p>文献一：<a href="https://ieeexplore.ieee.org/document/9746092">3d Cross-Scale Feature Transformer Network for Brain Mr Image Super-Resolution</a>：ICASSP 2022会议</p>
-<p>文献二：<a href="https://www.sciencedirect.com/science/article/pii/S1746809421009368">Adjacent slices feature transformer network for single anisotropic 3D brain MRI image super-resolution</a>：《Biomedical Signal Processing and Control》 期刊，2022 </p>
+<p>文献一：<a href="https://ieeexplore.ieee.org/document/9746092">(CFTN) 3d Cross-Scale Feature Transformer Network for Brain Mr Image Super-Resolution</a>：ICASSP 2022会议</p>
+<p>文献二：<a href="https://www.sciencedirect.com/science/article/pii/S1746809421009368"> (ASFT) Adjacent slices feature transformer network for single anisotropic 3D brain MRI image super-resolution</a>：《Biomedical Signal Processing and Control》 期刊，2022 </p>
+<p>文献三：<a href="https://link.springer.com/article/10.1007/s10278-024-01139-1">(CRFM) Cross-Modality Reference and Feature Mutual-Projection for 3D Brain MRI Image Super-Resolution</a> 期刊，2024</p>
 </blockquote>
 <span id="more"></span>
 <h2 id="前置知识"><a href="#前置知识" class="headerlink" title="前置知识"></a>前置知识</h2><h3 id="1-attention"><a href="#1-attention" class="headerlink" title="1.attention"></a>1.attention</h3><ul>
@@ -615,6 +616,7 @@
 </li>
 <li><p><strong>Cross-scale Transformer（CST）</strong></p>
 <ul>
+<li>作用：使下采样后低尺度的embedding的序列K与正常尺度embedding的序列Q进行矩阵点乘，并经过softmax层进行归一化，生成高-低对尺度图片的特征相似度的权重。(表示跨尺度特征的相似度)</li>
 <li>结构（通过transform结构可以学习到低尺度-高尺度对的相似性，可生成对应的权重）<ul>
 <li>将输入的$x_m$降维得到$z_m$</li>
 <li>embedding（1*1*1）：将高维的离散数据映射到低维的连续向量空间中，使得相似的数据点在向量空间中距离更近，分别展开形成V,Q,K</li>
@@ -681,6 +683,60 @@
 </ul>
 <h4 id="③reconstruction-sub-network-RecNet"><a href="#③reconstruction-sub-network-RecNet" class="headerlink" title="③reconstruction sub-network (RecNet)"></a>③reconstruction sub-network (RecNet)</h4><ul>
 <li>通过SA增强较强特征，之后再进行一次融合并与原始图片残差连接得到最终输出</li>
+</ul>
+<h2 id="三-文献三-（CRFM）"><a href="#三-文献三-（CRFM）" class="headerlink" title="三.文献三 （CRFM）"></a>三.文献三 （CRFM）</h2><ul>
+<li><strong>Cross-Modality Reference and Feature Mutual-Projection for 3D Brain MRI Image Super-Resolution</strong> </li>
+</ul>
+<h3 id="1-文献解决问题"><a href="#1-文献解决问题" class="headerlink" title="1.文献解决问题"></a>1.文献解决问题</h3><ul>
+<li>只加深网络的深度和宽度提取过多的冗余特征，计算负载过大，不会带来显著的 MRI 图像 SR 性能提升。<ul>
+<li><strong>可以利用跨尺度的MRI图像的互投影来充分利用不同尺度图片的跨尺度自相似性的先验信息（内部信息）</strong></li>
+<li><strong>可以利用多模态MRI图像信息的互补特性来提高某些疾病的诊断准确性。（外部信息，T1图像参考T2图像）</strong></li>
+</ul>
+</li>
+</ul>
+<h3 id="2-网络结构-1"><a href="#2-网络结构-1" class="headerlink" title="2.网络结构"></a>2.网络结构</h3><ul>
+<li><p>I_LR：T1模态，I_Ref：T2模态</p>
+</li>
+<li><p>对参考图片的梯度提取</p>
+<ul>
+<li><p>T1与T2模态图像存在对比度的差异，直接将参考图片输入到网络中会造成干扰。</p>
+</li>
+<li><p>而梯度可以表示图片的清晰度和结构，因此需要对参考图像进行梯度提取。</p>
+</li>
+<li><blockquote>
+<p>图像梯度是指图像某像素在x和y两个方向上的变化率（与相邻像素比较），是一个二维向量，由2个分量组成X轴的变化、Y轴的变化。</p>
+<ul>
+<li>X轴的变化是指当前像素右侧(X加1)的像素值减去当前像素左侧(X减1)的像素值。</li>
+<li>Y轴的变化是当前像素下方(Y加1)的像素值减去当前像素上方(Y减1)的像素值。</li>
+<li>计算出来这2个分量，形成一个二维向量，就得到了该像素的图像梯度。取反正切arctan,可得到梯度角度。</li>
+</ul>
+</blockquote>
+</li>
+<li><script type="math/tex; mode=display">G _ { h } ( I _ { R e f } ) = I _ { R e f } ( h + 1 , w , l ) - I _ { R e f } ( h - 1 , w , l )</script></li>
+<li><script type="math/tex; mode=display">G _ { w } ( I _ { R e f } ) = I _ { R e f } ( h , w + 1 , l ) - I _ { R e f } ( h , w - 1 , l )</script></li>
+<li><script type="math/tex; mode=display">G _ { l } ( I _ { R e f } ) = I _ { R e f } ( h , w , l + 1 ) - I _ { R e f } ( h , w , l - 1 )</script></li>
+<li><script type="math/tex; mode=display">\nabla G ( I _ { R e f } ) = | | ( G _ { h } ( I _ { R e f } ) , G _ { w } ( I _ { R e f } ) , G _ { l } ( I _ { R e f } ) ) | | _ { 2 }</script></li>
+</ul>
+</li>
+<li><p>主干网络：RCA：cascaded residual channel attention blocks （级联残差注意力：RCAN的模块）</p>
+<ul>
+<li><img src="https://s21.ax1x.com/2025/03/09/pENFd2t.png" alt="pENFd2t.png"></li>
+</ul>
+</li>
+<li><p>两个模块：</p>
+<ul>
+<li><p>FMP：Feature Mutual-Projection（特征互投影）</p>
+<ul>
+<li><img src="https://s21.ax1x.com/2025/03/10/pEN3ixU.png" alt="pEN3ixU.png"></li>
+</ul>
+</li>
+<li><p>UFF：Upsampling and Feature Fusion（上采样与特征融合）</p>
+<ul>
+<li><img src="https://s21.ax1x.com/2025/03/10/pEN3Ar4.png" alt="pEN3Ar4.png"></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 ]]></content>
       <categories>
@@ -1805,15 +1861,11 @@
 </ul>
 </li>
 </ul>
-<h3 id="2-优化MRI图像的方法—-超分辨率"><a href="#2-优化MRI图像的方法—-超分辨率" class="headerlink" title="2.优化MRI图像的方法—-超分辨率"></a>2.优化MRI图像的方法—-超分辨率</h3><ul>
+<h3 id="2-优化MRI图像的方法：超分辨率"><a href="#2-优化MRI图像的方法：超分辨率" class="headerlink" title="2.优化MRI图像的方法：超分辨率"></a>2.优化MRI图像的方法：超分辨率</h3><ul>
 <li>定义：超分辨率（SR，Super-resolution）算法是一种从软件层面提高 MRI 图像分辨率的有效方案。从软件方面提升 MRI 图像分辨率的方式具有良好的可移植性与扩展性。</li>
 <li>MRI 图像超分辨率问题是典型的病态逆问题，其主要目的是从一幅或多幅低分辨率MRI图像中重建出对应的高分辨率 MRI 图像</li>
 </ul>
-<h3 id="3-超分辨率的不同研究类别"><a href="#3-超分辨率的不同研究类别" class="headerlink" title="3.超分辨率的不同研究类别"></a>3.超分辨率的不同研究类别</h3><ul>
-<li><p>静态对象与动态对象</p>
-</li>
-<li><p>单幅低分辨率图像和多幅低分辨率图像</p>
-<ul>
+<h3 id="3-超分辨率的不同研究类别"><a href="#3-超分辨率的不同研究类别" class="headerlink" title="3.超分辨率的不同研究类别"></a>3.超分辨率的不同研究类别</h3><h4 id="①单幅低分辨率图像和多幅低分辨率图像"><a href="#①单幅低分辨率图像和多幅低分辨率图像" class="headerlink" title="①单幅低分辨率图像和多幅低分辨率图像"></a>①单幅低分辨率图像和多幅低分辨率图像</h4><ul>
 <li><p>多幅的方法需要将多幅低分辨率的 MRI 图像进行配准与重采样</p>
 </li>
 <li><p>配准概念</p>
@@ -1844,87 +1896,49 @@
 </blockquote>
 </li>
 </ul>
+<h4 id="②频域与空间域"><a href="#②频域与空间域" class="headerlink" title="②频域与空间域"></a>②频域与空间域</h4><ul>
+<li>频域：自变量是频率，即横轴是频率，纵轴是该频率信号的幅度，也就是通常说的频谱图。频谱图描述了信号的频率结构及频率与该频率信号幅度的关系。</li>
+<li><p>空间域又称图像空间(image space)。由图像像元组成的空间。在图像空间中以长度(距离)为自变量直接对像元值进行处理称为空间域处理。</p>
+</li>
+<li><p>空间域中处理更优</p>
 </li>
 </ul>
-<ul>
-<li><p>频域与空间域：空间域中处理更优</p>
-</li>
-<li><p>各向同性与各向异性</p>
-<ul>
+<h4 id="③各向同性与各向异性"><a href="#③各向同性与各向异性" class="headerlink" title="③各向同性与各向异性"></a>③各向同性与各向异性</h4><ul>
 <li>各向同性 3D MRI 图像超分辨率方法主要目标是提高 3D MRI 图像所有层面的分辨率，使其整体的分辨率更高。</li>
-<li>各向异性：由于成像技术的限制，图像在不同方向上的分辨率往往是不均等的。这种在不同方向上分辨率存在差异的现象被称为“各向异性”。<ul>
+<li><p>各向异性：由于成像技术的限制，图像在不同方向上的分辨率往往是不均等的。这种在不同方向上分辨率存在差异的现象被称为“各向异性”。</p>
+<ul>
 <li>对于3D MRI图像来说，这种各向异性主要体现在层面选择方向（通常指的是沿着成像序列中切片堆叠的方向，即深度或厚度方向）与层面内方向（即每个切片内部的二维空间，包括宽度和高度方向）的分辨率差异上</li>
 <li>在3D MRI图像中，沿着层面选择方向（深度或厚度）的像素（或体素）尺寸通常比层面内方向的像素尺寸要大，因此在这个方向上的图像细节相对较少，分辨率较低。</li>
 <li>相比之下，层面内的切片包含了更多的细节信息，即高频信息（图像中变化较快的部分，如边缘、纹理等），这些信息的分辨率较高。</li>
 <li>对于各向异性的3D MRI图像，超分辨率方法的主要目标是提高层面选择方向的分辨率，以减小或消除与层面内方向分辨率之间的差异。</li>
 <li>通过这种方法，可以使得3D MRI图像在所有方向上的分辨率更加均匀，从而提高图像的整体质量和可用性。</li>
-</ul>
+<li><p><img src="https://s21.ax1x.com/2025/03/10/pENQfzD.png" alt="pENQfzD.png"></p>
+<ul>
+<li><p>1mm<em>1mm</em>6mm：体素在轴向面(1nm<em>1nm)尺寸小于其它两个方位(1mm</em>6mm)的尺寸</p>
 </li>
-</ul>
-<h3 id="4-超分辨率的研究算法分类"><a href="#4-超分辨率的研究算法分类" class="headerlink" title="4.超分辨率的研究算法分类"></a>4.超分辨率的研究算法分类</h3><ul>
-<li>基于插值的超分辨率算法<ul>
-<li>方法：预定义一个变换函数，并利用已知的 MRI 图像像素或体素信息来对未知的像素或体素信息进行拟合。</li>
-<li>该类算法虽然简单高效，但也存在着一定的缺陷，如插值后的图像具有比较明显的块效应、振铃效应与锯齿效应。</li>
-</ul>
-</li>
-<li>基于重构的超分辨算法<ul>
-<li>方法：从图像的降质退化模型出发，对高分辨率 MRI 图像退化到低分辨率 MRI 图像的过程进行建模（运动变换、模糊及噪声等），而后求解成像系统的逆过程。这种算法会提取低分辨率图像中的关键信息，并通过先验知识来约束高分辨率图像的的重建过程。</li>
-<li>该类算法在重建系数较小时能达到令人满意的结果，但当重建系数较大时，很难获得合适的人工定义的先验知识与正则参数，因此难以保证超分辨率图像的质量。</li>
-</ul>
-</li>
-<li>基于学习的超分辨率算法（✪）<ul>
-<li>从大量的训练数据中学习高分辨率图像和低分辨率图像之间某种映射关系，并根据学习到的映射关系提高目标低分辨率图像的分辨率</li>
-<li>分类<ul>
-<li>基于浅层学习的超分辨率算法<ul>
-<li>将整个超分辨率过程分为样本库的建立（特征提取）、特征映射（学习与搜索）、高频信息重建三个阶段，且每个阶段独立优化</li>
-</ul>
-</li>
-<li>基于深度学习的超分辨率算法（✪）<ul>
-<li>直线结构    <ul>
-<li>指整个图像超分辨率网络结构是一个不包含任何跳接或分支的线性结构，即模型是由多个卷积层依次堆叠组成。该类结构具有简单、效率高等特点</li>
-<li>使用线性结构的算法具有结构简单、重建速度快等优点，但同时存在收敛速度慢，训练过程中容易产生梯度消失与爆炸的问题</li>
-</ul>
-</li>
-<li>跳接结构<ul>
-<li>是指在线性结构的基础上加入卷积层之间的跨层跳接。跳接结构通过信息跨层传递的方式来缓解梯度消失与爆炸问题，同时为设计更深的网络结构提供可能。</li>
-<li>残差跳接是将不同卷积层的特征进行对应通道的相加，即融合后的特征图保持通道数量不变，但特征图内容发生了变化。</li>
-<li>通道连接跳接则是将不同卷积层的特征以通道方向进行拼接，融合后的特征图不变，但通道数量增加。</li>
-</ul>
-</li>
-<li>递归结构<ul>
-<li>将卷积层的输出继续作为该层卷积的输入，由于多次卷积操作的参数是一样的，该种递归卷积的方式可以有效地减少网络的参数数量。</li>
-</ul>
-</li>
-<li>生成对抗结构<ul>
-<li>采用的是一种博弈论的思想，该类模型由生成器与鉴别器两部分组成。生成器生成高分辨率图像，鉴别器区分真实的高分辨率图像与生成器生成的高分辨率图像。</li>
-</ul>
-</li>
-<li>注意力结构<ul>
-<li>注意力结构则是利用人类视觉中的注意力机制，对网络所提取的特征进行重新校准</li>
-<li>注意力结构可以有效的调整特征通道或特征本身不同区域的权重，专注于模型中对最终结果贡献大的特征或特征区域</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>图示<ul>
-<li><img src="https://s21.ax1x.com/2024/08/27/pAk4BcT.png" alt="pAk4BcT.png"></li>
-</ul>
+<li><blockquote>
+<p>各向异性：层面选择方向的空间分辨率较低（轴向面），低于层面内方向（矢状位、冠状位）</p>
+<p>需要重建为各项同性。一般预处理时会先用插值法上采样到各项同性的尺寸。</p>
+<p>•各向同性重建:重建体素时，使用三边长度一样的立方体（1mm<em>1mm</em>1mm）</p>
+<p>•各向异性重建:重建体素时，使用的立方体一边长度大于另外两边（1mm<em>1mm</em>6mm ）</p>
+<p>•体素面积越大其相同面积内的数量越小，即像素较少，空间分辨率低</p>
+</blockquote>
 </li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
-</li>
+<h4 id="④T1-T2模态"><a href="#④T1-T2模态" class="headerlink" title="④T1/T2模态"></a>④T1/T2模态</h4><ul>
+<li>T1加权像(T1 weighted image，T1W)，纵向弛豫形成，常用于看解剖结构。</li>
+<li>T2加权像(T2 weighted image，T2W)，横向弛豫形成，常用于看组织病变。</li>
+<li>T1像和T2像的区分：水在T1像中是低信号（呈黑色），在T2像中是高信号（呈白色）</li>
 </ul>
-<h2 id="二-基础知识（基于CNN的算法）"><a href="#二-基础知识（基于CNN的算法）" class="headerlink" title="二.基础知识（基于CNN的算法）"></a>二.基础知识（基于CNN的算法）</h2><h3 id="1-数据预处理"><a href="#1-数据预处理" class="headerlink" title="1.数据预处理"></a>1.数据预处理</h3><ul>
-<li><p><img src="https://s21.ax1x.com/2024/08/27/pAk4DjU.png" alt="pAk4DjU.png"></p>
-</li>
-<li><h4 id="数据归一化"><a href="#数据归一化" class="headerlink" title="数据归一化"></a>数据归一化</h4><ul>
+<h2 id="二-基础知识"><a href="#二-基础知识" class="headerlink" title="二.基础知识"></a>二.基础知识</h2><h3 id="1-数据预处理"><a href="#1-数据预处理" class="headerlink" title="1.数据预处理"></a>1.数据预处理</h3><p><img src="https://s21.ax1x.com/2024/08/27/pAk4DjU.png" alt="pAk4DjU.png"></p>
+<h4 id="①数据归一化"><a href="#①数据归一化" class="headerlink" title="①数据归一化"></a>①数据归一化</h4><ul>
 <li>需将 MRI 图像的体素值归一化到相同的取值范围（如[0，1]），使优化时大部分位置的梯度方向近似于最优搜索方向，从而提高训练效率。否则会导致模型收敛慢。</li>
 </ul>
-</li>
-<li><h4 id="模拟退化"><a href="#模拟退化" class="headerlink" title="模拟退化"></a>模拟退化</h4><ul>
+<h4 id="②模拟退化"><a href="#②模拟退化" class="headerlink" title="②模拟退化"></a>②模拟退化</h4><ul>
 <li>首先将高分辨率 MRI 图像经过傅里叶变换至 k 空间。<ul>
 <li>k 空间中央部分包含的数据具有高信号振幅和低分辨率，决定 MRI 图像的对比度</li>
 <li>边缘的部分具有低信号振幅和高分辨率，决定 MRI 图像的解剖细节。</li>
@@ -1935,79 +1949,86 @@
 <li>傅里叶变换：将图像从空间域（spatial domain）转换到频率域（frequency domain）。这种转换使我们能够分析图像的频率成分，即图像中不同模式的强度或频率。</li>
 <li><img src="https://s21.ax1x.com/2024/08/27/pAk4f9x.png" alt="pAk4f9x.png"></li>
 </ul>
-</li>
-<li><h4 id="块切分"><a href="#块切分" class="headerlink" title="块切分"></a>块切分</h4><ul>
+<h4 id="③块切分"><a href="#③块切分" class="headerlink" title="③块切分"></a>③块切分</h4><ul>
 <li>在构建训练集时将整幅 3D MRI 图像切割成固定大小的 3D MRI 图像块。本文采用固定步长的滑动窗口方式来对图像进行切割，保证相邻图像块既有相似重叠区域又有不同区域，从而提升训练数据的 数量与训练数据的丰富度。</li>
 </ul>
-</li>
-</ul>
-<h3 id="2-模型框架"><a href="#2-模型框架" class="headerlink" title="2.模型框架"></a>2.模型框架</h3><ul>
-<li><p><img src="https://s21.ax1x.com/2024/08/27/pAk4h36.png" alt="pAk4h36.png"></p>
-</li>
-<li><p>预采样模型框架</p>
-<ul>
+<h3 id="2-模型框架"><a href="#2-模型框架" class="headerlink" title="2.模型框架"></a>2.模型框架</h3><h4 id="①预采样模型框架"><a href="#①预采样模型框架" class="headerlink" title="①预采样模型框架"></a><img src="https://s21.ax1x.com/2024/08/27/pAk4h36.png" alt="pAk4h36.png">①预采样模型框架</h4><ul>
 <li>该类框架需将低分辨率图像在输入网络前用传统的插值方法（线性插值法或双三次插值法）上采样到目标高分辨率图像的大小，而后再用 CNN 模型重建出高质量的纹理细节， 进一步提高图像的质量。</li>
 </ul>
-</li>
-<li><p>后上采样模型框架</p>
-<ul>
+<h4 id="②后上采样模型框架"><a href="#②后上采样模型框架" class="headerlink" title="②后上采样模型框架"></a>②后上采样模型框架</h4><ul>
 <li>该类模型框架以原始的低分辨率图像作为输入，将上采样任务放在模型的尾端。该类模型直接从原始低分辨率图像中提取特征并学习数据的原始分布，用可学习的上采样方式（如：反卷积与亚像素卷积）对图像进行上采样与重建。</li>
 </ul>
-</li>
-<li><p>渐进式上采样模型框架</p>
-<ul>
+<h4 id="③渐进式上采样模型框架"><a href="#③渐进式上采样模型框架" class="headerlink" title="③渐进式上采样模型框架"></a>③渐进式上采样模型框架</h4><ul>
 <li>该框架将大尺度超分辨率重建问题分解为多个小尺度的超分辨率重建问题。该框架利用级联的方式进行对图像进行逐步的上采样，并在此过程中融入多监督机制来缓解学习难度大的问题。</li>
 </ul>
-</li>
-<li>迭代上下采样模型框架<ul>
+<h4 id="④迭代上下采样模型框架"><a href="#④迭代上下采样模型框架" class="headerlink" title="④迭代上下采样模型框架"></a>④迭代上下采样模型框架</h4><ul>
 <li>该类模型框架通过反复的将低分辨率空间图像上采样至高分辨率空间，再将高分辨率空间图像下采样至低分辨率空间，在此过程中利用投影误差来反复纠正超分辨率结果，达到提升超分辨性能的目的。</li>
 </ul>
+<h3 id="3-上采样方法"><a href="#3-上采样方法" class="headerlink" title="3.上采样方法"></a>3.上采样方法</h3><h4 id="①基于插值的上采样"><a href="#①基于插值的上采样" class="headerlink" title="①基于插值的上采样"></a>①基于插值的上采样</h4><h4 id="②基于反卷积的上采样"><a href="#②基于反卷积的上采样" class="headerlink" title="②基于反卷积的上采样"></a>②基于反卷积的上采样</h4><h4 id="③基于亚像素卷积的上采样"><a href="#③基于亚像素卷积的上采样" class="headerlink" title="③基于亚像素卷积的上采样"></a>③基于亚像素卷积的上采样</h4><h3 id="4-损失函数分类"><a href="#4-损失函数分类" class="headerlink" title="4.损失函数分类"></a>4.损失函数分类</h3><h4 id="①基于像素的损失函数"><a href="#①基于像素的损失函数" class="headerlink" title="①基于像素的损失函数"></a>①基于像素的损失函数</h4><ul>
+<li><p>平均绝对值误差（MAE），L1误差</p>
 </li>
-</ul>
-<h2 id="三-评价标准"><a href="#三-评价标准" class="headerlink" title="三.评价标准"></a>三.评价标准</h2><ul>
-<li>峰值信噪比（PSNR）<ul>
-<li><script type="math/tex; mode=display">M S E = \frac { 1 } { N } \sum _ { I = 1 } ^ { N } ( I _ { y } ( i ) - \widehat { I } _ { y } ( i ) ) ^ { 2 }</script></li>
-<li><script type="math/tex; mode=display">P S N R = 1 0 \cdot \log _ { 1 0 } ( \frac { L ^ { 2 } } { M S E } )</script></li>
-</ul>
+<li><p>均方误差（MSE），L2误差</p>
 </li>
-<li><p>结构相似度指数（SSIM）</p>
-<ul>
-<li><img src="https://s21.ax1x.com/2024/08/27/pAk45jO.png" alt="pAk45jO.png"></li>
-</ul>
-</li>
-<li><p>主观评价</p>
-</li>
-</ul>
-<h2 id="四-超分辨率的相关总结"><a href="#四-超分辨率的相关总结" class="headerlink" title="四.超分辨率的相关总结"></a>四.超分辨率的相关总结</h2><h3 id="1-超分辨率算法分类"><a href="#1-超分辨率算法分类" class="headerlink" title="1.超分辨率算法分类"></a>1.超分辨率算法分类</h3><h4 id="①-基于插值的算法"><a href="#①-基于插值的算法" class="headerlink" title="① 基于插值的算法"></a>① 基于插值的算法</h4><h4 id="②-基于重建的算法"><a href="#②-基于重建的算法" class="headerlink" title="② 基于重建的算法"></a>② 基于重建的算法</h4><h4 id="③-基于学习的算法-（常用）"><a href="#③-基于学习的算法-（常用）" class="headerlink" title="③ 基于学习的算法 （常用）"></a>③ 基于学习的算法 （常用）</h4><ul>
-<li>基于深度学习的算法：基于深度学习的ＳＲ重建算法通常是构建一个端对端的网络模型，将ＬＲ图像输入到该特定网络模型中，通过特征映射和尺度放大等方式优化网络的损失函数，进而得到ＨＲ图 像</li>
-</ul>
-<h3 id="2-尺度放大方式"><a href="#2-尺度放大方式" class="headerlink" title="2.尺度放大方式"></a>2.尺度放大方式</h3><h4 id="①-上采样方法"><a href="#①-上采样方法" class="headerlink" title="① 上采样方法"></a>① 上采样方法</h4><h5 id="基于插值的上采样"><a href="#基于插值的上采样" class="headerlink" title="基于插值的上采样"></a>基于插值的上采样</h5><h5 id="基于反卷积的上采样-（常用）"><a href="#基于反卷积的上采样-（常用）" class="headerlink" title="基于反卷积的上采样 （常用）"></a>基于反卷积的上采样 （常用）</h5><h5 id="基于亚像素卷积的上采样"><a href="#基于亚像素卷积的上采样" class="headerlink" title="基于亚像素卷积的上采样"></a>基于亚像素卷积的上采样</h5><h4 id="②-上采样实施方式"><a href="#②-上采样实施方式" class="headerlink" title="② 上采样实施方式"></a>② 上采样实施方式</h4><h5 id="预先上采样"><a href="#预先上采样" class="headerlink" title="预先上采样"></a>预先上采样</h5><h5 id="单次上采样"><a href="#单次上采样" class="headerlink" title="单次上采样"></a>单次上采样</h5><h5 id="渐进上采样"><a href="#渐进上采样" class="headerlink" title="渐进上采样"></a>渐进上采样</h5><h5 id="迭代上采样-（常用）"><a href="#迭代上采样-（常用）" class="headerlink" title="迭代上采样 （常用）"></a>迭代上采样 （常用）</h5><h3 id="3-模型结构组成"><a href="#3-模型结构组成" class="headerlink" title="3.模型结构组成"></a>3.模型结构组成</h3><h4 id="①-基于CNN的模型（一般不使用池化层）"><a href="#①-基于CNN的模型（一般不使用池化层）" class="headerlink" title="① 基于CNN的模型（一般不使用池化层）"></a>① 基于CNN的模型（一般不使用池化层）</h4><h5 id="直线连接模型"><a href="#直线连接模型" class="headerlink" title="直线连接模型"></a>直线连接模型</h5><ul>
-<li>最大问题就是随着网络深度的加深，参数逐渐增加，网络训练的难度越来越大，导致网络难以收敛，</li>
-</ul>
-<h5 id="残差连接模型"><a href="#残差连接模型" class="headerlink" title="残差连接模型"></a>残差连接模型</h5><ul>
-<li>由于原始ＬＲ图像和输出的ＨＲ图像在很大程度上是相似的， 也就是说ＬＲ图像携带的低频信息与ＨＲ图像的低频信息基本一致。残差连接的应用使得原始的稠密矩阵学习转化为稀疏矩阵学习，因而使得计算量大幅度降低</li>
-</ul>
-<h5 id="密集连接模型"><a href="#密集连接模型" class="headerlink" title="密集连接模型"></a>密集连接模型</h5><ul>
-<li>在保证网络中层与层之间最大程度的信息传输的前提下，直接将所有层连接起来，使网络中每一层输入为之前卷积层输出的总和，极大地增强了信息流动的能力，有效抑制了梯度爆炸和消失的问题。</li>
-</ul>
-<h5 id="注意力模型"><a href="#注意力模型" class="headerlink" title="注意力模型"></a>注意力模型</h5><ul>
-<li>通过学习不同通道的重要性得到一个权重值，这相当于对信道间特征的相互关系进行建模， 自适应调整每个信道特征，从而在有效强化有用特 征通道的同时抑制无用特征通道，使计算资源得到更充分的利用。</li>
-</ul>
-<h4 id="②-基于CNN-RNN的模型"><a href="#②-基于CNN-RNN的模型" class="headerlink" title="② 基于CNN-RNN的模型"></a>② 基于CNN-RNN的模型</h4><ul>
-<li>递归神经网络就是充分利用参数共享机制，使其在不增加参数的情况下加深网络的深度，降低网络的复杂度，加快训练速度</li>
-</ul>
-<h4 id="③-基于GAN的模型"><a href="#③-基于GAN的模型" class="headerlink" title="③ 基于GAN的模型"></a>③ 基于GAN的模型</h4><ul>
-<li><img src="https://s21.ax1x.com/2024/08/27/pAk7O6x.png" alt="pAk7O6x.png"></li>
-</ul>
-<h3 id="4-损失函数分类"><a href="#4-损失函数分类" class="headerlink" title="4.损失函数分类"></a>4.损失函数分类</h3><h4 id="①基于像素的损失函数"><a href="#①基于像素的损失函数" class="headerlink" title="①基于像素的损失函数"></a>①基于像素的损失函数</h4><ul>
-<li>均方误差（MSE）</li>
-<li>平均绝对值误差（MAE）</li>
 <li>本质上都是反映对应像素之间的误差关系，忽略了像素与邻域像素间存在的内在联系，因 而重建图像质量存在边缘模糊和振铃现象。</li>
 </ul>
 <h4 id="②基于感知的损失函数"><a href="#②基于感知的损失函数" class="headerlink" title="②基于感知的损失函数"></a>②基于感知的损失函数</h4><ul>
 <li>内容损失函数</li>
 <li>对抗损失函数</li>
 <li>上下文损失函数</li>
+</ul>
+<h3 id="5-超分辨率的研究算法分类"><a href="#5-超分辨率的研究算法分类" class="headerlink" title="5.超分辨率的研究算法分类"></a>5.超分辨率的研究算法分类</h3><h4 id="①基于插值的超分辨率算法"><a href="#①基于插值的超分辨率算法" class="headerlink" title="①基于插值的超分辨率算法"></a>①基于插值的超分辨率算法</h4><ul>
+<li>方法：预定义一个变换函数，并利用已知的 MRI 图像像素或体素信息来对未知的像素或体素信息进行拟合。</li>
+<li>该类算法虽然简单高效，但也存在着一定的缺陷，如插值后的图像具有比较明显的块效应、振铃效应与锯齿效应。</li>
+</ul>
+<h4 id="②基于重构的超分辨算法"><a href="#②基于重构的超分辨算法" class="headerlink" title="②基于重构的超分辨算法"></a>②基于重构的超分辨算法</h4><ul>
+<li>方法：从图像的降质退化模型出发，对高分辨率 MRI 图像退化到低分辨率 MRI 图像的过程进行建模（运动变换、模糊及噪声等），而后求解成像系统的逆过程。这种算法会提取低分辨率图像中的关键信息，并通过先验知识来约束高分辨率图像的的重建过程。</li>
+<li>该类算法在重建系数较小时能达到令人满意的结果，但当重建系数较大时，很难获得合适的人工定义的先验知识与正则参数，因此难以保证超分辨率图像的质量。</li>
+</ul>
+<h4 id="③基于浅层学习的超分辨率算法"><a href="#③基于浅层学习的超分辨率算法" class="headerlink" title="③基于浅层学习的超分辨率算法"></a>③基于浅层学习的超分辨率算法</h4><ul>
+<li>从大量的训练数据中学习高分辨率图像和低分辨率图像之间某种映射关系，并根据学习到的映射关系提高目标低分辨率图像的分辨率</li>
+<li>将整个超分辨率过程分为样本库的建立（特征提取）、特征映射（学习与搜索）、高频信息重建三个阶段，且每个阶段独立优化</li>
+</ul>
+<h4 id="④基于深度学习的超分辨率算法"><a href="#④基于深度学习的超分辨率算法" class="headerlink" title="④基于深度学习的超分辨率算法"></a>④基于深度学习的超分辨率算法</h4><ul>
+<li>基于深度学习的算法：基于深度学习的ＳＲ重建算法通常是构建一个端对端的网络模型，将ＬＲ图像输入到该特定网络模型中，通过特征映射和尺度放大等方式优化网络的损失函数，进而得到ＨＲ图 像</li>
+</ul>
+<h2 id="三-评价标准"><a href="#三-评价标准" class="headerlink" title="三.评价标准"></a>三.评价标准</h2><h4 id="①峰值信噪比（PSNR）"><a href="#①峰值信噪比（PSNR）" class="headerlink" title="①峰值信噪比（PSNR）"></a>①峰值信噪比（PSNR）</h4><ul>
+<li><script type="math/tex; mode=display">M S E = \frac { 1 } { N } \sum _ { I = 1 } ^ { N } ( I _ { y } ( i ) - \widehat { I } _ { y } ( i ) ) ^ { 2 }</script></li>
+<li><script type="math/tex; mode=display">P S N R = 1 0 \cdot \log _ { 1 0 } ( \frac { L ^ { 2 } } { M S E } )</script></li>
+</ul>
+<h4 id="②结构相似度指数（SSIM）"><a href="#②结构相似度指数（SSIM）" class="headerlink" title="②结构相似度指数（SSIM）"></a>②结构相似度指数（SSIM）</h4><ul>
+<li><img src="https://s21.ax1x.com/2024/08/27/pAk45jO.png" alt="pAk45jO.png"></li>
+</ul>
+<h4 id="③主观评价"><a href="#③主观评价" class="headerlink" title="③主观评价"></a>③主观评价</h4><h2 id="四-网络结构分类"><a href="#四-网络结构分类" class="headerlink" title="四.网络结构分类"></a>四.网络结构分类</h2><h3 id="1-直线结构"><a href="#1-直线结构" class="headerlink" title="1.直线结构"></a>1.直线结构</h3><ul>
+<li>指整个图像超分辨率网络结构是一个不包含任何跳接或分支的线性结构，即模型是由多个卷积层依次堆叠组成。该类结构具有简单、效率高等特点</li>
+<li>使用线性结构的算法具有结构简单、重建速度快等优点，但同时存在收敛速度慢，随着网络层数的加深，参数逐渐增多，训练过程中容易产生梯度消失与爆炸的问题</li>
+</ul>
+<h3 id="2-跳接（连接）结构"><a href="#2-跳接（连接）结构" class="headerlink" title="2.跳接（连接）结构"></a>2.跳接（连接）结构</h3><ul>
+<li>是指在线性结构的基础上加入卷积层之间的跨层跳接。跳接结构通过信息跨层传递的方式来缓解梯度消失与爆炸问题，同时为设计更深的网络结构提供可能。</li>
+<li>由于原始ＬＲ图像和输出的ＨＲ图像在很大程度上是相似的， 也就是说ＬＲ图像携带的低频信息与ＨＲ图像的低频信息基本一致。残差连接的应用使得原始的稠密矩阵学习转化为稀疏矩阵学习，因而使得计算量大幅度降低</li>
+<li>残差跳接是将不同卷积层的特征进行对应通道的相加，即融合后的特征图保持通道数量不变，但特征图内容发生了变化。</li>
+<li>通道连接跳接则是将不同卷积层的特征以通道方向进行拼接，融合后的特征图不变，但通道数量增加。</li>
+<li>密集连接是在保证网络中层与层之间最大程度的信息传输的前提下，直接将所有层连接起来，使网络中每一层输入为之前卷积层输出的总和，极大地增强了信息流动的能力，有效抑制了梯度爆炸和消失的问题。</li>
+</ul>
+<h3 id="3-递归结构"><a href="#3-递归结构" class="headerlink" title="3.递归结构"></a>3.递归结构</h3><ul>
+<li><p>递归神经网络就是充分利用参数共享机制，使其在不增加参数的情况下加深网络的深度，降低网络的复杂度，加快训练速度（RNN）</p>
+</li>
+<li><p>将卷积层的输出继续作为该层卷积的输入，由于多次卷积操作的参数是一样的，该种递归卷积的方式可以有效地减少网络的参数数量。</p>
+</li>
+</ul>
+<h3 id="4-生成对抗结构"><a href="#4-生成对抗结构" class="headerlink" title="4.生成对抗结构"></a>4.生成对抗结构</h3><ul>
+<li>采用的是一种博弈论的思想，该类模型由生成器与鉴别器两部分组成。生成器生成高分辨率图像，鉴别器区分真实的高分辨率图像与生成器生成的高分辨率图像。</li>
+</ul>
+<h3 id="5-注意力结构"><a href="#5-注意力结构" class="headerlink" title="5.注意力结构"></a>5.注意力结构</h3><ul>
+<li>注意力结构则是利用人类视觉中的注意力机制，对网络所提取的特征进行重新校准</li>
+<li>注意力结构可以有效的调整特征通道或特征本身不同区域的权重，专注于模型中对最终结果贡献大的特征或特征区域</li>
+<li><p>通过学习不同通道的重要性得到一个权重值，这相当于对信道间特征的相互关系进行建模， 自适应调整每个信道特征，从而在有效强化有用特 征通道的同时抑制无用特征通道，使计算资源得到更充分的利用。</p>
+</li>
+<li><p>图示</p>
+<ul>
+<li><img src="https://s21.ax1x.com/2024/08/27/pAk7O6x.png" alt="pAk7O6x.png"></li>
+<li><img src="https://s21.ax1x.com/2024/08/27/pAk4BcT.png" alt="pAk4BcT.png"></li>
+</ul>
+</li>
 </ul>
 ]]></content>
       <categories>

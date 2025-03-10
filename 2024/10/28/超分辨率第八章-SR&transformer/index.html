@@ -88,12 +88,12 @@
 
 
 
-<meta name="description" content="超分辨率第八章-SR&amp;transformer 超分辨率中的transformer-应用于MRI 文献一：3d Cross-Scale Feature Transformer Network for Brain Mr Image Super-Resolution：ICASSP 2022会议 文献二：Adjacent slices feature transformer network for">
+<meta name="description" content="超分辨率第八章-SR&amp;transformer 超分辨率中的transformer-应用于MRI 文献一：(CFTN) 3d Cross-Scale Feature Transformer Network for Brain Mr Image Super-Resolution：ICASSP 2022会议 文献二： (ASFT) Adjacent slices feature transfor">
 <meta property="og:type" content="article">
 <meta property="og:title" content="超分辨率第八章-SR&amp;transformer">
 <meta property="og:url" content="http://example.com/2024/10/28/%E8%B6%85%E5%88%86%E8%BE%A8%E7%8E%87%E7%AC%AC%E5%85%AB%E7%AB%A0-SR&transformer/index.html">
 <meta property="og:site_name" content="沙漠客的学习驿站">
-<meta property="og:description" content="超分辨率第八章-SR&amp;transformer 超分辨率中的transformer-应用于MRI 文献一：3d Cross-Scale Feature Transformer Network for Brain Mr Image Super-Resolution：ICASSP 2022会议 文献二：Adjacent slices feature transformer network for">
+<meta property="og:description" content="超分辨率第八章-SR&amp;transformer 超分辨率中的transformer-应用于MRI 文献一：(CFTN) 3d Cross-Scale Feature Transformer Network for Brain Mr Image Super-Resolution：ICASSP 2022会议 文献二： (ASFT) Adjacent slices feature transfor">
 <meta property="og:locale">
 <meta property="og:image" content="https://s21.ax1x.com/2024/11/01/pADWF9f.png">
 <meta property="og:image" content="https://s21.ax1x.com/2024/11/01/pAD46rF.png">
@@ -116,8 +116,11 @@
 <meta property="og:image" content="https://s21.ax1x.com/2024/10/28/pA0DgBT.png">
 <meta property="og:image" content="https://s21.ax1x.com/2024/11/02/pADzjFP.png">
 <meta property="og:image" content="https://s21.ax1x.com/2024/11/02/pArCcp6.png">
+<meta property="og:image" content="https://s21.ax1x.com/2025/03/09/pENFd2t.png">
+<meta property="og:image" content="https://s21.ax1x.com/2025/03/10/pEN3ixU.png">
+<meta property="og:image" content="https://s21.ax1x.com/2025/03/10/pEN3Ar4.png">
 <meta property="article:published_time" content="2024-10-28T02:26:24.000Z">
-<meta property="article:modified_time" content="2025-03-06T06:26:26.429Z">
+<meta property="article:modified_time" content="2025-03-10T04:16:48.164Z">
 <meta property="article:author" content="Shamoke">
 <meta property="article:tag" content="超分辨率">
 <meta property="article:tag" content="transformer类型">
@@ -392,8 +395,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2025-03-06T14:26:26+08:00">
-                2025-03-06
+              <time title="更新于" itemprop="dateModified" datetime="2025-03-10T12:16:48+08:00">
+                2025-03-10
               </time>
             
           </span>
@@ -452,7 +455,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  6.5k
+                  7.1k
                 </span>
               
 
@@ -468,7 +471,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  26
+                  28
                 </span>
               
             </div>
@@ -491,8 +494,9 @@
       
         <h1 id="超分辨率第八章-SR-amp-transformer"><a href="#超分辨率第八章-SR-amp-transformer" class="headerlink" title="超分辨率第八章-SR&amp;transformer"></a>超分辨率第八章-SR&amp;transformer</h1><blockquote>
 <p><strong>超分辨率中的transformer-应用于MRI</strong></p>
-<p>文献一：<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/9746092">3d Cross-Scale Feature Transformer Network for Brain Mr Image Super-Resolution</a>：ICASSP 2022会议</p>
-<p>文献二：<a target="_blank" rel="noopener" href="https://www.sciencedirect.com/science/article/pii/S1746809421009368">Adjacent slices feature transformer network for single anisotropic 3D brain MRI image super-resolution</a>：《Biomedical Signal Processing and Control》 期刊，2022 </p>
+<p>文献一：<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/9746092">(CFTN) 3d Cross-Scale Feature Transformer Network for Brain Mr Image Super-Resolution</a>：ICASSP 2022会议</p>
+<p>文献二：<a target="_blank" rel="noopener" href="https://www.sciencedirect.com/science/article/pii/S1746809421009368"> (ASFT) Adjacent slices feature transformer network for single anisotropic 3D brain MRI image super-resolution</a>：《Biomedical Signal Processing and Control》 期刊，2022 </p>
+<p>文献三：<a target="_blank" rel="noopener" href="https://link.springer.com/article/10.1007/s10278-024-01139-1">(CRFM) Cross-Modality Reference and Feature Mutual-Projection for 3D Brain MRI Image Super-Resolution</a> 期刊，2024</p>
 </blockquote>
 <span id="more"></span>
 <h2 id="前置知识"><a href="#前置知识" class="headerlink" title="前置知识"></a>前置知识</h2><h3 id="1-attention"><a href="#1-attention" class="headerlink" title="1.attention"></a>1.attention</h3><ul>
@@ -702,6 +706,7 @@
 </li>
 <li><p><strong>Cross-scale Transformer（CST）</strong></p>
 <ul>
+<li>作用：使下采样后低尺度的embedding的序列K与正常尺度embedding的序列Q进行矩阵点乘，并经过softmax层进行归一化，生成高-低对尺度图片的特征相似度的权重。(表示跨尺度特征的相似度)</li>
 <li>结构（通过transform结构可以学习到低尺度-高尺度对的相似性，可生成对应的权重）<ul>
 <li>将输入的$x_m$降维得到$z_m$</li>
 <li>embedding（1*1*1）：将高维的离散数据映射到低维的连续向量空间中，使得相似的数据点在向量空间中距离更近，分别展开形成V,Q,K</li>
@@ -768,6 +773,60 @@
 </ul>
 <h4 id="③reconstruction-sub-network-RecNet"><a href="#③reconstruction-sub-network-RecNet" class="headerlink" title="③reconstruction sub-network (RecNet)"></a>③reconstruction sub-network (RecNet)</h4><ul>
 <li>通过SA增强较强特征，之后再进行一次融合并与原始图片残差连接得到最终输出</li>
+</ul>
+<h2 id="三-文献三-（CRFM）"><a href="#三-文献三-（CRFM）" class="headerlink" title="三.文献三 （CRFM）"></a>三.文献三 （CRFM）</h2><ul>
+<li><strong>Cross-Modality Reference and Feature Mutual-Projection for 3D Brain MRI Image Super-Resolution</strong> </li>
+</ul>
+<h3 id="1-文献解决问题"><a href="#1-文献解决问题" class="headerlink" title="1.文献解决问题"></a>1.文献解决问题</h3><ul>
+<li>只加深网络的深度和宽度提取过多的冗余特征，计算负载过大，不会带来显著的 MRI 图像 SR 性能提升。<ul>
+<li><strong>可以利用跨尺度的MRI图像的互投影来充分利用不同尺度图片的跨尺度自相似性的先验信息（内部信息）</strong></li>
+<li><strong>可以利用多模态MRI图像信息的互补特性来提高某些疾病的诊断准确性。（外部信息，T1图像参考T2图像）</strong></li>
+</ul>
+</li>
+</ul>
+<h3 id="2-网络结构-1"><a href="#2-网络结构-1" class="headerlink" title="2.网络结构"></a>2.网络结构</h3><ul>
+<li><p>I_LR：T1模态，I_Ref：T2模态</p>
+</li>
+<li><p>对参考图片的梯度提取</p>
+<ul>
+<li><p>T1与T2模态图像存在对比度的差异，直接将参考图片输入到网络中会造成干扰。</p>
+</li>
+<li><p>而梯度可以表示图片的清晰度和结构，因此需要对参考图像进行梯度提取。</p>
+</li>
+<li><blockquote>
+<p>图像梯度是指图像某像素在x和y两个方向上的变化率（与相邻像素比较），是一个二维向量，由2个分量组成X轴的变化、Y轴的变化。</p>
+<ul>
+<li>X轴的变化是指当前像素右侧(X加1)的像素值减去当前像素左侧(X减1)的像素值。</li>
+<li>Y轴的变化是当前像素下方(Y加1)的像素值减去当前像素上方(Y减1)的像素值。</li>
+<li>计算出来这2个分量，形成一个二维向量，就得到了该像素的图像梯度。取反正切arctan,可得到梯度角度。</li>
+</ul>
+</blockquote>
+</li>
+<li><script type="math/tex; mode=display">G _ { h } ( I _ { R e f } ) = I _ { R e f } ( h + 1 , w , l ) - I _ { R e f } ( h - 1 , w , l )</script></li>
+<li><script type="math/tex; mode=display">G _ { w } ( I _ { R e f } ) = I _ { R e f } ( h , w + 1 , l ) - I _ { R e f } ( h , w - 1 , l )</script></li>
+<li><script type="math/tex; mode=display">G _ { l } ( I _ { R e f } ) = I _ { R e f } ( h , w , l + 1 ) - I _ { R e f } ( h , w , l - 1 )</script></li>
+<li><script type="math/tex; mode=display">\nabla G ( I _ { R e f } ) = | | ( G _ { h } ( I _ { R e f } ) , G _ { w } ( I _ { R e f } ) , G _ { l } ( I _ { R e f } ) ) | | _ { 2 }</script></li>
+</ul>
+</li>
+<li><p>主干网络：RCA：cascaded residual channel attention blocks （级联残差注意力：RCAN的模块）</p>
+<ul>
+<li><img src="https://s21.ax1x.com/2025/03/09/pENFd2t.png" alt="pENFd2t.png"></li>
+</ul>
+</li>
+<li><p>两个模块：</p>
+<ul>
+<li><p>FMP：Feature Mutual-Projection（特征互投影）</p>
+<ul>
+<li><img src="https://s21.ax1x.com/2025/03/10/pEN3ixU.png" alt="pEN3ixU.png"></li>
+</ul>
+</li>
+<li><p>UFF：Upsampling and Feature Fusion（上采样与特征融合）</p>
+<ul>
+<li><img src="https://s21.ax1x.com/2025/03/10/pEN3Ar4.png" alt="pEN3Ar4.png"></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 
       
@@ -995,7 +1054,7 @@
                 
                 
                   <li class="recent_posts_li">
-                    <a href="/2025/03/07/%E8%B6%85%E5%88%86%E8%BE%A8%E7%8E%87%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0-Diffusion-model-SR/" title="超分辨率第十一章-Diffusion_model&SR" target="_blank">超分辨率第十一章-Diffusion_model&SR</a>
+                    <a href="/2025/03/07/%E8%B6%85%E5%88%86%E8%BE%A8%E7%8E%87%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0-SR&Diffusion-model/" title="超分辨率第十一章-SR&Diffusion_model" target="_blank">超分辨率第十一章-SR&Diffusion_model</a>
                   </li>
                 
                   <li class="recent_posts_li">
@@ -1003,7 +1062,7 @@
                   </li>
                 
                   <li class="recent_posts_li">
-                    <a href="/2024/12/02/%E8%B6%85%E5%88%86%E8%BE%A8%E7%8E%87%E7%AC%AC%E5%8D%81%E7%AB%A0-NormalizingFlow-SR/" title="超分辨率第十章-SR&NormalizingFlow" target="_blank">超分辨率第十章-SR&NormalizingFlow</a>
+                    <a href="/2024/12/02/%E8%B6%85%E5%88%86%E8%BE%A8%E7%8E%87%E7%AC%AC%E5%8D%81%E7%AB%A0-SR&NormalizingFlow/" title="超分辨率第十章-SR&NormalizingFlow" target="_blank">超分辨率第十章-SR&NormalizingFlow</a>
                   </li>
                 
                   <li class="recent_posts_li">
@@ -1062,7 +1121,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%B6%85%E5%88%86%E8%BE%A8%E7%8E%87%E7%AC%AC%E5%85%AB%E7%AB%A0-SR-amp-transformer"><span class="nav-text">超分辨率第八章-SR&amp;transformer</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86"><span class="nav-text">前置知识</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-attention"><span class="nav-text">1.attention</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E9%80%9A%E9%81%93%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6%E4%B8%8E%E7%A9%BA%E9%97%B4%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6"><span class="nav-text">2.通道注意力机制与空间注意力机制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-transformer"><span class="nav-text">3.transformer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-vision-transformer"><span class="nav-text">4.vision transformer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-vit%E4%BB%A3%E7%A0%81"><span class="nav-text">5.vit代码</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E2%91%A0patch-embedding%E5%9D%97"><span class="nav-text">①patch embedding块</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E2%91%A1-multi-head-attention%E5%9D%97"><span class="nav-text">② multi-head attention块</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E2%91%A2MLP%E5%9D%97"><span class="nav-text">③MLP块</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E2%91%A3encoder-block%E5%9D%97"><span class="nav-text">④encoder block块</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E2%91%A4vit%E6%95%B4%E4%BD%93%E7%BB%93%E6%9E%84"><span class="nav-text">⑤vit整体结构</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80-%E6%96%87%E7%8C%AE%E4%B8%80%EF%BC%88CFTN%EF%BC%89"><span class="nav-text">一.文献一（CFTN）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E6%96%87%E7%8C%AE%E4%BB%8B%E7%BB%8D"><span class="nav-text">1.文献介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E2%91%A0%E5%85%88%E5%89%8D%E6%A8%A1%E5%9E%8B%E7%9A%84%E7%BC%BA%E7%82%B9"><span class="nav-text">①先前模型的缺点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E2%91%A1%E5%85%B3%E4%BA%8E%E5%86%85%E9%83%A8%E5%85%88%E9%AA%8C%EF%BC%88internal-priors%EF%BC%89"><span class="nav-text">②关于内部先验（internal priors）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E2%91%A2%E6%96%87%E7%AB%A0%E8%B4%A1%E7%8C%AE"><span class="nav-text">③文章贡献</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E7%BD%91%E7%BB%9C%E7%BB%93%E6%9E%84%EF%BC%88CFTN%EF%BC%89"><span class="nav-text">2.网络结构（CFTN）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E2%91%A0residual-channel-attention-block-RCAB"><span class="nav-text">①residual channel attention block (RCAB)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E2%91%A1mutual-projection-feature-enhancement-module-MFEM"><span class="nav-text">②mutual-projection feature enhancement module (MFEM)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E2%91%A2spatial-attention-fusion-module-SAFM"><span class="nav-text">③spatial attention fusion module (SAFM)</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C-%E6%96%87%E7%8C%AE%E4%BA%8C%EF%BC%88ASFT%EF%BC%89"><span class="nav-text">二.文献二（ASFT）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E6%96%87%E7%8C%AE%E4%BB%8B%E7%BB%8D-1"><span class="nav-text">1.文献介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E7%BD%91%E7%BB%9C%E7%BB%93%E6%9E%84"><span class="nav-text">2.网络结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E2%91%A0initial-feature-extraction-IFE-operation"><span class="nav-text">①initial feature extraction (IFE) operation</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E2%91%A1feature-mapping-sub-network-FMNet"><span class="nav-text">②feature mapping sub-network (FMNet)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E2%91%A2reconstruction-sub-network-RecNet"><span class="nav-text">③reconstruction sub-network (RecNet)</span></a></li></ol></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%B6%85%E5%88%86%E8%BE%A8%E7%8E%87%E7%AC%AC%E5%85%AB%E7%AB%A0-SR-amp-transformer"><span class="nav-text">超分辨率第八章-SR&amp;transformer</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86"><span class="nav-text">前置知识</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-attention"><span class="nav-text">1.attention</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E9%80%9A%E9%81%93%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6%E4%B8%8E%E7%A9%BA%E9%97%B4%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6"><span class="nav-text">2.通道注意力机制与空间注意力机制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-transformer"><span class="nav-text">3.transformer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-vision-transformer"><span class="nav-text">4.vision transformer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-vit%E4%BB%A3%E7%A0%81"><span class="nav-text">5.vit代码</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E2%91%A0patch-embedding%E5%9D%97"><span class="nav-text">①patch embedding块</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E2%91%A1-multi-head-attention%E5%9D%97"><span class="nav-text">② multi-head attention块</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E2%91%A2MLP%E5%9D%97"><span class="nav-text">③MLP块</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E2%91%A3encoder-block%E5%9D%97"><span class="nav-text">④encoder block块</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E2%91%A4vit%E6%95%B4%E4%BD%93%E7%BB%93%E6%9E%84"><span class="nav-text">⑤vit整体结构</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80-%E6%96%87%E7%8C%AE%E4%B8%80%EF%BC%88CFTN%EF%BC%89"><span class="nav-text">一.文献一（CFTN）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E6%96%87%E7%8C%AE%E4%BB%8B%E7%BB%8D"><span class="nav-text">1.文献介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E2%91%A0%E5%85%88%E5%89%8D%E6%A8%A1%E5%9E%8B%E7%9A%84%E7%BC%BA%E7%82%B9"><span class="nav-text">①先前模型的缺点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E2%91%A1%E5%85%B3%E4%BA%8E%E5%86%85%E9%83%A8%E5%85%88%E9%AA%8C%EF%BC%88internal-priors%EF%BC%89"><span class="nav-text">②关于内部先验（internal priors）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E2%91%A2%E6%96%87%E7%AB%A0%E8%B4%A1%E7%8C%AE"><span class="nav-text">③文章贡献</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E7%BD%91%E7%BB%9C%E7%BB%93%E6%9E%84%EF%BC%88CFTN%EF%BC%89"><span class="nav-text">2.网络结构（CFTN）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E2%91%A0residual-channel-attention-block-RCAB"><span class="nav-text">①residual channel attention block (RCAB)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E2%91%A1mutual-projection-feature-enhancement-module-MFEM"><span class="nav-text">②mutual-projection feature enhancement module (MFEM)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E2%91%A2spatial-attention-fusion-module-SAFM"><span class="nav-text">③spatial attention fusion module (SAFM)</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C-%E6%96%87%E7%8C%AE%E4%BA%8C%EF%BC%88ASFT%EF%BC%89"><span class="nav-text">二.文献二（ASFT）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E6%96%87%E7%8C%AE%E4%BB%8B%E7%BB%8D-1"><span class="nav-text">1.文献介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E7%BD%91%E7%BB%9C%E7%BB%93%E6%9E%84"><span class="nav-text">2.网络结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E2%91%A0initial-feature-extraction-IFE-operation"><span class="nav-text">①initial feature extraction (IFE) operation</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E2%91%A1feature-mapping-sub-network-FMNet"><span class="nav-text">②feature mapping sub-network (FMNet)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E2%91%A2reconstruction-sub-network-RecNet"><span class="nav-text">③reconstruction sub-network (RecNet)</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89-%E6%96%87%E7%8C%AE%E4%B8%89-%EF%BC%88CRFM%EF%BC%89"><span class="nav-text">三.文献三 （CRFM）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E6%96%87%E7%8C%AE%E8%A7%A3%E5%86%B3%E9%97%AE%E9%A2%98"><span class="nav-text">1.文献解决问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E7%BD%91%E7%BB%9C%E7%BB%93%E6%9E%84-1"><span class="nav-text">2.网络结构</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
@@ -1103,7 +1162,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">223k</span>
+    <span title="Site words total count">223.9k</span>
   
 </div>
 

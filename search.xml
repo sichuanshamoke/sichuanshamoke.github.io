@@ -14,6 +14,1321 @@
       </tags>
   </entry>
   <entry>
+    <title>文献集合 之 Perceptual Quality Methods、Information Utilization Method</title>
+    <url>/2025/03/17/%E6%96%87%E7%8C%AE%E9%9B%86%E5%90%88-%E4%B9%8B-Perceptual-Quality-Methods%E3%80%81Information-Utilization-Method/</url>
+    <content><![CDATA[<h1 id="文献集合-之-Perceptual-Quality-Methods、Information-Utilization-Method"><a href="#文献集合-之-Perceptual-Quality-Methods、Information-Utilization-Method" class="headerlink" title="文献集合 之 Perceptual Quality Methods、Information Utilization Method"></a>文献集合 之 Perceptual Quality Methods、Information Utilization Method</h1><blockquote>
+<p>来自综述文章：《A systematic survey of deep learning-based single-image super-resolution》，2024,4月</p>
+<p>文章链接：<a href="https://dl.acm.org/doi/10.1145/3659100">A Systematic Survey of Deep Learning-Based Single-Image Super-Resolution | ACM Computing Surveys</a></p>
+</blockquote>
+<span id="more"></span>
+<h2 id="Perceptual-Quality-Methods"><a href="#Perceptual-Quality-Methods" class="headerlink" title="Perceptual Quality Methods"></a>Perceptual Quality Methods</h2><p>前言：</p>
+<blockquote>
+<p>大多数方法只是简单地寻求重建具有高PSNR和SSIM的SR图像。然而，重建精度的提高并不总是伴随着视觉质量的提高。Blau等人[ 10 ]指出存在感知-失真权衡。它只能改善感知质量或失真，而改善一个必须以牺牲另一个为代价。因此，在这一部分中，我们提供了缓解这种权衡问题的方法，希望在保持图像良好的感知质量的同时提供更少的失真。</p>
+</blockquote>
+<h3 id="Perceptual-Loss"><a href="#Perceptual-Loss" class="headerlink" title="Perceptual Loss"></a>Perceptual Loss</h3><blockquote>
+<p>虽然像素级损失，即L1和MSE损失，已被广泛用于实现高图像质量，但它们并没有捕获SR和HR图像之间的感知差异。为了解决这个问题，让损失函数更好地衡量图像之间的感知和语义差异，提出了内容损失、纹理损失和有针对性的感知损失。</p>
+</blockquote>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>引用号</th>
+<th>年份</th>
+<th>人物</th>
+<th>标题</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>91</td>
+<td>2017(CVPR)</td>
+<td>Christian Ledig</td>
+<td>Photo-realistic single image super-resolution using a generative adversarial network</td>
+<td>在 SISR 任务中，内容损失被广泛用于使图像与目标保持一致</td>
+</tr>
+<tr>
+<td>176</td>
+<td>2018(CVPR)</td>
+<td>Xintao Wang</td>
+<td>Recovering realistic texture in image super-resolution by deep spatial feature transform</td>
+<td>在 SISR 任务中，内容损失被广泛用于使图像与目标保持一致</td>
+</tr>
+<tr>
+<td>80</td>
+<td>2016(ECCV)</td>
+<td>Justin Johnson</td>
+<td>Perceptual losses for real-time style transfer and super-resolution</td>
+<td>借助纹理损失，模型在训练过程中倾向于生成与 HR 图像具有相同局部纹理的图像</td>
+</tr>
+<tr>
+<td>142</td>
+<td>2019(ICCV)</td>
+<td>Mohammad Saeed Rad</td>
+<td>Srobb: Targeted perceptual loss for single image super-resolution</td>
+<td>传统的感知损失在不考虑语义信息的情况下估计整幅图像的重建误差，导致重建能力有限，该文章提出有针对性的感知损失，基于对象、背景和边界的标签在不同语义级别对图像进行惩罚，从而获得更逼真的纹理和更清晰的边缘，以重建逼真的超分辨率图像</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="Adversarial-Training"><a href="#Adversarial-Training" class="headerlink" title="Adversarial Training"></a>Adversarial Training</h3><blockquote>
+<p>2014年，生成对抗网络( Generative Adversarial Networks，GANs )被古德费洛等人提出[ 56，2014年 ]，被广泛应用于计算机视觉任务中，如风格迁移、图像修复等。生成对抗网络由生成器和判别器组成。当判别器被训练来判断图像的真假时，生成器的目的是欺骗判别器而不是最小化到特定图像的距离，因此它倾向于生成与训练集具有相同统计特性的输出</p>
+</blockquote>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>引用号</th>
+<th>年份</th>
+<th>人物</th>
+<th>标题</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>91</td>
+<td>2017(CVPR)</td>
+<td>Christian Ledig</td>
+<td>Photo-realistic single image super-resolution using a generative adversarial network</td>
+<td>受GAN的启发，Ledig等人[ 91 ]提出了超分辨率生成对抗网络( Super-Resolution Generative Adversarial Network，SRGAN )。在SRGAN中，生成器G本质上是一个SR模型，它被训练来欺骗判别器D，而D被训练来区分SR图像和HR图像。因此，生成器可以学习产生与HR图像高度相似的输出，进而重建出更加真实自然的SR图像</td>
+</tr>
+<tr>
+<td>177</td>
+<td>2018(ECCV)</td>
+<td>Xintao Wang</td>
+<td>Esrgan: Enhanced super-resolution generative adversarial networks</td>
+<td>在SRGAN [ 91 ]中，生成器是SRResNet，判别器使用雷德福等人[ 143 ]提出的架构。在ESRGAN [ 177 ]中，Wang等人对SRResNet做了两点修改：( 1 )将原始残差块替换为残差中的残差密集块；( 2 )去除BN层，提高模型的泛化能力。且ESRGAN 中采用相对论平均判别器替换标准判别器，学习两张图像之间的相对真实度，帮助生成器学习更清晰的边缘和更详细的纹理</td>
+</tr>
+<tr>
+<td>139</td>
+<td>2018(ECCV)</td>
+<td>Seong-Jin Park</td>
+<td>Srfeat: Single image super-resolution with feature discrimination</td>
+<td>在SRFeat [ 139 ]中，Park等人指出基于GAN的SISR方法在重建图像中倾向于产生较少有意义的高频噪声。因此，他们采用了两个判别器：图像判别器和特征判别器，其中特征判别器是基于从VGG网络提取的中间特征图来训练的，以区分SR图像和HR图像。</td>
+</tr>
+<tr>
+<td>178</td>
+<td>2023(AAAI)</td>
+<td>Yanbo Wang</td>
+<td>High-Resolution GAN Inversion for Degraded Images in Large Diverse Datasets</td>
+<td>Wang等[ 178 ]提出了一种新颖的GAN反演框架，利用Style GAN - XL强大的生成能力，在SISR中表现出了较好的定量和定性结果。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="Cycle-Consistency"><a href="#Cycle-Consistency" class="headerlink" title="Cycle Consistency"></a>Cycle Consistency</h3><blockquote>
+<p>循环一致性假设源域和目标域之间存在某种潜在关系，并试图在域层面进行监督。确切地说，我们想要捕获一个图像集合的一些特殊特征，并研究如何将这些特征转化为另一个图像集合。为了实现这一点，Zhu等人[ 238 ]提出了循环一致性机制，该机制不仅学习了从源域到目标域的映射，还结合了反向映射。</p>
+<p>在SISR中，循环一致性的思想也得到了广泛的讨论。给定低分辨率图像域X和高分辨率图像域Y，我们不仅学习了从低分辨率到高分辨率的映射，还学习了后向过程。</p>
+</blockquote>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>引用号</th>
+<th>年份</th>
+<th>人物</th>
+<th>标题</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>210</td>
+<td>2018(CVPRW)</td>
+<td>Yuan Yuan</td>
+<td>Unsupervised image super-resolution using cycle-in-cycle generative adversarial networks</td>
+<td>提出一种循环 - 循环网络，将噪声和模糊的输入首先映射到无噪声的低分辨率域，然后用预训练模型进行上采样</td>
+</tr>
+<tr>
+<td>60</td>
+<td>2020(CVPR)</td>
+<td>Yong Guo</td>
+<td>Closed-loop matters: Dual regression networks for single image super-resolution</td>
+<td>在DRN [ 60 ]中，学习从HR到LR图像的映射来估计下采样核并重建LR图像，形成闭环以提供额外的监督。DRN还为我们提供了一种无监督学习SR的新方法，该方法使用成对和非成对数据训练模型。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="Diffusion-based-Method"><a href="#Diffusion-based-Method" class="headerlink" title="Diffusion-based Method"></a>Diffusion-based Method</h3><blockquote>
+<p>受最近去噪扩散概率模型( DDPM ) [ 68，2020 ]的启发，一种新的条件图像生成方法被纳入到SISR任务中。与基于GAN的SISR方法相比，基于扩散模型的SISR方法[ 具有更好的保真度，减少了伪影的产生。<br>然而，基于扩散的SISR模型仍然需要大量的新样本，且模型收敛速度较慢，限制了其使用场景。因此，如何克服这些弊端仍然值得研究。</p>
+</blockquote>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>引用号</th>
+<th>年份</th>
+<th>人物</th>
+<th>标题</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>96</td>
+<td>2022(Neurocomputing)</td>
+<td>Haoying Li</td>
+<td>Srdiff: Single image super-resolution with diffusion probabilistic models</td>
+<td>SRDiff [ 96 ]是第一个基于扩散的SISR模型，它通过马尔科夫链将高斯噪声逐步转换为以LR为输入条件的SISR图像，从而提供多样化和逼真的SISR预测。</td>
+</tr>
+<tr>
+<td>147</td>
+<td>2022(IEEE Transactions on Pattern Analysis and Machine Intelligence)</td>
+<td>Chitwan Saharia</td>
+<td>Image super-resolution via iterative refinement</td>
+<td>SR3 [ 147 ]利用训练好的模型对纯高斯噪声输入进行迭代求精，在不同噪声水平下进行去噪。与基于GAN的方法相比，它可以输出更真实的照片</td>
+</tr>
+<tr>
+<td>52</td>
+<td>2023(CVPR)</td>
+<td>Sicheng Gao</td>
+<td>Implicit Diffusion Models for Continuous Super-Resolution</td>
+<td>IDM [ 52 ]端到端的集成了隐式神经表示和去噪扩散模型，并在解码过程中使用隐式神经表示来学习连续的图像分辨率表示</td>
+</tr>
+<tr>
+<td>149</td>
+<td>2023(AAAI)</td>
+<td>Shuyao Shang</td>
+<td><strong>ResDiff: Combining CNN and Diffusion Model for Image Super-Resolution</strong></td>
+<td>原文无描述</td>
+</tr>
+<tr>
+<td>193</td>
+<td>2023(CVPR)</td>
+<td>Zhixin Wang</td>
+<td>DR2: Diffusion-based Robust Degradation Remover for Blind Face Restoration</td>
+<td>DR2 [ 193 ]利用DDPM粗略地减少更复杂的低质量人脸图像，然后使用增强模块将其完全恢复到高分辨率( HR )人脸图像</td>
+</tr>
+<tr>
+<td>167</td>
+<td>2024([International Journal of Computer Vision）</td>
+<td>Jianyi Wang</td>
+<td>Exploiting Diffusion Prior for Real-World Image Super-Resolution</td>
+<td>还有一类方法旨在利用基于先验扩散的模型来辅助SISR。例如，StableSR [ 167 ]和DiffBIR [ 110 ]通过使用预训练的文本到图像扩散模型的先验知识进行微调来实现真实世界的SISR，例如Stable diffusion [ 146 ]</td>
+</tr>
+<tr>
+<td>110</td>
+<td>2024(ECCV)</td>
+<td>Xinqi Lin</td>
+<td>Diffbir: Towards blind image restoration with generative diffusion prior</td>
+<td>同上</td>
+</tr>
+<tr>
+<td>146</td>
+<td>2022(CVPR)</td>
+<td>Robin Rombach</td>
+<td>High-resolution image synthesis with latent diffusion models</td>
+<td>同上</td>
+</tr>
+<tr>
+<td>198</td>
+<td>2023(ICCV)</td>
+<td>Bin Xia</td>
+<td>Diffir: Efficient diffusion model for image restoration</td>
+<td>利用在真实图像上训练的预训练模型，将先验信息融入 SISR 模型，与传统 DDPM 相比，可使用更少的迭代次数获得准确估计</td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr>
+<h2 id="Information-Utilization-Method"><a href="#Information-Utilization-Method" class="headerlink" title="Information Utilization Method"></a>Information Utilization Method</h2><p>前言：</p>
+<blockquote>
+<p>在前述部分中，我们介绍了如何设计一个高效的超分辨重建模型，并获得超分辨图像的高重建精度和高感知质量。虽然目前的SISR模型已经取得了重大突破，但是如何利用图像内外的信息进一步提高模型的性能仍然值得探索。</p>
+</blockquote>
+<h3 id="Internal-Statistics"><a href="#Internal-Statistics" class="headerlink" title="Internal Statistics"></a>Internal Statistics</h3><blockquote>
+<p>在[ 241 ]中，Zontak等人发现有些图像块只存在于特定的图像中，而在任何外部数据库的例子中都找不到。因此，在外部图像上训练的SR方法由于缺少块信息而无法在此类图像上很好地工作，而基于内部统计的方法可能具有较好的性能。同时，Zontak等指出，在一般的自然图像集合中，单幅图像内部块的内部熵远小于块的外部熵。因此，利用内部图像统计进一步提升模型性能是一个不错的选择。</p>
+</blockquote>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>引用号</th>
+<th>年份</th>
+<th>人物</th>
+<th>标题</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>152</td>
+<td>2018(CVPR)</td>
+<td>Assaf Shocher</td>
+<td>“zero-shot” super-resolution using deep internal learning</td>
+<td>在ZSSR [ 152 ]中，内部图像统计特性被用于训练一个特定于图像的CNN，其中训练样本从测试图像本身中提取。在训练阶段，通过使用数据增强生成若干LR - HR对，并使用这些对训练一个CNN。在测试时，将LR图像ILR作为输入送入训练好的CNN，得到重建图像。在这个过程中，模型充分利用图像本身的内部统计信息进行自学习。</td>
+</tr>
+<tr>
+<td>148</td>
+<td>2019(ICCV)</td>
+<td>Tamar Rott Shaham</td>
+<td>Singan: Learning a generative model from a single natural image</td>
+<td>在SinGAN [ 148 ]中，提出了一种全卷积GAN金字塔的无条件生成模型来学习图像不同尺度下的内部块分布。为了利用递归内部信息，他们对LR图像进行多次(视最终尺度而定)上采样，得到最终的SR输出。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="Multi-factor-Learning"><a href="#Multi-factor-Learning" class="headerlink" title="Multi-factor Learning"></a>Multi-factor Learning</h3><blockquote>
+<p>通常，在SISR中，我们经常需要为不同的上采样因子训练特定的模型，并且很难出现期望一个模型可以适用于多个上采样因子的情况。为了解决这个问题，针对多个上采样因子提出了一些模型。令人惊讶的是，研究人员发现该方法可以充分挖掘不同上采样因子之间的尺度间相关性，从而可以进一步提高模型性能。</p>
+</blockquote>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>引用号</th>
+<th>年份</th>
+<th>人物</th>
+<th>标题</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>88</td>
+<td>2017(CVPR)</td>
+<td>Wei-Sheng Lai</td>
+<td>Deep laplacian pyramid networks for fast and accurate super-resolution</td>
+<td>在LapSRN [ 88 ]中，LR图像在金字塔网络中逐步重建以获得大规模结果，其中的中间结果可以直接作为相应的多因子结果。</td>
+</tr>
+<tr>
+<td>108</td>
+<td>2017(CVPRW)</td>
+<td>Bee Lim</td>
+<td>Enhanced deep residual networks for single image super-resolution</td>
+<td>Lim等人发现了多尺度任务之间相互关联的现象，即用预训练的低尺度网络初始化高尺度模型参数可以加速训练过程，提高性能。因此，他们提出了模型头部和尾部的尺度特异性处理模块来处理不同的上采样因子。</td>
+</tr>
+<tr>
+<td>97</td>
+<td>2020(IEEE Transactions on Circuits and Systems for Video Technology)</td>
+<td>Juncheng Li</td>
+<td>MDCN: Multi-scale dense cross network for image super-resolution</td>
+<td>为了进一步挖掘不同上采样因子之间的尺度间相关性，Li等人进一步优化了MDCN中的策略[ 97 ]。不同于MDSR在模型首尾都引入了尺度相关的处理策略，MDCN可以最大限度地重用模型参数并学习尺度间的相关性。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="Prior-Guidance"><a href="#Prior-Guidance" class="headerlink" title="Prior Guidance"></a>Prior Guidance</h3><blockquote>
+<p>由于简单易实现，大多数方法倾向于构建端到端的CNN模型来实现SISR。然而，由于大量有用的特征被丢失或损坏，它们很难重建出真实的高频细节。为了解决这个问题，提出了一种先验指导的SISR框架。大量实验表明，在图像先验的帮助下，模型可以更快地收敛，并获得更好的重建精度。近年来，许多图像先验被提出，如全变分先验、稀疏先验、边缘先验等。</p>
+</blockquote>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>引用号</th>
+<th>年份</th>
+<th>人物</th>
+<th>标题</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>203</td>
+<td>2017(IEEE Transactions on Image Processing)</td>
+<td>Wenhan Yang</td>
+<td>Deep edge guided recurrent residual learning for image super-resolution</td>
+<td>Yang等人[ 203 ]将边缘先验与递归网络相结合，提出了一种用于SISR的深度边缘引导递归残差网络( Deep Edge Guided Recurrent Residual Network，DEGREE )</td>
+</tr>
+<tr>
+<td>43</td>
+<td>2020(IEEE Transactions on Image Processing)</td>
+<td>Faming Fang</td>
+<td>Soft-edge assisted network for single image super-resolution</td>
+<td>之后，Fang等人[ 43 ]提出了一种高效准确的软边辅助网络( Soft-edge Assisted Network，SeaNet )。与DEGREE直接使用现成的边缘检测器检测图像边缘不同，SeaNet从构建的EdgeNet中自动学习更精确的图像边缘。同时，他们发现更精确的先验可以带来更显著的性能。</td>
+</tr>
+<tr>
+<td>176</td>
+<td>2018(CVPR)</td>
+<td>Xintao Wang</td>
+<td>Recovering realistic texture in image super-resolution by deep spatial feature transform</td>
+<td>此外，图像先验对于基于GAN的模型也是有益的。例如，SFTGAN [ 176 ]利用语义类别先验，借助空间特征变换( spatial feature transform，SFT )生成更丰富、更逼真的纹理。利用这些来自高层任务的信息，可以很容易地分辨出相似的LR补丁，并生成更自然的文本细节</td>
+</tr>
+<tr>
+<td>125</td>
+<td>2020(CVPR)</td>
+<td>Cheng Ma</td>
+<td>Structure-preserving super resolution with gradient guidance</td>
+<td>在SPSR [ 125 ]中，作者利用梯度图来指导图像恢复，以解决基于GAN的方法中的结构失真问题。其中，梯度图由一个梯度分支获得，并集成到SR分支中，以提供结构先验。借助梯度图，我们知道哪个区域更应该被关注，从而指导图像生成，减少几何失真。</td>
+</tr>
+<tr>
+<td>19</td>
+<td>2022(ACMMM)</td>
+<td>Chaofeng Chen</td>
+<td>Real-world blind super-resolution via feature matching with implicit high-resolution priors</td>
+<td>在Fe MaSR [ 19 ]中，作者使用VQ - GAN [ 208 ]在HR图像中预训练得到的离散特征作为先验信息，通过从预训练的HR先验中匹配失真LR图像特征和无失真HR特征来进行图像复原。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="Reference-based-Method"><a href="#Reference-based-Method" class="headerlink" title="Reference-based Method"></a>Reference-based Method</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>引用号</th>
+<th>年份</th>
+<th>人物</th>
+<th>标题</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>232</td>
+<td>2018(ECCV)</td>
+<td>Haitian Zheng</td>
+<td>Crossnet: An end-to-end reference-based super resolution network using cross-scale warping</td>
+<td>CrossNet提出使用光流在不同尺度上对齐参考图像和 LR 图像，然后将其连接到解码器的相应层。然而这些方法都假设参考图像与LR图像具有较好的对齐性</td>
+</tr>
+<tr>
+<td>230</td>
+<td>2019(CVPR)</td>
+<td>Zhifei Zhang</td>
+<td>Image super-resolution by neural texture transfer</td>
+<td>Zhang等人[ 230 ]利用LR和参考图像的VGG特征进行块匹配，自适应地将纹理从参考图像转移到LR图像。</td>
+</tr>
+<tr>
+<td>201</td>
+<td>2020(CVPR)</td>
+<td>Fuzhi Yang</td>
+<td>Learning texture transformer network for image super-resolution</td>
+<td>在TTSR [ 201 ]中，Yang等人提出了一个纹理变换网络，用于从参考图像到LR图像的相关纹理的搜索和传输。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="Knowledge-Distillation"><a href="#Knowledge-Distillation" class="headerlink" title="Knowledge Distillation"></a>Knowledge Distillation</h3><blockquote>
+<p>知识蒸馏是指将一个大的(教师)模型的表征能力转移到一个小的(学生)模型上，以提高学生模型的性能的一种技术。因此，它已被广泛用于网络压缩或进一步提高学生模型的性能，并在许多计算机视觉任务中显示了有效性。同时，知识蒸馏主要有两种：软标签蒸馏和特征蒸馏。在软标签蒸馏中，教师模型的softmax输出被视为软标签，为学生模型提供信息丰富的暗知识[ 67 ]。在特征蒸馏中，将中间特征图传递给学生模型[ 1、5]。</p>
+</blockquote>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>引用号</th>
+<th>年份</th>
+<th>人物</th>
+<th>标题</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>51</td>
+<td>2018(ACCV)</td>
+<td>Qinquan Gao</td>
+<td>Image super-resolution using knowledge distillation</td>
+<td>在SRKD [ 51 ]中，一个小型但高效的学生网络由一个深入而强大的教师网络引导，以实现与教师相似的特征分布。</td>
+</tr>
+<tr>
+<td>93</td>
+<td>2020(ECCV)</td>
+<td>Wonkyung Lee</td>
+<td>Learning with privileged information for efficient image super-resolution</td>
+<td>在[ 93 ]中，教师网络利用HR图像作为特权信息，通过特征蒸馏将教师网络解码器的中间特征传递给学生网络，以便学生可以从HR图像训练的教师网络中学习高频细节。</td>
+</tr>
+<tr>
+<td>122</td>
+<td>2021(ACMMM)</td>
+<td>Xiaotong Luo</td>
+<td>Boosting lightweight single image super-resolution via joint-distillation</td>
+<td>随后，JDSR [ 122 ]探索了一种联合蒸馏学习，通过使用HR的特权信息蒸馏与内部自蒸馏相结合，有效地提高了轻量级模型的蒸馏性能。</td>
+</tr>
+<tr>
+<td>175</td>
+<td>2021(CVPR)</td>
+<td>Xintao Wang</td>
+<td>Towards real-world blind face restoration with generative facial prior</td>
+<td>CSD [ 175 ]将对比学习和蒸馏任务相结合，进一步缩小了SISR的解空间。</td>
+</tr>
+<tr>
+<td>224</td>
+<td>2021(CVPR)</td>
+<td>Yiman Zhang</td>
+<td>Data-free knowledge distillation for image super-resolution</td>
+<td>此外，为了解决无监督问题的模型压缩问题，[ 224 ]使用生成器在使用渐进蒸馏方案后合成接近原始数据的训练样本，以提高学生模型性能。</td>
+</tr>
+</tbody>
+</table>
+</div>
+]]></content>
+      <categories>
+        <category>综述类</category>
+      </categories>
+      <tags>
+        <tag>超分辨率</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>文献集合 之 Efficient Network / Mechanism Design Methods</title>
+    <url>/2025/03/11/%E6%96%87%E7%8C%AE%E9%9B%86%E5%90%88-%E4%B9%8B-Efficient-Network-Mechanism-Design-Methods/</url>
+    <content><![CDATA[<h1 id="文献集合-之-Efficient-Network-Mechanism-Design-Methods"><a href="#文献集合-之-Efficient-Network-Mechanism-Design-Methods" class="headerlink" title="文献集合 之 Efficient Network / Mechanism Design Methods"></a>文献集合 之 Efficient Network / Mechanism Design Methods</h1><blockquote>
+<p>来自综述文章：《A systematic survey of deep learning-based single-image super-resolution》，2024,4月</p>
+<p>文章链接：<a href="https://dl.acm.org/doi/10.1145/3659100">A Systematic Survey of Deep Learning-Based Single-Image Super-Resolution | ACM Computing Surveys</a></p>
+</blockquote>
+<span id="more"></span>
+<p>前言：2014年，Dong等人[ 38 ]提出了超分辨率卷积神经网络( Super-resolution Convolutional Neural Network，SRCNN，ECCV )。SRCNN是第一个基于CNN的SISR模型。</p>
+<h2 id="Residual-Learning"><a href="#Residual-Learning" class="headerlink" title="Residual Learning"></a><strong>Residual Learning</strong></h2><blockquote>
+<p>在SRCNN中，研究人员发现通过增加更多的卷积层来增加感受野可以获得更好的结果。然而，直接堆叠层会导致梯度消失/爆炸和退化问题[64]。同时，增加层数会导致更高的训练误差和更昂贵的计算成本。</p>
+</blockquote>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">引用符号</th>
+<th style="text-align:left"><strong>年份</strong></th>
+<th style="text-align:left">人物</th>
+<th style="text-align:left">标题</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">65</td>
+<td style="text-align:left">2016(CVPR)</td>
+<td style="text-align:left">Kaiming He</td>
+<td style="text-align:left">Deep residual learning for image recognition</td>
+<td style="text-align:left">在 ResNet 中，He 等提出了残差学习框架，期望学习残差映射而非拟合整个潜在映射。在 SISR 中，由于 LR 图像和 HR 图像共享大部分相同信息，很容易对 LR 和 HR 图像之间的残差图像进行显式建模。残差学习使网络可以更深，并缓解了梯度消失和退化问题</td>
+</tr>
+<tr>
+<td style="text-align:left">83</td>
+<td style="text-align:left">2016(CVPR)</td>
+<td style="text-align:left">Jiwon Kim</td>
+<td style="text-align:left">Accurate image super-resolution using very deep convolutional networks</td>
+<td style="text-align:left">借助残差学习，Kim 等提出了一种非常深的超分辨率网络，也称为 VDSR</td>
+</tr>
+<tr>
+<td style="text-align:left">108</td>
+<td style="text-align:left">2017(CVPRW)</td>
+<td style="text-align:left">Bee Lim</td>
+<td style="text-align:left">Enhanced deep residual networks for single image super-resolution</td>
+<td style="text-align:left">Lim 等指出，在 SISR 任务中，批归一化层消耗更多内存但不会提高模型性能，因此在 SISR 任务中，批归一化层通常被去除</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="Global-and-Local-Residual-Learning"><a href="#Global-and-Local-Residual-Learning" class="headerlink" title="Global and Local Residual Learning"></a>Global and Local Residual Learning</h3><blockquote>
+<p>全局残差学习是一种从输入到最终重建层的跳跃连接，有助于提高信息从输入到输出的传递，在一定程度上减少了信息的丢失。然而，随着网络的深入，大量的图像细节在经过如此多的层后不可避免地会丢失。因此，提出了局部残差学习，它在每几个堆叠层中执行，而不是从输入到输出。</p>
+</blockquote>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>引用符号</th>
+<th>年份</th>
+<th>人物</th>
+<th>标题</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>98</td>
+<td>2018(ECCV)</td>
+<td>Juncheng Li</td>
+<td>Multi-scale Residual Network for Image Super-Resolution</td>
+<td style="text-align:left">在这种方法中，形成了多路径模式，并携带了丰富的图像细节，同时也有助于梯度流。此外，许多新的特征提取模块引入了局部残差学习，以增强强大的学习能力</td>
+</tr>
+<tr>
+<td>225</td>
+<td>2018(ECCV)</td>
+<td>Yulun Zhang</td>
+<td>Image Super-Resolution Using Very Deep Residual Channel Attention Networks</td>
+<td style="text-align:left">在这种方法中，形成了多路径模式，并携带了丰富的图像细节，同时也有助于梯度流。此外，许多新的特征提取模块引入了局部残差学习，以增强强大的学习能力 ；结合局部残差学习和全局残差学习在当前也非常流行</td>
+</tr>
+<tr>
+<td>91</td>
+<td>2017(CVPR)</td>
+<td>Christian Ledig</td>
+<td>Photo-realistic single image super-resolution using a generative adversarial network</td>
+<td style="text-align:left">结合局部残差学习和全局残差学习在当前也非常流行</td>
+</tr>
+<tr>
+<td>108</td>
+<td>2017(CVPRW)</td>
+<td>Bee Lim</td>
+<td>Enhanced deep residual networks for single image super-resolution</td>
+<td style="text-align:left">结合局部残差学习和全局残差学习在当前也非常流行</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="Residual-Scaling"><a href="#Residual-Scaling" class="headerlink" title="Residual Scaling"></a>Residual Scaling</h3><blockquote>
+<p>在 EDSR 中，Lim 等发现增加特征图（即通道维度）超过一定水平会使训练过程数值不稳定。为解决此问题，他们采用了残差缩放技术，在将残差添加到主路径之前，将其乘以 0 到 1 之间的常数进行缩放</p>
+</blockquote>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>引用符号</th>
+<th>年份</th>
+<th>人物</th>
+<th>标题</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>156</td>
+<td>2017(AAAI)</td>
+<td>Christian Szegedy</td>
+<td>Inception-v4, inception-resnet and the impact of residual connections on learning</td>
+<td>在 EDSR 中，Lim 等发现增加特征图（即通道维度）超过一定水平会使训练过程数值不稳定。为解决此问题，他们采用了残差缩放技术，在将残差添加到主路径之前，将其乘以 0 到 1 之间的常数进行缩放</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="Dense-Connection"><a href="#Dense-Connection" class="headerlink" title="Dense Connection"></a>Dense Connection</h2><blockquote>
+<p>DenseNet [ 72,CVPR ]中提出了一种密集连接机制，近年来被广泛应用于计算机视觉任务中。与只将层次特征发送到最终重构层的结构不同，密集块中的每一层都接收到前面所有层的特征(图6 )。在大多数层之间创建的短路径可以帮助缓解梯度消失/爆炸的问题，并加强通过层的深层信息流，从而进一步提高重建精度。在密集连接机制的帮助下，网络不同深度之间的信息流可以被充分利用，从而产生更好的重建结果。</p>
+</blockquote>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>引用符号</th>
+<th>年份</th>
+<th>人物</th>
+<th>标题</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>162</td>
+<td>2017(ICCV）</td>
+<td>Tong Tong</td>
+<td>Image super-resolution using dense skip connections</td>
+<td>受密集连接机制的启发，Tong 等提出了 SRDenseNet。SRDenseNet 不仅使用层级密集连接，还使用块级密集连接，每个密集块的输出通过密集连接相连。通过这种方式，将低层特征和高层特征结合起来，并充分利用这些特征进行重建。</td>
+</tr>
+<tr>
+<td>228</td>
+<td>2018(CVPR)</td>
+<td>Yulun Zhang</td>
+<td>Residual dense network for image super-resolution</td>
+<td>在 RDN 中，密集连接与残差学习相结合，形成了残差密集块（RDB），它允许低频特征通过多个跳跃连接绕过，使主分支专注于学习高频信息</td>
+</tr>
+<tr>
+<td>159</td>
+<td>2017(CVPR)</td>
+<td>Ying Tai</td>
+<td>Memnet: A persistent memory network for image restoration</td>
+<td>密集连接也应用于 MemNet 等模型中</td>
+</tr>
+<tr>
+<td>131</td>
+<td>2019(IET Image Processing)</td>
+<td>Kangfu Mei</td>
+<td>Deep residual refining based pseudo-multi-frame network for effective single image super-resolution</td>
+<td>RPMNet同上</td>
+</tr>
+<tr>
+<td>150</td>
+<td>2019(Multimedia Tools and Applications)</td>
+<td>Mingyu Shen</td>
+<td>Multipath feedforward network for single image super-resolution</td>
+<td>MFNet同上</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="Recursive-Learning"><a href="#Recursive-Learning" class="headerlink" title="Recursive Learning"></a>Recursive Learning</h2><blockquote>
+<p>为了在不增加模型参数的情况下获得较大的感受野，针对SISR提出了递归学习，在网络中重复应用相同的子模块，并共享相同的参数。换句话说，递归块是递归单元的集合，其中这些递归单元之间的对应结构共享相同的参数。</p>
+</blockquote>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>引用符号</th>
+<th>年份</th>
+<th>人物</th>
+<th>标题</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>84</td>
+<td>2016(CVPR)</td>
+<td>Jiwon Kim</td>
+<td>Deeply-recursive convolutional network for image super-resolution</td>
+<td>为了在不增加模型参数的情况下获得大的感受野，递归学习被提出用于 SISR，例如在 DRCN 中，相同的卷积层被应用 16 次，得到了 41×41 大小的感受野</td>
+</tr>
+<tr>
+<td>158</td>
+<td>2017(CVPR)</td>
+<td>Ying Tai</td>
+<td>Image super-resolution via deep recursive residual network</td>
+<td>然而，递归学习模型中过多的堆叠层仍然会导致梯度消失/爆炸的问题。在 DRRN 中，递归块基于残差学习进行，</td>
+</tr>
+<tr>
+<td>159</td>
+<td>2017(CVPR)</td>
+<td>Ying Tai</td>
+<td>Memnet: A persistent memory network for image restoration</td>
+<td>近年来，越来越多的模型在递归单元中引入了残差学习策略，如 MemNet</td>
+</tr>
+<tr>
+<td>3</td>
+<td>2018(ECCV)</td>
+<td>Namhyuk Ahn</td>
+<td>Fast, accurate, and lightweight super-resolution with cascading residual network</td>
+<td>近年来，越来越多的模型在递归单元中引入了残差学习策略，如 CARN</td>
+</tr>
+<tr>
+<td>99</td>
+<td>2019(ICCVW)</td>
+<td>Juncheng Li</td>
+<td>Lightweight and Accurate Recursive Fractal Network for Image Super-Resolution</td>
+<td>近年来，越来越多的模型在递归单元中引入了残差学习策略，如 SRRFN</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><img src="https://s21.ax1x.com/2025/03/11/pEN7HHK.png" alt="pEN7HHK.png"></p>
+<h2 id="Progressive-Learning"><a href="#Progressive-Learning" class="headerlink" title="Progressive Learning"></a>Progressive Learning</h2><blockquote>
+<p>渐进式学习是指逐步增加学习任务的难度。对于一些序列预测任务或顺序决策问题，使用渐进式学习来减少训练时间，提高泛化性能。由于SISR是一个病态问题，由于一些不利条件，如大尺度因子、未知退化核和噪声，总是面临很大的学习困难，因此适合利用渐进式学习来简化学习过程，提高重构效率。<br>在渐进学习的帮助下，复杂问题可以被分解为多个简单任务，从而加速模型收敛并获得更好的重建结果。</p>
+</blockquote>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>引用符号</th>
+<th>年份</th>
+<th>人物</th>
+<th>标题</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>87</td>
+<td>2017(CVPR)</td>
+<td>Wei-Sheng Lai</td>
+<td>Deep laplacian pyramid networks for fast and accurate super-resolution</td>
+<td>在 LapSRN 中，该方法被应用于逐步重建高分辨率图像的子带残差</td>
+</tr>
+<tr>
+<td>180</td>
+<td>2018(CVPRW)</td>
+<td>Yifan Wang</td>
+<td>A fully progressive approach to single-image super-resolution</td>
+<td>在 ProSR 中，金字塔的每一层逐渐融合，以减少对先前训练层的影响，并且逐步添加每个尺度的训练对</td>
+</tr>
+<tr>
+<td>106</td>
+<td>2019(CVPR)</td>
+<td>Zhen Li</td>
+<td>Feedback network for image super-resolution</td>
+<td>在 SRFBN 中，该策略被应用于解决复杂的退化任务，对不同难度的目标进行排序，以便进行渐进式学习。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="Multi-scale-Learning"><a href="#Multi-scale-Learning" class="headerlink" title="Multi-scale Learning"></a>Multi-scale Learning</h2><blockquote>
+<p>大量研究工作[ 29、87、157]指出，图像在不同尺度下可能表现出不同的特征，充分利用这些特征可以进一步提高模型性能</p>
+</blockquote>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>引用符号</th>
+<th>年份</th>
+<th>人物</th>
+<th>标题</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>29</td>
+<td>2017(CVPR)</td>
+<td>François Chollet</td>
+<td>Xception: Deep learning with depthwise separable convolutions</td>
+<td>大量研究工作[ 29、87、157]指出，图像在不同尺度下可能表现出不同的特征，充分利用这些特征可以进一步提高模型性能</td>
+</tr>
+<tr>
+<td>87</td>
+<td>2017(CVPR)</td>
+<td>Wei-Sheng Lai</td>
+<td>Deep laplacian pyramid networks for fast and accurate super-resolution</td>
+<td>同上</td>
+</tr>
+<tr>
+<td>157</td>
+<td>2016(CVPR)</td>
+<td>Christian Szegedy</td>
+<td>Rethinking the inception architecture for computer vision</td>
+<td>同上</td>
+</tr>
+<tr>
+<td>98</td>
+<td>2018(ECCV)</td>
+<td>Juncheng Li</td>
+<td>Multi-scale Residual Network for Image Super-Resolution</td>
+<td>受Inception模块的启发[ 29 ]，Li 等提出了一种多尺度残差块（MSRB）用于特征提取。MSRB 在一个块中集成了不同的卷积核，以自适应地提取不同尺度的图像特征</td>
+</tr>
+<tr>
+<td>97</td>
+<td>2020(IEEE Transactions on Circuits and Systems for Video Technology)</td>
+<td>Juncheng Li</td>
+<td>MDCN: Multi-scale dense cross network for image super-resolution</td>
+<td>Li 等进一步优化结构，提出了更精确的多尺度密集交叉块（MDCB）用于特征提取。MDCB 本质上是一个双路径密集网络，可以有效地检测局部和多尺度特征</td>
+</tr>
+<tr>
+<td>141</td>
+<td>2020(Neurocomputing)</td>
+<td>Jinghui Qin</td>
+<td>Multi-scale feature fusion residual network for Single Image Super-Resolution</td>
+<td>Qin 等提出了多尺度特征融合残差网络（MSFFRN），以充分利用图像特征进行 SISR</td>
+</tr>
+<tr>
+<td>17</td>
+<td>2019(ICASSP)</td>
+<td>Chia-Yang Chang</td>
+<td>Multi-scale dense network for single-image super-resolution</td>
+<td>Chang 等提出了多尺度密集网络（MSDN），将多尺度学习与密集连接相结合</td>
+</tr>
+<tr>
+<td>15</td>
+<td>2019(Neurocomputing)</td>
+<td>Feilong Cao</td>
+<td>Single image super-resolution via multi-scale residual channel attention network</td>
+<td>Cao 等开发了一种新的超分辨率方法，称为多尺度残差通道注意力网络（MSRCAN），将通道注意力机制引入到 MSRB 中</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><img src="https://s21.ax1x.com/2025/03/11/pEN7rXq.png" alt="pEN7rXq.png"></p>
+<h2 id="Attention-Mechanism"><a href="#Attention-Mechanism" class="headerlink" title="Attention Mechanism"></a>Attention Mechanism</h2><blockquote>
+<p>注意力机制可以被认为是一种工具，可以将可用的资源分配给输入中信息最丰富的部分。为了提高学习过程中的效率，提出了一些工作来引导网络更加关注感兴趣的区域。</p>
+</blockquote>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>引用符号</th>
+<th>年份</th>
+<th>人物</th>
+<th>标题</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>69</td>
+<td>2018(CVPR)</td>
+<td>Jie Hu</td>
+<td>Squeeze-and-excitation networks</td>
+<td>Hu 等提出了挤压激励（SE）块，用于在图像分类任务中建模通道间关系</td>
+</tr>
+<tr>
+<td>174</td>
+<td>2018(CVPR)</td>
+<td>Xiaolong Wang</td>
+<td>Non-local neural networks</td>
+<td>Wang等人通过结合非局部操作，提出了一种用于视频分类的非局部注意力神经网络</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="Channel-Attention"><a href="#Channel-Attention" class="headerlink" title="Channel Attention"></a>Channel Attention</h3><blockquote>
+<p>在SISR中，我们主要是想尽可能多地恢复出有价值的高频信息。然而，常见的基于CNN的方法平等地对待通道特征，在处理不同类型的信息时缺乏灵活性。</p>
+</blockquote>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>引用符号</th>
+<th>年份</th>
+<th>人物</th>
+<th>标题</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>132</td>
+<td>2018(NeurIPS)</td>
+<td>Kangfu Mei</td>
+<td>An Effective Single-Image Super-Resolution Model Using Squeeze-and-Excitation Networks</td>
+<td>许多方法在 SISR 模型中引入了 SE 机制</td>
+</tr>
+<tr>
+<td>225</td>
+<td>2018(ECCV)</td>
+<td>Yulun Zhang</td>
+<td>Image Super-Resolution Using Very Deep Residual Channel Attention Networks</td>
+<td>Zhang 等提出了一种基于 SE 机制的新模块，名为残差通道注意力块（RCAB）。通过全局平均池化层和 Sigmoid 函数对每个特征通道进行重新缩放，使网络能够专注于更有用的通道，增强判别学习能力</td>
+</tr>
+<tr>
+<td>33</td>
+<td>2019(CVPR)</td>
+<td>Tao Dai</td>
+<td>Second-order attention network for single image super-resolution</td>
+<td>在 SAN 中，探索了特征的二阶统计量，以基于协方差归一化进行注意力机制。大量实验表明，二阶通道注意力可以帮助网络获得更具判别力的表示，从而提高重建精度</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><img src="https://s21.ax1x.com/2025/03/11/pENHk4g.png" alt="pENHk4g.png"></p>
+<p><img src="https://s21.ax1x.com/2025/03/11/pENbcYF.png" alt="pENbcYF.png"></p>
+<h3 id="Non-Local-Attention"><a href="#Non-Local-Attention" class="headerlink" title="Non-Local Attention"></a>Non-Local Attention</h3><blockquote>
+<p>基于CNN的方法在局部感受野内进行卷积时，忽略了该区域外的上下文信息，而较远区域的特征可能具有较高的相关性，能够提供有效的信息。考虑到这一问题，非局部注意力被提出作为一种滤波算法来计算图像所有像素的加权平均值。通过这种方式，远处的像素也可以对关注位置的响应做出贡献。</p>
+<p><strong>Non-Local Attention</strong> 是一种用于捕捉图像中长距离依赖关系的机制，旨在解决传统卷积神经网络（CNN）因局部感受野限制而忽略全局上下文信息的问题。其核心思想是通过计算图像中所有像素之间的相关性（无论远近），生成全局注意力权重，从而允许每个位置的响应不仅受局部区域影响，还能整合整个图像中具有高相关性的远距离信息。</p>
+<ol>
+<li><strong>全局关联性建模</strong>：对于输入特征图中的每个位置，计算其与所有其他位置的相似性（如通过点积、高斯函数等），生成一个全局注意力图。</li>
+<li><strong>加权聚合</strong>：根据注意力权重，对所有位置的特征进行加权平均，使当前位置的特征融合全局上下文信息。</li>
+<li><strong>残差连接</strong>：通常将加权后的特征与原始特征相加，保留局部细节的同时增强全局感知能力。</li>
+</ol>
+<p>参考博客：<a href="https://blog.csdn.net/qq_35975753/article/details/108801408">NON-LOCAL-注意力机制_nonlocal注意力机制-CSDN博客</a></p>
+</blockquote>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>引用符号</th>
+<th>年份</th>
+<th>人物</th>
+<th>标题</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>113</td>
+<td>2018(NeurIPS)</td>
+<td>Ding Liu</td>
+<td>Non-local recurrent network for image restoration</td>
+<td>在 NLRN 中，非局部操作在有限的邻域内进行，以提高鲁棒性</td>
+</tr>
+<tr>
+<td>227</td>
+<td>2019(arXiv)</td>
+<td>Yulun Zhang</td>
+<td>Residual non-local attention networks for image restoration</td>
+<td>在 RNAN 中，提出了非局部注意力块，在其掩码分支中同时使用通道和空间维度的注意力机制，以更好地指导主干分支中的特征提取</td>
+</tr>
+<tr>
+<td>138</td>
+<td>2020(ECCV)</td>
+<td>Ben Niu</td>
+<td>Single image super-resolution via a holistic attention network</td>
+<td>在HAN中提出了一个整体注意力网络，该网络由层注意力模块和通道-空间注意力模块组成，用于建模层、通道和位置之间的整体相互依赖关系。</td>
+</tr>
+<tr>
+<td>134</td>
+<td>2020(CVPR)</td>
+<td>Yiqun Mei</td>
+<td>Image super-resolution with cross-scale non-local attention and exhaustive self-exemplars mining</td>
+<td>在 CSNLN 中，提出了跨尺度非局部注意力模块，用于挖掘同一特征图中 LR 特征和大尺度 HR 块之间的长程依赖关系</td>
+</tr>
+<tr>
+<td>197</td>
+<td>2022(AAAI)</td>
+<td>Bin Xia</td>
+<td>Efficient non-local contrastive attention for image super-resolution</td>
+<td>为了减轻非局部注意力造成的噪声污染，ENLCA 利用高效的非局部衰减和稀疏聚合，通过对比学习专注于有用信息，分离无关特征</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><img src="https://s21.ax1x.com/2025/03/11/pENbwyn.png" alt="pENbwyn.png"></p>
+<h2 id="Feedback-Mechanism"><a href="#Feedback-Mechanism" class="headerlink" title="Feedback Mechanism"></a>Feedback Mechanism</h2><blockquote>
+<p>反馈机制是指将输出的概念带到先前的状态，允许模型有一个自我修正的过程。值得注意的是，反馈机制不同于递归学习，因为在反馈机制中，模型参数保持自校正且不共享。近年来，反馈机制被广泛应用于许多计算机视觉任务[ 14、16 ]中，这也有利于SR图像重建。具体来说，反馈机制允许网络将高层信息带回前几层，并细化低层信息，从而充分引导LR图像恢复出高质量的SR图像。</p>
+</blockquote>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>引用符号</th>
+<th>年份</th>
+<th>人物</th>
+<th>标题</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>14</td>
+<td>2015(ICCV)</td>
+<td>Chunshui Cao</td>
+<td>Look and think twice: Capturing top-down visual attention with feedback convolutional neural networks</td>
+<td></td>
+</tr>
+<tr>
+<td>16</td>
+<td>2016(CVPR)</td>
+<td>Joao Carreira</td>
+<td>Human pose estimation with iterative error feedback</td>
+<td></td>
+</tr>
+<tr>
+<td>62</td>
+<td>2020(IEEE Transactions on Pattern Analysis and Machine Intelligence)</td>
+<td>Muhammad Haris</td>
+<td>Deep back-projectinetworks for single image super-resolution</td>
+<td>在 DBPN 中，提供了迭代的上下采样层，以实现每个阶段投影误差的误差反馈机制</td>
+</tr>
+<tr>
+<td>61</td>
+<td>2018(CVPR)</td>
+<td>Wei Han</td>
+<td>Image super-resolution via dual-state recurrent networks</td>
+<td>在 DSRN 中，提出了双状态递归网络，其中递归信号通过延迟反馈在两个状态之间双向交换</td>
+</tr>
+<tr>
+<td>106</td>
+<td>2019(CVPR)</td>
+<td>Zhen Li</td>
+<td>Feedback network for image super-resolution</td>
+<td>在 SRFBN 中，提出了反馈块，每次迭代的输入是上一次的输出作为反馈信息。随后是几个具有密集跳跃连接的投影组，低级表示被细化并成为更强大的高级表示</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="Gating-Mechanism"><a href="#Gating-Mechanism" class="headerlink" title="Gating Mechanism"></a>Gating Mechanism</h2><blockquote>
+<p>上述残差学习中的跳跃连接往往会使得输出特征的通道维度极高。如果这样的高维通道在后续层中保持不变，那么计算代价将非常大，因此会影响重建效率和性能。直观上，跳跃连接后的输出特征应该被有效拒绝，而不是简单的拼接。</p>
+<p>为了解决这个问题，研究人员建议使用门控机制来自适应地提取和学习更有效的信息。大多数情况下，采用1 × 1的卷积层来完成门控机制，可以降低通道维度并留下更多的有效信息。</p>
+</blockquote>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>引用符号</th>
+<th>年份</th>
+<th>人物</th>
+<th>标题</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>162</td>
+<td>2017(ICCV)</td>
+<td>Tong Tong</td>
+<td>Image super-resolution using dense skip connections</td>
+<td>在 SRDenseNet 中，1×1 卷积层在重建模块前作为瓶颈层</td>
+</tr>
+<tr>
+<td>98</td>
+<td>2018(ECCV)</td>
+<td>Juncheng Li</td>
+<td>Multi-scale Residual Network for Image Super-Resolution</td>
+<td>在 MSRN 中，1×1 卷积层在重建模块前作为瓶颈层</td>
+</tr>
+<tr>
+<td>159</td>
+<td>2017(CVPR)</td>
+<td>Ying Tai</td>
+<td>Memnet: A persistent memory network for image restoration</td>
+<td>在 MemNet 中，它是每个内存块末尾的门单元，用于控制长期记忆和短期记忆的权重，且全局和局部区域都使用了门控机制。</td>
+</tr>
+<tr>
+<td>4</td>
+<td>2018(CVPRW)</td>
+<td>Namhyuk Ahn</td>
+<td>Image super-resolution via progressive cascading residual network</td>
+<td>值得注意的是，门不仅能够作为瓶颈放置在网络的末端，而且能够在网络中持续进行。在CARN 中，全局和局部区域都使用了门控机制。</td>
+</tr>
+<tr>
+<td>97</td>
+<td>2020(IEEE Transactions on Circuits and Systems for Video Technology)</td>
+<td>Juncheng Li</td>
+<td>MDCN: Multi-scale dense cross network for image super-resolution</td>
+<td>门控机制也可以结合其他操作，如注意力机制，构建更有效的门模块，实现特征蒸馏。Li 等提出了分层特征蒸馏块(HFDB)，将 1×1 卷积层和注意力机制相结合。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><img src="https://s21.ax1x.com/2025/03/11/pENbxmt.png" alt="pENbxmt.png"></p>
+<h2 id="Efficient-Structure"><a href="#Efficient-Structure" class="headerlink" title="Efficient Structure"></a><strong>Efficient Structure</strong></h2><blockquote>
+<p>毫无疑问，增加模型的深度是提高模型性能最简单的方法。然而，由于深大模型的计算开销巨大，难以应用于计算能力有限的移动设备。为了解决这个问题，近年来越来越多的轻量高效的SISR方法被提出。</p>
+</blockquote>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>引用符号</th>
+<th>年份</th>
+<th>人物</th>
+<th>标题</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>3</td>
+<td>2018(ECCV)</td>
+<td>Ahn</td>
+<td>Fast, accurate, and lightweight super-resolution with cascading residual network</td>
+<td>Ahn 等设计了一种架构（CARN），在残差网络上实现了级联机制，实现了快速、准确和轻量级的超分辨率</td>
+</tr>
+<tr>
+<td>75</td>
+<td>2018(CVPR)</td>
+<td>Hui</td>
+<td>Fast and accurate single image super-resolution via information distillation network</td>
+<td>Hui等人利用信息蒸馏策略提出了一种具有轻量级参数和计算复杂度的新型信息蒸馏网络( Information Distillation Network，IDN )。<br>注：深度学习中的蒸馏网络（Knowledge Distillation）是一种通过知识迁移实现模型压缩和性能提升的技术。其核心思想是让轻量级学生模型（Student）模仿复杂教师模型（Teacher）的行为，从而在保持或接近教师模型性能的同时降低计算和存储成本</td>
+</tr>
+<tr>
+<td>74</td>
+<td>2019(ACMMM)</td>
+<td>Hui</td>
+<td>Lightweight image super-resolution with information multi-distillation network</td>
+<td>Hui 等通过构建级联信息多蒸馏块，进一步提出了轻量级信息多蒸馏网络（IMDN）</td>
+</tr>
+<tr>
+<td>114</td>
+<td>2020(ECCVW)</td>
+<td>Liu</td>
+<td>Residual feature distillation network for lightweight image super-resolution</td>
+<td>Liu 等提出了 RFDN，通过结合更轻量级的特征蒸馏连接操作，提高了单图像超分辨率（SISR）的效率</td>
+</tr>
+<tr>
+<td>234</td>
+<td>2022(ECCV)</td>
+<td>Zhou</td>
+<td><strong>Efficient image super-resolution using vast-receptive-field attention</strong></td>
+<td>Zhou 等开发了 VapSR，通过优化注意力机制创建了一个更高效的超分辨率网络。<br>注：前置模型：<a href="https://arxiv.org/abs/2010.01073">[PAN] 使用像素注意力实现高效的图像超分辨率</a>,，ECCV-2020<br>参考博客：<a href="https://blog.csdn.net/amusi1994/article/details/127564103">VapSR：基于超大感受野注意力的超分辨率模型</a></td>
+</tr>
+<tr>
+<td>155</td>
+<td>2022(NeurIPS）</td>
+<td>Li</td>
+<td><strong>Shufflemixer: An efficient convnet for image super-resolution</strong></td>
+<td>Li 等引入了 ShuffleMixer，一种研究使用大卷积和通道分割混洗操作的技术，使网络更适合移动设备<br>参考博客：<a href="https://zhuanlan.zhihu.com/p/523284090">shuffleMixer图像超分论文阅读 - 知乎</a></td>
+</tr>
+<tr>
+<td>105</td>
+<td>2022(CVPR)</td>
+<td>Li</td>
+<td><strong>Blueprint separable residual network for efficient image super-resolution</strong></td>
+<td>Li 等提出了 Blueprint Separable Residual Network（BSRN），包含两种高效设计：蓝图可分离卷积和更有效的注意力模块</td>
+</tr>
+<tr>
+<td>101</td>
+<td>2023(IEEE Transactions on Multimedia)</td>
+<td>Li</td>
+<td><strong>Cross-receptive Focused Inference Network for lightweight image super-resolution</strong></td>
+<td>CFIN：Li等人[ 101 ]提出了一种新颖的交叉感受野引导变换( Cross-receptive Field Guided Transformer，CFGT )，通过使用调制卷积核来选择重建所需的上下文信息。</td>
+</tr>
+<tr>
+<td>121</td>
+<td>2022(ACMMM)</td>
+<td>Luo</td>
+<td>Adjustable Memory-efficient Image Super-resolution via Individual Kernel Sparsity</td>
+<td>Luo 等提出了 Individual Kernel Sparsity（IKS）方法，用于内存高效且可调整稀疏性的图像超分辨率，使深度网络能够部署在内存受限的设备上</td>
+</tr>
+<tr>
+<td>204</td>
+<td>2023(ACMMM)</td>
+<td>Ye</td>
+<td>Hardware-friendly Scalable Image Super Resolution with Progressive Structured Sparsity</td>
+<td>Ye 等提出了 Hardware-friendly Scalable SR（HSSR），具有渐进式结构稀疏性。该模型可以通过单个可扩展模型覆盖多个不同大小的 SR 模型，无需额外的重新训练或后处理</td>
+</tr>
+<tr>
+<td>109</td>
+<td>2023(CVPR)</td>
+<td>Lin</td>
+<td>Memory-friendly Scalable Super-resolution via Rewinding Lottery Ticket Hypothesis</td>
+<td>Lin 等提出了通过通过回溯彩票假设实现内存友好型可扩展超分辨率的Memory-friendly Scalable dynamic SR（MSSR）轻量级模型，可以轻松推广到不同的 SR 模型</td>
+</tr>
+<tr>
+<td>28</td>
+<td>2023(CVPR)</td>
+<td>Choi</td>
+<td><strong>N-gram in swin transformers for efficient lightweight image super-resolution</strong></td>
+<td>Choi 等引入了 NGswin，通过拓宽基于窗口的自注意力方法的感受野来提高 SISR 的性能</td>
+</tr>
+<tr>
+<td>166</td>
+<td>2023(CVPR)</td>
+<td>Wang</td>
+<td><strong>Omni aggregation networks for lightweight image super-resolution</strong></td>
+<td>Wang 等提出了 Omni - SR，通过在空间和通道维度上复制像素交互来增强轻量级模型的能力</td>
+</tr>
+<tr>
+<td>102</td>
+<td>2023(ICCV)</td>
+<td>Li</td>
+<td><strong>DLGSANet: lightweight dynamic local and global self-attention networks for image super-resolution</strong></td>
+<td>Li 等引入了 DLGSANet，通过采用稀疏全局自注意力模块来确定最相关的相似值，简化了 SISR 的效率</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>知识蒸馏模型（distillation network）：</p>
+<p>参考博客：<a href="https://zhuanlan.zhihu.com/p/319880839">深度学习中的知识蒸馏技术 - 知乎</a></p>
+<blockquote>
+<p>整体架构：</p>
+<p>图中有两个主要的神经网络模型：“Teacher”（教师模型）和 “Student”（学生模型）。教师模型是一个已经预训练（pre - trained）好的复杂模型，而学生模型是一个待训练（to be trained）的相对简单的模型，二者同时接收训练数据（Training data）。</p>
+<p>具体流程：</p>
+<ol>
+<li><strong>教师模型输出</strong>：教师模型对训练数据进行处理，输出 “soft labels”（软标签），也叫预测（predictions）。软标签不仅包含了模型预测的类别，还包含了各个类别之间的概率关系等更丰富的信息，即蒸馏知识（distilled knowledge）。</li>
+<li><strong>学生模型学习</strong>：学生模型接收同样的训练数据，并在学习过程中，不仅参考真实标签（true label，也叫 hard labels 硬标签），还借鉴教师模型输出的软标签中的信息。通过这种方式，学生模型可以更快地学习，并且在一定程度上达到与教师模型相近的性能，同时模型结构更简单，计算成本更低 。</li>
+</ol>
+<p>知识蒸馏技术常用于在资源受限的场景下，比如在移动设备或嵌入式设备上部署模型时，通过让轻量级的学生模型学习大型教师模型的知识，来实现高效的模型推理。</p>
+</blockquote>
+<p><a href="https://imgse.com/i/pEUmcbq"><img src="https://s21.ax1x.com/2025/03/12/pEUmcbq.png" alt="pEUmcbq.png"></a></p>
+<h2 id="Transformer-based-Method（✪）"><a href="#Transformer-based-Method（✪）" class="headerlink" title="Transformer-based Method（✪）"></a><strong>Transformer-based Method</strong>（✪）</h2><blockquote>
+<p>Transformer的核心思想是”自注意力”机制，它可以捕获序列元素之间的长期信息。最近，Transformer [ 164 ] 在NLP任务中取得了辉煌的成绩。例如，预训练的深度学习模型(例如, BERT[35]  , GPT [144] )已经显示出优于传统方法的有效性。受此启发，越来越多的研究人员开始探索Transformer在计算机视觉任务中的应用，并在多个任务中取得了突破性的成果。在图像复原中，Transformer常被用来捕捉图像的全局信息，以进一步提高重建图像的质量。</p>
+<p>然基于Transformer的方法在性能上有了很大的提升，但是Transform中使用的注意力机制会占用大量的GPU内存。因此，如何进一步降低基于Transformer方法的GPU内存值得进一步探索</p>
+</blockquote>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>引用符号</th>
+<th>年份</th>
+<th>人物</th>
+<th>标题</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>164</td>
+<td>2017(NeurIPS)</td>
+<td>Vaswani</td>
+<td>Attention is all you need</td>
+<td>Transformer 的关键思想是 “自注意力” 机制，它可以捕获序列元素之间的长期信息</td>
+</tr>
+<tr>
+<td>22</td>
+<td>2021(CVPR)</td>
+<td>Chen</td>
+<td>Pre-trained image processing transformer</td>
+<td>近年来，越来越多的基于Transformer的模型被提出。例如，Chen等人提出了在大规模数据集上进行预训练的图像处理转换器( Image Processing Transformer，IPT [ 22 ] )。此外，针对不同的图像处理任务，引入了对比学习。因此，预训练的模型经过微调后可以高效地应用于期望的任务。然而，IPT [ 22 ]依赖于大规模数据集，并且具有大量的参数(超过115 . 5M参数)，这极大地限制了它的应用场景。</td>
+</tr>
+<tr>
+<td>117</td>
+<td>2021(CVPR)</td>
+<td>Liu</td>
+<td>Swin transformer: Hierarchical vision transformer using shifted windows</td>
+<td>参考博客：<a href="https://blog.csdn.net/qq_39478403/article/details/120042232">【深度学习】详解 Swin Transformer </a></td>
+</tr>
+<tr>
+<td>107</td>
+<td>2021(ICCVW)</td>
+<td>Liang</td>
+<td>SwinIR: Image restoration using swin transformer</td>
+<td>Liang等人在Swin Transformer [ 117 ]的基础上提出了用于图像复原的Swin IR [ 107 ]。具体来说，采用Swin Transformer block ( RSTB )进行特征提取，使用DIV2K + Flickr2K进行训练。</td>
+</tr>
+<tr>
+<td>212</td>
+<td>2022(CVPR)</td>
+<td>Zamir</td>
+<td>Restormer: Efficient transformer for high-resolution image restoration</td>
+<td>为了改善SwinIR中不同窗口之间缺乏直接交互的问题。Zamir 等人提出了Restormer，通过在Transformer中嵌入CNN并在多个尺度上进行局部-全局学习来重建高质量的图像。</td>
+</tr>
+<tr>
+<td>27</td>
+<td>2022(NeurIPS)</td>
+<td>Chen</td>
+<td>Cross Aggregation Transformer for Image Restoration</td>
+<td>Chen 等提出了 CAT，扩展了注意力区域并跨不同窗口聚合特征</td>
+</tr>
+<tr>
+<td>24</td>
+<td>2023(CVPR)</td>
+<td>Chen</td>
+<td>Activating More Pixels in Image Super-Resolution Transformer</td>
+<td>为了激活Transformer关注的更多像素，Chen 等提出了 HAT，通过使用重叠交叉注意力模块结合预训练策略来增强 Transformer 模型的潜力</td>
+</tr>
+<tr>
+<td>103</td>
+<td>2023(CVPR)</td>
+<td>Li</td>
+<td>Efficient and explicit modelling of image hierarchies for image restoration</td>
+<td>Li 等提出 <strong>GRL</strong>，通过在 Transformer 中集成各种注意力机制，在全局、区域和局部尺度上显式地对图像层次结构进行建模</td>
+</tr>
+<tr>
+<td>119</td>
+<td>2021(CVPRW)</td>
+<td>Lu</td>
+<td>Transformer for Single Image Super-Resolution</td>
+<td>在轻量级SISR模型的应用方面，Lu 等提出了高效超分辨率 Transformer（ESRT），用于快速准确的 SISR，以较少的参数和低计算成本取得了有竞争力的结果</td>
+</tr>
+<tr>
+<td>222</td>
+<td>2022(ECCV)</td>
+<td>Zhang</td>
+<td>Efficient long-range attention network for image super-resolution</td>
+<td>Zhang 等提出 ELAN，通过共享自注意力机制降低模型复杂度，加速基于 Transformer 的模型</td>
+</tr>
+<tr>
+<td>191</td>
+<td>2022(CVPR)</td>
+<td>Wang</td>
+<td>Uformer: A general u-shaped transformer for image restoration</td>
+<td>Wang 等提出了 Uformer，一种通用且优越的 U 形 Transformer，它可以在捕获局部上下文和多尺度特征的同时，降低高分辨率特征图上的计算复杂度</td>
+</tr>
+<tr>
+<td>212</td>
+<td>2022(CVPR)</td>
+<td>Zamir</td>
+<td>Restormer: Efficient transformer for high-resolution image restoration</td>
+<td>Zamir 等提出了一种高效的 Restormer，它可以捕获长距离像素交互，同时适用于大图像</td>
+</tr>
+<tr>
+<td>101</td>
+<td>2023(IEEE Transactions on Multimedia)</td>
+<td>Li</td>
+<td>Cross-receptive Focused Inference Network for lightweight image super-resolution</td>
+<td>Li 等提出了 Cross-receptive Focused Inference Network（CFIN），可以结合上下文建模，在有限的计算资源下实现良好的性能</td>
+</tr>
+<tr>
+<td>239</td>
+<td>2023(CVPR)</td>
+<td>Zhu</td>
+<td>Attention Retractable Frequency Fusion Transformer for Image Super Resolution</td>
+<td>Zhu 等设计了注意力可伸缩频率融合 Transformer（ARFFT），以增强表示能力并将感受野扩展到整个图像</td>
+</tr>
+<tr>
+<td>100</td>
+<td>2023(IEEE Transactions on Circuits and Systems for Video Technology)</td>
+<td>Li</td>
+<td>Lightweight Image Super-Resolution with Pyramid Clustering Transformer</td>
+<td>Li 等提出了一种简洁而强大的金字塔聚类 Transformer 网络（PCTN），用于轻量级 SISR</td>
+</tr>
+<tr>
+<td>26</td>
+<td>2023(ICCV)</td>
+<td>Chen</td>
+<td>Dual aggregation transformer for image super-resolution</td>
+<td>Chen 等提出了双聚合 Transformer（DAT）用于 SISR，以块间和块内双重方式跨空间和通道维度聚合特征</td>
+</tr>
+<tr>
+<td>236</td>
+<td>2023(ICCV)</td>
+<td>Zhou</td>
+<td>Srformer: Permuted self-attention for single image super-resolution</td>
+<td>Zhou 等提出了 SRFormer，通过有效地整合自注意力通道和空间信息，提升了基于窗口的 Transformer 方法的性能</td>
+</tr>
+<tr>
+<td>218</td>
+<td>2024(CVPR)</td>
+<td>Zhang</td>
+<td>Transcending the Limit of Local Window: Advanced Super-Resolution Transformer with Adaptive Token Dictionary</td>
+<td>Zhang 等提出了 ATDSR，通过一组自适应令牌字典丰富了超分辨率 Transformer，从而提高了 SISR 的精度</td>
+</tr>
+<tr>
+<td>120</td>
+<td>2024(AAAI)</td>
+<td>Luo</td>
+<td>AdaFormer: Efficient Transformer with Adaptive Token Sparsification for Image Super-resolution</td>
+<td>Luo 等提出的自适应令牌稀疏化 Transformer（AdaFormer）通过结合稀疏性策略加速图像的模型推理</td>
+</tr>
+</tbody>
+</table>
+</div>
+]]></content>
+      <categories>
+        <category>综述类</category>
+      </categories>
+      <tags>
+        <tag>超分辨率</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>超分辨率第十一章-SR&amp;Diffusion_model</title>
     <url>/2025/03/07/%E8%B6%85%E5%88%86%E8%BE%A8%E7%8E%87%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0-SR&amp;Diffusion-model/</url>
     <content><![CDATA[<h1 id="超分辨率第十一章-SR-amp-Diffusion-model"><a href="#超分辨率第十一章-SR-amp-Diffusion-model" class="headerlink" title="超分辨率第十一章-SR&amp;Diffusion_model"></a>超分辨率第十一章-SR&amp;Diffusion_model</h1><blockquote>
